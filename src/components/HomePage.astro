@@ -686,7 +686,7 @@ const homepageReviews = [
             )}
 
             <div class="card-img-box">
-              <span class="rating-badge">⭐ {tour.rating}</span>
+              <button type="button" class="card-fav-btn" aria-label="Favorite" tabindex="-1">♡</button>
               <Image src={resolveTourCardImage(tour)} alt={tour.title} loading="lazy" decoding="async" width={480} height={320} />
             </div>
 
@@ -703,7 +703,7 @@ const homepageReviews = [
               </div>
 
               <div class="card-price-box">
-                <span class="starting-text">{t.popular.startingPrice}</span>
+                <span class="rating-badge">⭐ {tour.rating}</span>
                 <div class="price-right" data-price-wrap>
                   <span class="old-price" data-old-price>{tour.oldPrice}</span>
                   <span class="current-price" data-current-price>{tour.currentPrice}</span>
@@ -2199,27 +2199,33 @@ const homepageReviews = [
   .section-title { font-family: var(--font-display); font-size: 34px; font-weight: 800; text-align: center; margin-bottom: 30px; color: var(--primary-navy); }
   .tours-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
-  .tour-card-style2 { background: #ffffff; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.05); border: 1px solid #ecf0f5; display: flex; flex-direction: column; transition: transform 0.3s ease; }
+  .tour-card-style2 { position: relative; background: #ffffff; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.05); border: 1px solid #ecf0f5; display: flex; flex-direction: column; transition: transform 0.3s ease; }
   .tour-card-style2:hover { transform: translateY(-5px); }
 
   .card-img-box { position: relative; height: 200px; }
   .card-img-box img { width: 100%; height: 100%; object-fit: cover; }
-  .rating-badge { position: absolute; top: 10px; right: 10px; background: #ffffff; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 800; color: var(--primary-navy); }
+  .card-fav-btn { position: absolute; top: 10px; right: 10px; z-index: 6; width: 30px; height: 30px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); color: #0a1830; font-size: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(0,0,0,.12); cursor: default; pointer-events: none; }
 
   .card-body-box { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; }
   .duration-text { font-size: 12px; color: var(--text-muted); font-weight: 600; margin-bottom: 4px; }
   .card-title-text { font-size: 16px; font-weight: 800; color: var(--primary-navy); margin-bottom: 10px; }
 
-  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; position: relative; z-index: 1; }
   .discount-tag { font-size: 11px; font-weight: 700; color: #166534; }
-  .status-tag { font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 10px; }
-  .status-red { color: #b91c1c; } .status-blue { color: #3081e3; } .status-purple { color: #327edd; }
+  .status-tag { font-size: 10.5px; font-weight: 800; padding: 5px 10px; border-radius: 999px; }
+  .status-tag:not([style*="display:none"]):not([style*="display: none"]) {
+    position: absolute; top: 10px; left: 10px; z-index: 6;
+    background: rgba(10,24,48,.82); color: #fff; backdrop-filter: blur(2px);
+  }
+  [data-badge2-tag]:not([style*="display:none"]):not([style*="display: none"]) { top: 44px; }
+  .status-red { background: rgba(185,28,28,.85) !important; } .status-blue { background: rgba(10,24,48,.82); } .status-purple { background: rgba(48,129,227,.85) !important; }
 
-  .card-price-box { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; }
+  .card-price-box { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .rating-badge { font-size: 12px; font-weight: 800; color: var(--primary-navy); background: #f0f7fd; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
   .starting-text { font-size: 11px; color: var(--text-muted); }
   .price-right { text-align: right; }
   .old-price { font-size: 13px; color: var(--text-muted); text-decoration: line-through; margin-right: 4px; }
-  .current-price { font-size: 24px; font-weight: 900; color: var(--primary-navy); transition: opacity .25s ease; }
+  .current-price { font-size: 22px; font-weight: 900; color: #1478d4; transition: opacity .25s ease; }
   .old-price { transition: opacity .25s ease; }
 
   /* REVIEWS */
@@ -2800,16 +2806,19 @@ const homepageReviews = [
     .tbc-booking-box { border-radius: 20px; padding: 8px; }
     .tbc-booking-grid { grid-template-columns: 1fr; gap: 6px; }
     
-    .tours-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .tours-grid { grid-template-columns: 1fr; gap: 16px; }
     
-    .tour-card-style2 { border-radius: 12px; }
-    .card-img-box { height: 120px; }
-    .card-body-box { padding: 10px; }
-    .card-title-text { font-size: 12px; margin-bottom: 6px; line-height: 1.2; min-height: 28px; }
-    .duration-text { font-size: 10px; }
-    .current-price { font-size: 16px; }
-    .old-price { font-size: 11px; }
-    .starting-text { font-size: 9px; }
+    .tour-card-style2 { border-radius: 16px; }
+    .card-img-box { height: 200px; }
+    .card-body-box { padding: 14px; }
+    .card-title-text { font-size: 15px; margin-bottom: 6px; line-height: 1.25; min-height: 0; }
+    .duration-text { font-size: 11px; }
+    .current-price { font-size: 20px; }
+    .old-price { font-size: 12px; }
+    .starting-text { font-size: 10px; }
+    .rating-badge { font-size: 11px; }
+    .card-fav-btn { width: 32px; height: 32px; font-size: 17px; }
+    .status-tag { font-size: 10px; padding: 5px 9px; }
 
     .cta-flex { flex-direction: column; text-align: center; }
     .footer-top-row { flex-direction: column; align-items: flex-start; }
