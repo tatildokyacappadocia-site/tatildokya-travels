@@ -1,0 +1,479 @@
+---
+// Çok adımlı rezervasyon akışı: Search -> Booking Form -> Extra Services -> Confirm & Send
+// Ödeme altyapısı henüz yok; son adım Supabase'e kaydedip WhatsApp/e-posta ile bildirim gönderen
+// mevcut /api/create-reservation.json.ts uç noktasına gönderim yapar.
+const { lang = "en" } = Astro.props;
+
+const copy = {
+  en: {
+    steps: ["Search", "Booking Form", "Extra Services", "Confirm & Send"],
+    step1Title: "Choose your tour, date & guests",
+    tourLabel: "Tour",
+    dateLabel: "Preferred Date",
+    guestsLabel: "Guests",
+    next: "Continue",
+    back: "Back",
+    step2Title: "Passenger & pick-up details",
+    fullName: "Full Name",
+    phone: "Phone Number",
+    email: "Email Address",
+    pickupTitle: "Pick-up address in Cappadocia",
+    pickupHotel: "Enter my hotel name",
+    pickupMap: "I'll describe my location",
+    pickupLater: "To be confirmed later",
+    hotelPlaceholder: "Hotel name",
+    locationPlaceholder: "Describe your pick-up location",
+    step3Title: "Optional extras",
+    step3Sub: "Select anything you'd like us to arrange — we'll confirm availability and price with you.",
+    extras: [
+      "Professional photo & video package",
+      "Private balloon basket",
+      "Hotel breakfast upgrade",
+      "Extra transfer for a friend/family",
+    ],
+    noteLabel: "Anything else we should know?",
+    notePlaceholder: "Optional message…",
+    step4Title: "Review & send your request",
+    summaryTour: "Tour", summaryDate: "Date", summaryGuests: "Guests", summaryName: "Name", summaryPhone: "Phone", summaryPickup: "Pick-up", summaryExtras: "Extras",
+    sendRequest: "Send Reservation Request",
+    sendWhatsapp: "Send via WhatsApp instead",
+    sending: "Sending…",
+    successTitle: "Request received!",
+    successText: "Thanks — your reservation code is",
+    successSub: "Our team will contact you shortly by phone, WhatsApp or email to confirm the details.",
+    errorText: "Something went wrong. Please try again or contact us on WhatsApp.",
+    missingFields: "Please complete the required fields before continuing.",
+    noPayment: "No payment is taken online yet — we'll confirm final pricing and take payment details directly with you.",
+  },
+  tr: {
+    steps: ["Arama", "Rezervasyon Formu", "Ek Hizmetler", "Onayla & Gönder"],
+    step1Title: "Tur, tarih ve kişi sayınızı seçin",
+    tourLabel: "Tur",
+    dateLabel: "Tercih Ettiğiniz Tarih",
+    guestsLabel: "Kişi Sayısı",
+    next: "Devam Et",
+    back: "Geri",
+    step2Title: "Yolcu ve alış bilgileri",
+    fullName: "Ad Soyad",
+    phone: "Telefon Numarası",
+    email: "E-posta Adresi",
+    pickupTitle: "Kapadokya'daki alış adresiniz",
+    pickupHotel: "Otel adımı gireceğim",
+    pickupMap: "Konumumu tarif edeceğim",
+    pickupLater: "Daha sonra teyit edilecek",
+    hotelPlaceholder: "Otel adı",
+    locationPlaceholder: "Alış konumunuzu tarif edin",
+    step3Title: "İsteğe bağlı ek hizmetler",
+    step3Sub: "Sizin için ayarlamamızı istediğiniz bir şey varsa seçin — uygunluk ve fiyatı sizinle teyit ederiz.",
+    extras: [
+      "Profesyonel fotoğraf & video paketi",
+      "Özel balon sepeti",
+      "Otel kahvaltı yükseltmesi",
+      "Bir arkadaşınız/aileniz için ek transfer",
+    ],
+    noteLabel: "Bilmemiz gereken başka bir şey var mı?",
+    notePlaceholder: "Opsiyonel mesaj…",
+    step4Title: "Talebinizi gözden geçirin ve gönderin",
+    summaryTour: "Tur", summaryDate: "Tarih", summaryGuests: "Kişi Sayısı", summaryName: "Ad Soyad", summaryPhone: "Telefon", summaryPickup: "Alış Yeri", summaryExtras: "Ek Hizmetler",
+    sendRequest: "Rezervasyon Talebi Gönder",
+    sendWhatsapp: "WhatsApp ile gönder",
+    sending: "Gönderiliyor…",
+    successTitle: "Talebiniz alındı!",
+    successText: "Teşekkürler — rezervasyon kodunuz",
+    successSub: "Ekibimiz detayları teyit etmek için telefon, WhatsApp veya e-posta yoluyla en kısa sürede sizinle iletişime geçecek.",
+    errorText: "Bir şeyler ters gitti. Lütfen tekrar deneyin veya WhatsApp'tan bize ulaşın.",
+    missingFields: "Devam etmeden önce lütfen gerekli alanları doldurun.",
+    noPayment: "Şu an online ödeme alınmıyor — son fiyatı ve ödeme detaylarını sizinle doğrudan teyit edeceğiz.",
+  },
+  es: {
+    steps: ["Búsqueda", "Formulario", "Servicios Extra", "Confirmar y Enviar"],
+    step1Title: "Elige tu tour, fecha y viajeros",
+    tourLabel: "Tour",
+    dateLabel: "Fecha Preferida",
+    guestsLabel: "Viajeros",
+    next: "Continuar",
+    back: "Atrás",
+    step2Title: "Datos del pasajero y recogida",
+    fullName: "Nombre Completo",
+    phone: "Número de Teléfono",
+    email: "Correo Electrónico",
+    pickupTitle: "Dirección de recogida en Capadocia",
+    pickupHotel: "Indicaré el nombre de mi hotel",
+    pickupMap: "Describiré mi ubicación",
+    pickupLater: "Se confirmará más tarde",
+    hotelPlaceholder: "Nombre del hotel",
+    locationPlaceholder: "Describe tu punto de recogida",
+    step3Title: "Extras opcionales",
+    step3Sub: "Selecciona lo que quieras que organicemos — confirmaremos disponibilidad y precio contigo.",
+    extras: [
+      "Paquete de fotos y video profesional",
+      "Cesta de globo privada",
+      "Mejora de desayuno en el hotel",
+      "Traslado extra para un amigo/familiar",
+    ],
+    noteLabel: "¿Algo más que debamos saber?",
+    notePlaceholder: "Mensaje opcional…",
+    step4Title: "Revisa y envía tu solicitud",
+    summaryTour: "Tour", summaryDate: "Fecha", summaryGuests: "Viajeros", summaryName: "Nombre", summaryPhone: "Teléfono", summaryPickup: "Recogida", summaryExtras: "Extras",
+    sendRequest: "Enviar Solicitud de Reserva",
+    sendWhatsapp: "Enviar por WhatsApp",
+    sending: "Enviando…",
+    successTitle: "¡Solicitud recibida!",
+    successText: "Gracias — tu código de reserva es",
+    successSub: "Nuestro equipo se pondrá en contacto contigo pronto por teléfono, WhatsApp o correo para confirmar los detalles.",
+    errorText: "Algo salió mal. Inténtalo de nuevo o escríbenos por WhatsApp.",
+    missingFields: "Completa los campos obligatorios antes de continuar.",
+    noPayment: "Todavía no se cobra online — confirmaremos el precio final y los datos de pago directamente contigo.",
+  },
+};
+
+const c = copy[lang] || copy.en;
+---
+
+<section class="bw-wrap" id="bookingWizard" data-lang={lang}>
+  <div class="bw-inner">
+
+    <ol class="bw-stepper" id="bwStepper">
+      {c.steps.map((label, i) => (
+        <li class:list={["bw-step", { "is-active": i === 0 }]} data-step={i + 1}>
+          <span class="bw-step-dot">{i + 1}</span>
+          <span class="bw-step-label">{label}</span>
+        </li>
+      ))}
+    </ol>
+
+    <p class="bw-no-payment">{c.noPayment}</p>
+
+    <!-- STEP 1: SEARCH -->
+    <div class="bw-panel is-active" data-panel="1">
+      <h2 class="bw-panel-title">{c.step1Title}</h2>
+      <div class="bw-field">
+        <label for="bwTour">{c.tourLabel}</label>
+        <input type="text" id="bwTour" readonly />
+      </div>
+      <div class="bw-row">
+        <div class="bw-field">
+          <label for="bwDate">{c.dateLabel}</label>
+          <input type="text" id="bwDate" placeholder="DD.MM.YYYY" autocomplete="off" />
+        </div>
+        <div class="bw-field">
+          <label for="bwGuests">{c.guestsLabel}</label>
+          <select id="bwGuests">
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6+</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" class="bw-btn bw-btn-primary" data-next>{c.next}</button>
+    </div>
+
+    <!-- STEP 2: BOOKING FORM -->
+    <div class="bw-panel" data-panel="2">
+      <h2 class="bw-panel-title">{c.step2Title}</h2>
+      <div class="bw-row">
+        <div class="bw-field">
+          <label for="bwName">{c.fullName}</label>
+          <input type="text" id="bwName" required />
+        </div>
+        <div class="bw-field">
+          <label for="bwPhone">{c.phone}</label>
+          <input type="tel" id="bwPhone" placeholder="+90 5xx xxx xx xx" required />
+        </div>
+      </div>
+      <div class="bw-field">
+        <label for="bwEmail">{c.email}</label>
+        <input type="email" id="bwEmail" />
+      </div>
+
+      <div class="bw-pickup">
+        <span class="bw-pickup-title">{c.pickupTitle}</span>
+        <label class="bw-radio"><input type="radio" name="bwPickup" value="hotel" checked /> {c.pickupHotel}</label>
+        <input type="text" id="bwPickupHotel" class="bw-sub-input" placeholder={c.hotelPlaceholder} />
+        <label class="bw-radio"><input type="radio" name="bwPickup" value="location" /> {c.pickupMap}</label>
+        <input type="text" id="bwPickupLocation" class="bw-sub-input" placeholder={c.locationPlaceholder} disabled />
+        <label class="bw-radio"><input type="radio" name="bwPickup" value="later" /> {c.pickupLater}</label>
+      </div>
+
+      <div class="bw-btn-row">
+        <button type="button" class="bw-btn bw-btn-secondary" data-back>{c.back}</button>
+        <button type="button" class="bw-btn bw-btn-primary" data-next>{c.next}</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: EXTRA SERVICES -->
+    <div class="bw-panel" data-panel="3">
+      <h2 class="bw-panel-title">{c.step3Title}</h2>
+      <p class="bw-panel-sub">{c.step3Sub}</p>
+      <div class="bw-extras">
+        {c.extras.map((extra) => (
+          <label class="bw-extra-item">
+            <input type="checkbox" class="bw-extra-check" value={extra} />
+            <span>{extra}</span>
+          </label>
+        ))}
+      </div>
+      <div class="bw-field">
+        <label for="bwNote">{c.noteLabel}</label>
+        <textarea id="bwNote" placeholder={c.notePlaceholder}></textarea>
+      </div>
+      <div class="bw-btn-row">
+        <button type="button" class="bw-btn bw-btn-secondary" data-back>{c.back}</button>
+        <button type="button" class="bw-btn bw-btn-primary" data-next>{c.next}</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: CONFIRM & SEND -->
+    <div class="bw-panel" data-panel="4">
+      <h2 class="bw-panel-title">{c.step4Title}</h2>
+
+      <div class="bw-summary" id="bwSummary">
+        <div><span>{c.summaryTour}</span><strong id="bwSumTour"></strong></div>
+        <div><span>{c.summaryDate}</span><strong id="bwSumDate"></strong></div>
+        <div><span>{c.summaryGuests}</span><strong id="bwSumGuests"></strong></div>
+        <div><span>{c.summaryName}</span><strong id="bwSumName"></strong></div>
+        <div><span>{c.summaryPhone}</span><strong id="bwSumPhone"></strong></div>
+        <div><span>{c.summaryPickup}</span><strong id="bwSumPickup"></strong></div>
+        <div><span>{c.summaryExtras}</span><strong id="bwSumExtras"></strong></div>
+      </div>
+
+      <div class="bw-btn-row bw-btn-row-final">
+        <button type="button" class="bw-btn bw-btn-secondary" data-back>{c.back}</button>
+        <a class="bw-btn bw-btn-whatsapp" id="bwWhatsappBtn" href="#" target="_blank" rel="noopener">{c.sendWhatsapp}</a>
+        <button type="button" class="bw-btn bw-btn-primary" id="bwSendBtn">{c.sendRequest}</button>
+      </div>
+
+      <div class="bw-alert bw-alert-error" id="bwError" hidden>{c.errorText}</div>
+      <div class="bw-alert bw-alert-success" id="bwSuccess" hidden>
+        <strong id="bwSuccessTitle"></strong>
+        <p id="bwSuccessText"></p>
+        <p class="bw-success-sub">{c.successSub}</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script define:vars={{ lang, missingFields: c.missingFields, sending: c.sending, sendRequest: c.sendRequest, successTitle: c.successTitle, successText: c.successText }}>
+  (() => {
+    const wrap = document.getElementById('bookingWizard');
+    if (!wrap) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const tourInput = document.getElementById('bwTour');
+    const dateInput = document.getElementById('bwDate');
+    const guestsSelect = document.getElementById('bwGuests');
+
+    const tourName = params.get('tour') || '';
+    const tourSlug = params.get('slug') || '';
+    tourInput.value = tourName;
+    if (params.get('date')) dateInput.value = params.get('date');
+    if (params.get('people')) guestsSelect.value = params.get('people');
+
+    // Basit takvim: input'a tıklayınca native tarih seçici yerine metin girişi kabul ediyoruz
+    dateInput.addEventListener('focus', () => { dateInput.type = 'text'; });
+
+    let currentStep = 1;
+    const panels = wrap.querySelectorAll('.bw-panel');
+    const steps = wrap.querySelectorAll('.bw-step');
+
+    function goToStep(n) {
+      currentStep = n;
+      panels.forEach((p) => p.classList.toggle('is-active', Number(p.dataset.panel) === n));
+      steps.forEach((s) => {
+        const sn = Number(s.dataset.step);
+        s.classList.toggle('is-active', sn === n);
+        s.classList.toggle('is-done', sn < n);
+      });
+      wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (n === 4) fillSummary();
+    }
+
+    wrap.querySelectorAll('[data-next]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (currentStep === 1 && (!tourInput.value || !dateInput.value || !guestsSelect.value)) {
+          alert(missingFields);
+          return;
+        }
+        if (currentStep === 2 && (!document.getElementById('bwName').value || !document.getElementById('bwPhone').value)) {
+          alert(missingFields);
+          return;
+        }
+        goToStep(Math.min(currentStep + 1, 4));
+      });
+    });
+    wrap.querySelectorAll('[data-back]').forEach((btn) => {
+      btn.addEventListener('click', () => goToStep(Math.max(currentStep - 1, 1)));
+    });
+    steps.forEach((s) => {
+      s.addEventListener('click', () => {
+        const sn = Number(s.dataset.step);
+        if (sn < currentStep) goToStep(sn);
+      });
+    });
+
+    // Pickup radio toggling
+    const pickupRadios = wrap.querySelectorAll('input[name="bwPickup"]');
+    const hotelInput = document.getElementById('bwPickupHotel');
+    const locationInput = document.getElementById('bwPickupLocation');
+    pickupRadios.forEach((r) => {
+      r.addEventListener('change', () => {
+        hotelInput.disabled = r.value !== 'hotel' && r.checked;
+        if (r.checked) {
+          hotelInput.disabled = r.value !== 'hotel';
+          locationInput.disabled = r.value !== 'location';
+        }
+      });
+    });
+
+    function getPickupText() {
+      const checked = wrap.querySelector('input[name="bwPickup"]:checked');
+      if (!checked) return '';
+      if (checked.value === 'hotel') return hotelInput.value || '';
+      if (checked.value === 'location') return locationInput.value || '';
+      return 'To be confirmed later';
+    }
+
+    function getExtras() {
+      return Array.from(wrap.querySelectorAll('.bw-extra-check:checked')).map((el) => el.value);
+    }
+
+    function fillSummary() {
+      document.getElementById('bwSumTour').textContent = tourInput.value;
+      document.getElementById('bwSumDate').textContent = dateInput.value;
+      document.getElementById('bwSumGuests').textContent = guestsSelect.value;
+      document.getElementById('bwSumName').textContent = document.getElementById('bwName').value;
+      document.getElementById('bwSumPhone').textContent = document.getElementById('bwPhone').value;
+      document.getElementById('bwSumPickup').textContent = getPickupText();
+      document.getElementById('bwSumExtras').textContent = getExtras().join(', ') || '—';
+
+      const waNumber = '905333925450';
+      const waText = encodeURIComponent(
+        `Merhaba, rezervasyon talebim:\nTur: ${tourInput.value}\nTarih: ${dateInput.value}\nKişi: ${guestsSelect.value}\nAd: ${document.getElementById('bwName').value}\nTelefon: ${document.getElementById('bwPhone').value}\nAlış: ${getPickupText()}\nEkstra: ${getExtras().join(', ') || '-'}`
+      );
+      document.getElementById('bwWhatsappBtn').href = `https://wa.me/${waNumber}?text=${waText}`;
+    }
+
+    const sendBtn = document.getElementById('bwSendBtn');
+    const errorBox = document.getElementById('bwError');
+    const successBox = document.getElementById('bwSuccess');
+
+    sendBtn.addEventListener('click', async () => {
+      errorBox.hidden = true;
+      sendBtn.disabled = true;
+      sendBtn.textContent = sending;
+
+      const extras = getExtras();
+      const noteParts = [];
+      if (extras.length) noteParts.push(`Extras: ${extras.join(', ')}`);
+      const pickupText = getPickupText();
+      if (pickupText) noteParts.push(`Pick-up: ${pickupText}`);
+      const userNote = document.getElementById('bwNote').value;
+      if (userNote) noteParts.push(userNote);
+
+      const payload = {
+        name: document.getElementById('bwName').value,
+        phone: document.getElementById('bwPhone').value,
+        email: document.getElementById('bwEmail').value,
+        date: dateInput.value,
+        people: guestsSelect.value,
+        note: noteParts.join(' | '),
+        tourName: tourInput.value,
+        tourSlug,
+        lang,
+      };
+
+      try {
+        const res = await fetch('/api/create-reservation.json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (data && data.success) {
+          document.getElementById('bwSuccessTitle').textContent = successTitle;
+          document.getElementById('bwSuccessText').textContent = `${successText} ${data.pnr || ''}`;
+          successBox.hidden = false;
+          sendBtn.hidden = true;
+        } else {
+          errorBox.hidden = false;
+        }
+      } catch (e) {
+        errorBox.hidden = false;
+      } finally {
+        sendBtn.disabled = false;
+        sendBtn.textContent = sendRequest;
+      }
+    });
+  })();
+</script>
+
+<style>
+  .bw-wrap { --bw-blue: #1478d4; --bw-blue-dark: #0d5aa0; --bw-navy: #0a1830; width: 100%; background: #eff6fc; padding: 60px 16px 90px; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+  .bw-inner { max-width: 720px; margin: 0 auto; background: #fff; border-radius: 28px; box-shadow: 0 20px 60px rgba(10,24,48,.1); padding: 36px 30px 40px; }
+
+  .bw-stepper { list-style: none; margin: 0 0 18px; padding: 0; display: flex; justify-content: space-between; gap: 6px; }
+  .bw-step { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; cursor: default; opacity: .45; }
+  .bw-step.is-active, .bw-step.is-done { opacity: 1; cursor: pointer; }
+  .bw-step-dot { width: 30px; height: 30px; border-radius: 50%; background: #e2edf9; color: var(--bw-navy); font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+  .bw-step.is-active .bw-step-dot { background: var(--bw-blue); color: #fff; }
+  .bw-step.is-done .bw-step-dot { background: #16a34a; color: #fff; }
+  .bw-step-label { font-size: 10.5px; font-weight: 700; color: var(--bw-navy); letter-spacing: -0.2px; }
+
+  .bw-no-payment { text-align: center; font-size: 12px; color: #5c7797; background: #f0f7fd; border: 1px solid #d5e8f9; border-radius: 12px; padding: 10px 14px; margin: 0 0 26px; }
+
+  .bw-panel { display: none; }
+  .bw-panel.is-active { display: block; }
+  .bw-panel-title { font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 800; color: var(--bw-navy); margin: 0 0 6px; }
+  .bw-panel-sub { font-size: 13.5px; color: #5c7797; margin: 0 0 18px; }
+
+  .bw-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .bw-field label { font-size: 12.5px; font-weight: 700; color: var(--bw-navy); }
+  .bw-field input, .bw-field select, .bw-field textarea {
+    min-height: 48px; border: 1px solid #d5e2ef; border-radius: 14px; padding: 0 16px; font-size: 14px; color: var(--bw-navy);
+    background: #fbfdff; outline: none; font-family: inherit;
+  }
+  .bw-field textarea { min-height: 90px; padding: 12px 16px; resize: vertical; }
+  .bw-field input:focus, .bw-field select:focus, .bw-field textarea:focus { border-color: var(--bw-blue); box-shadow: 0 0 0 4px rgba(20,120,212,.12); }
+  .bw-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .bw-pickup { background: #f7fafd; border: 1px solid #e5eef7; border-radius: 16px; padding: 16px 18px; margin-bottom: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .bw-pickup-title { font-size: 13px; font-weight: 800; color: var(--bw-navy); margin-bottom: 2px; }
+  .bw-radio { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--bw-navy); cursor: pointer; }
+  .bw-sub-input { min-height: 42px; border: 1px solid #d5e2ef; border-radius: 12px; padding: 0 14px; font-size: 13px; margin-left: 26px; background: #fff; }
+  .bw-sub-input:disabled { opacity: .45; }
+
+  .bw-extras { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .bw-extra-item { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--bw-navy); background: #f7fafd; border: 1px solid #e5eef7; border-radius: 12px; padding: 12px 16px; cursor: pointer; }
+  .bw-extra-item:has(.bw-extra-check:checked) { border-color: var(--bw-blue); background: #eaf3fc; }
+
+  .bw-summary { display: flex; flex-direction: column; gap: 10px; background: #f7fafd; border: 1px solid #e5eef7; border-radius: 16px; padding: 18px 20px; margin-bottom: 22px; }
+  .bw-summary div { display: flex; justify-content: space-between; gap: 10px; font-size: 13.5px; }
+  .bw-summary span { color: #5c7797; }
+  .bw-summary strong { color: var(--bw-navy); text-align: right; }
+
+  .bw-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 26px; border-radius: 999px; font-size: 14px; font-weight: 800; cursor: pointer; border: 0; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+  .bw-btn-primary { background: linear-gradient(135deg, #2f8ee0, var(--bw-blue-dark)); color: #fff; box-shadow: 0 10px 24px rgba(13,90,160,.3); }
+  .bw-btn-primary:hover { transform: translateY(-2px); }
+  .bw-btn-secondary { background: #eef2f7; color: var(--bw-navy); }
+  .bw-btn-whatsapp { background: #25d366; color: #fff; }
+  .bw-btn-row { display: flex; gap: 12px; margin-top: 6px; }
+  .bw-btn-row-final { flex-wrap: wrap; }
+  .bw-btn-row-final .bw-btn { flex: 1; min-width: 160px; }
+
+  .bw-alert { margin-top: 18px; border-radius: 14px; padding: 14px 18px; font-size: 13.5px; }
+  .bw-alert-error { background: #fdeceb; color: #b3261e; border: 1px solid #f6c9c5; }
+  .bw-alert-success { background: #eafaf0; color: #14532d; border: 1px solid #bfe8cf; }
+  .bw-alert-success strong { display: block; font-size: 16px; margin-bottom: 4px; }
+  .bw-success-sub { color: #3a6b4d; margin: 8px 0 0; }
+
+  @media (max-width: 640px) {
+    .bw-inner { padding: 26px 18px 30px; border-radius: 20px; }
+    .bw-row { grid-template-columns: 1fr; }
+    .bw-step-label { display: none; }
+    .bw-panel-title { font-size: 20px; }
+  }
+</style>

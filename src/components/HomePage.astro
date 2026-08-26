@@ -1432,10 +1432,9 @@ const homepageReviews = [
             'Private VIP Airport Transfer Cappadocia':'private-airport-transfer'
           };
           const rawPeople = parseInt(guestCount, 10) || 1;
-          const params = new URLSearchParams({ date: startDate, people: String(rawPeople) });
-          if (routes[tourType]) { window.location.href = `/${currentLang}/tours/${routes[tourType]}?${params.toString()}`; return; }
-          if (transferRoutes[tourType]) { window.location.href = `/${currentLang}/transfers/${transferRoutes[tourType]}?${params.toString()}`; return; }
-          errorBox.style.display = 'block';
+          const slug = routes[tourType] || transferRoutes[tourType] || '';
+          const params = new URLSearchParams({ date: startDate, people: String(rawPeople), tour: tourType, slug });
+          window.location.href = `/${currentLang}/booking/?${params.toString()}`;
         });
       }
     }

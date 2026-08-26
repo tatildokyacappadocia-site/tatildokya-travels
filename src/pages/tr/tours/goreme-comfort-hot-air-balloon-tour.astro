@@ -343,82 +343,12 @@ const galleryPhotoWord = 'fotoğraf';
             </div>
           </div>
 
-          <div class="tbc-tour-card tbc-booking-card">
+          <div class="tbc-tour-card tbc-booking-card tbc-booking-cta-card">
             <div class="tbc-booking-head">
-              <h3>Hızlı Rezervasyon Formu</h3>
-              <p>Bilgilerinizi bırakın, ekibimiz en kısa sürede sizinle iletişime geçsin.</p>
+              <h3>Rezervasyona hazır mısınız?</h3>
+              <p>Tarihinizi ve kişi sayınızı seçin, 4 adımlık basit bir rezervasyon talebiyle sizi yönlendirelim — online ödeme gerekmez.</p>
             </div>
-
-            <form class="tbc-booking-form" action="#" method="post">
-              <div class="tbc-booking-group">
-                <label for="tbc-name">Ad Soyad</label>
-                <input type="text" id="tbc-name" name="name" placeholder="Ad Soyad" required>
-              </div>
-
-              <div class="tbc-booking-group tbc-phone-group">
-                <label for="tbc-phone">Telefon Numarası</label>
-                <input type="tel" id="tbc-phone" name="phone" placeholder="Telefon numarası" required>
-                <input type="hidden" id="tbc-phone-full" name="full_phone">
-              </div>
-
-              <div class="tbc-booking-group">
-                <label for="tbc-email">E-posta</label>
-                <input type="email" id="tbc-email" name="email" placeholder="E-posta adresi (opsiyonel)">
-              </div>
-
-              <div class="tbc-booking-group tbc-date-group">
-                <label for="tbc-date">Tarih</label>
-                <div class="tbc-date-picker-wrap">
-                  <input type="text" id="tbc-date" name="date" placeholder="Tarih Seçin" autocomplete="off" readonly required>
-                  <button type="button" class="tbc-calendar-icon" id="tbc-calendar-open" aria-label="Takvimi Aç">📅</button>
-
-                  <div class="tbc-custom-calendar" id="tbc-custom-calendar">
-                    <div class="tbc-calendar-header">
-                      <button type="button" class="tbc-cal-nav" id="tbc-prev-month">‹</button>
-                      <div class="tbc-cal-title" id="tbc-cal-title"></div>
-                      <button type="button" class="tbc-cal-nav" id="tbc-next-month">›</button>
-                    </div>
-
-                    <div class="tbc-calendar-weekdays">
-                      <span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span>Cmt</span><span>Paz</span>
-                    </div>
-
-                    <div class="tbc-calendar-days" id="tbc-calendar-days"></div>
-
-                    <div class="tbc-calendar-note">
-                      Prices shown under the dates are starting prices kişi başı.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="tbc-booking-group">
-                <label for="tbc-person">Kişi Sayısı</label>
-                <select id="tbc-person" name="person" required>
-                  <option value="">Kişi Seçin</option>
-                  <option>1 Kişi</option>
-                  <option>2 Kişi</option>
-                  <option>3 Kişi</option>
-                  <option>4 Kişi</option>
-                  <option>5+ Kişi</option>
-                </select>
-              </div>
-
-              <div class="tbc-selected-price-box" id="tbc-selected-price-box">
-                <span>Seçilen tarih fiyatı</span>
-                <strong id="tbc-selected-price-text">Lütfen bir tarih seçin</strong>
-              </div>
-              <input type="hidden" id="tbc-selected-price-input" name="selected_price">
-
-              <div class="tbc-booking-group tbc-booking-group-full">
-                <label for="tbc-message">Mesajınız</label>
-                <textarea id="tbc-message" name="message" placeholder="Ek notunuzu buraya yazabilirsiniz."></textarea>
-              </div>
-
-              <div class="tbc-booking-group tbc-booking-group-full">
-                <button type="submit" class="tbc-booking-submit">Rezervasyon Talebi Gönder</button>
-              </div>
-            </form>
+            <a class="tbc-booking-submit tbc-booking-cta-link" style="display:flex;align-items:center;justify-content:center;text-decoration:none;" href="/tr/booking/?tour=Tours&slug=tours">Rezervasyona Geç</a>
           </div>
         </aside>
 

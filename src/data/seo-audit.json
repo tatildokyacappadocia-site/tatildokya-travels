@@ -1,12 +1,12 @@
 {
   "summary": {
-    "generatedAt": "2026-08-25T08:08:20.318Z",
-    "totalPages": 164,
-    "averageScore": 99,
+    "generatedAt": "2026-08-26T19:44:31.876Z",
+    "totalPages": 167,
+    "averageScore": 98,
     "excellent": 162,
     "strong": 2,
     "improve": 0,
-    "weak": 0
+    "weak": 3
   },
   "pages": [
     {
@@ -680,8 +680,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/activities/",
       "description": "dynamic:/en/activities/",
@@ -700,7 +699,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 41,
+      "incoming": 42,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -808,8 +807,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/balloon-tours/",
       "description": "dynamic:/en/balloon-tours/",
@@ -828,7 +826,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 41,
+      "incoming": 42,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -2471,7 +2469,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 23,
+      "incoming": 22,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -2690,6 +2688,135 @@
       ]
     },
     {
+      "route": "/en/booking/",
+      "file": "src/pages/en/booking/index.astro",
+      "lang": "EN",
+      "red": null,
+      "links": [
+        "/favicon.svg",
+        "/en/",
+        "/en/balloon-tours/",
+        "/en/cappadocia-tours/",
+        "/en/activities/",
+        "/en/private-tours/",
+        "/en/transfers/"
+      ],
+      "title": "Complete Your Booking | Tatildokya Travels",
+      "description": "Complete your Cappadocia tour reservation with Tatildokya Travels — no online payment required, we confirm every detail with you directly.",
+      "canonical": "dynamic",
+      "h1": 0,
+      "h2": 4,
+      "schema": false,
+      "robots": true,
+      "hreflang": false,
+      "og": false,
+      "twitter": false,
+      "images": 0,
+      "alt": 0,
+      "size": 0,
+      "lazy": 0,
+      "score": 64,
+      "status": "weak",
+      "redirectLike": false,
+      "incoming": 5,
+      "altRatio": 100,
+      "sizeRatio": 100,
+      "lazyRatio": 100,
+      "missing": [
+        "Tek H1",
+        "Hreflang",
+        "Open Graph",
+        "Twitter Card",
+        "Schema"
+      ],
+      "checks": [
+        {
+          "label": "SEO Title",
+          "ok": true,
+          "weight": 10,
+          "tip": "Benzersiz title ekleyin."
+        },
+        {
+          "label": "Meta Description",
+          "ok": true,
+          "weight": 10,
+          "tip": "Meta description ekleyin."
+        },
+        {
+          "label": "Tek H1",
+          "ok": false,
+          "weight": 10,
+          "tip": "H1 sayısı 0."
+        },
+        {
+          "label": "Self Canonical",
+          "ok": true,
+          "weight": 12,
+          "tip": "Nihai URL’ye self-canonical ekleyin."
+        },
+        {
+          "label": "Hreflang",
+          "ok": false,
+          "weight": 8,
+          "tip": "EN/TR/ES hreflang eşleşmelerini ekleyin."
+        },
+        {
+          "label": "Robots Meta",
+          "ok": true,
+          "weight": 5,
+          "tip": "Index/follow politikasını belirtin."
+        },
+        {
+          "label": "Open Graph",
+          "ok": false,
+          "weight": 7,
+          "tip": "OG title/description/image ekleyin."
+        },
+        {
+          "label": "Twitter Card",
+          "ok": false,
+          "weight": 3,
+          "tip": "Twitter Card ekleyin."
+        },
+        {
+          "label": "Schema",
+          "ok": false,
+          "weight": 8,
+          "tip": "Uygun JSON-LD schema ekleyin."
+        },
+        {
+          "label": "Internal Links",
+          "ok": true,
+          "weight": 7,
+          "tip": "En az 3 anlamlı iç link hedefleyin."
+        },
+        {
+          "label": "Image ALT",
+          "ok": true,
+          "weight": 8,
+          "tip": "ALT kapsaması %100."
+        },
+        {
+          "label": "Image Dimensions",
+          "ok": true,
+          "weight": 5,
+          "tip": "width/height kapsaması %100; CLS için artırın."
+        },
+        {
+          "label": "Heading Structure",
+          "ok": true,
+          "weight": 4,
+          "tip": "Anlamlı H2/H3 yapısı ekleyin."
+        },
+        {
+          "label": "Incoming Link",
+          "ok": true,
+          "weight": 3,
+          "tip": "Sayfaya başka bir indexlenebilir sayfadan link verin."
+        }
+      ]
+    },
+    {
       "route": "/en/cancellation-refund-policy/",
       "file": "src/pages/en/cancellation-refund-policy.astro",
       "lang": "EN",
@@ -2833,8 +2960,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/cappadocia-tours/",
       "description": "dynamic:/en/cappadocia-tours/",
@@ -2853,7 +2979,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 41,
+      "incoming": 42,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -3341,8 +3467,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/flight-status/",
       "description": "dynamic:/en/flight-status/",
@@ -3361,7 +3486,7 @@
       "score": 90,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 41,
+      "incoming": 35,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -3474,7 +3599,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/tours/goreme-standart-hot-air-balloon-tour/",
         "/en/tours/goreme-comfort-hot-air-balloon-tour/",
         "/en/tours/red-tour-cappadocia/",
@@ -3485,8 +3609,8 @@
         "/en/tours/cappadocia-mix-tour/",
         "/en/tours/private-red-tour-cappadocia/",
         "/en/tours/private-green-tour-cappadocia/",
+        "/en/flight-status/",
         "/en/about-us/",
-        "/en/blog/",
         "/en/contact/",
         "/en/cancellation-refund-policy/",
         "/en/distance-sales-agreement/",
@@ -3512,7 +3636,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 44,
+      "incoming": 45,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -3876,8 +4000,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/private-tours/",
       "description": "dynamic:/en/private-tours/",
@@ -3896,7 +4019,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 41,
+      "incoming": 42,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -5188,6 +5311,7 @@
         "/en/tours/goreme-comfort-hot-air-balloon-tour/",
         "/tr/tours/goreme-comfort-hot-air-balloon-tour/",
         "/es/tours/goreme-comfort-hot-air-balloon-tour/",
+        "/en/booking/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -5323,6 +5447,7 @@
         "/en/tours/goreme-standart-hot-air-balloon-tour/",
         "/tr/tours/goreme-standart-hot-air-balloon-tour/",
         "/es/tours/goreme-standart-hot-air-balloon-tour/",
+        "/en/booking/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -5458,6 +5583,7 @@
         "/en/tours/green-tour-cappadocia/",
         "/tr/tours/green-tour-cappadocia/",
         "/es/tours/green-tour-cappadocia/",
+        "/en/booking/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -6121,6 +6247,7 @@
         "/en/tours/private-cappadocia-mix-tour/",
         "/tr/tours/private-cappadocia-mix-tour/",
         "/es/tours/private-cappadocia-mix-tour/",
+        "/en/booking/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -6520,6 +6647,7 @@
         "/en/tours/red-tour-cappadocia/",
         "/tr/tours/red-tour-cappadocia/",
         "/es/tours/red-tour-cappadocia/",
+        "/en/booking/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -7055,8 +7183,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/transfers/",
       "description": "dynamic:/en/transfers/",
@@ -7075,7 +7202,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 41,
+      "incoming": 42,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -7707,8 +7834,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/activities/",
       "description": "dynamic:/es/activities/",
@@ -7727,7 +7853,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 40,
+      "incoming": 41,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -7835,8 +7961,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/balloon-tours/",
       "description": "dynamic:/es/balloon-tours/",
@@ -7855,7 +7980,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 40,
+      "incoming": 41,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -7986,7 +8111,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 22,
+      "incoming": 21,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -8333,6 +8458,135 @@
       ]
     },
     {
+      "route": "/es/booking/",
+      "file": "src/pages/es/booking/index.astro",
+      "lang": "ES",
+      "red": null,
+      "links": [
+        "/favicon.svg",
+        "/es/",
+        "/es/balloon-tours/",
+        "/es/cappadocia-tours/",
+        "/es/activities/",
+        "/es/private-tours/",
+        "/es/transfers/"
+      ],
+      "title": "Completa tu Reserva | Tatildokya Travels",
+      "description": "Completa tu reserva de tour en Capadocia con Tatildokya Travels — no se requiere pago en línea, confirmamos cada detalle directamente contigo.",
+      "canonical": "dynamic",
+      "h1": 0,
+      "h2": 4,
+      "schema": false,
+      "robots": true,
+      "hreflang": false,
+      "og": false,
+      "twitter": false,
+      "images": 0,
+      "alt": 0,
+      "size": 0,
+      "lazy": 0,
+      "score": 64,
+      "status": "weak",
+      "redirectLike": false,
+      "incoming": 5,
+      "altRatio": 100,
+      "sizeRatio": 100,
+      "lazyRatio": 100,
+      "missing": [
+        "Tek H1",
+        "Hreflang",
+        "Open Graph",
+        "Twitter Card",
+        "Schema"
+      ],
+      "checks": [
+        {
+          "label": "SEO Title",
+          "ok": true,
+          "weight": 10,
+          "tip": "Benzersiz title ekleyin."
+        },
+        {
+          "label": "Meta Description",
+          "ok": true,
+          "weight": 10,
+          "tip": "Meta description ekleyin."
+        },
+        {
+          "label": "Tek H1",
+          "ok": false,
+          "weight": 10,
+          "tip": "H1 sayısı 0."
+        },
+        {
+          "label": "Self Canonical",
+          "ok": true,
+          "weight": 12,
+          "tip": "Nihai URL’ye self-canonical ekleyin."
+        },
+        {
+          "label": "Hreflang",
+          "ok": false,
+          "weight": 8,
+          "tip": "EN/TR/ES hreflang eşleşmelerini ekleyin."
+        },
+        {
+          "label": "Robots Meta",
+          "ok": true,
+          "weight": 5,
+          "tip": "Index/follow politikasını belirtin."
+        },
+        {
+          "label": "Open Graph",
+          "ok": false,
+          "weight": 7,
+          "tip": "OG title/description/image ekleyin."
+        },
+        {
+          "label": "Twitter Card",
+          "ok": false,
+          "weight": 3,
+          "tip": "Twitter Card ekleyin."
+        },
+        {
+          "label": "Schema",
+          "ok": false,
+          "weight": 8,
+          "tip": "Uygun JSON-LD schema ekleyin."
+        },
+        {
+          "label": "Internal Links",
+          "ok": true,
+          "weight": 7,
+          "tip": "En az 3 anlamlı iç link hedefleyin."
+        },
+        {
+          "label": "Image ALT",
+          "ok": true,
+          "weight": 8,
+          "tip": "ALT kapsaması %100."
+        },
+        {
+          "label": "Image Dimensions",
+          "ok": true,
+          "weight": 5,
+          "tip": "width/height kapsaması %100; CLS için artırın."
+        },
+        {
+          "label": "Heading Structure",
+          "ok": true,
+          "weight": 4,
+          "tip": "Anlamlı H2/H3 yapısı ekleyin."
+        },
+        {
+          "label": "Incoming Link",
+          "ok": true,
+          "weight": 3,
+          "tip": "Sayfaya başka bir indexlenebilir sayfadan link verin."
+        }
+      ]
+    },
+    {
       "route": "/es/cancellation-refund-policy/",
       "file": "src/pages/es/cancellation-refund-policy.astro",
       "lang": "ES",
@@ -8476,8 +8730,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/cappadocia-tours/",
       "description": "dynamic:/es/cappadocia-tours/",
@@ -8496,7 +8749,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 40,
+      "incoming": 41,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -8984,8 +9237,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/flight-status/",
       "description": "dynamic:/es/flight-status/",
@@ -9004,7 +9256,7 @@
       "score": 90,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 40,
+      "incoming": 34,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -9117,7 +9369,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/tours/goreme-standart-hot-air-balloon-tour/",
         "/es/tours/goreme-comfort-hot-air-balloon-tour/",
         "/es/tours/red-tour-cappadocia/",
@@ -9128,8 +9379,8 @@
         "/es/tours/cappadocia-mix-tour/",
         "/es/tours/private-red-tour-cappadocia/",
         "/es/tours/private-green-tour-cappadocia/",
+        "/es/flight-status/",
         "/es/about-us/",
-        "/es/blog/",
         "/es/contact/",
         "/es/cancellation-refund-policy/",
         "/es/distance-sales-agreement/",
@@ -9155,7 +9406,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 43,
+      "incoming": 44,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -9519,8 +9770,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/private-tours/",
       "description": "dynamic:/es/private-tours/",
@@ -9539,7 +9789,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 40,
+      "incoming": 41,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -10831,6 +11081,7 @@
         "/en/tours/goreme-comfort-hot-air-balloon-tour/",
         "/tr/tours/goreme-comfort-hot-air-balloon-tour/",
         "/es/tours/goreme-comfort-hot-air-balloon-tour/",
+        "/es/booking/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -10966,6 +11217,7 @@
         "/en/tours/goreme-standart-hot-air-balloon-tour/",
         "/tr/tours/goreme-standart-hot-air-balloon-tour/",
         "/es/tours/goreme-standart-hot-air-balloon-tour/",
+        "/es/booking/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -11101,6 +11353,7 @@
         "/en/tours/green-tour-cappadocia/",
         "/tr/tours/green-tour-cappadocia/",
         "/es/tours/green-tour-cappadocia/",
+        "/es/booking/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -11764,6 +12017,7 @@
         "/en/tours/private-cappadocia-mix-tour/",
         "/tr/tours/private-cappadocia-mix-tour/",
         "/es/tours/private-cappadocia-mix-tour/",
+        "/es/booking/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -12163,6 +12417,7 @@
         "/en/tours/red-tour-cappadocia/",
         "/tr/tours/red-tour-cappadocia/",
         "/es/tours/red-tour-cappadocia/",
+        "/es/booking/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -12697,8 +12952,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/transfers/",
       "description": "dynamic:/es/transfers/",
@@ -12717,7 +12971,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 40,
+      "incoming": 41,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -15707,8 +15961,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/activities/",
       "description": "dynamic:/tr/activities/",
@@ -15727,7 +15980,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 40,
+      "incoming": 41,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -15835,8 +16088,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/balloon-tours/",
       "description": "dynamic:/tr/balloon-tours/",
@@ -15855,7 +16107,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 40,
+      "incoming": 41,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -16364,7 +16616,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 23,
+      "incoming": 22,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -16421,6 +16673,135 @@
         {
           "label": "Schema",
           "ok": true,
+          "weight": 8,
+          "tip": "Uygun JSON-LD schema ekleyin."
+        },
+        {
+          "label": "Internal Links",
+          "ok": true,
+          "weight": 7,
+          "tip": "En az 3 anlamlı iç link hedefleyin."
+        },
+        {
+          "label": "Image ALT",
+          "ok": true,
+          "weight": 8,
+          "tip": "ALT kapsaması %100."
+        },
+        {
+          "label": "Image Dimensions",
+          "ok": true,
+          "weight": 5,
+          "tip": "width/height kapsaması %100; CLS için artırın."
+        },
+        {
+          "label": "Heading Structure",
+          "ok": true,
+          "weight": 4,
+          "tip": "Anlamlı H2/H3 yapısı ekleyin."
+        },
+        {
+          "label": "Incoming Link",
+          "ok": true,
+          "weight": 3,
+          "tip": "Sayfaya başka bir indexlenebilir sayfadan link verin."
+        }
+      ]
+    },
+    {
+      "route": "/tr/booking/",
+      "file": "src/pages/tr/booking/index.astro",
+      "lang": "TR",
+      "red": null,
+      "links": [
+        "/favicon.svg",
+        "/tr/",
+        "/tr/balloon-tours/",
+        "/tr/cappadocia-tours/",
+        "/tr/activities/",
+        "/tr/private-tours/",
+        "/tr/transfers/"
+      ],
+      "title": "Rezervasyonunuzu Tamamlayın | Tatildokya Travels",
+      "description": "Tatildokya Travels ile Kapadokya tur rezervasyonunuzu tamamlayın — online ödeme gerekmez, tüm detayları sizinle doğrudan teyit ederiz.",
+      "canonical": "dynamic",
+      "h1": 0,
+      "h2": 4,
+      "schema": false,
+      "robots": true,
+      "hreflang": false,
+      "og": false,
+      "twitter": false,
+      "images": 0,
+      "alt": 0,
+      "size": 0,
+      "lazy": 0,
+      "score": 64,
+      "status": "weak",
+      "redirectLike": false,
+      "incoming": 5,
+      "altRatio": 100,
+      "sizeRatio": 100,
+      "lazyRatio": 100,
+      "missing": [
+        "Tek H1",
+        "Hreflang",
+        "Open Graph",
+        "Twitter Card",
+        "Schema"
+      ],
+      "checks": [
+        {
+          "label": "SEO Title",
+          "ok": true,
+          "weight": 10,
+          "tip": "Benzersiz title ekleyin."
+        },
+        {
+          "label": "Meta Description",
+          "ok": true,
+          "weight": 10,
+          "tip": "Meta description ekleyin."
+        },
+        {
+          "label": "Tek H1",
+          "ok": false,
+          "weight": 10,
+          "tip": "H1 sayısı 0."
+        },
+        {
+          "label": "Self Canonical",
+          "ok": true,
+          "weight": 12,
+          "tip": "Nihai URL’ye self-canonical ekleyin."
+        },
+        {
+          "label": "Hreflang",
+          "ok": false,
+          "weight": 8,
+          "tip": "EN/TR/ES hreflang eşleşmelerini ekleyin."
+        },
+        {
+          "label": "Robots Meta",
+          "ok": true,
+          "weight": 5,
+          "tip": "Index/follow politikasını belirtin."
+        },
+        {
+          "label": "Open Graph",
+          "ok": false,
+          "weight": 7,
+          "tip": "OG title/description/image ekleyin."
+        },
+        {
+          "label": "Twitter Card",
+          "ok": false,
+          "weight": 3,
+          "tip": "Twitter Card ekleyin."
+        },
+        {
+          "label": "Schema",
+          "ok": false,
           "weight": 8,
           "tip": "Uygun JSON-LD schema ekleyin."
         },
@@ -16600,8 +16981,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/cappadocia-tours/",
       "description": "dynamic:/tr/cappadocia-tours/",
@@ -16620,7 +17000,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 40,
+      "incoming": 41,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -17108,8 +17488,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/flight-status/",
       "description": "dynamic:/tr/flight-status/",
@@ -17128,7 +17507,7 @@
       "score": 90,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 40,
+      "incoming": 34,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -17241,7 +17620,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/tours/goreme-standart-hot-air-balloon-tour/",
         "/tr/tours/goreme-comfort-hot-air-balloon-tour/",
         "/tr/tours/red-tour-cappadocia/",
@@ -17252,8 +17630,8 @@
         "/tr/tours/cappadocia-mix-tour/",
         "/tr/tours/private-red-tour-cappadocia/",
         "/tr/tours/private-green-tour-cappadocia/",
+        "/tr/flight-status/",
         "/tr/about-us/",
-        "/tr/blog/",
         "/tr/contact/",
         "/tr/cancellation-refund-policy/",
         "/tr/distance-sales-agreement/",
@@ -17279,7 +17657,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 43,
+      "incoming": 44,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -17643,8 +18021,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/private-tours/",
       "description": "dynamic:/tr/private-tours/",
@@ -17663,7 +18040,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 40,
+      "incoming": 41,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -18955,6 +19332,7 @@
         "/en/tours/goreme-comfort-hot-air-balloon-tour/",
         "/tr/tours/goreme-comfort-hot-air-balloon-tour/",
         "/es/tours/goreme-comfort-hot-air-balloon-tour/",
+        "/tr/booking/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -19090,6 +19468,7 @@
         "/en/tours/goreme-standart-hot-air-balloon-tour/",
         "/tr/tours/goreme-standart-hot-air-balloon-tour/",
         "/es/tours/goreme-standart-hot-air-balloon-tour/",
+        "/tr/booking/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -19225,6 +19604,7 @@
         "/en/tours/green-tour-cappadocia/",
         "/tr/tours/green-tour-cappadocia/",
         "/es/tours/green-tour-cappadocia/",
+        "/tr/booking/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -19888,6 +20268,7 @@
         "/en/tours/private-cappadocia-mix-tour/",
         "/tr/tours/private-cappadocia-mix-tour/",
         "/es/tours/private-cappadocia-mix-tour/",
+        "/tr/booking/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -20287,6 +20668,7 @@
         "/en/tours/red-tour-cappadocia/",
         "/tr/tours/red-tour-cappadocia/",
         "/es/tours/red-tour-cappadocia/",
+        "/tr/booking/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -20822,8 +21204,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/transfers/",
       "description": "dynamic:/tr/transfers/",
@@ -20842,7 +21223,7 @@
       "score": 100,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 40,
+      "incoming": 41,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -22432,14 +22813,14 @@
         "label": "Canonical",
         "score": 100,
         "issues": 0,
-        "detail": "142 indexlenebilir sayfa"
+        "detail": "145 indexlenebilir sayfa"
       },
       {
         "key": "sitemap",
         "label": "Sitemap",
         "score": 100,
         "issues": 0,
-        "detail": "142 URL otomatik üretilecek"
+        "detail": "145 URL otomatik üretilecek"
       },
       {
         "key": "robots",
@@ -22472,16 +22853,16 @@
       {
         "key": "404",
         "label": "404 / Broken Links",
-        "score": 0,
+        "score": 2,
         "issues": 142,
         "detail": "142 statik kırık iç link"
       },
       {
         "key": "schema",
         "label": "Schema",
-        "score": 100,
-        "issues": 0,
-        "detail": "0 schema eksik sayfa"
+        "score": 98,
+        "issues": 3,
+        "detail": "3 schema eksik sayfa"
       },
       {
         "key": "images",
@@ -23367,7 +23748,11 @@
       "/es/blog/mejores-globos-capadocia/",
       "/es/blog/precio-tour-globo-capadocia/"
     ],
-    "schemaIssues": [],
+    "schemaIssues": [
+      "/en/booking/",
+      "/es/booking/",
+      "/tr/booking/"
+    ],
     "imageIssues": [],
     "sitemapUrls": [
       "/[lang]/tours/[slug]/",
@@ -23389,6 +23774,7 @@
       "/en/blog/cappadocia-balloon-tour-price/",
       "/en/blog/cappadocia-turkey-holidays/",
       "/en/blog/istanbul-cappadocia-tours-turkey/",
+      "/en/booking/",
       "/en/cancellation-refund-policy/",
       "/en/cappadocia-tours/",
       "/en/contact/",
@@ -23432,6 +23818,7 @@
       "/es/blog/",
       "/es/blog/mejores-globos-capadocia/",
       "/es/blog/precio-tour-globo-capadocia/",
+      "/es/booking/",
       "/es/cancellation-refund-policy/",
       "/es/cappadocia-tours/",
       "/es/contact/",
@@ -23476,6 +23863,7 @@
       "/tr/blog/1-gunluk-kapadokya-turlari/",
       "/tr/blog/balon-dahil-kapadokya-turu/",
       "/tr/blog/balon-fiyatlari-kapadokya/",
+      "/tr/booking/",
       "/tr/cancellation-refund-policy/",
       "/tr/cappadocia-tours/",
       "/tr/contact/",

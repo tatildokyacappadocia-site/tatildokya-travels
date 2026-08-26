@@ -1,0 +1,24 @@
+---
+import SiteHeader from "../../../components/SiteHeader.astro";
+import BookingWizard from "../../../components/BookingWizard.astro";
+
+const canonicalUrl = "https://tatildokya.com/es/booking/";
+---
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Completa tu Reserva | Tatildokya Travels</title>
+  <meta name="description" content="Completa tu reserva de tour en Capadocia con Tatildokya Travels — no se requiere pago en línea, confirmamos cada detalle directamente contigo." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href={canonicalUrl} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=11" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body style="margin:0; background:#eff6fc;">
+  <SiteHeader lang="es" />
+  <BookingWizard lang="es" />
+</body>
+</html>

@@ -1,0 +1,24 @@
+---
+import SiteHeader from "../../../components/SiteHeader.astro";
+import BookingWizard from "../../../components/BookingWizard.astro";
+
+const canonicalUrl = "https://tatildokya.com/tr/booking/";
+---
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rezervasyonunuzu Tamamlayın | Tatildokya Travels</title>
+  <meta name="description" content="Tatildokya Travels ile Kapadokya tur rezervasyonunuzu tamamlayın — online ödeme gerekmez, tüm detayları sizinle doğrudan teyit ederiz." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href={canonicalUrl} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=11" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body style="margin:0; background:#eff6fc;">
+  <SiteHeader lang="tr" />
+  <BookingWizard lang="tr" />
+</body>
+</html>

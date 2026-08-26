@@ -343,82 +343,12 @@ const galleryPhotoWord = 'fotos';
             </div>
           </div>
 
-          <div class="tbc-tour-card tbc-booking-card">
+          <div class="tbc-tour-card tbc-booking-card tbc-booking-cta-card">
             <div class="tbc-booking-head">
-              <h3>Formulario de Reserva Rápida</h3>
-              <p>Déjanos tus datos y nuestro equipo se pondrá en contacto contigo lo antes posible.</p>
+              <h3>¿Listo para reservar?</h3>
+              <p>Elige tu fecha y número de viajeros, te guiamos en una solicitud de reserva de 4 pasos — sin pago en línea.</p>
             </div>
-
-            <form class="tbc-booking-form" action="#" method="post">
-              <div class="tbc-booking-group">
-                <label for="tbc-name">Nombre Completo</label>
-                <input type="text" id="tbc-name" name="name" placeholder="Nombre completo" required>
-              </div>
-
-              <div class="tbc-booking-group tbc-phone-group">
-                <label for="tbc-phone">Número de Teléfono</label>
-                <input type="tel" id="tbc-phone" name="phone" placeholder="Número de teléfono" required>
-                <input type="hidden" id="tbc-phone-full" name="full_phone">
-              </div>
-
-              <div class="tbc-booking-group">
-                <label for="tbc-email">Correo electrónico</label>
-                <input type="email" id="tbc-email" name="email" placeholder="Correo electrónico (opcional)">
-              </div>
-
-              <div class="tbc-booking-group tbc-date-group">
-                <label for="tbc-date">Fecha</label>
-                <div class="tbc-date-picker-wrap">
-                  <input type="text" id="tbc-date" name="date" placeholder="Seleccionar fecha" autocomplete="off" readonly required>
-                  <button type="button" class="tbc-calendar-icon" id="tbc-calendar-open" aria-label="Abrir calendario">📅</button>
-
-                  <div class="tbc-custom-calendar" id="tbc-custom-calendar">
-                    <div class="tbc-calendar-header">
-                      <button type="button" class="tbc-cal-nav" id="tbc-prev-month">‹</button>
-                      <div class="tbc-cal-title" id="tbc-cal-title"></div>
-                      <button type="button" class="tbc-cal-nav" id="tbc-next-month">›</button>
-                    </div>
-
-                    <div class="tbc-calendar-weekdays">
-                      <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
-                    </div>
-
-                    <div class="tbc-calendar-days" id="tbc-calendar-days"></div>
-
-                    <div class="tbc-calendar-note">
-                      Prices shown under the dates are starting prices por persona.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="tbc-booking-group">
-                <label for="tbc-person">Número de Personas</label>
-                <select id="tbc-person" name="person" required>
-                  <option value="">Seleccionar personas</option>
-                  <option>1 Persona</option>
-                  <option>2 Personas</option>
-                  <option>3 Personas</option>
-                  <option>4 Personas</option>
-                  <option>5+ Personas</option>
-                </select>
-              </div>
-
-              <div class="tbc-selected-price-box" id="tbc-selected-price-box">
-                <span>Precio de la fecha seleccionada</span>
-                <strong id="tbc-selected-price-text">Selecciona una fecha</strong>
-              </div>
-              <input type="hidden" id="tbc-selected-price-input" name="selected_price">
-
-              <div class="tbc-booking-group tbc-booking-group-full">
-                <label for="tbc-message">Tu Mensaje</label>
-                <textarea id="tbc-message" name="message" placeholder="Puedes escribir aquí una nota adicional."></textarea>
-              </div>
-
-              <div class="tbc-booking-group tbc-booking-group-full">
-                <button type="submit" class="tbc-booking-submit">Enviar Solicitud de Reserva</button>
-              </div>
-            </form>
+            <a class="tbc-booking-submit tbc-booking-cta-link" style="display:flex;align-items:center;justify-content:center;text-decoration:none;" href="/es/booking/?tour=Tours&slug=tours">Continuar con la Reserva</a>
           </div>
         </aside>
 
