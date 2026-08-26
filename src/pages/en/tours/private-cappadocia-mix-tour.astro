@@ -1,4 +1,5 @@
 ---
+import TourBookingPreview from '../../../components/TourBookingPreview.astro';
 import SeoHead from '../../../components/SeoHead.astro';
 import FloatingAssistant from "../../../components/FloatingAssistant.astro";
 import { getTourGallery } from '../../../utils/tourGallery';
@@ -367,14 +368,7 @@ const galleryPhotoWord = 'photos';
             </div>
           </div>
 
-          <div class="tbc-tour-card tbc-booking-card tbc-booking-cta-card">
-            <div class="tbc-booking-head">
-              <h3>Ready to book?</h3>
-              <p>Choose your date and guest count, and we'll take you through a simple 4-step booking request — no online payment needed.</p>
-            </div>
-            <a class="tbc-booking-submit tbc-booking-cta-link" style="display:flex;align-items:center;justify-content:center;text-decoration:none;" href="/en/booking/?tour=Tours&slug=tours">Proceed to Booking</a>
-          </div>
-        </aside>
+          <TourBookingPreview lang="en" tourName="Cappadocia Mix Tour" tourSlug="private-cappadocia-mix-tour" /></aside>
 
       </div>
     </div>

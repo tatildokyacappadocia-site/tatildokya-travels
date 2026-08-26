@@ -1,4 +1,5 @@
 ---
+import TourBookingPreview from '../../../components/TourBookingPreview.astro';
 import SeoHead from '../../../components/SeoHead.astro';
 import FloatingAssistant from "../../../components/FloatingAssistant.astro";
 import { getTourGallery } from '../../../utils/tourGallery';
@@ -642,14 +643,7 @@ const galleryPhotoWord = 'fotoğraf';
             </div>
           </div>
 
-          <div class="tbc-tour-card tbc-booking-card tbc-booking-cta-card">
-            <div class="tbc-booking-head">
-              <h3>Rezervasyona hazır mısınız?</h3>
-              <p>Tarihinizi ve kişi sayınızı seçin, 4 adımlık basit bir rezervasyon talebiyle sizi yönlendirelim — online ödeme gerekmez.</p>
-            </div>
-            <a class="tbc-booking-submit tbc-booking-cta-link" style="display:flex;align-items:center;justify-content:center;text-decoration:none;" href="/tr/booking/?tour=Tours&slug=tours">Rezervasyona Geç</a>
-          </div>
-        </aside>
+          <TourBookingPreview lang="tr" tourName="Green Tour Cappadocia" tourSlug="green-tour-cappadocia" /></aside>
 
       </div>
     </div>

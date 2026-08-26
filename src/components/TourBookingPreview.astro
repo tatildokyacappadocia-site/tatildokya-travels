@@ -1,0 +1,271 @@
+---
+// Tur detay sayfalarının kenar çubuğunda kullanılan zengin rezervasyon önizleme
+// widget'ı: takvim (sahte müsaitlik renkleri YOK, çünkü gerçek envanter verimiz
+// yok), misafir sayacı ve canlı toplam fiyat tahmini. Ödeme almaz — "Proceed to
+// Booking" butonu mevcut 4 adımlı rezervasyon sihirbazına yönlendirir.
+const { lang = "en", tourName = "", tourSlug = "" } = Astro.props;
+
+const copy = {
+  en: {
+    title: "Ready to book?",
+    sub: "Pick a date and guest count to see an estimated total — no online payment needed.",
+    selectDate: "Select Date",
+    guests: "Guests",
+    adults: "Adults",
+    children: "Children",
+    estTotal: "Estimated total",
+    perPerson: "per person",
+    proceed: "Proceed to Booking",
+    pickDateFirst: "Pick a date to continue",
+  },
+  tr: {
+    title: "Rezervasyona hazır mısınız?",
+    sub: "Tahmini toplamı görmek için tarih ve kişi sayısı seçin — online ödeme gerekmez.",
+    selectDate: "Tarih Seçin",
+    guests: "Kişi Sayısı",
+    adults: "Yetişkin",
+    children: "Çocuk",
+    estTotal: "Tahmini toplam",
+    perPerson: "kişi başı",
+    proceed: "Rezervasyona Geç",
+    pickDateFirst: "Devam etmek için tarih seçin",
+  },
+  es: {
+    title: "¿Listo para reservar?",
+    sub: "Elige una fecha y número de viajeros para ver un total estimado — sin pago en línea.",
+    selectDate: "Elegir Fecha",
+    guests: "Viajeros",
+    adults: "Adultos",
+    children: "Niños",
+    estTotal: "Total estimado",
+    perPerson: "por persona",
+    proceed: "Continuar con la Reserva",
+    pickDateFirst: "Elige una fecha para continuar",
+  },
+};
+const c = copy[lang] || copy.en;
+const widgetId = `tbp-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div class="tbp-card" id={widgetId} data-lang={lang} data-tour={tourName} data-slug={tourSlug}>
+  <h3 class="tbp-title">{c.title}</h3>
+  <p class="tbp-sub">{c.sub}</p>
+
+  <div class="tbp-field">
+    <label>{c.selectDate}</label>
+    <button type="button" class="tbp-date-btn" data-tbp-date-btn>
+      <span data-tbp-date-label>{c.selectDate}</span>
+      <span aria-hidden="true">📅</span>
+    </button>
+    <div class="tbp-calendar" data-tbp-calendar hidden>
+      <div class="tbp-cal-head">
+        <button type="button" data-tbp-prev aria-label="Previous month">‹</button>
+        <span data-tbp-cal-title></span>
+        <button type="button" data-tbp-next aria-label="Next month">›</button>
+      </div>
+      <div class="tbp-cal-weekdays">
+        <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+      </div>
+      <div class="tbp-cal-days" data-tbp-cal-days></div>
+    </div>
+  </div>
+
+  <div class="tbp-field">
+    <label>{c.guests}</label>
+    <div class="tbp-stepper-row">
+      <span>{c.adults}</span>
+      <div class="tbp-stepper">
+        <button type="button" data-tbp-adults-minus aria-label="minus">−</button>
+        <span data-tbp-adults>1</span>
+        <button type="button" data-tbp-adults-plus aria-label="plus">+</button>
+      </div>
+    </div>
+    <div class="tbp-stepper-row">
+      <span>{c.children}</span>
+      <div class="tbp-stepper">
+        <button type="button" data-tbp-children-minus aria-label="minus">−</button>
+        <span data-tbp-children>0</span>
+        <button type="button" data-tbp-children-plus aria-label="plus">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tbp-summary">
+    <span>{c.estTotal}</span>
+    <strong data-tbp-total>—</strong>
+  </div>
+
+  <a class="tbp-proceed-btn" data-tbp-proceed href="#">{c.proceed}</a>
+</div>
+
+<script define:vars={{ widgetId, lang, pickDateFirst: c.pickDateFirst, perPerson: c.perPerson }}>
+  (() => {
+    const root = document.getElementById(widgetId);
+    if (!root) return;
+
+    const tourName = root.dataset.tour || '';
+    const tourSlug = root.dataset.slug || '';
+
+    const dateBtn = root.querySelector('[data-tbp-date-btn]');
+    const dateLabel = root.querySelector('[data-tbp-date-label]');
+    const calendar = root.querySelector('[data-tbp-calendar]');
+    const calTitle = root.querySelector('[data-tbp-cal-title]');
+    const calDays = root.querySelector('[data-tbp-cal-days]');
+    const prevBtn = root.querySelector('[data-tbp-prev]');
+    const nextBtn = root.querySelector('[data-tbp-next]');
+    const adultsEl = root.querySelector('[data-tbp-adults]');
+    const childrenEl = root.querySelector('[data-tbp-children]');
+    const totalEl = root.querySelector('[data-tbp-total]');
+    const proceedBtn = root.querySelector('[data-tbp-proceed]');
+
+    let selectedDate = null; // {y,m,d}
+    let viewYear, viewMonth;
+    const today = new Date();
+    viewYear = today.getFullYear();
+    viewMonth = today.getMonth();
+    let adults = 1;
+    let children = 0;
+
+    const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function renderCalendar() {
+      calTitle.textContent = `${monthNames[viewMonth]} ${viewYear}`;
+      calDays.innerHTML = '';
+      const firstDay = new Date(viewYear, viewMonth, 1);
+      let startOffset = firstDay.getDay() - 1; // Monday-first
+      if (startOffset < 0) startOffset = 6;
+      const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+      const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+      for (let i = 0; i < startOffset; i++) {
+        const blank = document.createElement('span');
+        blank.className = 'tbp-day tbp-day-blank';
+        calDays.appendChild(blank);
+      }
+      for (let d = 1; d <= daysInMonth; d++) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tbp-day';
+        btn.textContent = String(d);
+        const thisDate = new Date(viewYear, viewMonth, d);
+        if (thisDate < todayMidnight) {
+          btn.disabled = true;
+        } else {
+          btn.addEventListener('click', () => {
+            selectedDate = { y: viewYear, m: viewMonth, d };
+            dateLabel.textContent = `${pad(d)}.${pad(viewMonth + 1)}.${viewYear}`;
+            calendar.hidden = true;
+            calDays.querySelectorAll('.tbp-day.is-selected').forEach((el) => el.classList.remove('is-selected'));
+            btn.classList.add('is-selected');
+            updateTotal();
+          });
+          if (selectedDate && selectedDate.y === viewYear && selectedDate.m === viewMonth && selectedDate.d === d) {
+            btn.classList.add('is-selected');
+          }
+        }
+        calDays.appendChild(btn);
+      }
+    }
+
+    dateBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      calendar.hidden = !calendar.hidden;
+    });
+    document.addEventListener('click', (e) => {
+      if (!root.contains(e.target)) calendar.hidden = true;
+    });
+    prevBtn.addEventListener('click', () => {
+      viewMonth -= 1;
+      if (viewMonth < 0) { viewMonth = 11; viewYear -= 1; }
+      renderCalendar();
+    });
+    nextBtn.addEventListener('click', () => {
+      viewMonth += 1;
+      if (viewMonth > 11) { viewMonth = 0; viewYear += 1; }
+      renderCalendar();
+    });
+
+    function getUnitPrice() {
+      const priceEl = document.getElementById('tbc-main-price');
+      if (!priceEl) return null;
+      const match = priceEl.textContent.match(/[\d.,]+/);
+      if (!match) return null;
+      const num = parseFloat(match[0].replace(',', '.'));
+      return isNaN(num) ? null : num;
+    }
+
+    function updateTotal() {
+      const unit = getUnitPrice();
+      if (unit == null) {
+        totalEl.textContent = '—';
+        return;
+      }
+      const total = unit * adults;
+      totalEl.textContent = `≈ ${total % 1 === 0 ? total : total.toFixed(2)} € (${adults + children} ${perPerson})`;
+    }
+
+    root.querySelector('[data-tbp-adults-plus]').addEventListener('click', () => { adults = Math.min(adults + 1, 20); adultsEl.textContent = adults; updateTotal(); });
+    root.querySelector('[data-tbp-adults-minus]').addEventListener('click', () => { adults = Math.max(adults - 1, 1); adultsEl.textContent = adults; updateTotal(); });
+    root.querySelector('[data-tbp-children-plus]').addEventListener('click', () => { children = Math.min(children + 1, 20); childrenEl.textContent = children; updateTotal(); });
+    root.querySelector('[data-tbp-children-minus]').addEventListener('click', () => { children = Math.max(children - 1, 0); childrenEl.textContent = children; updateTotal(); });
+
+    proceedBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!selectedDate) {
+        alert(pickDateFirst);
+        calendar.hidden = false;
+        return;
+      }
+      const dateStr = `${pad(selectedDate.d)}.${pad(selectedDate.m + 1)}.${selectedDate.y}`;
+      const params = new URLSearchParams({
+        tour: tourName,
+        slug: tourSlug,
+        date: dateStr,
+        people: String(adults + children),
+      });
+      window.location.href = `/${lang}/booking/?${params.toString()}`;
+    });
+
+    renderCalendar();
+    updateTotal();
+  })();
+</script>
+
+<style>
+  .tbp-card { background: #fff; border: 1px solid #e5eef7; border-radius: 20px; padding: 22px; box-shadow: 0 10px 30px rgba(10,24,48,.06); font-family: 'Inter', Arial, sans-serif; }
+  .tbp-title { font-family: 'Playfair Display', Georgia, serif; font-size: 19px; font-weight: 800; color: #0a1830; margin: 0 0 6px; }
+  .tbp-sub { font-size: 12.5px; color: #64768b; margin: 0 0 18px; line-height: 1.5; }
+
+  .tbp-field { margin-bottom: 16px; position: relative; }
+  .tbp-field > label { display: block; font-size: 11.5px; font-weight: 800; color: #0a1830; text-transform: uppercase; letter-spacing: .03em; margin-bottom: 8px; }
+
+  .tbp-date-btn { width: 100%; min-height: 46px; border: 1px solid #d5e2ef; border-radius: 12px; background: #f7fafd; padding: 0 14px; display: flex; align-items: center; justify-content: space-between; font-size: 13.5px; font-weight: 700; color: #0a1830; cursor: pointer; }
+  .tbp-date-btn:hover { border-color: #1478d4; }
+
+  .tbp-calendar { position: absolute; top: calc(100% + 8px); left: 0; right: 0; z-index: 50; background: #fff; border: 1px solid #e5eef7; border-radius: 16px; box-shadow: 0 18px 44px rgba(8,37,72,.18); padding: 14px; }
+  .tbp-cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-weight: 800; color: #0a1830; font-size: 13px; }
+  .tbp-cal-head button { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #e5eef7; background: #f7fafd; cursor: pointer; font-size: 15px; color: #0a1830; }
+  .tbp-cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin-bottom: 4px; }
+  .tbp-cal-weekdays span { text-align: center; font-size: 9.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase; }
+  .tbp-cal-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+  .tbp-day { aspect-ratio: 1/1; min-width: 0; border: 1px solid #eef2f7; border-radius: 8px; background: #f7fafd; font-size: 11px; font-weight: 700; color: #0a1830; cursor: pointer; }
+  .tbp-day.tbp-day-blank { visibility: hidden; }
+  .tbp-day:hover:not(:disabled) { background: #1478d4; color: #fff; border-color: #1478d4; }
+  .tbp-day.is-selected { background: #0a1830; color: #fff; border-color: #0a1830; }
+  .tbp-day:disabled { background: #f4f6f8; color: #cbd5e1; cursor: not-allowed; }
+
+  .tbp-stepper-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; font-size: 13px; font-weight: 700; color: #0a1830; }
+  .tbp-stepper { display: flex; align-items: center; gap: 10px; }
+  .tbp-stepper button { width: 26px; height: 26px; border-radius: 50%; border: 1px solid #d5e2ef; background: #f7fafd; font-size: 15px; font-weight: 800; color: #0a1830; cursor: pointer; }
+  .tbp-stepper button:hover { background: #1478d4; color: #fff; border-color: #1478d4; }
+  .tbp-stepper span { min-width: 16px; text-align: center; font-size: 13px; }
+
+  .tbp-summary { display: flex; align-items: center; justify-content: space-between; background: #f0f7fd; border: 1px solid #d5e8f9; border-radius: 12px; padding: 12px 14px; margin-bottom: 16px; }
+  .tbp-summary span { font-size: 11.5px; color: #5c7797; font-weight: 700; }
+  .tbp-summary strong { font-size: 16px; color: #0a1830; font-weight: 900; }
+
+  .tbp-proceed-btn { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 50px; border-radius: 999px; background: linear-gradient(135deg, #2f8ee0, #0d5aa0); color: #fff; font-size: 14px; font-weight: 800; text-decoration: none; box-shadow: 0 10px 24px rgba(13,90,160,.3); transition: transform .15s ease; }
+  .tbp-proceed-btn:hover { transform: translateY(-2px); }
+</style>

@@ -1,4 +1,5 @@
 ---
+import TourBookingPreview from '../../../components/TourBookingPreview.astro';
 import SeoHead from '../../../components/SeoHead.astro';
 import FloatingAssistant from "../../../components/FloatingAssistant.astro";
 import { getTourGallery } from '../../../utils/tourGallery';
@@ -367,14 +368,7 @@ const galleryPhotoWord = 'fotos';
             </div>
           </div>
 
-          <div class="tbc-tour-card tbc-booking-card tbc-booking-cta-card">
-            <div class="tbc-booking-head">
-              <h3>¿Listo para reservar?</h3>
-              <p>Elige tu fecha y número de viajeros, te guiamos en una solicitud de reserva de 4 pasos — sin pago en línea.</p>
-            </div>
-            <a class="tbc-booking-submit tbc-booking-cta-link" style="display:flex;align-items:center;justify-content:center;text-decoration:none;" href="/es/booking/?tour=Tours&slug=tours">Continuar con la Reserva</a>
-          </div>
-        </aside>
+          <TourBookingPreview lang="es" tourName="Cappadocia Mix Tour" tourSlug="private-cappadocia-mix-tour" /></aside>
 
       </div>
     </div>
