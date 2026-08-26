@@ -2215,12 +2215,14 @@ const homepageReviews = [
   .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; position: relative; z-index: 1; }
   .discount-tag { font-size: 11px; font-weight: 700; color: #166534; }
   .status-tag { font-size: 10.5px; font-weight: 800; padding: 5px 10px; border-radius: 999px; }
-  .status-tag.is-visible {
-    position: absolute; top: 10px; left: 10px; z-index: 6;
+  :global(.status-tag.is-visible) {
+    position: absolute !important; top: 10px !important; left: 10px !important; z-index: 6 !important;
     background: rgba(10,24,48,.82); color: #fff; backdrop-filter: blur(2px);
   }
-  [data-badge2-tag].is-visible { top: 44px; }
-  .status-red { background: rgba(185,28,28,.85) !important; } .status-blue { background: rgba(10,24,48,.82); } .status-purple { background: rgba(48,129,227,.85) !important; }
+  :global([data-badge2-tag].is-visible) { top: 44px !important; }
+  :global(.status-red) { background: rgba(185,28,28,.85) !important; }
+  :global(.status-blue) { background: rgba(10,24,48,.82) !important; }
+  :global(.status-purple) { background: rgba(48,129,227,.85) !important; }
 
   .card-price-box { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .rating-badge { font-size: 12px; font-weight: 800; color: var(--primary-navy); background: #f0f7fd; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
