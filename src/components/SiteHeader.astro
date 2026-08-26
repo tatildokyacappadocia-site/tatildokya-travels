@@ -2,9 +2,9 @@
 import FloatingAssistant from './FloatingAssistant.astro';
 const { lang = 'en', active = '' } = Astro.props;
 const copy = {
-  en: { balloon:'Balloon Tours', cappadocia:'Cappadocia Tours', activities:'Activities', private:'Private Tours', transfers:'Transfers', flight:'Flight Status' },
-  tr: { balloon:'Balon Turları', cappadocia:'Kapadokya Turları', activities:'Aktiviteler', private:'Özel Turlar', transfers:'Transferler', flight:'Uçuş Durumu' },
-  es: { balloon:'Tours en Globo', cappadocia:'Tours por Capadocia', activities:'Actividades', private:'Tours Privados', transfers:'Traslados', flight:'Estado de Vuelos' },
+  en: { balloon:'Balloon Tours', cappadocia:'Cappadocia Tours', activities:'Activities', private:'Private Tours', transfers:'Transfers' },
+  tr: { balloon:'Balon Turları', cappadocia:'Kapadokya Turları', activities:'Aktiviteler', private:'Özel Turlar', transfers:'Transferler' },
+  es: { balloon:'Tours en Globo', cappadocia:'Tours por Capadocia', activities:'Actividades', private:'Tours Privados', transfers:'Traslados' },
 };
 const c = copy[lang] || copy.en;
 const flag = lang === 'tr' ? '🇹🇷' : lang === 'es' ? '🇪🇸' : '🇬🇧';
@@ -31,7 +31,6 @@ const routeFor = (targetLang) => active === 'flight'
     <a class={active==='activities'?'active':''} href={`/${lang}/activities/`}>{c.activities}</a>
     <a class={active==='private'?'active':''} href={`/${lang}/private-tours/`}>{c.private}</a>
     <a class={active==='transfers'?'active':''} href={`/${lang}/transfers/`}>{c.transfers}</a>
-    <a class={active==='flight'?'active':''} href={`/${lang}/flight-status/`}>{c.flight}</a>
   </nav>
   <div class="head-right"><div class="lang"><button type="button" id="langBtn">{flag} {code} ▾</button><div><a href={routeFor('en')}>🇬🇧 English</a><a href={routeFor('tr')}>🇹🇷 Türkçe</a><a href={routeFor('es')}>🇪🇸 Español</a></div></div><a class="wa-head" href="https://wa.me/905333925450" target="_blank" rel="noopener"><img src="/images/icons/whatsapp-logo.webp" alt="" loading="lazy" width="24" height="24"/>WhatsApp</a><button type="button" class="menu-burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
 </div>
@@ -41,7 +40,6 @@ const routeFor = (targetLang) => active === 'flight'
   <a class={active==='activities'?'active':''} href={`/${lang}/activities/`}>{c.activities}</a>
   <a class={active==='private'?'active':''} href={`/${lang}/private-tours/`}>{c.private}</a>
   <a class={active==='transfers'?'active':''} href={`/${lang}/transfers/`}>{c.transfers}</a>
-  <a class={active==='flight'?'active':''} href={`/${lang}/flight-status/`}>{c.flight}</a>
 </nav>
 </header>
 <FloatingAssistant lang={lang} />

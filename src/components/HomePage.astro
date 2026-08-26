@@ -78,22 +78,22 @@ const seo = seoContent[lang] || seoContent.en;
 
 const heroTrustContent = {
   en: {
-    prime: "Prime Experiences",
-    support: "24/7 Live Support",
-    loved: "Highly Loved",
-    best: "Best-in-Class Tours"
+    prime: "Unforgettable Experiences",
+    support: "Always Here for You",
+    loved: "Traveler Favorite",
+    best: "Handcrafted Tours"
   },
   tr: {
-    prime: "Seçkin Deneyimler",
-    support: "7/24 Canlı Destek",
-    loved: "Çok Sevilen",
-    best: "Sınıfının En İyi Turları"
+    prime: "Unutulmaz Deneyimler",
+    support: "Her Zaman Yanınızda",
+    loved: "Gezginlerin Favorisi",
+    best: "Özenle Hazırlanmış Turlar"
   },
   es: {
-    prime: "Experiencias Premium",
-    support: "Soporte en Vivo 24/7",
-    loved: "Muy Recomendado",
-    best: "Tours de Primera Clase"
+    prime: "Experiencias Inolvidables",
+    support: "Siempre a tu Disposición",
+    loved: "Favorito de los Viajeros",
+    best: "Tours Hechos a Medida"
   }
 };
 const heroTrust = heroTrustContent[lang] || heroTrustContent.en;
@@ -325,14 +325,14 @@ const homepageReviews = [
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
     media="print"
     onload="this.media='all'"
   />
   <noscript>
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
   </noscript>
@@ -375,7 +375,6 @@ const homepageReviews = [
           <li><a href={`/${lang}/activities/`}>{t.nav.activities}</a></li>
           <li><a href={`/${lang}/private-tours/`}>{t.nav.privateTours}</a></li>
           <li><a href={`/${lang}/transfers/`}>{t.nav.transfers}</a></li>
-          <li><a href={`/${lang}/flight-status/`}>{t.nav.flightStatus}</a></li>
         </ul>
       </nav>
 
@@ -473,24 +472,6 @@ const homepageReviews = [
           <a href="tel:+905333925450" class="tbc-video-btn tbc-video-btn-secondary">
             {t.hero.contactUs}
           </a>
-        </div>
-
-        <div class="tbc-partner-reviews">
-          <div class="tbc-review-badge" aria-label="TripAdvisor rating">
-            <img src="/images/icons/tripadvisor-logo.webp" alt="TripAdvisor" class="tbc-badge-logo" width="22" height="22" loading="lazy" />
-            <div class="tbc-badge-info">
-              <div class="tbc-stars">★★★★★</div>
-              <span class="tbc-badge-text">{t.trust.tripadvisor}</span>
-            </div>
-          </div>
-
-          <div class="tbc-review-badge" aria-label="Google rating">
-            <img src="/images/icons/google-logo.webp" alt="Google" class="tbc-badge-logo" width="22" height="22" loading="lazy" />
-            <div class="tbc-badge-info">
-              <div class="tbc-stars">★★★★★</div>
-              <span class="tbc-badge-text">{t.trust.google}</span>
-            </div>
-          </div>
         </div>
 
         <div class="tbc-hero-trust-points" aria-label="Why choose Tatildokya Travels">
@@ -1679,24 +1660,6 @@ const homepageReviews = [
 
 <script>
   (() => {
-    // Header: hero fotoğrafı üzerinde şeffaf başlar, aşağı kaydırınca beyaza döner
-    const header = document.querySelector(".site-header");
-    if (header) {
-      const toggleHeaderState = () => {
-        if (window.scrollY > 60) {
-          header.classList.add("is-scrolled");
-        } else {
-          header.classList.remove("is-scrolled");
-        }
-      };
-      toggleHeaderState();
-      window.addEventListener("scroll", toggleHeaderState, { passive: true });
-    }
-  })();
-</script>
-
-<script>
-  (() => {
     const viewport = document.getElementById("tbc25Viewport");
     const track = document.getElementById("tbc25Track");
     const prev = document.getElementById("tbc25PrevBtn");
@@ -1782,6 +1745,7 @@ const homepageReviews = [
     --text-muted: #64768b;
     --bg-light: #f8fafc;
     --font-heading: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
     --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   }
 
@@ -1792,40 +1756,16 @@ const homepageReviews = [
   /* HEADER & YENİLENEN DİL MENÜSÜ STİLLERİ */
   .site-header {
     width: 100%;
-    background: linear-gradient(180deg, rgba(6,16,32,.62) 0%, rgba(6,16,32,.15) 70%, rgba(6,16,32,0) 100%);
-    border-bottom: 1px solid transparent;
-    position: absolute;
+    background: rgba(255,255,255,.98);
+    border-bottom: 1px solid #e9eef5;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    box-shadow: none;
-    backdrop-filter: none;
-    transition: background .3s ease, box-shadow .3s ease, border-color .3s ease;
-  }
-
-  .site-header.is-scrolled {
-    position: fixed;
-    background: rgba(255,255,255,.98);
-    border-bottom: 1px solid #e9eef5;
     box-shadow: 0 4px 18px rgba(10,23,38,.06);
     backdrop-filter: blur(10px);
   }
-
-  .site-header:not(.is-scrolled) .main-nav a { color: #ffffff; }
-  .site-header:not(.is-scrolled) .main-nav a::after { background: #ffffff; }
-  .site-header:not(.is-scrolled) .main-nav a:hover { color: #d5e8f9; }
-  .site-header:not(.is-scrolled) .lang-btn { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.4); color: #ffffff; }
-  .site-header:not(.is-scrolled) .whatsapp-btn { color: #ffffff; }
-  .site-header:not(.is-scrolled) .mobile-menu-toggle span { background-color: #ffffff; }
-  .site-header:not(.is-scrolled) .logo-home {
-    background: rgba(255,255,255,.95);
-    padding: 8px 16px;
-    border-radius: 14px;
-    box-shadow: 0 8px 22px rgba(0,0,0,.18);
-    transition: background .3s ease;
-  }
-  .site-header.is-scrolled .logo-home { background: transparent; padding: 0; box-shadow: none; }
 
   .header-container {
     width: min(1380px, calc(100% - 32px));
@@ -2021,11 +1961,12 @@ const homepageReviews = [
   .tbc-video-title { 
     margin: 0 0 16px; 
     max-width: 720px; 
-    font-size: 56px; 
-    line-height: 1.05; 
-    font-weight: 900; 
+    font-family: var(--font-display);
+    font-size: 52px; 
+    line-height: 1.1; 
+    font-weight: 800; 
     color: #fff !important; 
-    letter-spacing: -1.2px;
+    letter-spacing: -0.5px;
     text-shadow: 0 4px 24px rgba(0,0,0,.35);
   }
 
@@ -2072,9 +2013,9 @@ const homepageReviews = [
     width: 100%;
     max-width: 1120px;
     text-align: center;
-    font-family: var(--font-heading);
-    font-size: 52px;
-    font-weight: 900;
+    font-family: var(--font-display);
+    font-size: 46px;
+    font-weight: 800;
     color: #ffffff;
     margin-bottom: 12px;
     text-shadow: 0 2px 12px rgba(0,0,0,0.6);
@@ -2235,7 +2176,7 @@ const homepageReviews = [
 
   /* TUR KARTLARI VE MASAÜSTÜ DÜZENİ */
   .tours-section { padding: 50px 0; }
-  .section-title { font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 30px; color: var(--primary-navy); }
+  .section-title { font-family: var(--font-display); font-size: 34px; font-weight: 800; text-align: center; margin-bottom: 30px; color: var(--primary-navy); }
   .tours-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
   .tour-card-style2 { background: #ffffff; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; transition: transform 0.3s ease; }
@@ -2273,7 +2214,7 @@ const homepageReviews = [
   .ta-badge { color: #008756; }
   .google-badge { color: #1a77e8; }
 
-  .reviews-title { font-size: 24px; font-weight: 800; color: var(--primary-navy); }
+  .reviews-title { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--primary-navy); }
 
   .view-all-btn { display: inline-flex; align-items: center; padding: 8px 16px; border-radius: 30px; font-size: 12px; font-weight: 700; text-decoration: none; transition: all 0.2s ease; }
   .ta-btn { background: #00aa6c; color: #ffffff; }
@@ -2388,7 +2329,7 @@ const homepageReviews = [
     gap: .18em;
     margin: 0;
     color: var(--partner-navy);
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: clamp(29px, 3.2vw, 48px);
     font-weight: 900;
     letter-spacing: -.035em;
