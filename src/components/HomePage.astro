@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import { getSiteGallery, getTourGallery } from '../utils/tourGallery';
-import HomeFlightStatusPreview from './HomeFlightStatusPreview.astro';
 import GoogleAdsTag from './GoogleAdsTag.astro';
 const { t, lang } = Astro.props;
 // Featured real guest/aerial photos shown first in the footer gallery, then
@@ -715,10 +714,6 @@ const homepageReviews = [
       </div>
     </div>
   </section>
-
-
-  <!-- LIVE CAPPADOCIA BALLOON FLIGHT STATUS -->
-  <HomeFlightStatusPreview lang={lang} />
 
   <!-- REVIEWS SECTION: 32 REVIEWS / 4 AT A TIME -->
   <section class="reviews-section tbc-combined-review-section">
@@ -1862,8 +1857,9 @@ const homepageReviews = [
     position: relative;
     text-decoration: none;
     color: var(--primary-navy);
-    font-weight: 700;
-    font-size: 13px;
+    font-weight: 800;
+    font-size: 13.5px;
+    letter-spacing: -0.1px;
     white-space: nowrap;
     padding: 34px 0;
     transition: color .2s ease;
@@ -2233,29 +2229,31 @@ const homepageReviews = [
   .old-price { transition: opacity .25s ease; }
 
   /* REVIEWS */
-  .reviews-section { padding: 40px 0; border-bottom: 1px solid #ecf0f5; }
+  .reviews-section { padding: 56px 0; border-bottom: 1px solid #ecf0f5; }
   .ta-section { background: #f4fbf7; }
   .google-section { background: #f1f7fe; }
 
-  .flex-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+  .flex-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; flex-wrap: wrap; gap: 12px; }
 
-  .reviews-badge { display: inline-flex; align-items: center; gap: 7px; padding: 0; border-radius: 0; font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; background: transparent !important; }
+  .reviews-badge { display: inline-flex; align-items: center; gap: 7px; padding: 0; border-radius: 0; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 10px; background: transparent !important; }
   .reviews-badge-logo { width: 18px; height: 18px; display: block; object-fit: contain; flex: 0 0 18px; }
   .ta-badge { color: #008756; }
   .google-badge { color: #3688eb; }
 
-  .reviews-title { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--primary-navy); }
+  .reviews-title { font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--primary-navy); }
 
-  .view-all-btn { display: inline-flex; align-items: center; padding: 8px 16px; border-radius: 30px; font-size: 12px; font-weight: 700; text-decoration: none; transition: all 0.2s ease; }
+  .view-all-btn { display: inline-flex; align-items: center; padding: 10px 20px; border-radius: 999px; font-size: 12.5px; font-weight: 800; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }
   .ta-btn { background: #00aa6c; color: #ffffff; }
   .google-btn { background: #549af1; color: #ffffff; }
+  .view-all-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,.15); }
 
   .reviews-slider-wrap { position: relative; max-width: 1150px; margin: 0 auto; display: flex; align-items: center; }
   .reviews-track-container { width: 100%; overflow-x: auto; scroll-behavior: smooth; border-radius: 14px; scrollbar-width: none; padding: 8px 0; }
   .reviews-track-container::-webkit-scrollbar { display: none; }
-  .reviews-track { display: flex; gap: 16px; }
+  .reviews-track { display: flex; gap: 18px; }
 
-  .review-card { background: #ffffff; border-radius: 16px; padding: 20px; min-width: 280px; max-width: 330px; text-align: left; color: #1f3147; flex-shrink: 0; border: 1px solid #ecf0f5; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
+  .review-card { background: #ffffff; border-radius: 20px; padding: 22px; min-width: 280px; max-width: 330px; text-align: left; color: #1f3147; flex-shrink: 0; border: 1px solid #ecf0f5; box-shadow: 0 12px 30px rgba(10,24,48,.07); transition: transform .2s ease, box-shadow .2s ease; }
+  .review-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(10,24,48,.12); }
   .ta-card { border-top: 4px solid #00aa6c; }
   .google-card { border-top: 4px solid #549af1; }
 
