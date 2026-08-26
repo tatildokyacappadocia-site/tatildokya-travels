@@ -1,0 +1,143 @@
+---
+const { lang = 'en' } = Astro.props;
+const copy = {
+  en: {
+    eyebrow: 'LIVE BALLOON OPERATIONS',
+    title: 'CAPPADOCIA BALLOON FLIGHT STATUS',
+    subtitle: 'Today’s and tomorrow’s Cappadocia balloon operating status, shown in Turkey local time.',
+    today: 'TODAY', tomorrow: 'TOMORROW', live: 'LIVE STATUS', awaiting: 'AWAITING OFFICIAL DECISION',
+    completed: 'Completed: Morning flights completed.',
+    completedBody: 'Today’s balloon flight has taken place. No further flights will operate today. Please follow tomorrow’s flight schedule.',
+    cleared: 'Flights Cleared to Operate', clearedBody: 'The current sector decision is suitable for balloon operations during the stated period.',
+    canceled: 'Flights Not Cleared for Operation', canceledBody: 'The current sector decision does not permit balloon take-off during the stated period.',
+    pending: 'Official Decision Pending', pendingBody: 'No valid official decision has yet been published for this date.',
+    pendingNote: 'Unless a contrary decision is announced by 5:00 PM, tomorrow’s flight will proceed as planned.',
+    mixed: 'Sector Decisions Differ', mixedBody: 'Sector decisions are not identical. Open the full flight-status page for sector details.',
+    delayed: 'Flight Delayed', delayedBody: 'The current operating window indicates a delay.',
+    valid: 'VALID TURKEY TIME', update: 'UPDATE (TURKEY TIME)', waiting: 'Awaiting information', more: 'View Full Flight Status', error: 'Live status is temporarily unavailable.'
+  },
+  tr: {
+    eyebrow: 'CANLI BALON OPERASYONU',
+    title: 'KAPADOKYA BALON UÇUŞ DURUMU',
+    subtitle: 'Bugün ve yarın için Kapadokya balon uçuş durumunu Türkiye saatiyle takip edin.',
+    today: 'BUGÜN', tomorrow: 'YARIN', live: 'CANLI DURUM', awaiting: 'RESMİ KARAR BEKLENİYOR',
+    completed: 'Tamamlandı: Sabah uçuşları tamamlandı.',
+    completedBody: 'Bugünkü balon uçuşu gerçekleşmiştir. Günün geri kalanında başka uçuş yapılmayacaktır. Lütfen yarınki uçuş programını takip edin.',
+    cleared: 'Balon Uçuşları Uygun', clearedBody: 'Mevcut sektör kararı belirtilen saat aralığında balon operasyonları için uygundur.',
+    canceled: 'Balon Uçuşları İptal', canceledBody: 'Mevcut sektör kararı belirtilen saat aralığında balon kalkışına izin vermemektedir.',
+    pending: 'Resmi Karar Henüz Yayınlanmadı', pendingBody: 'Bu tarih için henüz geçerli resmi karar yayınlanmamıştır.',
+    pendingNote: 'Saat 17:00’ye kadar aksine bir karar bildirilmediği takdirde, uçuş yarın planlandığı şekilde gerçekleştirilecektir.',
+    mixed: 'Sektör Kararları Farklı', mixedBody: 'Sektör kararları aynı değildir. Ayrıntılar için uçuş durumu sayfasını açın.',
+    delayed: 'Uçuş Rötarlı', delayedBody: 'Mevcut operasyon saat aralığı bir gecikmeye işaret etmektedir.',
+    valid: 'GEÇERLİ TÜRKİYE SAATİ', update: 'GÜNCELLEME (TÜRKİYE SAATİ)', waiting: 'Bilgi bekleniyor', more: 'Daha Fazlasını Gör', error: 'Canlı durum geçici olarak alınamıyor.'
+  },
+  es: {
+    eyebrow: 'OPERACIÓN DE GLOBOS EN VIVO',
+    title: 'ESTADO DE VUELOS EN GLOBO DE CAPADOCIA',
+    subtitle: 'Consulta el estado de hoy y mañana según la hora local de Turquía.',
+    today: 'HOY', tomorrow: 'MAÑANA', live: 'ESTADO EN VIVO', awaiting: 'ESPERANDO DECISIÓN OFICIAL',
+    completed: 'Completado: Los vuelos de la mañana han finalizado.',
+    completedBody: 'El vuelo de hoy se ha realizado. No habrá más vuelos durante el resto del día.',
+    cleared: 'Vuelos Aptos', clearedBody: 'La decisión actual es apta para operaciones durante el periodo indicado.',
+    canceled: 'Vuelos No Autorizados', canceledBody: 'La decisión actual no permite el despegue durante el periodo indicado.',
+    pending: 'Decisión Oficial Pendiente', pendingBody: 'Aún no se ha publicado una decisión válida para esta fecha.',
+    pendingNote: '', mixed: 'Decisiones Mixtas por Sector', mixedBody: 'Las decisiones no son iguales en todos los sectores. Consulta la página completa para más detalles.',
+    delayed: 'Vuelo Retrasado', delayedBody: 'El periodo operativo actual indica un retraso.',
+    valid: 'HORA VÁLIDA EN TURQUÍA', update: 'ACTUALIZACIÓN (HORA DE TURQUÍA)', waiting: 'Esperando información', more: 'Ver Estado Completo', error: 'El estado en vivo no está disponible temporalmente.'
+  }
+};
+const c = copy[lang] || copy.en;
+---
+<section class="home-flight-status" aria-labelledby="home-flight-status-title">
+  <div class="hfs-container">
+    <div class="hfs-head">
+      <div>
+        <span class="hfs-eyebrow">{c.eyebrow}</span>
+        <h2 id="home-flight-status-title">{c.title}</h2>
+        <p>{c.subtitle}</p>
+      </div>
+    </div>
+
+    <div class="hfs-grid" id="home-flight-status-grid" aria-live="polite">
+      <article class="hfs-card is-loading"><div class="hfs-skeleton"></div></article>
+      <article class="hfs-card is-loading"><div class="hfs-skeleton"></div></article>
+    </div>
+
+    <div class="hfs-more-wrap">
+      <a class="hfs-more" href={`/${lang}/flight-status/`}>{c.more} <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ lang, c }}>
+(function(){
+  const pad=n=>String(n).padStart(2,'0');
+  const locale=lang==='tr'?'tr-TR':lang==='es'?'es-ES':'en-US';
+  const grid=document.getElementById('home-flight-status-grid');
+  if(!grid)return;
+
+  function turkeyNowParts(){
+    const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Istanbul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
+    return Object.fromEntries(parts.map(p=>[p.type,p.value]));
+  }
+  function getTurkeyDate(offset=0){
+    const p=turkeyNowParts();
+    const d=new Date(Number(p.year),Number(p.month)-1,Number(p.day)); d.setDate(d.getDate()+offset); return d;
+  }
+  function iso(d){return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`}
+  function displayDate(d){return new Intl.DateTimeFormat(locale,{day:'numeric',month:'long',year:'numeric'}).format(d)}
+  function validDate(range){const m=String(range||'').match(/(\d{2})\.(\d{2})\.(\d{4})/); return m?`${m[3]}-${m[2]}-${m[1]}`:''}
+  function parseUpdate(value){const m=String(value||'').match(/(\d{1,2})[.\-/](\d{1,2})[.\-/](\d{4}).*?(\d{1,2}):(\d{2})/); return m?{d:+m[1],mo:+m[2],y:+m[3],h:+m[4],mi:+m[5]}:null}
+  function toTurkeyUpdate(value){
+    const p=parseUpdate(value); if(!p)return '';
+    const d=new Date(Date.UTC(p.y,p.mo-1,p.d,p.h,p.mi)); d.setUTCHours(d.getUTCHours()+3);
+    return {date:`${pad(d.getUTCDate())}.${pad(d.getUTCMonth()+1)}.${d.getUTCFullYear()}`,h:d.getUTCHours(),m:d.getUTCMinutes()};
+  }
+  function hm(h,m){
+    if(lang!=='en')return `${pad(h)}:${pad(m)}`;
+    const ap=h>=12?'PM':'AM'; return `${h%12||12}:${pad(m)} ${ap}`;
+  }
+  function formatUpdate(value){const p=toTurkeyUpdate(value); return p?`${p.date} - ${hm(p.h,p.m)}`:''}
+  function formatRange(range){
+    const m=String(range||'').match(/(\d{2})\.(\d{2})\.(\d{4})\s*-\s*(\d{2}):(\d{2})\s*-\s*(\d{2}):(\d{2})/); if(!m)return '';
+    const s=new Date(Date.UTC(+m[3],+m[2]-1,+m[1],+m[4],+m[5])); const e=new Date(Date.UTC(+m[3],+m[2]-1,+m[1],+m[6],+m[7])); s.setUTCHours(s.getUTCHours()+3); e.setUTCHours(e.getUTCHours()+3);
+    return `${pad(s.getUTCDate())}.${pad(s.getUTCMonth()+1)}.${s.getUTCFullYear()} - ${hm(s.getUTCHours(),s.getUTCMinutes())} - ${hm(e.getUTCHours(),e.getUTCMinutes())}`;
+  }
+  function afterMorning(update){const p=toTurkeyUpdate(update);return !!p&&p.h>=8}
+  function statusInfo(status){
+    if(status==='COMPLETED')return {cls:'is-completed',icon:'✓',title:c.completed,body:c.completedBody,state:`${c.live}: COMPLETED`};
+    if(status==='FLOWN')return {cls:'is-completed',icon:'✓',title:c.cleared,body:c.clearedBody,state:`${c.live}: CLEARED`};
+    if(status==='CANCELED')return {cls:'is-canceled',icon:'✕',title:c.canceled,body:c.canceledBody,state:`${c.live}: CANCELED`};
+    if(status==='PARTIAL')return {cls:'is-delayed',icon:'!',title:c.mixed,body:c.mixedBody,state:`${c.live}: MIXED`};
+    if(status==='DELAYED')return {cls:'is-delayed',icon:'!',title:c.delayed,body:c.delayedBody,state:`${c.live}: DELAYED`};
+    return {cls:'is-pending',icon:'⌛',title:c.pending,body:c.pendingBody,state:c.awaiting};
+  }
+  function card(date,status,range,update,isToday){
+    const s=statusInfo(status); const tag=isToday?c.today:c.tomorrow;
+    const note=!isToday&&status==='PENDING'&&c.pendingNote?`<p class="hfs-pending-note">${c.pendingNote}</p>`:'';
+    return `<article class="hfs-card ${s.cls}">
+      <div class="hfs-top"><span class="hfs-date">${tag} (${displayDate(date)})</span><span class="hfs-state">● ${s.state}</span></div>
+      <div class="hfs-title"><span class="hfs-icon">${s.icon}</span><strong>${s.title}</strong></div>
+      <p class="hfs-body">${s.body}</p>${note}
+      <div class="hfs-meta"><div><b>${c.valid}:</b><span>${range?formatRange(range):c.waiting}</span></div>${update?`<div><b>${c.update}:</b><span>${formatUpdate(update)}</span></div>`:''}</div>
+    </article>`;
+  }
+  async function load(){
+    try{
+      const r=await fetch('/api/flight-status.json',{cache:'no-store'}); const data=await r.json(); if(!r.ok||!data.success)throw new Error('status');
+      const today=getTurkeyDate(0),tomorrow=getTurkeyDate(1),v=validDate(data.validDateRange),ti=iso(today),tm=iso(tomorrow);
+      let ts='PENDING',tms='PENDING',tr='',tmr='',tu='',tmu='';
+      if(v===ti){ts=data.status;tr=data.validDateRange||'';tu=data.lastUpdate||''}
+      else if(v===tm){tms=data.status;tmr=data.validDateRange||'';tmu=data.lastUpdate||''}
+      else if(!v){ts=data.status||'PENDING';tr=data.validDateRange||'';tu=data.lastUpdate||''}
+      if(ts==='CANCELED'&&afterMorning(tu))ts='COMPLETED';
+      grid.innerHTML=card(today,ts,tr,tu,true)+card(tomorrow,tms,tmr,tmu,false);
+    }catch(e){grid.innerHTML=`<div class="hfs-error">${c.error}</div>`}
+  }
+  load(); setInterval(load,60000);
+})();
+</script>
+
+<style is:global>
+.home-flight-status{padding:54px 0 24px;background:#fff}.hfs-container{width:min(1220px,calc(100% - 32px));margin:auto}.hfs-head{text-align:center;margin-bottom:22px}.hfs-eyebrow{display:inline-flex;padding:7px 12px;border-radius:999px;background:#f5b700;color:#071b36;font-size:11px;font-weight:900;letter-spacing:.04em}.hfs-head h2{margin:12px 0 8px;color:#071b36;font:900 clamp(26px,3vw,38px)/1.1 Montserrat,'Plus Jakarta Sans',Arial,sans-serif;letter-spacing:-.025em}.hfs-head p{margin:0 auto;color:#677891;max-width:720px;font-size:14px;line-height:1.65}.hfs-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.hfs-card{border-radius:18px;padding:20px;border:1px solid #ead8a4;background:#fffaf0;min-height:265px}.hfs-card.is-completed{background:#f3fbf7;border-color:#b8e2cf}.hfs-card.is-canceled{background:#fff5f5;border-color:#efb8bc}.hfs-card.is-delayed,.hfs-card.is-pending{background:#fffbef;border-color:#ead8a4}.hfs-top{display:flex;justify-content:space-between;gap:12px;align-items:center;padding-bottom:13px;margin-bottom:15px;border-bottom:1px solid rgba(7,27,54,.09)}.hfs-date{font-size:10px;font-weight:900;text-transform:uppercase;background:#eeb100;color:#071b36;padding:7px 10px;border-radius:8px}.is-completed .hfs-date{background:#1d9c69;color:#fff}.hfs-state{font-size:10px;font-weight:900;color:#aa7600;text-align:right;text-transform:uppercase}.is-completed .hfs-state{color:#13744e}.is-canceled .hfs-state{color:#b93741}.hfs-title{display:flex;align-items:center;gap:11px;color:#071b36}.hfs-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:#eeb100;color:#071b36;font-weight:900;flex:0 0 auto}.is-completed .hfs-icon{background:#1d9c69;color:#fff}.is-canceled .hfs-icon{background:#e95a64;color:#fff}.hfs-title strong{font:800 18px/1.3 'Plus Jakarta Sans',sans-serif;color:#071b36}.hfs-body,.hfs-pending-note{font-size:13px;line-height:1.7;color:#52637a;margin:13px 0 15px}.hfs-pending-note{color:#52637a}.hfs-meta{display:grid;gap:7px;background:#fff;border:1px solid #e7e9ed;border-radius:11px;padding:12px 13px;font-size:11px;line-height:1.5;color:#68788d}.hfs-meta>div{display:grid;grid-template-columns:165px minmax(0,1fr);gap:9px;padding-bottom:7px;border-bottom:1px solid #edf0f3}.hfs-meta>div:last-child{border-bottom:0;padding-bottom:0}.hfs-meta b{color:#071b36;text-transform:uppercase;font-size:10px}.hfs-meta span{color:#68788d}.hfs-card{transition:transform .2s ease,box-shadow .2s ease}.hfs-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(7,27,54,.07)}.hfs-more-wrap{text-align:center;margin-top:20px}.hfs-more{display:inline-flex;align-items:center;gap:10px;background:#071b36;color:#fff!important;text-decoration:none;padding:13px 20px;border-radius:999px;font-size:13px;font-weight:900}.hfs-more:hover{background:#f5b700;color:#071b36!important}.hfs-skeleton{height:220px;border-radius:14px;background:linear-gradient(90deg,#f2eee4 25%,#faf8f3 37%,#f2eee4 63%);background-size:400% 100%;animation:hfsShimmer 1.3s infinite}.hfs-error{grid-column:1/-1;text-align:center;padding:28px;border:1px solid #e8ddc6;border-radius:18px;background:#fffaf0;color:#65758c}@keyframes hfsShimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}@media(max-width:800px){.home-flight-status{padding:38px 0 18px}.hfs-grid{grid-template-columns:1fr}.hfs-card{padding:16px;min-height:auto}.hfs-top{align-items:flex-start}.hfs-state{text-align:right}.hfs-title strong{font-size:17px}.hfs-meta>div{grid-template-columns:1fr;gap:4px}.hfs-head{text-align:left}.hfs-head p{margin-left:0}}
+</style>

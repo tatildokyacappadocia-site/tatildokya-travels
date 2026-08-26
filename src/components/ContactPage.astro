@@ -1,0 +1,222 @@
+---
+import SeoHead from './SeoHead.astro';
+const { lang = 'en' } = Astro.props;
+const copy = {
+  en: {
+    title: 'Contact Tatildokya Travels',
+    intro: 'Our team is ready to help with balloon flights, Cappadocia tours, activities, private tours and airport transfers.',
+    home: 'Home', phone: 'Telephone', whatsapp: 'WhatsApp', email: 'E-mail', address: 'Address', license: 'Travel Agency License',
+    hours: 'Reservation Support', hoursText: 'Quick support via WhatsApp and phone.',
+    write: 'Contact us directly', directions: 'Open location', wa: 'Chat on WhatsApp', call: 'Call now', mail: 'Send e-mail',
+    balloon:'Balloon Tours', tours:'Cappadocia Tours', activities:'Activities', private:'Private Tours', transfers:'Transfers', flight:'Flight Status'
+  },
+  tr: {
+    title: 'Tatildokya Travels İletişim',
+    intro: 'Balon uçuşları, Kapadokya turları, aktiviteler, özel turlar ve havalimanı transferleri için ekibimiz size yardımcı olmaya hazır.',
+    home: 'Ana Sayfa', phone: 'Telefon', whatsapp: 'WhatsApp', email: 'E-posta', address: 'Adres', license: 'Seyahat Acentası Belgesi',
+    hours: 'Rezervasyon Desteği', hoursText: 'WhatsApp ve telefon üzerinden hızlı destek.',
+    write: 'Doğrudan iletişime geçin', directions: 'Konumu aç', wa: 'WhatsApp ile yaz', call: 'Şimdi ara', mail: 'E-posta gönder',
+    balloon:'Balon Turları', tours:'Kapadokya Turları', activities:'Aktiviteler', private:'Özel Turlar', transfers:'Transferler', flight:'Uçuş Durumu'
+  },
+  es: {
+    title: 'Contacto Tatildokya Travels',
+    intro: 'Nuestro equipo está listo para ayudarle con vuelos en globo, tours por Capadocia, actividades, tours privados y traslados al aeropuerto.',
+    home: 'Inicio', phone: 'Teléfono', whatsapp: 'WhatsApp', email: 'Correo electrónico', address: 'Dirección', license: 'Licencia de Agencia de Viajes',
+    hours: 'Soporte de Reservas', hoursText: 'Asistencia rápida por WhatsApp y teléfono.',
+    write: 'Contacta directamente', directions: 'Abrir ubicación', wa: 'Escribir por WhatsApp', call: 'Llamar ahora', mail: 'Enviar correo',
+    balloon:'Tours en Globo', tours:'Tours por Capadocia', activities:'Actividades', private:'Tours Privados', transfers:'Traslados', flight:'Estado del Vuelo'
+  }
+}[lang] || null;
+const flag = lang === 'tr' ? '🇹🇷' : lang === 'es' ? '🇪🇸' : '🇬🇧';
+const code = lang.toUpperCase();
+const routeFor = (targetLang) => Astro.url.pathname.replace(/^\/(en|tr|es)\//, `/${targetLang}/`);
+const address = 'Cumhuriyet, Saraçoğlu Sk. No:11 D:2, 50400 Ürgüp / Nevşehir';
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <SeoHead title={`${copy.title} | Tatildokya Travels`} description={copy.intro} lang={lang} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+</head>
+<body>
+  <header class="site-header uh-header">
+    <div class="header-container">
+      <div class="logo"><a href={`/${lang}/`}><img src="/images/logo/tatildokya-travels.webp" alt="Tatildokya Travels" loading="lazy" width="600" height="200" /></a><a class="insta" href="https://www.instagram.com/tatildokyatravel/" target="_blank" rel="noopener"><img src="/images/icons/instagram-logo.webp" alt="" loading="lazy" width="24" height="24"/><span>@tatildokyatravel</span></a></div>
+      <nav class="uh-nav">
+        <a href={`/${lang}/balloon-tours/`}>{copy.balloon}</a>
+        <a href={`/${lang}/cappadocia-tours/`}>{copy.tours}</a>
+        <a href={`/${lang}/activities/`}>{copy.activities}</a>
+        <a href={`/${lang}/private-tours/`}>{copy.private}</a>
+        <a href={`/${lang}/transfers/`}>{copy.transfers}</a>
+        <a href={`/${lang}/flight-status/`}>{copy.flight}</a>
+      </nav>
+      <div class="head-right"><div class="lang"><button type="button" id="langBtn">{flag} {code} ▾</button><div><a href={routeFor('en')}>🇬🇧 English</a><a href={routeFor('tr')}>🇹🇷 Türkçe</a><a href={routeFor('es')}>🇪🇸 Español</a></div></div><a class="wa-head" href="https://wa.me/905333925450" target="_blank" rel="noopener"><img src="/images/icons/whatsapp-logo.webp" alt="" loading="lazy" width="24" height="24"/>WhatsApp</a><button type="button" class="menu-burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+    </div>
+    <nav class="uh-mobile-nav">
+      <a href={`/${lang}/balloon-tours/`}>{copy.balloon}</a>
+      <a href={`/${lang}/cappadocia-tours/`}>{copy.tours}</a>
+      <a href={`/${lang}/activities/`}>{copy.activities}</a>
+      <a href={`/${lang}/private-tours/`}>{copy.private}</a>
+      <a href={`/${lang}/transfers/`}>{copy.transfers}</a>
+      <a href={`/${lang}/flight-status/`}>{copy.flight}</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="crumb"><a href={`/${lang}/`}>{copy.home}</a><span>›</span><span>{copy.title}</span></div>
+      <section class="hero">
+        <span class="eyebrow">TATILDOKYA TRAVELS</span>
+        <h1>{copy.title}</h1>
+        <p>{copy.intro}</p>
+      </section>
+
+      <section class="contact-grid">
+        <article class="contact-card">
+          <div class="icon navy">☎</div><div><span>{copy.phone}</span><a href="tel:+905333925450">+90 533 392 54 50</a></div>
+          <a class="action" href="tel:+905333925450">{copy.call}</a>
+        </article>
+        <article class="contact-card">
+          <div class="icon green">●</div><div><span>{copy.whatsapp}</span><a href="https://wa.me/905333925450" target="_blank" rel="noopener">+90 533 392 54 50</a></div>
+          <a class="action green-btn" href="https://wa.me/905333925450" target="_blank" rel="noopener">{copy.wa}</a>
+        </article>
+        <article class="contact-card wide">
+          <div class="icon gold">✉</div><div><span>{copy.email}</span><a href="mailto:info@tatildokya.com">info@tatildokya.com</a></div>
+          <a class="action" href="mailto:info@tatildokya.com">{copy.mail}</a>
+        </article>
+      </section>
+
+      <section class="info-panel">
+        <div class="info-main">
+          <h2>{copy.write}</h2>
+          <div class="info-row"><strong>{copy.address}</strong><p>{address}</p></div>
+          <div class="info-row"><strong>{copy.license}</strong><p>TATİLDOKYABALON TRAVEL · TURSAB No: 14620</p></div>
+          <div class="info-row"><strong>{copy.hours}</strong><p>{copy.hoursText}</p></div>
+          <div class="buttons">
+            <a class="btn primary" href="https://wa.me/905333925450" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Tatildokya+Travels+Urgup+Nevsehir" target="_blank" rel="noopener">{copy.directions}</a>
+          </div>
+        </div>
+        <aside class="social-card">
+          <h3>Social Media</h3>
+          <a href="https://www.instagram.com/tatildokyatravel/" target="_blank" rel="noopener">Instagram <span>@tatildokyatravel</span></a>
+          <a href="https://www.facebook.com/share/18YZWfn2YZ/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook <span>Tatildokya Travels</span></a>
+          <a href="https://wa.me/905333925450" target="_blank" rel="noopener">WhatsApp <span>+90 533 392 54 50</span></a>
+        </aside>
+      </section>
+    </div>
+  </main>
+
+  <footer><strong>Tatildokya Travels</strong><span>{address}</span><span>info@tatildokya.com · +90 533 392 54 50</span></footer>
+  <script is:inline>
+    document.querySelectorAll('.uh-header .lang').forEach((wrap) => {
+      const btn = wrap.querySelector('button');
+      const menu = wrap.querySelector('div:last-child');
+      btn?.addEventListener('click', (e) => { e.stopPropagation(); wrap.classList.toggle('open'); });
+      document.addEventListener('click', () => wrap.classList.remove('open'));
+    });
+    const shBurger = document.querySelector('.uh-header .menu-burger');
+    const shMobileNav = document.querySelector('.uh-mobile-nav');
+    shBurger?.addEventListener('click', () => {
+      const isOpen = shMobileNav?.classList.toggle('open');
+      shBurger.classList.toggle('open', !!isOpen);
+      shBurger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    shMobileNav?.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => {
+        shMobileNav.classList.remove('open');
+        shBurger?.classList.remove('open');
+        shBurger?.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+
+<style>
+:root{--navy:#071f4e;--gold:#f5b700;--cream:#f7f3e9;--ink:#102744;--muted:#67788d;--line:#e4ded2}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Plus Jakarta Sans',Arial,sans-serif;background:
+radial-gradient(circle at 7% 4%,rgba(245,183,0,.08),transparent 25%),linear-gradient(180deg,#f8f5ed,#f5f1e7);color:var(--ink)}
+.site-header{background:#fff;border-bottom:1px solid #e5e9ef;position:sticky;top:0;z-index:50}
+.wrap{max-width:1080px;margin:auto;padding:22px 18px 68px}
+.crumb{display:flex;gap:7px;font-size:11px;color:#718096;margin-bottom:13px}.crumb a{color:var(--navy);text-decoration:none;font-weight:700}
+.hero{border-radius:23px;padding:32px 30px 28px;background:#fff;color:var(--navy);border:1px solid var(--line);box-shadow:0 14px 34px rgba(7,31,78,.055);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;left:30px;right:30px;bottom:0;height:1px;background:linear-gradient(90deg,var(--gold),#e8e0d2)}
+.eyebrow{display:inline-flex;background:var(--gold);color:#182034;border-radius:999px;padding:7px 12px;font-size:9px;font-weight:900;letter-spacing:.5px}
+.hero h1{margin:13px 0 7px;font-size:clamp(28px,3.7vw,40px);line-height:1.12;letter-spacing:-.025em}
+.hero p{max-width:780px;margin:0;color:var(--muted);font-size:13.5px;line-height:1.8}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.contact-card{background:#fff;border:1px solid var(--line);border-radius:19px;padding:19px;display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:13px;box-shadow:0 10px 25px rgba(7,31,78,.045)}
+.contact-card.wide{grid-column:1/-1}.icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-weight:900}
+.icon.navy{background:#eef4ff;color:var(--navy)}.icon.green{background:#edfff3;color:#15a64a}.icon.gold{background:#fff6d2;color:#9f7400}
+.contact-card span{display:block;color:#7a8797;font-size:10px;font-weight:700;margin-bottom:4px}.contact-card a{color:var(--navy);text-decoration:none;font-size:13px;font-weight:900}
+.action{border:1px solid #dbe3ee;border-radius:999px;padding:9px 13px;background:#fff}.green-btn{background:#1cac50!important;color:#fff!important;border-color:#1cac50!important}
+.info-panel{display:grid;grid-template-columns:1.45fr .8fr;gap:16px;margin-top:16px}
+.info-main,.social-card{background:#fff;border:1px solid var(--line);border-radius:21px;padding:28px;box-shadow:0 12px 30px rgba(7,31,78,.045)}
+.info-main h2,.social-card h3{margin:0 0 18px;color:var(--navy);font-size:21px;letter-spacing:-.02em}
+.info-row{padding:14px 0;border-top:1px solid #ebe5dc}.info-row strong{display:block;color:var(--navy);font-size:11px;margin-bottom:5px}
+.info-row p{margin:0;color:#5d6e83;font-size:12.5px;line-height:1.7}.buttons{display:flex;gap:10px;margin-top:18px}
+.btn{display:inline-flex;padding:11px 16px;border-radius:999px;border:1px solid #dbe3ee;color:var(--navy);text-decoration:none;font-size:12px;font-weight:900}.btn.primary{background:var(--gold);border-color:var(--gold)}
+.social-card{display:flex;flex-direction:column;gap:10px}.social-card h3{margin-bottom:8px}.social-card>a{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;border:1px solid #e4eaf1;border-radius:13px;color:var(--navy);text-decoration:none;font-size:12px;font-weight:900}
+.social-card span{color:#7b8798;font-size:10px;font-weight:600;text-align:right}
+footer{background:#fff;border-top:1px solid #e6ebf0;padding:24px max(18px,calc((100vw - 1080px)/2));display:flex;justify-content:space-between;gap:16px;color:#68778b;font-size:10px}
+@media(max-width:850px){
+ .wrap{padding:16px 12px 50px}
+ .contact-grid,.info-panel{grid-template-columns:1fr}.contact-card.wide{grid-column:auto}.hero{padding:25px 20px}.hero:after{left:20px;right:20px}.hero h1{font-size:28px}
+ .contact-card{grid-template-columns:42px 1fr}.contact-card .action{grid-column:2}.info-main,.social-card{padding:22px}footer{flex-direction:column}
+}
+.uh-header{position:sticky;top:0;z-index:1200;background:#fff;border-bottom:1px solid #e6edf4}
+.uh-header .header-container{max-width:1320px;height:88px;margin:auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.uh-header .logo,.uh-header .head-right,.uh-header .insta,.uh-header .wa-head{display:flex;align-items:center}
+.uh-header .logo>a:first-child img{width:auto!important;height:70px!important;max-width:145px!important;object-fit:contain!important;display:block}
+.uh-header .insta{gap:6px;margin-left:12px;padding:7px 10px;border:1px solid #e4eaf1;border-radius:99px;text-decoration:none;color:#30445d;font-size:10px;font-weight:700}
+.uh-header .insta img,.uh-header .wa-head img{width:20px;height:20px;object-fit:contain}
+.uh-header nav.uh-nav{display:flex;gap:20px}
+.uh-header nav.uh-nav a{font-size:12px;font-weight:800;color:#0a1526;text-decoration:none}
+.uh-header .head-right{gap:12px}
+.uh-header .wa-head{gap:6px;color:#0a1526;text-decoration:none;font-weight:800;font-size:12px}
+.uh-header .lang{position:relative}
+.uh-header .lang button{border:1px solid #cbd5e1;background:#f8fafc;border-radius:99px;padding:7px 12px;font-weight:800;font-size:12px;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.uh-header .lang>div{display:none;position:absolute;right:0;top:42px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:6px;min-width:150px;box-shadow:0 14px 30px #0002}
+.uh-header .lang.open>div{display:grid}
+.uh-header .lang>div a{padding:8px;text-decoration:none;color:#071d3b;border-radius:8px}
+.uh-header .lang>div a:hover{background:#f1f5f9}
+.uh-header .menu-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;border:1px solid #cbd5e1;background:#f8fafc;border-radius:10px;cursor:pointer;padding:0}
+.uh-header .menu-burger span{display:block;width:18px;height:2px;margin:0 auto;background:#0a1526;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+.uh-header .menu-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.uh-header .menu-burger.open span:nth-child(2){opacity:0}
+.uh-header .menu-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.uh-mobile-nav{display:none;flex-direction:column;background:#fff;border-top:1px solid #e6edf4;box-shadow:0 14px 30px rgba(15,23,42,.08)}
+.uh-mobile-nav.open{display:flex}
+.uh-mobile-nav a{text-decoration:none;color:#0a1526;font-size:14px;font-weight:800;padding:15px 18px;border-bottom:1px solid #eef2f7}
+.uh-mobile-nav a:last-child{border-bottom:0}
+@media(min-width:1001px){.uh-mobile-nav{display:none!important}}
+@media(max-width:1000px){.uh-header nav.uh-nav{display:none}.uh-header .menu-burger{display:flex}}
+@media(max-width:600px){.uh-header .header-container{height:76px}.uh-header .logo>a:first-child img{height:60px!important;max-width:125px!important}.uh-header .insta{margin-left:6px;padding:6px 9px;gap:5px}.uh-header .insta span{font-size:9px}.uh-header .lang button{padding:6px 9px;font-size:11px}.uh-header .wa-head{font-size:0}}
+@media(max-width:420px){.uh-header .insta span{display:none}}
+
+
+/* TOUR DETAIL VISUAL SYSTEM — information pages (no price/calendar/booking UI) */
+:root{--tbc-navy:#0b1f3a;--tbc-navy2:#17345d;--tbc-gold:#e3a800;--tbc-bg:#f7f4ec;--tbc-surface:#fff;--tbc-border:#e7dfcf;--tbc-text:#10213a;--tbc-muted:#64748b}
+body{background:radial-gradient(circle at 10% 0%,rgba(227,168,0,.08),transparent 28%),radial-gradient(circle at 90% 8%,rgba(23,52,93,.05),transparent 26%),var(--tbc-bg)!important;color:var(--tbc-text)!important}
+.wrap,.shell{max-width:1240px!important;width:min(1240px,calc(100% - 32px))!important;margin-left:auto!important;margin-right:auto!important}
+main .wrap{padding-top:20px!important}
+.crumb{font-size:14px!important;margin-bottom:20px!important;color:#64748b!important;font-weight:600!important}.crumb a{color:var(--tbc-navy)!important}.crumb span{color:var(--tbc-gold)!important}
+.hero,.heroCard{border-radius:24px!important;padding:40px 36px!important;background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(255,250,240,.96))!important;border:1px solid var(--tbc-border)!important;box-shadow:0 14px 34px rgba(11,31,58,.08)!important;color:var(--tbc-text)!important;overflow:hidden!important}
+.hero:after,.heroCard:after{content:none!important}
+.hero>span,.hero .eyebrow,.heroCard .eyebrow{display:inline-flex!important;align-items:center!important;min-height:30px!important;padding:0 14px!important;border-radius:999px!important;background:var(--tbc-gold)!important;color:var(--tbc-navy)!important;font-size:11px!important;font-weight:800!important;letter-spacing:.08em!important;text-transform:uppercase!important;box-shadow:0 5px 14px rgba(227,168,0,.18)!important}
+.hero h1,.heroCard h1{margin:14px 0 12px!important;font-size:38px!important;line-height:1.15!important;font-weight:800!important;letter-spacing:-.02em!important;color:var(--tbc-navy)!important}
+.hero p,.heroCard .lead{max-width:960px!important;font-size:15px!important;line-height:1.8!important;color:#475569!important;margin:0!important}
+.card,.contact-card,.info-main,.social-card,.faq{background:#fff!important;border:1px solid var(--tbc-border)!important;box-shadow:0 14px 34px rgba(11,31,58,.07)!important}
+.card{border-radius:28px!important;padding:32px!important;margin-top:24px!important}.card h2,.info-main h2,.social-card h3{color:var(--tbc-navy)!important;font-size:26px!important}.card>p,.bullet p,.info-row p,.answer p{font-size:15px!important;line-height:1.95!important;color:var(--tbc-muted)!important}
+.contact-grid{gap:18px!important;margin-top:24px!important}.contact-card{border-radius:24px!important;padding:22px!important}.info-panel{gap:24px!important;margin-top:24px!important}.info-main,.social-card{border-radius:28px!important;padding:32px!important}
+.faq-list{gap:14px!important;margin-top:24px!important}.faq{border-radius:22px!important}.faq[open]{border-color:#d9b74d!important;box-shadow:0 14px 34px rgba(11,31,58,.09)!important}summary{padding:20px 22px!important;font-size:15px!important}summary i{background:var(--tbc-navy)!important;color:var(--tbc-gold)!important}
+@media(max-width:850px){.wrap,.shell{width:min(100% - 24px,1240px)!important}.hero,.heroCard{padding:28px 22px!important}.hero h1,.heroCard h1{font-size:30px!important}.card,.info-main,.social-card{padding:24px!important}}
+
+
+</style>
+</body></html>

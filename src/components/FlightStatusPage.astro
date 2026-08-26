@@ -1,0 +1,1851 @@
+---
+import SeoHead from './SeoHead.astro';
+import EcmwfBalloonForecast from './EcmwfBalloonForecast.astro';
+import SiteHeader from './SiteHeader.astro';
+import { flightExpertAnalysis } from '../data/flightExpertAnalysis';
+const { lang = 'en' } = Astro.props;
+
+const copy = {
+  en: {
+    pageTitle: 'Cappadocia Flight Status & Hot Air Balloon Forecast',
+    pageSubtitle: 'Check Cappadocia flight status, official balloon operating decisions, live Göreme conditions and a 7-day hot air balloon weather forecast for sunrise flights.',
+    officialBadge: 'CAPPADOCIA BALLOON FLIGHT STATUS',
+    lastOfficialUpdate: 'Last Update (Turkey Time)',
+    localTime: 'Local Time (TR)',
+    zuluTime: 'Zulu Time (UTC)',
+    today: 'Today',
+    tomorrow: 'Tomorrow',
+    liveStatus: 'LIVE STATUS',
+    decisionPending: 'AWAITING OFFICIAL DECISION',
+    canceledTitle: 'Flights Not Cleared for Operation',
+    suitableTitle: 'Flights Cleared to Operate',
+    completedTitle: 'Completed: Morning flights completed.',
+    canceledAtLaunchTitle: 'Flights Canceled at Launch Site for Today',
+    partialTitle: 'Sector Decisions Differ',
+    pendingTitle: 'Official Decision Pending',
+    canceledBody: 'The official meteorological decision does not permit balloon take-off during the stated valid period.',
+    suitableBody: 'The official sector decision is suitable for balloon operations during the stated valid period. Final operation remains subject to pilot and operator safety checks.',
+    completedBody: 'Today’s balloon flight has taken place. No further flights will operate today. Please follow tomorrow’s flight schedule.',
+    canceledAtLaunchBody: 'The operation reached the launch-site decision stage, but final clearance was not granted. Balloon flights are canceled for today.',
+    partialBody: 'Official sector decisions are not identical. Check Sector A, B and C individually below.',
+    pendingBody: 'No valid official decision has yet been published for this date.',
+    pendingUntilNote: 'Unless a contrary decision is announced by 5:00 PM, tomorrow’s flight will proceed as planned.',
+    validZulu: 'SOURCE TIME (UTC)',
+    validLocal: 'VALID TURKEY TIME',
+    awaitingInfo: 'Awaiting information',
+    sunrise: 'Göreme Sunrise',
+    flightSchedule: 'Probable Balloon Takeoff Times', flightScheduleNote: 'Approximate take-off times if no HOLD (DELAY) instruction is issued for the flight.',
+    firstSlot: '1st Flight Time',
+    secondSlot: '2nd Flight Time',
+    weather: 'Göreme Live Weather Snapshot',
+    weatherSub: 'Göreme Center • Live conditions',
+    weatherDisclaimer: 'Weather intelligence supports planning only. Official sector clearance published by the Cappadocia Slot Service Center always takes priority.',
+    temperature: 'Temperature', precipitation: 'Precipitation', humidity: 'Humidity', wind: 'Wind', windDirection: 'Wind Direction',
+    officialImpact: 'OFFICIAL FLIGHT STATUS',
+    sectorsTitle: 'Live Flight Tracking',
+    trackingSubtitle: '',
+    sectorOverview: 'Sector Status Overview',
+    statusGuide: 'Status Guide',
+    noFurtherFlights: 'No further flights will operate today',
+    completedSector: 'Completed: Morning flights completed',
+    delayed: 'DELAYED',
+    delayedTitle: 'Flight Delayed',
+    delayedBody: 'The official operating window indicates a delay. The delay shown below is calculated from the difference between the start and end times in the valid operating period.',
+    delayLabel: 'Delay',
+    minutesShort: 'min',
+    operatingNow: 'FLIGHT OPERATING',
+
+    sectorA: 'Göreme & Uçhisar', sectorB: 'Love & Rose Valley', sectorC: 'Ortahisar & Ürgüp',
+    canceled: 'CANCELED', suitable: 'CLEARED', completed: 'COMPLETED', pending: 'PENDING', mixed: 'MIXED',
+    sectorCanceled: 'Meteorological conditions are officially considered unsuitable for hot-air-balloon flights in this sector.',
+    sectorSuitable: 'The official sector decision is suitable for hot-air-balloon operations. Final take-off remains with the pilot and operator.',
+    sectorPending: 'The official decision for this sector has not yet been confirmed.',
+    update: 'Update (Turkey Time)', valid: 'Valid period (Turkey Time)',
+    ctaTitle: 'Was Your Balloon Flight Canceled?',
+    ctaText: 'Verify the official decision first, then let our team secure the nearest available backup flight while inventory is still open.',
+    verify: 'Verify Official Portal',
+    whatsapp: 'Ask for a Backup Date on WhatsApp',
+    refresh: 'Refresh Live Status',
+    loading: 'Loading official flight status…',
+    loadError: 'Live official status could not be loaded. Please use the official portal button below.',
+    home: 'Home', balloonTours: 'Balloon Tours', cappadociaTours: 'Cappadocia Tours', activities: 'Activities', privateTours: 'Private Tours', transfers: 'Transfers', flightStatus: 'Flight Status',
+    sourceLabel: 'Official source: Cappadocia Slot Service Center',
+    sectorWord: 'Sector',
+    officialDecision: 'Official decision',
+    sourceNotice: 'Sector decisions published by the Cappadocia Slot Service Center always take priority over the weather information shown on this page.',
+    whatsappText: 'Hello Tatildokya Travels, my balloon flight was canceled. Can you check the nearest available backup date?',
+  },
+  tr: {
+    pageTitle: 'Kapadokya Balon Uçuş Durumu & 7 Günlük Uçuş Tahmini',
+    pageSubtitle: 'Kapadokya balon uçuş durumu, resmi sektör kararı, Göreme canlı hava koşulları ve 7 günlük gün doğumu balon uçuş tahmini.',
+    officialBadge: 'KAPADOKYA BALON UÇUŞ DURUMU',
+    lastOfficialUpdate: 'Son Güncelleme (Türkiye Saati)',
+    localTime: 'Türkiye Saati', zuluTime: 'Zulu Saati (UTC)',
+    today: 'Bugün', tomorrow: 'Yarın', liveStatus: 'CANLI DURUM', decisionPending: 'RESMİ KARAR BEKLENİYOR',
+    canceledTitle: 'Balon Uçuşları İptal', suitableTitle: 'Balon Uçuşları Uygun', completedTitle: 'Tamamlandı: Sabah uçuşları tamamlandı.', canceledAtLaunchTitle: 'Bugünkü Uçuşlar Kalkış Alanında İptal Edildi', partialTitle: 'Sektör Kararları Farklı', pendingTitle: 'Resmi Karar Henüz Yayınlanmadı',
+    canceledBody: 'Resmi meteorolojik karar, belirtilen geçerli saat aralığında balon kalkışına izin vermemektedir.',
+    suitableBody: 'Resmi sektör kararı belirtilen saat aralığında balon operasyonları için uygundur. Nihai operasyon kararı pilot ve işletmenin emniyet kontrollerine bağlıdır.',
+    completedBody: 'Bugün uçuş gerçekleşmiştir. Günün geri kalanında uçuş yapılmayacaktır. Lütfen yarınki uçuş programını takip ediniz.',
+    canceledAtLaunchBody: 'Operasyon kalkış alanındaki karar aşamasına kadar devam etmiş ancak nihai uçuş uygunluğu verilmemiştir. Bugünkü balon uçuşları iptal edilmiştir.',
+    partialBody: 'Resmi sektör kararları aynı değildir. Aşağıdan Sektör A, B ve C durumlarını ayrı ayrı kontrol edin.',
+    pendingBody: 'Bu tarih için henüz geçerli resmi karar yayınlanmamıştır.',
+    pendingUntilNote: 'Saat 17:00’ye kadar aksine bir karar bildirilmediği takdirde, uçuş yarın planlandığı şekilde gerçekleştirilecektir.',
+    validZulu: 'KAYNAK SAATİ (UTC)', validLocal: 'GEÇERLİ TÜRKİYE SAATİ', awaitingInfo: 'Bilgi bekleniyor',
+    sunrise: 'Göreme Gün Doğumu', flightSchedule: 'Muhtemel Balon Kalkış Saatleri', flightScheduleNote: 'Uçuş için BEKLEME (RÖTAR) kararı verilmediği takdirde yaklaşık kalkış saatleridir.', firstSlot: '1. Uçuş Saati', secondSlot: '2. Uçuş Saati',
+    weather: 'Göreme Canlı Hava Durumu', weatherSub: 'Göreme Merkez • Canlı koşullar',
+    weatherDisclaimer: 'Hava durumu yalnızca bilgilendirme amaçlıdır. Bağlayıcı uçuş kararı Kapadokya Slot Hizmet Merkezi tarafından yayınlanan sektör kararıdır.',
+    temperature: 'Sıcaklık', precipitation: 'Yağış', humidity: 'Nem', wind: 'Rüzgâr', windDirection: 'Rüzgâr Yönü', officialImpact: 'RESMİ UÇUŞ DURUMU',
+    sectorsTitle: 'Canlı Uçuş Takibi',
+    trackingSubtitle: '',
+    sectorOverview: 'Sektör Durum Özeti',
+    statusGuide: 'Durum Rehberi',
+    noFurtherFlights: 'Bugün başka uçuş yapılmayacaktır',
+    completedSector: 'Tamamlandı: Sabah uçuşları tamamlandı',
+    delayed: 'RÖTARLI',
+    delayedTitle: 'Uçuş Rötarlı',
+    delayedBody: 'Resmi geçerli uçuş saat aralığı rötar süresini göstermektedir. Aşağıdaki rötar süresi, geçerli saat aralığındaki başlangıç ve bitiş saatleri arasındaki farktan hesaplanır.',
+    delayLabel: 'Rötar',
+    minutesShort: 'dk',
+    operatingNow: 'UÇUŞ GERÇEKLEŞİYOR',
+ sectorA: 'Göreme & Uçhisar', sectorB: 'Aşk & Güllüdere Vadisi', sectorC: 'Ortahisar & Ürgüp',
+    canceled: 'İPTAL', suitable: 'UYGUN', completed: 'TAMAMLANDI', pending: 'BEKLİYOR', mixed: 'KARIŞIK',
+    sectorCanceled: 'Meteorolojik koşullar bu sektörde sıcak hava balonu uçuşu için resmi olarak uygun değerlendirilmemiştir.',
+    sectorSuitable: 'Resmi sektör kararı sıcak hava balonu operasyonları için uygundur. Nihai kalkış kararı pilot ve işletmeye aittir.',
+    sectorPending: 'Bu sektör için resmi karar henüz kesinleşmedi.',
+    update: 'Güncelleme (Türkiye Saati)', valid: 'Geçerli aralık (Türkiye Saati)',
+    ctaTitle: 'Balon Uçuşunuz İptal mi Oldu?', ctaText: 'Bizimle iletişime geçerek uçuş durumu hakkında bilgi alabilir, müsaitlik durumuna göre yerinizi ayırtabilirsiniz. Size hızlıca alternatif uçuş bulabiliriz.',
+    verify: 'Resmi Portalı Kontrol Et', whatsapp: 'WhatsApp’tan Yedek Tarih Sor', refresh: 'Canlı Durumu Yenile', loading: 'Resmi uçuş durumu yükleniyor…',
+    loadError: 'Canlı resmi durum alınamadı. Lütfen aşağıdaki resmi portal düğmesini kullanın.',
+    home: 'Ana Sayfa', balloonTours: 'Balon Turları', cappadociaTours: 'Kapadokya Turları', activities: 'Aktiviteler', privateTours: 'Özel Turlar', transfers: 'Transferler', flightStatus: 'Uçuş Durumu',
+    sourceLabel: 'Resmi kaynak: Kapadokya Slot Hizmet Merkezi',
+    sectorWord: 'Sektör',
+    officialDecision: 'Resmi karar',
+    sourceNotice: 'Bu sayfadaki hava durumu bilgisinden bağımsız olarak Kapadokya Slot Hizmet Merkezi tarafından yayımlanan sektör kararları her zaman önceliklidir.',
+    whatsappText: 'Merhaba Tatildokya Travels, balon uçuşum iptal oldu. En yakın müsait yedek tarihi kontrol edebilir misiniz?',
+  },
+  es: {
+    pageTitle: 'Estado de Vuelo en Capadocia y Pronóstico de Globos',
+    pageSubtitle: 'Consulta el estado de vuelo en Capadocia, la decisión oficial, las condiciones de Göreme y el pronóstico de 7 días para vuelos en globo al amanecer.',
+    officialBadge: 'ESTADO DE VUELOS EN GLOBO DE CAPADOCIA', lastOfficialUpdate: 'Última Actualización (Hora de Turquía)', localTime: 'Hora Local (TR)', zuluTime: 'Hora Zulu (UTC)',
+    today: 'Hoy', tomorrow: 'Mañana', liveStatus: 'ESTADO EN VIVO', decisionPending: 'ESPERANDO DECISIÓN OFICIAL',
+    canceledTitle: 'Vuelos en Globo Cancelados', suitableTitle: 'Vuelos en Globo Aptos', completedTitle: 'Completado: Los vuelos de la mañana han finalizado.', canceledAtLaunchTitle: 'Vuelos Cancelados Hoy en el Área de Despegue', partialTitle: 'Decisiones Mixtas por Sector', pendingTitle: 'La Decisión Oficial Aún No Ha Sido Publicada',
+    canceledBody: 'La decisión meteorológica oficial no permite el despegue de globos durante el periodo válido indicado.',
+    suitableBody: 'La decisión oficial es apta para operaciones de globos durante el periodo indicado. La decisión final depende de los controles de seguridad del piloto y operador.',
+    completedBody: 'El vuelo en globo de hoy se ha realizado. No se realizarán más vuelos durante el resto del día. Consulte el programa de vuelos de mañana.',
+    canceledAtLaunchBody: 'La operación llegó a la fase de decisión en el área de despegue, pero no se concedió la autorización final. Los vuelos en globo quedan cancelados por hoy.',
+    partialBody: 'Las decisiones oficiales no son iguales en todos los sectores. Revise los sectores A, B y C.', pendingBody: 'Aún no se ha publicado una decisión oficial válida para esta fecha.', pendingUntilNote: '',
+    validZulu: 'HORA DE FUENTE (UTC)', validLocal: 'HORA VÁLIDA EN TURQUÍA', awaitingInfo: 'Esperando información',
+    sunrise: 'Amanecer en Göreme', flightSchedule: 'Horarios Probables de Despegue', flightScheduleNote: 'Horarios aproximados de despegue si no se emite una instrucción de ESPERA (RETRASO).', firstSlot: '1.er Horario de Vuelo', secondSlot: '2.º Horario de Vuelo',
+    weather: 'Clima en Vivo en Göreme', weatherSub: 'Centro de Göreme • Condiciones en vivo', weatherDisclaimer: 'El clima es solo informativo. La decisión vinculante es la decisión oficial por sectores del Centro de Slots de Capadocia.',
+    temperature: 'Temperatura', precipitation: 'Precipitación', humidity: 'Humedad', wind: 'Viento', windDirection: 'Dirección del Viento', officialImpact: 'ESTADO OFICIAL DEL VUELO',
+    sectorsTitle: 'Seguimiento de Vuelo en Vivo',
+    trackingSubtitle: '',
+    sectorOverview: 'Resumen del Estado por Sector',
+    statusGuide: 'Guía de Estados',
+    noFurtherFlights: 'No se realizarán más vuelos hoy',
+    completedSector: 'Completado: Los vuelos de la mañana han finalizado',
+    delayed: 'RETRASADO',
+    delayedTitle: 'Vuelo Retrasado',
+    delayedBody: 'El período operativo válido indica el retraso. El retraso mostrado se calcula mediante la diferencia entre la hora de inicio y la hora de finalización del período válido.',
+    delayLabel: 'Retraso',
+    minutesShort: 'min',
+    operatingNow: 'VUELO EN OPERACIÓN',
+ sectorA: 'Göreme y Uçhisar', sectorB: 'Love y Rose Valley', sectorC: 'Ortahisar y Ürgüp', canceled: 'CANCELADO', suitable: 'APTO', completed: 'COMPLETADO', pending: 'PENDIENTE', mixed: 'MIXTO',
+    sectorCanceled: 'Las condiciones meteorológicas se consideran oficialmente inadecuadas para vuelos en globo en este sector.', sectorSuitable: 'La decisión oficial del sector es apta para operaciones. El despegue final corresponde al piloto y operador.', sectorPending: 'La decisión oficial de este sector aún no está confirmada.',
+    update: 'Actualización (Hora de Turquía)', valid: 'Periodo válido (Hora de Turquía)', ctaTitle: '¿Se Canceló Su Vuelo en Globo?', ctaText: 'Compruebe la fuente oficial o escríbanos para encontrar la fecha alternativa disponible más cercana.',
+    verify: 'Verificar Portal Oficial', whatsapp: 'Pedir Fecha Alternativa por WhatsApp', refresh: 'Actualizar Estado', loading: 'Cargando estado oficial…', loadError: 'No se pudo cargar el estado oficial. Utilice el botón del portal oficial.',
+    home: 'Inicio', balloonTours: 'Tours en Globo', cappadociaTours: 'Tours de Capadocia', activities: 'Actividades', privateTours: 'Tours Privados', transfers: 'Traslados', flightStatus: 'Estado de Vuelo',
+    sourceLabel: 'Fuente oficial: Centro de Slots de Capadocia',
+    sectorWord: 'Sector',
+    officialDecision: 'Decisión oficial',
+    sourceNotice: 'Las decisiones sectoriales publicadas por el Centro de Slots de Capadocia siempre tienen prioridad sobre la información meteorológica mostrada en esta página.',
+    whatsappText: 'Hola Tatildokya Travels, mi vuelo en globo fue cancelado. ¿Podrían comprobar la fecha alternativa disponible más cercana?',
+  },
+};
+
+
+const seoContent = {
+  en: {
+    metaTitle: 'Cappadocia Flight Status | Balloon Flight Forecast',
+    metaDescription: 'Check Cappadocia flight status and the 7-day hot air balloon forecast for Göreme. See official operating decisions, flight probability, wind gusts, visibility and sunrise weather.',
+    kicker: 'CAPPADOCIA BALLOON WEATHER GUIDE',
+    heading: 'Cappadocia Flight Status – Hot Air Balloon Forecast',
+    intro1: 'Looking for the latest Cappadocia flight status? This page combines the official balloon operating decision, Göreme sunrise information and a detailed weather-based outlook for upcoming hot air balloon flights.',
+    intro2: 'Cappadocia balloon operations are concentrated around sunrise. The forecast evaluates the operational period from approximately 30 minutes before Göreme sunrise until 60 minutes after sunrise and helps travelers understand whether conditions look favorable.',
+    sections: [
+      ['Will Cappadocia Balloons Fly Tomorrow?', 'Whether balloons fly tomorrow depends mainly on wind and operational safety conditions. Wind gusts are especially important, while visibility, rain, snow, low cloud and nearby thunderstorm risk can also change the outlook. Check again closer to your flight because short-range forecasts are generally more useful.'],
+      ['How Is the Cappadocia Balloon Flight Forecast Calculated?', 'The analysis evaluates the Göreme sunrise flight window and the wider balloon operating area. It considers wind gusts, visibility, precipitation and cloud-related risk, while upper-level wind is used to estimate likely balloon movement, possible launch areas and useful viewing locations.'],
+      ['Why Are Cappadocia Balloon Flights Cancelled?', 'Strong or unstable winds are among the most important operational concerns. Poor visibility, fog, rain, snowfall, low cloud and thunderstorms can also make conditions unsuitable. Weather may differ between valleys and altitudes even when it looks calm from the ground.'],
+      ['What Time Do Hot Air Balloons Fly in Cappadocia?', 'Most balloon operations take place around sunrise. Pickup, preparation, takeoff and landing times change through the year because sunrise time changes seasonally, and morning weather can also cause operational delays.']
+    ],
+    noteTitle: 'Important:',
+    note: 'This weather analysis is a planning tool, not an official flight clearance. Official SHGM and Cappadocia Slot Service Center decisions, together with operator and pilot safety checks, always take priority.',
+    faqTitle: 'Cappadocia Flight Status FAQ',
+    faq: [
+      ['Are Cappadocia balloons flying today?', 'Check the live official status and today’s estimated flight probability at the top of this page. The forecast supports planning only and does not replace the official aviation decision.'],
+      ['Will Cappadocia balloons fly tomorrow?', 'Tomorrow’s estimated probability is shown in the 7-day forecast. Conditions can change before sunrise, so check the page again closer to the flight time.'],
+      ['What wind speed can cancel balloons in Cappadocia?', 'There is no single public value that guarantees cancellation. Wind speed, gusts, direction and conditions across the operating area are evaluated together.'],
+      ['Can Cappadocia balloons fly in rain or snow?', 'Precipitation can affect visibility, balloon performance and operational safety. The impact depends on intensity together with wind, visibility and cloud conditions.'],
+      ['Who decides if balloons fly in Cappadocia?', 'Official aviation procedures and the Cappadocia Slot Service Center determine whether operations are cleared. Operators and pilots also complete their own safety checks before takeoff.'],
+      ['How accurate is the Cappadocia balloon flight forecast?', 'Short-range forecasts are generally more useful than forecasts several days ahead, but weather can still change quickly. The percentage shown is a planning aid, not a guarantee.'],
+      ['Where can I watch the balloons if I am not flying?', 'The best viewing location changes with wind direction and the expected balloon route. The forecast provides likely viewing locations for the Göreme operating area.']
+    ]
+  },
+  tr: {
+    metaTitle: 'Kapadokya Balon Uçuş Durumu | 7 Günlük Uçuş Tahmini',
+    metaDescription: 'Kapadokya balon uçuş durumunu ve Göreme için 7 günlük balon tahminini kontrol edin. Resmi karar, uçuş olasılığı, rüzgâr hamlesi, görüş ve gün doğumu hava koşulları.',
+    kicker: 'KAPADOKYA BALON HAVA DURUMU REHBERİ',
+    heading: 'Kapadokya Balon Uçuş Durumu – 7 Günlük Uçuş Tahmini',
+    intro1: 'Güncel Kapadokya balon uçuş durumunu mu arıyorsunuz? Bu sayfa resmi balon operasyon kararını, Göreme gün doğumu bilgisini ve yaklaşan sıcak hava balonu uçuşları için ayrıntılı hava tahminini tek yerde sunar.',
+    intro2: 'Kapadokya balon operasyonları ağırlıklı olarak gün doğumu çevresinde gerçekleşir. Tahmin sistemi Göreme gün doğumundan yaklaşık 30 dakika öncesi ile 60 dakika sonrasındaki operasyon penceresini değerlendirerek koşulların uçuş için ne kadar elverişli göründüğünü anlamanıza yardımcı olur.',
+    sections: [
+      ['Kapadokya Balonları Yarın Uçacak mı?', 'Yarın balonların uçup uçmaması özellikle rüzgâr ve operasyonel emniyet koşullarına bağlıdır. Rüzgâr hamleleri, görüş mesafesi, yağmur, kar, alçak bulut ve yakın fırtına riski tahmini değiştirebilir. Uçuş saatine yaklaştıkça tahmini yeniden kontrol edin.'],
+      ['Kapadokya Balon Uçuş Tahmini Nasıl Hesaplanıyor?', 'Analiz Göreme gün doğumu uçuş penceresini ve balon operasyon alanını değerlendirir. Rüzgâr hamlesi, görüş, yağış ve bulutla ilgili riskler incelenir; üst seviye rüzgârı ise muhtemel balon hareketi, kalkış alanı ve izleme noktalarının tahmininde kullanılır.'],
+      ['Kapadokya Balon Uçuşları Neden İptal Edilir?', 'Kuvvetli veya değişken rüzgârlar en önemli operasyonel riskler arasındadır. Düşük görüş, sis, yağmur, kar, alçak bulut ve fırtına da uçuş şartlarını olumsuz etkileyebilir. Vadiler ve farklı irtifalarda koşullar yerde görünenden farklı olabilir.'],
+      ['Kapadokya’da Balonlar Saat Kaçta Uçar?', 'Balon uçuşlarının çoğu gün doğumu çevresinde yapılır. Otel alımı, hazırlık, kalkış ve iniş saatleri mevsime göre değişen gün doğumu saatine ve o sabahki hava koşullarına bağlı olarak değişebilir.']
+    ],
+    noteTitle: 'Önemli:',
+    note: 'Bu hava analizi planlama amaçlı bir tahmindir ve resmi uçuş izni değildir. SHGM ve Kapadokya Slot Hizmet Merkezi kararları ile pilot ve işletme emniyet kontrolleri her zaman önceliklidir.',
+    faqTitle: 'Kapadokya Balon Uçuş Durumu Sıkça Sorulan Sorular',
+    faq: [
+      ['Kapadokya balonları bugün uçuyor mu?', 'Sayfanın üst bölümündeki canlı resmi durumu ve bugünkü tahmini uçuş olasılığını kontrol edin. Tahmin resmi havacılık kararının yerine geçmez.'],
+      ['Kapadokya balonları yarın uçacak mı?', 'Yarının tahmini uçuş olasılığı 7 günlük analizde gösterilir. Hava gün doğumuna kadar değişebileceği için uçuş saatine yakın tekrar kontrol edin.'],
+      ['Kapadokya’da hangi rüzgârda balon uçuşu iptal olur?', 'Tek başına herkese uygulanabilecek tek bir sayı yoktur. Rüzgâr hızı, hamle, yön ve operasyon alanındaki diğer meteorolojik koşullar birlikte değerlendirilir.'],
+      ['Yağmur veya karda Kapadokya balonları uçar mı?', 'Yağış görüşü, balon performansını ve emniyeti etkileyebilir. Etki; yağış şiddeti, rüzgâr, görüş ve bulut koşullarıyla birlikte değerlendirilir.'],
+      ['Kapadokya balonlarının uçup uçmayacağına kim karar verir?', 'Resmi havacılık prosedürleri ve Kapadokya Slot Hizmet Merkezi operasyonun uygunluğunu belirler. Pilot ve işletmeler kalkış öncesinde ayrıca kendi emniyet kontrollerini yapar.'],
+      ['Kapadokya balon uçuş tahmini ne kadar güvenilir?', 'Kısa vadeli tahminler genellikle daha değerlidir ancak hava hızlı değişebilir. Sayfadaki yüzde planlama desteğidir; uçuş veya iptal garantisi değildir.'],
+      ['Balona binmeyeceksem nereden izleyebilirim?', 'En iyi izleme noktası rüzgâr yönüne ve beklenen balon rotasına göre değişir. Tahmin bölümü Göreme operasyon alanı için muhtemel izleme noktalarını gösterir.']
+    ]
+  },
+  es: {
+    metaTitle: 'Estado de Vuelo en Capadocia | Pronóstico de Globos',
+    metaDescription: 'Consulta el estado de vuelo en Capadocia y el pronóstico de 7 días para globos en Göreme: decisión oficial, probabilidad de vuelo, ráfagas, visibilidad y clima del amanecer.',
+    kicker: 'GUÍA DEL CLIMA PARA GLOBOS EN CAPADOCIA',
+    heading: 'Estado de Vuelo en Capadocia – Pronóstico de Globos',
+    intro1: '¿Buscas el estado de vuelo en Capadocia? Esta página reúne la decisión oficial de operación, la hora del amanecer en Göreme y un análisis meteorológico detallado para los próximos vuelos en globo aerostático.',
+    intro2: 'Las operaciones de globos en Capadocia se concentran alrededor del amanecer. El pronóstico evalúa aproximadamente desde 30 minutos antes hasta 60 minutos después del amanecer de Göreme para ayudar a entender si las condiciones parecen favorables.',
+    sections: [
+      ['¿Volarán los Globos Mañana en Capadocia?', 'La operación depende principalmente del viento y de las condiciones de seguridad. Las ráfagas, la visibilidad, la lluvia, la nieve, las nubes bajas y el riesgo de tormenta pueden cambiar el pronóstico. Conviene revisar de nuevo cerca de la hora del vuelo.'],
+      ['¿Cómo Se Calcula el Pronóstico de Vuelos en Globo?', 'El análisis estudia la ventana del amanecer de Göreme y el área operativa de los globos. Considera ráfagas, visibilidad, precipitación y riesgo de nubes; el viento en altura ayuda a estimar el movimiento probable, las zonas de despegue y los puntos de observación.'],
+      ['¿Por Qué Se Cancelan los Vuelos en Globo en Capadocia?', 'Los vientos fuertes o inestables son uno de los principales riesgos. La niebla, la baja visibilidad, la lluvia, la nieve, las nubes bajas y las tormentas también pueden hacer que la operación no sea adecuada.'],
+      ['¿A Qué Hora Vuelan los Globos en Capadocia?', 'La mayoría de los vuelos se realizan alrededor del amanecer. Los horarios de recogida, preparación, despegue y aterrizaje cambian según la época del año y las condiciones meteorológicas de la mañana.']
+    ],
+    noteTitle: 'Importante:',
+    note: 'Este análisis meteorológico es una herramienta de planificación y no una autorización oficial de vuelo. Las decisiones de SHGM y del Centro de Slots de Capadocia, junto con los controles de seguridad del operador y del piloto, siempre tienen prioridad.',
+    faqTitle: 'Preguntas Frecuentes sobre el Estado de Vuelo en Capadocia',
+    faq: [
+      ['¿Vuelan hoy los globos en Capadocia?', 'Consulta el estado oficial en vivo y la probabilidad estimada de hoy en la parte superior de la página. El pronóstico no sustituye la decisión oficial de aviación.'],
+      ['¿Volarán mañana los globos en Capadocia?', 'La probabilidad estimada de mañana aparece en el pronóstico de 7 días. Las condiciones pueden cambiar antes del amanecer, por lo que conviene volver a consultar.'],
+      ['¿Qué velocidad de viento cancela los globos en Capadocia?', 'No existe un único valor público que garantice una cancelación. Se evalúan conjuntamente la velocidad, las ráfagas, la dirección y las condiciones del área operativa.'],
+      ['¿Pueden volar los globos con lluvia o nieve?', 'La precipitación puede afectar la visibilidad, el rendimiento del globo y la seguridad. Su efecto depende también del viento, la visibilidad y las nubes.'],
+      ['¿Quién decide si vuelan los globos en Capadocia?', 'Los procedimientos oficiales y el Centro de Slots de Capadocia determinan si la operación está autorizada. Los operadores y pilotos realizan además sus propios controles de seguridad.'],
+      ['¿Qué precisión tiene el pronóstico de vuelos en globo?', 'Los pronósticos de corto plazo suelen ser más útiles que los de varios días, pero el clima puede cambiar rápidamente. El porcentaje mostrado sirve para planificación, no es una garantía.'],
+      ['¿Dónde puedo ver los globos si no voy a volar?', 'El mejor lugar cambia según la dirección del viento y la ruta prevista. La sección de pronóstico muestra posibles puntos de observación para el área de Göreme.']
+    ]
+  }
+};
+
+
+const cancellationGuide = {
+  en: {
+    heading: 'Why Do Cappadocia Hot Air Balloon Flights Get Canceled? (Cappadocia Flight Status)',
+    intro: 'Hot air balloon flights in Cappadocia depend on strict meteorological and operational safety conditions. The official Cappadocia flight status can change when weather conditions create a risk for takeoff, flight or landing.',
+    factorsTitle: 'Weather Factors That Can Affect Cappadocia Balloon Flight Status',
+    factors: [
+      ['Surface Winds & Upper-Level Air Currents', 'Hot air balloons need controlled wind conditions for safe takeoff, navigation and landing. Strong surface winds, gusts or faster winds at altitude can make operations unsuitable.'],
+      ['Sudden Wind Gusts', 'Short, sharp gusts can affect balloon stability and basket control, especially during takeoff and landing.'],
+      ['Visibility, Fog & Low Clouds', 'Fog, haze and low cloud can reduce visibility across Cappadocia’s valleys and make safe visual navigation more difficult.'],
+      ['Precipitation & Rain Risk', 'Rain, snow and other precipitation can affect visibility, balloon performance and operational safety.'],
+      ['Thermal Activity & Air Instability', 'Unstable rising and sinking air can make a smooth and predictable balloon flight more difficult.']
+    ],
+    multiTitle: 'Cappadocia Flight Status Depends on Multiple Factors',
+    multiBody: 'Clear skies at your hotel do not necessarily mean balloon operations are cleared. Conditions can differ by altitude and sector. Check the live Cappadocia Flight Status above for the latest color-coded sector decision before planning your morning.',
+    canceledTitle: 'What to Do If Your Cappadocia Balloon Flight Is Canceled',
+    canceledBody: 'Weather cancellations can quickly reduce availability on the following mornings. If your flight is canceled, check the next official flight status update and ask about alternative dates as early as possible.',
+    help: [
+      ['Weather-Based Planning', 'Use the live sector decision together with the Göreme weather snapshot and 7-day forecast to understand upcoming conditions.'],
+      ['Flexible Date Adjustment', 'Keeping an alternative morning available can make rescheduling easier when weather affects balloon operations.']
+    ],
+    toursTitle: 'Explore Göreme Hot Air Balloon Tours',
+    seasonalTitle: 'Best Months to Fly a Cappadocia Hot Air Balloon',
+    seasonalIntro: 'Cancellation patterns are not identical every year, but the same broad seasonal pattern shows up consistently across multiple independent sources and years of operational history.',
+    seasonalMonths: [
+      ['Late Spring (April–May)', 'Wind and cancellation risk gradually ease as the winter pattern breaks down, though some unsettled mornings are still common.'],
+      ['Summer (June–August)', 'Generally the most reliable stretch of the year, with calm, stable mornings. August in particular tends to stand out as one of the most consistent months.'],
+      ['Early Autumn (September–October)', 'Conditions remain favorable — one of the most popular, and most reliable, periods to fly.'],
+      ['Late Autumn & Winter (November–February)', 'Cancellation risk rises noticeably due to stronger winds, fog and precipitation. January is typically the most challenging month of the year.']
+    ],
+    seasonalNote: 'These are general seasonal tendencies, not a guarantee for any specific date — always check the live status and 7-day forecast above for your actual travel dates.',
+    toursBody: 'Compare our Göreme balloon options while following the latest Cappadocia flight status and weather updates.',
+    standard: 'Göreme Standard Hot Air Balloon Tour',
+    comfort: 'Göreme Comfort Hot Air Balloon Tour'
+  },
+  tr: {
+    heading: 'Kapadokya Balon Uçuşları Neden İptal Edilir? (Kapadokya Uçuş Durumu)',
+    intro: 'Kapadokya sıcak hava balonu uçuşları, meteorolojik ve operasyonel emniyet koşullarına bağlıdır. Kalkış, uçuş veya iniş için risk oluştuğunda resmi Kapadokya balon uçuş durumu değişebilir.',
+    factorsTitle: 'Kapadokya Balon Uçuş Durumunu Etkileyen Hava Koşulları',
+    factors: [
+      ['Yüzey Rüzgârı ve Üst Seviye Hava Akımları', 'Balonların güvenli kalkış, seyir ve iniş yapabilmesi için kontrollü rüzgâr koşulları gerekir. Kuvvetli yüzey rüzgârı, hamleler veya yüksek irtifadaki hızlı akımlar operasyonu etkileyebilir.'],
+      ['Ani Rüzgâr Hamleleri', 'Kısa süreli ve sert rüzgâr hamleleri özellikle kalkış ve iniş sırasında balonun dengesini ve sepet kontrolünü etkileyebilir.'],
+      ['Görüş, Sis ve Alçak Bulut', 'Sis, pus ve alçak bulut Kapadokya vadilerindeki görüşü azaltarak güvenli görsel seyri zorlaştırabilir.'],
+      ['Yağış ve Yağmur Riski', 'Yağmur, kar ve diğer yağışlar görüşü, balon performansını ve operasyonel emniyeti etkileyebilir.'],
+      ['Termal Aktivite ve Hava Kararsızlığı', 'Yükselen ve alçalan kararsız hava hareketleri, balon uçuşunun sakin ve öngörülebilir şekilde gerçekleşmesini zorlaştırabilir.']
+    ],
+    multiTitle: 'Kapadokya Balon Uçuş Kararı Birden Fazla Faktöre Bağlıdır',
+    multiBody: 'Otelinizden gökyüzünün açık görünmesi balon uçuşlarının kesin olarak yapılacağı anlamına gelmez. Koşullar irtifaya ve sektöre göre değişebilir. Sabah planınızı yapmadan önce yukarıdaki canlı Kapadokya balon uçuş durumunu ve renkli sektör kararlarını kontrol edin.',
+    canceledTitle: 'Kapadokya Balon Uçuşunuz İptal Olursa Ne Yapmalısınız?',
+    canceledBody: 'Hava koşullarına bağlı iptaller sonraki sabahlardaki müsaitliği hızla azaltabilir. Uçuşunuz iptal olursa bir sonraki resmi uçuş durumu güncellemesini takip edin ve alternatif tarihleri mümkün olduğunca erken kontrol edin.',
+    help: [
+      ['Hava Durumuna Göre Planlama', 'Canlı sektör kararını Göreme hava durumu ve 7 günlük tahminle birlikte değerlendirerek yaklaşan günlerdeki koşulları takip edebilirsiniz.'],
+      ['Esnek Tarih Planlaması', 'Seyahat programınızda alternatif bir sabah bırakmak, hava koşulları nedeniyle oluşabilecek değişikliklerde yeniden planlamayı kolaylaştırabilir.']
+    ],
+    toursTitle: 'Göreme Sıcak Hava Balonu Turlarını İnceleyin',
+    seasonalTitle: 'Kapadokya Balon Turu İçin En Uygun Aylar',
+    seasonalIntro: 'İptal örüntüleri yıldan yıla birebir aynı olmasa da, birden fazla bağımsız kaynağın ve yılların operasyon geçmişinin işaret ettiği genel mevsimsel örüntü tutarlı şekilde tekrar ediyor.',
+    seasonalMonths: [
+      ['İlkbahar Sonu (Nisan–Mayıs)', 'Kış döneminin rüzgar örüntüsü çözülmeye başladığı için risk kademeli olarak azalır, yine de zaman zaman kararsız sabahlar görülebilir.'],
+      ['Yaz (Haziran–Ağustos)', 'Yılın genel olarak en istikrarlı dönemi — sakin, dengeli sabahlar. Özellikle Ağustos ayı en tutarlı aylardan biri olarak öne çıkar.'],
+      ['Sonbahar Başı (Eylül–Ekim)', 'Koşullar hâlâ elverişli — hem en popüler hem de en güvenilir dönemlerden biri.'],
+      ['Sonbahar Sonu & Kış (Kasım–Şubat)', 'Daha güçlü rüzgar, sis ve yağış nedeniyle iptal riski belirgin şekilde artar. Ocak genellikle yılın en zorlu ayıdır.']
+    ],
+    seasonalNote: 'Bunlar genel mevsimsel eğilimlerdir, belirli bir tarih için garanti değildir — kendi seyahat tarihlerin için mutlaka yukarıdaki canlı durumu ve 7 günlük tahmini kontrol et.',
+    toursBody: 'Güncel Kapadokya balon uçuş durumu ve hava koşullarını takip ederken Göreme balon turu seçeneklerimizi karşılaştırın.',
+    standard: 'Göreme Standart Sıcak Hava Balonu Turu',
+    comfort: 'Göreme Comfort Sıcak Hava Balonu Turu'
+  },
+  es: {
+    heading: '¿Por Qué Se Cancelan los Vuelos en Globo en Capadocia? (Estado de Vuelo en Capadocia)',
+    intro: 'Los vuelos en globo aerostático en Capadocia dependen de estrictas condiciones meteorológicas y operativas de seguridad. El estado oficial puede cambiar cuando el tiempo supone un riesgo para el despegue, el vuelo o el aterrizaje.',
+    factorsTitle: 'Condiciones Meteorológicas que Afectan al Estado de los Vuelos',
+    factors: [
+      ['Viento en Superficie y en Altura', 'Los globos necesitan condiciones de viento controladas para despegar, navegar y aterrizar con seguridad.'],
+      ['Ráfagas Repentinas', 'Las ráfagas cortas e intensas pueden afectar la estabilidad del globo, especialmente durante el despegue y el aterrizaje.'],
+      ['Visibilidad, Niebla y Nubes Bajas', 'La niebla y las nubes bajas pueden reducir la visibilidad en los valles de Capadocia.'],
+      ['Precipitación y Riesgo de Lluvia', 'La lluvia, la nieve y otras precipitaciones pueden afectar la visibilidad, el rendimiento y la seguridad operacional.'],
+      ['Actividad Térmica e Inestabilidad', 'El aire inestable puede dificultar un vuelo suave y predecible.']
+    ],
+    multiTitle: 'El Estado de Vuelo en Capadocia Depende de Varios Factores',
+    multiBody: 'Un cielo despejado desde el hotel no garantiza que los vuelos estén autorizados. Las condiciones pueden variar según la altitud y el sector. Consulta arriba el estado de vuelo en vivo antes de planificar la mañana.',
+    canceledTitle: 'Qué Hacer Si Se Cancela Tu Vuelo en Globo',
+    canceledBody: 'Las cancelaciones por mal tiempo pueden reducir rápidamente la disponibilidad de los días siguientes. Consulta la próxima actualización oficial y revisa fechas alternativas lo antes posible.',
+    help: [
+      ['Planificación Según el Tiempo', 'Consulta la decisión por sectores junto con el clima de Göreme y el pronóstico de 7 días.'],
+      ['Fechas Flexibles', 'Reservar una mañana alternativa puede facilitar la reprogramación cuando el tiempo afecta a las operaciones.']
+    ],
+    toursTitle: 'Explora Nuestros Vuelos en Globo en Göreme',
+    seasonalTitle: 'Los Mejores Meses para Volar en Globo en Capadocia',
+    seasonalIntro: 'Los patrones de cancelación no son idénticos cada año, pero el mismo patrón estacional general aparece de forma consistente en múltiples fuentes independientes y años de historial operativo.',
+    seasonalMonths: [
+      ['Final de la Primavera (Abril–Mayo)', 'El riesgo de viento y cancelación disminuye gradualmente a medida que se rompe el patrón invernal, aunque todavía son comunes algunas mañanas inestables.'],
+      ['Verano (Junio–Agosto)', 'Generalmente el período más fiable del año, con mañanas tranquilas y estables. Agosto en particular suele destacar como uno de los meses más consistentes.'],
+      ['Principios de Otoño (Septiembre–Octubre)', 'Las condiciones siguen siendo favorables — uno de los períodos más populares, y más fiables, para volar.'],
+      ['Finales de Otoño e Invierno (Noviembre–Febrero)', 'El riesgo de cancelación aumenta notablemente por vientos más fuertes, niebla y precipitación. Enero suele ser el mes más difícil del año.']
+    ],
+    seasonalNote: 'Estas son tendencias estacionales generales, no una garantía para una fecha específica — consulta siempre el estado en vivo y el pronóstico de 7 días arriba para tus fechas de viaje reales.',
+    toursBody: 'Compara nuestras opciones mientras sigues el estado de vuelo y las condiciones meteorológicas de Capadocia.',
+    standard: 'Tour Estándar en Globo Aerostático de Göreme',
+    comfort: 'Tour Comfort en Globo Aerostático de Göreme'
+  }
+};
+const cancellationSeo = cancellationGuide[lang] || cancellationGuide.en;
+
+const seo = seoContent[lang] || seoContent.en;
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: seo.faq.map(([question, answer]) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: answer
+    }
+  }))
+};
+
+const t = copy[lang] || copy.en;
+const ea = flightExpertAnalysis[lang] || flightExpertAnalysis.en;
+const localeMap = { en: 'en-US', tr: 'tr-TR', es: 'es-ES' };
+const locale = localeMap[lang] || 'en-US';
+const whatsappBackupUrl = `https://wa.me/905333925450?text=${encodeURIComponent(t.whatsappText)}`;
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <SeoHead title={seo.metaTitle} description={seo.metaDescription} lang={lang} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet"></noscript>
+</head>
+<body>
+<SiteHeader lang={lang} active="flight" />
+<section class="flight-category-hero" id="flight-status-top">
+  <div class="flight-hero-inner">
+    <span class="flight-hero-badge">TATILDOKYA TRAVELS</span>
+    <h1>{t.pageTitle}</h1>
+    <p>{t.pageSubtitle}</p>
+  </div>
+</section>
+
+<main class="tbc-page">
+  <div class="breadcrumbs"><a href={`/${lang}/`}>{t.home}</a><span>›</span><strong>{t.flightStatus}</strong></div>
+
+  <section class="status-shell">
+    <div class="feed-header">
+      <div>
+        <span class="official-badge">{t.officialBadge}</span>
+        <h2 class="status-panel-title"> {t.officialBadge}</h2>
+        <p>{t.pageSubtitle}</p>
+      </div>
+      <div class="sync-badge">🕒 {t.lastOfficialUpdate}: <strong id="last-sync-time">—</strong></div>
+    </div>
+
+    <div class="clock-bar">
+      <span class="clock-local">⏰ {t.localTime}: <strong id="live-local-time">--:--:--</strong> (UTC+3)</span>
+      <span class="clock-zulu">🌐 {t.zuluTime}: <strong id="live-zulu-time">--:--:--</strong> Z</span>
+      <button id="refreshBtn" type="button">↻ {t.refresh}</button>
+    </div>
+
+    <div id="load-message" class="load-message">{t.loading}</div>
+
+    <section class="morning-dashboard morning-dashboard-top" aria-label="Göreme morning flight planning">
+      <article class="sunrise-card sunrise-card-compact sunrise-premium sunrise-today">
+        <div class="sunrise-art" aria-hidden="true">
+          <span class="sun-disc"></span>
+          <span class="premium-balloon premium-balloon-one" aria-hidden="true">
+            <svg viewBox="0 0 64 88" role="img"><defs><linearGradient id="habg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e7462e"/><stop offset=".35" stop-color="#f7b500"/><stop offset=".68" stop-color="#1d8f75"/><stop offset="1" stop-color="#175b9b"/></linearGradient></defs><path d="M32 3C15 3 5 15 7 31c2 15 13 26 20 33h10c7-7 18-18 20-33C59 15 49 3 32 3Z" fill="url(#habg1)" stroke="#fff5c7" stroke-width="2"/><path d="M20 9c-5 14-3 31 8 54M44 9c5 14 3 31-8 54M32 5v58" fill="none" stroke="#fff6cf" stroke-width="2" opacity=".8"/><path d="M27 64h10l-2 8h-6Z" fill="#805128"/><path d="M25 73h14l-2 10H27Z" fill="#9b642d" stroke="#6d421f"/></svg>
+          </span>
+          <span class="premium-balloon premium-balloon-two" aria-hidden="true">
+            <svg viewBox="0 0 64 88"><path d="M32 3C15 3 5 15 7 31c2 15 13 26 20 33h10c7-7 18-18 20-33C59 15 49 3 32 3Z" fill="#ef6a2f" stroke="#fff5c7" stroke-width="2"/><path d="M21 9c-4 15-2 31 7 54M43 9c4 15 2 31-7 54M32 5v58" fill="none" stroke="#ffe5a3" stroke-width="2"/><path d="M27 64h10l-2 8h-6Z" fill="#805128"/><path d="M25 73h14l-2 10H27Z" fill="#9b642d"/></svg>
+          </span>
+          <span class="horizon-line"></span>
+        </div>
+        <div class="sunrise-content">
+          <span id="banner-title-1" class="sunrise-label">↑ {t.today} • {t.sunrise}</span>
+          <div class="sunrise-time-row">
+            <span class="sunrise-mini-icon">☀</span>
+            <strong id="sunrise-time-today" class="sunrise-time">--:--</strong>
+          </div>
+          <div class="flight-window">
+            <b>{t.flightSchedule}</b>
+            <small class="flight-window-note">{t.flightScheduleNote}</small>
+            <span> {t.firstSlot}: <strong id="win-start-today">--:--</strong></span>
+            <span> {t.secondSlot}: <strong id="win-end-today">--:--</strong></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="sunrise-card sunrise-card-compact sunrise-premium sunrise-tomorrow">
+        <div class="sunrise-art" aria-hidden="true">
+          <span class="sun-disc"></span>
+          <span class="premium-balloon premium-balloon-one" aria-hidden="true">
+            <svg viewBox="0 0 64 88" role="img"><defs><linearGradient id="habg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e7462e"/><stop offset=".35" stop-color="#f7b500"/><stop offset=".68" stop-color="#1d8f75"/><stop offset="1" stop-color="#175b9b"/></linearGradient></defs><path d="M32 3C15 3 5 15 7 31c2 15 13 26 20 33h10c7-7 18-18 20-33C59 15 49 3 32 3Z" fill="url(#habg1)" stroke="#fff5c7" stroke-width="2"/><path d="M20 9c-5 14-3 31 8 54M44 9c5 14 3 31-8 54M32 5v58" fill="none" stroke="#fff6cf" stroke-width="2" opacity=".8"/><path d="M27 64h10l-2 8h-6Z" fill="#805128"/><path d="M25 73h14l-2 10H27Z" fill="#9b642d" stroke="#6d421f"/></svg>
+          </span>
+          <span class="premium-balloon premium-balloon-two" aria-hidden="true">
+            <svg viewBox="0 0 64 88"><path d="M32 3C15 3 5 15 7 31c2 15 13 26 20 33h10c7-7 18-18 20-33C59 15 49 3 32 3Z" fill="#ef6a2f" stroke="#fff5c7" stroke-width="2"/><path d="M21 9c-4 15-2 31 7 54M43 9c4 15 2 31-7 54M32 5v58" fill="none" stroke="#ffe5a3" stroke-width="2"/><path d="M27 64h10l-2 8h-6Z" fill="#805128"/><path d="M25 73h14l-2 10H27Z" fill="#9b642d"/></svg>
+          </span>
+          <span class="horizon-line"></span>
+        </div>
+        <div class="sunrise-content">
+          <span id="banner-title-2" class="sunrise-label">↑ {t.tomorrow} • {t.sunrise}</span>
+          <div class="sunrise-time-row">
+            <span class="sunrise-mini-icon">☀</span>
+            <strong id="sunrise-time-tom" class="sunrise-time">--:--</strong>
+          </div>
+          <div class="flight-window">
+            <b>{t.flightSchedule}</b>
+            <small class="flight-window-note">{t.flightScheduleNote}</small>
+            <span> {t.firstSlot}: <strong id="win-start-tom">--:--</strong></span>
+            <span> {t.secondSlot}: <strong id="win-end-tom">--:--</strong></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="weather-card weather-compact weather-right">
+        <div class="weather-head">
+          <div class="weather-title">
+            <span id="weather-icon" class="weather-icon">🌤️</span>
+            <div>
+              <span class="weather-eyebrow">GÖREME • LIVE METEOROLOGY</span>
+              <h2>{t.weather}</h2>
+              <small>{t.weatherSub}</small>
+            </div>
+          </div>
+          <div class="weather-live-dot"><span></span> LIVE</div>
+        </div>
+
+        <div class="weather-grid weather-grid-compact">
+          <div><span>{t.temperature}</span><strong id="temperature">—</strong></div>
+          <div><span>{t.precipitation}</span><strong id="precipitation">—</strong></div>
+          <div><span>{t.humidity}</span><strong id="humidity">—</strong></div>
+          <div><span>{t.wind}</span><strong id="windSpeed">—</strong></div>
+          <div class="weather-wide"><span>{t.windDirection}</span><strong id="windDirection">—</strong></div>
+        </div>
+
+        <p class="weather-note">{t.weatherDisclaimer}</p>
+      </article>
+    </section>
+
+
+    <div class="alerts-grid" id="dynamic-alerts-container"></div>
+
+
+
+    <section class="live-tracking-panel" aria-labelledby="live-tracking-title">
+      <div class="tracking-head">
+        <div>
+          <span class="tracking-kicker">{t.sectorsTitle}</span>
+          <h2 id="live-tracking-title">{t.sectorsTitle}</h2>
+          {t.trackingSubtitle && <p>{t.trackingSubtitle}</p>}
+        </div>
+        <div class="tracking-update">
+          <span class="tracking-clock">◷</span>
+          <div>
+            <small>{t.lastOfficialUpdate}</small>
+            <strong id="tracking-update-time">—</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="tracking-layout">
+        <div class="sector-grid" id="sector-grid"></div>
+
+        <aside class="sector-overview-card" aria-label={t.sectorOverview}>
+          <div class="overview-head">
+            <div>
+              <span>{t.sectorOverview}</span>
+              <strong>CAPPADOCIA</strong>
+            </div>
+            <span class="overview-live"><i></i> LIVE</span>
+          </div>
+
+          <div class="sector-map-shell official-sector-map">
+            <div class="map-watermark">CAPPADOCIA</div>
+            <span class="map-place place-avanos">Avanos</span>
+            <span class="map-place place-goreme">Göreme</span>
+            <span class="map-place place-urgup">Ürgüp</span>
+            <span class="map-place place-nevsehir">Nevşehir</span>
+
+            <div class="sector-shape sector-a" data-map-sector="A">
+              <span>SECTOR A</span>
+              <small>{t.sectorA}</small>
+            </div>
+            <div class="sector-shape sector-b" data-map-sector="B">
+              <span>SECTOR B</span>
+              <small>{t.sectorB}</small>
+            </div>
+            <div class="sector-shape sector-c" data-map-sector="C">
+              <span>SECTOR C</span>
+              <small>{t.sectorC}</small>
+            </div>
+          </div>
+
+          <div class="status-legend">
+            <strong>{t.statusGuide}</strong>
+            <div><span class="legend-flag is-green"></span><b>{t.operatingNow}</b></div>
+            <div><span class="legend-flag is-yellow"></span><b>{t.delayed}</b></div>
+            <div><span class="legend-flag is-red"></span><b>{t.canceled}</b></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="cta-box">
+      <h2>{t.ctaTitle}</h2>
+      <p>{t.ctaText}</p>
+      <div class="cta-actions">
+        <a href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener">🔎 {t.verify} ↗</a>
+        <a class="wa" href={whatsappBackupUrl} target="_blank" rel="noopener">💬 {t.whatsapp} ↗</a>
+      </div>
+      <small>{t.sourceLabel}</small>
+      <small class="source-notice">{t.sourceNotice}</small>
+    </section>
+  </section>
+
+  <EcmwfBalloonForecast lang={lang} />
+
+  <section class="flight-expert-analysis" aria-labelledby="expert-analysis-heading">
+    <div class="expert-inner">
+      <span class="expert-kicker">{ea.kicker}</span>
+      <h2 id="expert-analysis-heading">{ea.heading}</h2>
+      {ea.intro.map((p) => <p>{p}</p>)}
+      <div class="expert-cta">
+        <a href="#flight-status-top">{ea.ctaLabel} ↑</a>
+      </div>
+
+      <h3>{ea.analysisHeading}</h3>
+      <p>{ea.analysisIntro}</p>
+      <ul class="expert-factor-grid">
+        {ea.analysisFactors.map((f) => <li>{f}</li>)}
+      </ul>
+      <p>{ea.analysisOutro}</p>
+
+      <h3>{ea.sourcesHeading}</h3>
+      <div class="expert-source-grid">
+        {ea.sources.map((s) => (
+          <article>
+            <h4>{s.name}</h4>
+            <p>{s.body}</p>
+            <a href={s.url} target="_blank" rel="noopener">{s.linkLabel} ↗</a>
+            {s.secondUrl && <a href={s.secondUrl} target="_blank" rel="noopener">{s.secondLinkLabel} ↗</a>}
+          </article>
+        ))}
+      </div>
+
+      <h3>{ea.probabilityHeading}</h3>
+      <p>{ea.probabilityIntro}</p>
+      <div class="expert-probability-grid">
+        {ea.probabilityLevels.map((p) => (
+          <article><h4>{p.title}</h4><p>{p.body}</p></article>
+        ))}
+      </div>
+      <p class="expert-note">{ea.probabilityNote}</p>
+
+      <h3>{ea.launchHeading}</h3>
+      <p>{ea.launchIntro}</p>
+      <div class="expert-area-tags">
+        {ea.launchAreas.map((a) => <span>{a}</span>)}
+      </div>
+      <p>{ea.launchOutro}</p>
+
+      <figure class="expert-photo">
+        <img src={ea.launchPhoto.src} alt={ea.launchPhoto.alt} width="673" height="1200" loading="lazy" decoding="async" style="object-position:center 8%" />
+        <figcaption>{ea.launchPhoto.caption}</figcaption>
+      </figure>
+
+      <div class="expert-map-grid">
+        <figure class="expert-map">
+          <img src={ea.officialMap.src} alt={ea.officialMap.caption} width="700" height="700" loading="lazy" decoding="async" />
+          <figcaption><strong>{ea.officialMap.caption}</strong><br />{ea.officialMap.note}</figcaption>
+        </figure>
+        <figure class="expert-map">
+          <img src={ea.ownMap.src} alt={ea.ownMap.caption} width="700" height="700" loading="lazy" decoding="async" />
+          <figcaption>
+            <strong class="unofficial-badge">{ea.ownMap.caption}</strong>
+            <span>{ea.ownMap.itemsHeading}</span>
+            <ul>{ea.ownMap.items.map((i) => <li>{i}</li>)}</ul>
+          </figcaption>
+        </figure>
+      </div>
+
+      <h3>{ea.sunriseHeading}</h3>
+      {ea.sunriseBody.map((p) => <p>{p}</p>)}
+      <figure class="expert-photo">
+        <img src={ea.heroPhoto.src} alt={ea.heroPhoto.alt} width="677" height="1200" loading="lazy" decoding="async" style="object-position:center 38%" />
+      </figure>
+
+      <h3>{ea.weatherFactorsHeading}</h3>
+      <p>{ea.weatherFactorsIntro}</p>
+      <ul class="expert-factor-grid">
+        {ea.weatherFactors.map((f) => <li>{f}</li>)}
+      </ul>
+      <p>{ea.weatherFactorsNote1}</p>
+      <p>{ea.weatherFactorsNote2}</p>
+      <p>{ea.weatherFactorsNote3}</p>
+
+      <h3>{ea.slotHeading}</h3>
+      {ea.slotBody.map((p) => <p>{p}</p>)}
+
+      <h3>{ea.pilotHeading}</h3>
+      <div class="expert-pilot-card">
+        <div>
+          {ea.pilotBody.map((p) => <p>{p}</p>)}
+          <p>{ea.pilotEquipmentIntro}</p>
+          <ul class="expert-factor-grid">
+            {ea.pilotEquipment.map((e) => <li>{e}</li>)}
+          </ul>
+          <p class="expert-note">{ea.pilotNote}</p>
+        </div>
+      </div>
+
+      <h3>{ea.comparisonHeading}</h3>
+      <p>{ea.comparisonIntro}</p>
+      <table class="expert-comparison-table">
+        <tbody>
+          {ea.comparisonRows.map(([label, source]) => (
+            <tr><td>{label}</td><td>{source}</td></tr>
+          ))}
+        </tbody>
+      </table>
+      <p>{ea.comparisonOutro}</p>
+
+      <div class="expert-disclaimer">
+        <h3>{ea.disclaimerHeading}</h3>
+        <p class="expert-disclaimer-sub">{ea.disclaimerSubheading}</p>
+        {ea.disclaimerBody.map((p) => <p>{p}</p>)}
+        <div class="expert-signature">
+          <span>{ea.preparedByLabel}</span>
+          <strong>{ea.pilotName}</strong>
+          <span>{ea.pilotTitle}</span>
+        </div>
+      </div>
+
+      <div class="expert-related">
+        <h3>{ea.relatedHeading}</h3>
+        <div>
+          {ea.relatedLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flight-status-seo" aria-labelledby="flight-status-seo-heading">
+    <div class="seo-inner">
+      <span class="seo-kicker">{seo.kicker}</span>
+      <h2 id="flight-status-seo-heading">{seo.heading}</h2>
+      <p>{seo.intro1}</p>
+      <p>{seo.intro2}</p>
+
+      <div class="seo-grid">
+        {seo.sections.map(([heading, body]) => (
+          <article>
+            <h3>{heading}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="seo-official-note">
+        <strong>{seo.noteTitle}</strong> {seo.note}
+      </div>
+
+      <h2 class="faq-title">{seo.faqTitle}</h2>
+      <div class="flight-faq">
+        {seo.faq.map(([question, answer]) => (
+          <details>
+            <summary>{question}</summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <section class="cancellation-seo" aria-labelledby="cancellation-seo-heading">
+        <h2 id="cancellation-seo-heading">{cancellationSeo.heading}</h2>
+        <p>{cancellationSeo.intro}</p>
+        <h3>{cancellationSeo.factorsTitle}</h3>
+        <div class="cancellation-factor-grid">
+          {cancellationSeo.factors.map(([heading, body]) => (
+            <article><h4>{heading}</h4><p>{body}</p></article>
+          ))}
+        </div>
+        <h3>{cancellationSeo.multiTitle}</h3>
+        <p>{cancellationSeo.multiBody}</p>
+        <h3>{cancellationSeo.seasonalTitle}</h3>
+        <p>{cancellationSeo.seasonalIntro}</p>
+        <div class="cancellation-help-grid">
+          {cancellationSeo.seasonalMonths.map(([heading, body]) => (
+            <article><h4>{heading}</h4><p>{body}</p></article>
+          ))}
+        </div>
+        <p><small>{cancellationSeo.seasonalNote}</small></p>
+        <h3>{cancellationSeo.canceledTitle}</h3>
+        <p>{cancellationSeo.canceledBody}</p>
+        <div class="cancellation-help-grid">
+          {cancellationSeo.help.map(([heading, body]) => (
+            <article><h4>{heading}</h4><p>{body}</p></article>
+          ))}
+        </div>
+        <div class="cancellation-tours">
+          <h3>{cancellationSeo.toursTitle}</h3>
+          <p>{cancellationSeo.toursBody}</p>
+          <div>
+            <a href={`/${lang}/tours/goreme-standart-hot-air-balloon-tour`}> {cancellationSeo.standard}</a>
+            <a href={`/${lang}/tours/goreme-comfort-hot-air-balloon-tour`}> {cancellationSeo.comfort}</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+</main>
+
+<script define:vars={{ t, lang, locale }}>
+(function () {
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const sectorLocations = { A: t.sectorA, B: t.sectorB, C: t.sectorC };
+  let currentData = null;
+
+  const STATUS_HISTORY_KEY = 'tbc-flight-status-history-v2';
+
+  function readStatusHistory() {
+    try {
+      const value = JSON.parse(localStorage.getItem(STATUS_HISTORY_KEY) || '{}');
+      return value && typeof value === 'object' ? value : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function getDayHistory(dateKey) {
+    const all = readStatusHistory();
+    return all[dateKey] || { hadGreen:false, hadYellow:false, lastStatus:'' };
+  }
+
+  function rememberDayStatus(dateKey, status, hasOfficialRange) {
+    if (!dateKey) return;
+    const all = readStatusHistory();
+    const item = all[dateKey] || { hadGreen:false, hadYellow:false, lastStatus:'' };
+
+    if (status === 'FLOWN') item.hadGreen = true;
+    if ((status === 'PENDING' || status === 'PARTIAL') && hasOfficialRange) item.hadYellow = true;
+
+    item.lastStatus = status;
+    item.updatedAt = new Date().toISOString();
+    all[dateKey] = item;
+
+    Object.keys(all).sort().reverse().slice(14).forEach(k => delete all[k]);
+    try { localStorage.setItem(STATUS_HISTORY_KEY, JSON.stringify(all)); } catch {}
+  }
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function parseOfficialUpdate(value) {
+    const m=String(value||'').match(/(\d{1,2})[.\-/](\d{1,2})[.\-/](\d{4}).*?(\d{1,2}):(\d{2})/);
+    if(!m)return null;
+    return { day:+m[1], month:+m[2], year:+m[3], hour:+m[4], minute:+m[5] };
+  }
+  function officialUpdateTurkeyParts(value) {
+    const p=parseOfficialUpdate(value);
+    if(!p)return null;
+    // Official source timestamp is UTC/Zulu. Convert to Turkey local time (UTC+3).
+    const d=new Date(Date.UTC(p.year,p.month-1,p.day,p.hour,p.minute));
+    d.setUTCHours(d.getUTCHours()+3);
+    return {
+      day:d.getUTCDate(), month:d.getUTCMonth()+1, year:d.getUTCFullYear(),
+      hour:d.getUTCHours(), minute:d.getUTCMinutes()
+    };
+  }
+  function formatOfficialUpdateTR(value) {
+    const p=officialUpdateTurkeyParts(value);
+    if(!p)return value||'';
+    return `${pad(p.day)}.${pad(p.month)}.${p.year} - ${lang === 'en' ? formatHM(p.hour,p.minute) : `${pad(p.hour)}:${pad(p.minute)}`}`;
+  }
+  function isPostMorningOfficialUpdate(value) {
+    const p=officialUpdateTurkeyParts(value);
+    if(!p)return false;
+    return p.hour>=8;
+  }
+  function turkeyNowParts() {
+    const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Istanbul', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false }).formatToParts(new Date());
+    return Object.fromEntries(parts.map(p => [p.type, p.value]));
+  }
+  function updateClocks() {
+    const p = turkeyNowParts();
+    const local = document.getElementById('live-local-time');
+    const zulu = document.getElementById('live-zulu-time');
+    if (local) local.textContent = formatClockHM(Number(p.hour), Number(p.minute), Number(p.second));
+    const now = new Date();
+    if (zulu) zulu.textContent = formatClockHM(now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+  }
+  setInterval(updateClocks, 1000); updateClocks();
+
+  function getTurkeyDate(offsetDays = 0) {
+    const p = turkeyNowParts();
+    const d = new Date(Number(p.year), Number(p.month) - 1, Number(p.day));
+    d.setDate(d.getDate() + offsetDays);
+    return d;
+  }
+  function isoDate(d) { return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
+  function displayDate(d) { return new Intl.DateTimeFormat(locale, { day:'numeric', month:'long', year:'numeric' }).format(d); }
+  function validDateFromRange(range) {
+    const m = String(range || '').match(/(\d{2})\.(\d{2})\.(\d{4})/);
+    return m ? `${m[3]}-${m[2]}-${m[1]}` : '';
+  }
+  function parseOfficialTime(range) {
+    const m = String(range || '').match(/\d{2}\.\d{2}\.\d{4}\s*-\s*(\d{2}:\d{2})\s*-\s*(\d{2}:\d{2})/);
+    return m ? { start:m[1], end:m[2] } : null;
+  }
+  function addThreeHours(hm) {
+    if (!hm) return '--:--';
+    const [h,m] = hm.split(':').map(Number);
+    return `${pad((h+3)%24)}:${pad(m)}`;
+  }
+
+  function formatOfficialRangeTR(range) {
+    const m = String(range || '').match(/(\d{2})\.(\d{2})\.(\d{4})\s*-\s*(\d{2}):(\d{2})\s*-\s*(\d{2}):(\d{2})/);
+    if (!m) return range || '';
+    const [,dd,mm,yyyy,sh,sm,eh,em] = m;
+    const start = new Date(Date.UTC(Number(yyyy), Number(mm)-1, Number(dd), Number(sh), Number(sm)));
+    const end = new Date(Date.UTC(Number(yyyy), Number(mm)-1, Number(dd), Number(eh), Number(em)));
+    start.setUTCHours(start.getUTCHours()+3);
+    end.setUTCHours(end.getUTCHours()+3);
+    const format = (d) => `${pad(d.getUTCDate())}.${pad(d.getUTCMonth()+1)}.${d.getUTCFullYear()} - ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}`;
+    const sameDate = start.getUTCDate()===end.getUTCDate() && start.getUTCMonth()===end.getUTCMonth() && start.getUTCFullYear()===end.getUTCFullYear();
+    if (lang === 'en') {
+      const dateStart = `${pad(start.getUTCDate())}.${pad(start.getUTCMonth()+1)}.${start.getUTCFullYear()}`;
+      const startTime = formatHM(start.getUTCHours(), start.getUTCMinutes());
+      const endTime = formatHM(end.getUTCHours(), end.getUTCMinutes());
+      const dateEnd = `${pad(end.getUTCDate())}.${pad(end.getUTCMonth()+1)}.${end.getUTCFullYear()}`;
+      return sameDate ? `${dateStart} - ${startTime} - ${endTime}` : `${dateStart} - ${startTime} - ${dateEnd} - ${endTime}`;
+    }
+    return sameDate
+      ? `${pad(start.getUTCDate())}.${pad(start.getUTCMonth()+1)}.${start.getUTCFullYear()} - ${pad(start.getUTCHours())}:${pad(start.getUTCMinutes())} - ${pad(end.getUTCHours())}:${pad(end.getUTCMinutes())}`
+      : `${format(start)} - ${format(end)}`;
+  }
+
+  function minutesFromHM(hm) {
+    if (!hm) return null;
+    const [h,m] = hm.split(':').map(Number);
+    if (!Number.isFinite(h) || !Number.isFinite(m)) return null;
+    return (h * 60) + m;
+  }
+  function officialDelayMinutes(_updateValue, range) {
+    const times = parseOfficialTime(range);
+    if (!times) return 0;
+
+    const start = minutesFromHM(times.start);
+    const end = minutesFromHM(times.end);
+    if (start === null || end === null) return 0;
+
+    let diff = end - start;
+    if (diff < 0) diff += 24 * 60;
+
+    return diff > 0 && diff <= 180 ? diff : 0;
+  }
+  function effectiveStatus(status, update, range) {
+    const delay = officialDelayMinutes(update, range);
+    if (status === 'PENDING' && range && delay > 0) return 'DELAYED';
+    return status;
+  }
+
+  function getSunriseTime(date) {
+    const lat=38.643, lon=34.829, zen=90.833;
+    const dayOfYear=Math.floor((date-new Date(date.getFullYear(),0,0))/(1000*60*60*24));
+    const lngHour=lon/15;
+    const tt=dayOfYear+((6-lngHour)/24);
+    const M=(0.9856*tt)-3.289;
+    const L=(M+(1.916*Math.sin(M*Math.PI/180))+(0.020*Math.sin(2*M*Math.PI/180))+282.634+360)%360;
+    let RA=(Math.atan(0.91764*Math.tan(L*Math.PI/180))*180/Math.PI+360)%360;
+    RA=(RA+((Math.floor(L/90))*90-(Math.floor(RA/90))*90))/15;
+    const sinDec=0.39782*Math.sin(L*Math.PI/180);
+    const cosDec=Math.cos(Math.asin(sinDec));
+    const cosH=(Math.cos(zen*Math.PI/180)-(sinDec*Math.sin(lat*Math.PI/180)))/(cosDec*Math.cos(lat*Math.PI/180));
+    const H=(360-(Math.acos(cosH)*180/Math.PI))/15;
+    const UT=(H+RA-(0.06571*tt)-6.622-lngHour+24)%24;
+    const local=UT+3;
+    let hours=Math.floor(local)%24;
+    let minutes=Math.round((local-Math.floor(local))*60);
+    if(minutes===60){minutes=0;hours=(hours+1)%24;}
+    return {hours,minutes};
+  }
+  function formatHM(h,m){
+    if (lang !== 'en') return `${pad(h)}:${pad(m)}`;
+    const period = h >= 12 ? 'PM' : 'AM';
+    const hour12 = h % 12 || 12;
+    return `${hour12}:${pad(m)} ${period}`;
+  }
+  function formatClockHM(h,m,s=''){
+    if (lang !== 'en') return `${pad(h)}:${pad(m)}${s !== '' ? `:${pad(s)}` : ''}`;
+    const period = h >= 12 ? 'PM' : 'AM';
+    const hour12 = h % 12 || 12;
+    return `${hour12}:${pad(m)}${s !== '' ? `:${pad(s)}` : ''} ${period}`;
+  }
+  function renderSunrise() {
+    const today=getTurkeyDate(0), tomorrow=getTurkeyDate(1);
+    [[today,'today'],[tomorrow,'tom']].forEach(([d,key])=>{
+      const label = document.getElementById(key === 'today' ? 'banner-title-1' : 'banner-title-2');
+      if (label) label.textContent = `${key === 'today' ? t.today : t.tomorrow} · ${displayDate(d)} · ${t.sunrise}`;
+      const sun=getSunriseTime(d);
+      const sunrise=new Date(d); sunrise.setHours(sun.hours,sun.minutes,0,0);
+      const start=new Date(sunrise.getTime()-30*60*1000);
+      const secondFlight=new Date(sunrise);
+      document.getElementById(`sunrise-time-${key}`).textContent=formatHM(sunrise.getHours(),sunrise.getMinutes());
+      document.getElementById(`win-start-${key}`).textContent=formatHM(start.getHours(),start.getMinutes());
+      document.getElementById(`win-end-${key}`).textContent=formatHM(secondFlight.getHours(),secondFlight.getMinutes());
+    });
+  }
+  renderSunrise();
+
+  function statusLabel(status) {
+    if (status === 'DELAYED') return t.delayed;
+    if (status === 'COMPLETED') return t.completed;
+    if (status === 'CANCELED') return t.canceled;
+    if (status === 'FLOWN') return t.suitable;
+    if (status === 'PARTIAL') return t.mixed;
+    return t.pending;
+  }
+  function statusClass(status) {
+    if (status === 'DELAYED') return 'is-partial';
+    if (status === 'COMPLETED') return 'is-suitable';
+    if (status === 'CANCELED') return 'is-canceled';
+    if (status === 'FLOWN') return 'is-suitable';
+    if (status === 'PARTIAL') return 'is-partial';
+    return 'is-pending';
+  }
+  function statusTitle(status, variant = '') {
+    if (status === 'DELAYED') return t.delayedTitle;
+    if (status === 'COMPLETED') return t.completedTitle;
+    if (status === 'CANCELED' && variant === 'launch-site') return t.canceledAtLaunchTitle;
+    if (status === 'CANCELED') return t.canceledTitle;
+    if (status === 'FLOWN') return t.suitableTitle;
+    if (status === 'PARTIAL') return t.partialTitle;
+    return t.pendingTitle;
+  }
+  function statusBody(status, variant = '') {
+    if (status === 'DELAYED') return t.delayedBody;
+    if (status === 'COMPLETED') return t.completedBody;
+    if (status === 'CANCELED' && variant === 'launch-site') return t.canceledAtLaunchBody;
+    if (status === 'CANCELED') return t.canceledBody;
+    if (status === 'FLOWN') return t.suitableBody;
+    if (status === 'PARTIAL') return t.partialBody;
+    return t.pendingBody;
+  }
+  function alertCard(date, status, range, isToday, update, variant = '') {
+    const times=parseOfficialTime(range);
+    const displayStatus = effectiveStatus(status, update, range);
+    const delay = officialDelayMinutes(update, range);
+    const tag=isToday?t.today:t.tomorrow;
+    const cls=statusClass(displayStatus);
+    const icon=displayStatus==='CANCELED'?'✕':displayStatus==='COMPLETED'||displayStatus==='FLOWN'?'✓':displayStatus==='DELAYED'||displayStatus==='PARTIAL'?'!':'⌛';
+    return `<article class="alert-card ${cls}">
+      <div class="alert-top"><span class="date-tag">${tag} (${displayDate(date)})</span><span class="state-text">● ${displayStatus==='PENDING'?t.decisionPending:`${t.liveStatus}: ${statusLabel(displayStatus)}`}</span></div>
+      <div class="alert-title"><span class="alert-icon">${icon}</span><strong>${statusTitle(displayStatus, variant)}</strong></div>
+      <p>${statusBody(displayStatus, variant)}</p>
+      ${displayStatus==='PENDING' && !isToday && t.pendingUntilNote ? `<p class="pending-until-note">${t.pendingUntilNote}</p>` : ''}
+      ${displayStatus==='DELAYED' && delay>0 ? `<div class="delay-callout">⏱ ${t.delayLabel}: <strong>${delay} ${t.minutesShort}</strong></div>` : ''}
+      <div class="alert-meta">
+        <div><b>${t.validLocal}:</b> ${range?formatOfficialRangeTR(range):t.awaitingInfo}</div>
+        ${update?`<div><b>${t.update}:</b> ${formatOfficialUpdateTR(update)}</div>`:''}
+      </div>
+    </article>`;
+  }
+
+  function renderAlerts(data) {
+    const today=getTurkeyDate(0), tomorrow=getTurkeyDate(1);
+    const validISO=validDateFromRange(data.validDateRange);
+    const todayISO=isoDate(today), tomorrowISO=isoDate(tomorrow);
+    let todayStatus='PENDING', tomorrowStatus='PENDING';
+    let todayRange='', tomorrowRange='';
+    let todayUpdate='', tomorrowUpdate='';
+    let todayVariant='';
+
+    if(validISO===todayISO){todayStatus=data.status;todayRange=data.validDateRange;todayUpdate=data.lastUpdate;}
+    else if(validISO===tomorrowISO){tomorrowStatus=data.status;tomorrowRange=data.validDateRange;tomorrowUpdate=data.lastUpdate;}
+    else if(!validISO){todayStatus=data.status;todayRange=data.validDateRange;todayUpdate=data.lastUpdate;}
+
+    const previous = getDayHistory(todayISO);
+
+    // GREEN -> RED and YELLOW -> GREEN -> RED:
+    // RED is not a cancellation; the morning operation has already completed.
+    if (todayStatus === 'CANCELED' && previous.hadGreen) {
+      todayStatus = 'COMPLETED';
+    }
+    // YELLOW -> RED, with no GREEN:
+    // this is a launch-site cancellation, not an early cancellation.
+    else if (todayStatus === 'CANCELED' && previous.hadYellow) {
+      todayVariant = 'launch-site';
+    }
+    // Cross-device fallback:
+    // localStorage history is device-specific. A phone opened for the first time
+    // may not know that GREEN was already observed on desktop earlier that morning.
+    // Once the official RED update itself is 08:00 or later in Turkey time,
+    // display the post-morning state as COMPLETED on every device.
+    else if (todayStatus === 'CANCELED' && isPostMorningOfficialUpdate(todayUpdate)) {
+      todayStatus = 'COMPLETED';
+    }
+
+    data._todayDisplayStatus = todayStatus;
+    data._todayDisplayVariant = todayVariant;
+
+    // Remember the RAW official state only after evaluating the transition.
+    const rawTodayStatus = (validISO===todayISO || !validISO) ? data.status : 'PENDING';
+    rememberDayStatus(todayISO, rawTodayStatus, Boolean(todayRange));
+
+    const el=document.getElementById('dynamic-alerts-container');
+    if(el) el.innerHTML=
+      alertCard(today,todayStatus,todayRange,true,todayUpdate,todayVariant)+
+      alertCard(tomorrow,tomorrowStatus,tomorrowRange,false,tomorrowUpdate);
+  }
+
+  function degToCompass(deg) {
+    if (deg === null || deg === undefined || Number.isNaN(Number(deg))) return '—';
+    const dirs=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+    return `${Math.round(Number(deg))}° ${dirs[Math.round(Number(deg)/22.5)%16]}`;
+  }
+  function weatherIcon(code){if([0,1].includes(code))return'☀️';if([2,3].includes(code))return'🌤️';if([45,48].includes(code))return'🌫️';if(code>=51&&code<=67)return'🌧️';if(code>=71&&code<=77)return'🌨️';if(code>=80&&code<=82)return'🌦️';if(code>=95)return'⛈️';return'🌤️';}
+  function renderWeather(data) {
+    const w=data.weather||{};
+    document.getElementById('weather-icon').textContent=weatherIcon(Number(w.weatherCode));
+    document.getElementById('temperature').textContent=w.temperature!==undefined?`${Number(w.temperature).toLocaleString(undefined,{maximumFractionDigits:1})}°C`:'—';
+    document.getElementById('precipitation').textContent=w.precipitation!==undefined?`${w.precipitation} mm`:'—';
+    document.getElementById('humidity').textContent=w.humidity!==undefined?`%${w.humidity}`:'—';
+    document.getElementById('windSpeed').textContent=w.windSpeed!==undefined?`${Number(w.windSpeed).toLocaleString(undefined,{maximumFractionDigits:1})} m/s`:'—';
+    document.getElementById('windDirection').textContent=degToCompass(w.windDirection);
+
+  }
+
+  function sectorBody(status){
+    return status==='CANCELED'?t.sectorCanceled:
+      status==='FLOWN'?t.sectorSuitable:
+      status==='DELAYED'?t.delayedBody:
+      status==='COMPLETED'?t.completedBody:
+      t.sectorPending;
+  }
+
+  function visualStatus(status) {
+    if (status === 'FLOWN') return 'green';
+    if (status === 'DELAYED' || status === 'PARTIAL') return 'yellow';
+    if (status === 'COMPLETED') return 'completed';
+    if (status === 'CANCELED') return 'red';
+    return 'pending';
+  }
+
+  function updateSectorMap(key, status) {
+    const mapSector = document.querySelector(`[data-map-sector="${key}"]`);
+    if (!mapSector) return;
+    mapSector.classList.remove('map-green','map-yellow','map-red','map-pending');
+    const v = visualStatus(status);
+    // Completed intentionally becomes RED because no further flights will operate today.
+    mapSector.classList.add(
+      v === 'green' ? 'map-green' :
+      v === 'yellow' ? 'map-yellow' :
+      v === 'completed' || v === 'red' ? 'map-red' :
+      'map-pending'
+    );
+  }
+
+  function renderSectors(data) {
+    const el=document.getElementById('sector-grid');
+    if(!el)return;
+
+    const overallCompleted = data._todayDisplayStatus === 'COMPLETED';
+
+    el.innerHTML=(data.sectors||[]).map(s=>{
+      const delay = officialDelayMinutes(s.lastUpdate, s.validDateRange);
+      const displayStatus = overallCompleted ? 'COMPLETED' : effectiveStatus(s.status, s.lastUpdate, s.validDateRange);
+      const visual = visualStatus(displayStatus);
+
+      // User rule:
+      // GREEN = operating -> green flag
+      // YELLOW = delayed -> yellow flag
+      // RED = canceled -> red flag
+      // GREEN -> RED / completed -> RED flag (no further flights today)
+      const flagClass =
+        visual === 'green' ? 'flag-green' :
+        visual === 'yellow' ? 'flag-yellow' :
+        visual === 'completed' || visual === 'red' ? 'flag-red' :
+        'flag-gray';
+
+      const stateText =
+        displayStatus === 'FLOWN' ? t.operatingNow :
+        displayStatus === 'COMPLETED' ? t.completedSector :
+        statusLabel(displayStatus);
+
+      updateSectorMap(s.key, displayStatus);
+
+      return `<article class="sector-card premium-sector ${statusClass(displayStatus)} status-${visual}">
+        <div class="premium-sector-top">
+          <div class="sector-identity">
+            <span class="css-flag ${flagClass}" aria-hidden="true"><i></i></span>
+            <div>
+              <span class="sector-kicker">${t.sectorWord.toUpperCase()} ${s.key}</span>
+              <strong>${stateText}</strong>
+              <small>📍 ${sectorLocations[s.key]||''}</small>
+            </div>
+          </div>
+          <span class="sector-status-dot status-dot-${visual}"></span>
+        </div>
+
+        <div class="sector-message">
+          <p>${sectorBody(displayStatus)}</p>
+          ${displayStatus==='DELAYED' && delay>0
+            ? `<div class="sector-delay-premium"><span>◷</span><div><small>${t.delayLabel}</small><strong>${delay} ${t.minutesShort}</strong></div></div>`
+            : ''}
+        </div>
+
+        <div class="sector-info-grid">
+          <div>
+            <span class="info-icon">◷</span>
+            <div><small>${t.update}</small><strong>${s.lastUpdate?formatOfficialUpdateTR(s.lastUpdate):'—'}</strong></div>
+          </div>
+          <div>
+            <span class="info-icon">▣</span>
+            <div><small>${t.valid}</small><strong>${s.validDateRange?formatOfficialRangeTR(s.validDateRange):'—'}</strong></div>
+          </div>
+        </div>
+
+        ${displayStatus==='COMPLETED'
+          ? `<div class="completed-stop"><span class="mini-red-flag"></span><strong>${t.noFurtherFlights}</strong></div>`
+          : ''}
+      </article>`;
+    }).join('');
+  }
+
+  async function load() {
+    const msg=document.getElementById('load-message');
+    if(msg){msg.className='load-message';msg.textContent=t.loading;}
+    try {
+      const r=await fetch('/api/flight-status.json',{cache:'no-store'});
+      const data=await r.json();
+      if(!r.ok||!data.success) throw new Error(data.error||'Status error');
+      currentData=data;
+      document.getElementById('last-sync-time').textContent=formatOfficialUpdateTR(data.lastUpdate)||'—';
+      const trackingUpdate = document.getElementById('tracking-update-time');
+      if (trackingUpdate) trackingUpdate.textContent = formatOfficialUpdateTR(data.lastUpdate) || '—';
+      renderAlerts(data); renderWeather(data); renderSectors(data);
+      if(msg){msg.className='load-message is-hidden';msg.textContent='';}
+    } catch(e) {
+      console.error(e);
+      if(msg){msg.className='load-message is-error';msg.textContent=t.loadError;}
+      renderAlerts({status:'PENDING',validDateRange:'',lastUpdate:'',sectors:[],weather:null});
+    }
+  }
+  document.getElementById('refreshBtn')?.addEventListener('click',load);
+  load();
+  setInterval(load,60000);
+})();
+</script>
+
+<style is:global>
+:root{--tbc-navy:#071b36;--tbc-navy-2:#0d2a50;--tbc-gold:#eeb100;--tbc-gold-soft:#fff5cf;--tbc-cream:#f7f3ea;--tbc-card:#ffffff;--tbc-line:#e7dfd0;--tbc-muted:#61718a;--tbc-red:#d94a55;--tbc-green:#16885b;--tbc-amber:#c98a00;--tbc-shadow:0 16px 42px rgba(44,38,26,.08)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--tbc-cream);color:var(--tbc-navy);font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.flight-category-hero{background:linear-gradient(135deg,#fffdf8,#f5efe1);border-bottom:1px solid #e7dfd0;padding:46px 0 38px}.flight-hero-inner{width:min(1180px,calc(100% - 32px));margin:auto}.flight-hero-badge{display:inline-flex;background:var(--tbc-gold);color:var(--tbc-navy);padding:7px 12px;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.05em}.flight-category-hero h1{font:900 clamp(31px,4vw,42px)/1.12 Montserrat,'Plus Jakarta Sans',sans-serif;margin:14px 0 10px;color:var(--tbc-navy);letter-spacing:-.035em}.flight-category-hero p{max-width:800px;margin:0;color:var(--tbc-muted);font-size:15px;line-height:1.72}.status-panel-title{font:800 20px/1.3 'Plus Jakarta Sans',sans-serif;margin:13px 0 9px;color:var(--tbc-navy)}
+.tbc-header{height:92px;padding:0 max(24px,calc((100vw - 1380px)/2));background:#fff;border-bottom:1px solid #e8e3d9;display:flex;align-items:center;justify-content:space-between;gap:24px;position:sticky;top:0;z-index:50;box-shadow:0 4px 18px rgba(7,27,54,.035)}
+.tbc-brand img{width:58px;height:58px;object-fit:contain}.tbc-header nav{display:flex;align-items:center;gap:24px}.tbc-header nav a{color:var(--tbc-navy);text-decoration:none;font-size:13px;font-weight:800;padding:35px 0 30px;border-bottom:3px solid transparent}.tbc-header nav a.active{color:var(--tbc-navy);border-color:var(--tbc-gold)}.tbc-wa-top{color:var(--tbc-navy);text-decoration:none;font-weight:900;font-size:13px}
+.tbc-page{width:min(1280px,calc(100% - 40px));margin:0 auto;padding:22px 0 64px}.breadcrumbs{display:flex;gap:8px;align-items:center;font-size:12px;margin:4px 0 15px;color:#79869a}.breadcrumbs a{color:var(--tbc-navy);text-decoration:none;font-weight:700}
+.status-shell{background:var(--tbc-card);border:1px solid var(--tbc-line);border-radius:24px;padding:30px;box-shadow:var(--tbc-shadow);color:var(--tbc-navy)}
+.feed-header{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;align-items:start;padding-bottom:24px;border-bottom:1px solid var(--tbc-line)}.official-badge{display:inline-flex;background:var(--tbc-gold);color:var(--tbc-navy);padding:7px 12px;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.08em}.feed-header h1{font:800 clamp(29px,3vw,42px)/1.12 'Plus Jakarta Sans',sans-serif;margin:13px 0 9px;color:var(--tbc-navy);letter-spacing:-.035em}.feed-header p{margin:0;color:var(--tbc-muted);font-size:14px;line-height:1.72;max-width:860px}.sync-badge{background:#f9fbfd;border:1px solid #dbe4ee;border-radius:13px;padding:12px 15px;font-size:11px;color:#738097;white-space:nowrap}.sync-badge strong{color:var(--tbc-navy);font-size:12px}
+.clock-bar{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:20px 0}.clock-bar>span{background:#f8fafc;border:1px solid #dbe4ed;color:#66758b;padding:9px 13px;border-radius:999px;font-size:11px;font-weight:800}.clock-local strong{color:#a66f00;margin-left:4px}.clock-zulu strong{color:#17689b;margin-left:4px}.clock-bar button{border:1px solid #d7e0e9;background:#fff;color:var(--tbc-navy);border-radius:999px;padding:9px 14px;font-size:11px;font-weight:900;cursor:pointer;box-shadow:0 4px 12px rgba(7,27,54,.04)}.clock-bar button:hover{border-color:var(--tbc-gold);background:#fffaf0}
+.load-message{background:#f8fafc;border:1px solid #dce4ec;border-radius:12px;padding:12px 14px;text-align:center;color:#64748b;font-size:12px;margin-bottom:18px}.load-message.is-hidden{display:none}.load-message.is-error{background:#fff2f3;border-color:#f0c0c4;color:#a7353d}
+.alerts-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}.alert-card{border-radius:18px;padding:20px;border:1px solid #ead8a4;background:#fffaf0}.alert-card.is-canceled{background:#fff5f5;border-color:#efb8bc}.alert-card.is-suitable{background:#f3fbf7;border-color:#b8e2cf}.alert-card.is-partial,.alert-card.is-pending{background:#fffbef;border-color:#ead8a4}.alert-top{display:flex;justify-content:space-between;gap:12px;align-items:center;padding-bottom:13px;margin-bottom:15px;border-bottom:1px solid rgba(7,27,54,.09)}.date-tag{font-size:10px;font-weight:900;text-transform:uppercase;background:var(--tbc-gold);color:var(--tbc-navy);padding:7px 10px;border-radius:8px}.is-canceled .date-tag{background:#e95a64;color:#fff}.is-suitable .date-tag{background:#1d9c69;color:#fff}.state-text{font-size:10px;font-weight:900;color:#aa7600;text-align:right;text-transform:uppercase}.is-canceled .state-text{color:#b93741}.is-suitable .state-text{color:#13744e}.alert-title{display:flex;align-items:center;gap:11px}.alert-title strong{font:800 18px/1.3 'Plus Jakarta Sans',sans-serif;color:var(--tbc-navy)}.alert-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:var(--tbc-gold);color:var(--tbc-navy);font-weight:900;flex:0 0 auto}.is-canceled .alert-icon{background:#e95a64;color:#fff}.is-suitable .alert-icon{background:#1d9c69;color:#fff}.alert-card p{font-size:13px;line-height:1.7;color:#52637a;margin:13px 0 15px}.alert-meta{display:grid;gap:7px;background:#fff;border:1px solid #e7e9ed;border-radius:11px;padding:12px 13px;font-size:11px;line-height:1.5;color:#68788d}.alert-meta>div{display:grid;grid-template-columns:165px minmax(0,1fr);gap:9px;padding-bottom:7px;border-bottom:1px solid #edf0f3}.alert-meta>div:last-child{border-bottom:0;padding-bottom:0}.alert-meta b{color:var(--tbc-navy);text-transform:uppercase;font-size:10px}
+.sunrise-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}.sunrise-card{background:linear-gradient(135deg,#f1b100,#f8c53f);border:1px solid #e1a200;border-radius:18px;padding:20px;text-align:center;color:var(--tbc-navy);box-shadow:0 10px 24px rgba(218,161,0,.12)}.sunrise-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}.sunrise-time{display:block;font:900 34px/1 'Plus Jakarta Sans',sans-serif;margin:11px 0 14px}.flight-window{display:grid;gap:8px;background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.6);border-radius:11px;padding:12px;text-align:left;font-size:11px}.flight-window b{font-size:10px;text-transform:uppercase;border-bottom:1px solid rgba(7,27,54,.13);padding-bottom:8px}.flight-window span{display:flex;justify-content:space-between;gap:8px}.flight-window strong{font-size:11px}
+
+.weather-card{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 8% 0%,rgba(238,177,0,.10),transparent 24%),
+    linear-gradient(145deg,#ffffff 0%,#fbfdff 62%,#f7fbff 100%);
+  border:1px solid #dce5ee;border-radius:22px;padding:24px;margin-bottom:26px;
+  box-shadow:0 14px 34px rgba(7,27,54,.055)
+}
+.weather-card::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#eeb100,#ffd968 45%,#4aa4da)}
+.weather-head{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid #e7edf3}
+.weather-title{display:flex;align-items:center;gap:14px}
+.weather-icon{width:58px;height:58px;border-radius:16px;background:linear-gradient(145deg,#fff4c8,#fffaf0);border:1px solid #efd78c;display:grid;place-items:center;font-size:29px;box-shadow:0 8px 20px rgba(214,158,0,.11)}
+.weather-eyebrow{display:block;font-size:8px;font-weight:900;letter-spacing:.12em;color:#b17a00;margin-bottom:4px}
+.weather-title h2{font:900 21px/1.15 Montserrat,'Plus Jakarta Sans',sans-serif;margin:0;color:var(--tbc-navy);letter-spacing:-.025em}
+.weather-title small{display:block;margin-top:5px;font-size:10px;color:#7b889b;font-weight:700}
+.weather-live-dot{display:inline-flex;align-items:center;gap:7px;background:#f1fbf6;border:1px solid #bde2cf;color:#13744e;border-radius:999px;padding:8px 11px;font-size:9px;font-weight:900;letter-spacing:.06em}
+.weather-live-dot span{width:7px;height:7px;border-radius:50%;background:#1d9c69;box-shadow:0 0 0 4px rgba(29,156,105,.10)}
+.weather-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+.weather-grid>div{position:relative;background:rgba(255,255,255,.92);border:1px solid #dfe7ef;border-radius:14px;padding:16px 14px;min-height:82px;box-shadow:0 5px 16px rgba(7,27,54,.025)}
+.weather-grid>div::after{content:'';position:absolute;left:13px;right:13px;bottom:0;height:2px;border-radius:2px;background:linear-gradient(90deg,#eeb100,transparent);opacity:.7}
+.weather-grid span{display:block;font-size:8px;font-weight:900;text-transform:uppercase;color:#8290a3;margin-bottom:9px;letter-spacing:.07em}
+.weather-grid strong{font-size:17px;color:var(--tbc-navy);font-weight:900}
+.weather-note{position:relative;padding-left:20px;font-size:10px;color:#748297;margin:16px 0 0;line-height:1.55}
+.weather-note::before{content:'i';position:absolute;left:0;top:0;width:14px;height:14px;display:grid;place-items:center;border:1px solid #4d83c3;color:#2866ad;border-radius:50%;font-size:9px;font-weight:900}
+
+.live-tracking-panel{margin-top:4px;margin-bottom:24px}
+.tracking-head{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin-bottom:16px;padding:0 2px 14px;border-bottom:1px solid #e2e8ef}
+.tracking-kicker{display:inline-flex;background:#fff8df;border:1px solid #e5c96c;color:#8c6400;border-radius:999px;padding:7px 11px;font-size:8px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+.tracking-head h2{font:900 25px/1.15 Montserrat,'Plus Jakarta Sans',sans-serif;margin:10px 0 4px;color:var(--tbc-navy);letter-spacing:-.03em}
+.tracking-head p{margin:0;color:#6f7f94;font-size:10px;font-weight:600}
+.tracking-update{display:flex;align-items:center;gap:9px;flex:0 0 auto;background:#f8fbfe;border:1px solid #dce5ee;border-radius:13px;padding:10px 13px}
+.tracking-clock{font-size:20px;color:#175a9c}.tracking-update small{display:block;font-size:8px;color:#8190a3;font-weight:800}.tracking-update strong{display:block;margin-top:2px;font-size:10px;color:var(--tbc-navy)}
+
+.tracking-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(330px,.75fr);gap:16px;align-items:stretch}
+.sector-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0}
+.sector-card{border:1px solid #dfe6ed;background:#fff;border-radius:17px;overflow:hidden}
+.premium-sector{position:relative;display:flex;flex-direction:column;min-width:0;box-shadow:0 8px 24px rgba(7,27,54,.045);transition:transform .2s ease,box-shadow .2s ease}
+.premium-sector:hover{transform:translateY(-2px);box-shadow:0 13px 28px rgba(7,27,54,.075)}
+.premium-sector::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:#a7b1be}
+.premium-sector.status-green::before{background:#1d9c69}
+.premium-sector.status-yellow::before{background:#efad00}
+.premium-sector.status-red::before,.premium-sector.status-completed::before{background:#e34751}
+.premium-sector-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:17px 15px 14px 18px;border-bottom:1px solid #e8edf2}
+.sector-identity{display:flex;align-items:flex-start;gap:12px;min-width:0}
+.sector-identity>div{min-width:0}
+.sector-kicker{display:block;font-family:Montserrat,sans-serif;font-size:15px;font-weight:900;color:var(--tbc-navy);letter-spacing:.015em}
+.sector-identity strong{display:block;font-size:11px;line-height:1.38;margin-top:5px;color:#66768b;text-transform:uppercase}
+.status-green .sector-identity strong{color:#148257}
+.status-yellow .sector-identity strong{color:#a87300}
+.status-red .sector-identity strong,.status-completed .sector-identity strong{color:#c72f39}
+.sector-identity small{display:block;font-size:8px;color:#8190a3;margin-top:6px;white-space:normal}
+.sector-status-dot{width:9px;height:9px;border-radius:50%;margin-top:4px;background:#a7b1be;box-shadow:0 0 0 4px rgba(167,177,190,.12)}
+.status-dot-green{background:#1d9c69;box-shadow:0 0 0 4px rgba(29,156,105,.12)}
+.status-dot-yellow{background:#efad00;box-shadow:0 0 0 4px rgba(239,173,0,.13)}
+.status-dot-red,.status-dot-completed{background:#e34751;box-shadow:0 0 0 4px rgba(227,71,81,.11)}
+
+.css-flag{position:relative;display:block;width:34px;height:42px;flex:0 0 34px}
+.css-flag::before{content:'';position:absolute;left:3px;top:3px;width:2px;height:36px;border-radius:2px;background:#8a98a9}
+.css-flag i{position:absolute;left:5px;top:4px;width:27px;height:18px;border-radius:2px 5px 5px 2px;background:#a7b1be;clip-path:polygon(0 0,100% 18%,78% 52%,100% 84%,0 100%)}
+.flag-green i{background:#1d9c69}.flag-yellow i{background:#efad00}.flag-red i{background:#e34751}.flag-gray i{background:#a7b1be}
+
+.sector-message{padding:14px 15px 10px 18px;flex:1}
+.sector-message p{margin:0;color:#617187;font-size:10px;line-height:1.65;min-height:66px}
+.sector-delay-premium{display:flex;align-items:center;gap:9px;margin-top:12px;background:#fff9e9;border:1px solid #efd487;border-radius:11px;padding:9px 10px;color:#936700}
+.sector-delay-premium>span{font-size:18px}.sector-delay-premium small{display:block;font-size:7px;text-transform:uppercase;font-weight:900}.sector-delay-premium strong{display:block;font-size:12px;margin-top:1px}
+
+.sector-info-grid{display:grid;gap:0;border-top:1px solid #e8edf2;margin:0 15px 0 18px}
+.sector-info-grid>div{display:grid;grid-template-columns:20px minmax(0,1fr);gap:7px;align-items:center;padding:9px 0;border-bottom:1px solid #edf1f4}
+.sector-info-grid>div:last-child{border-bottom:0}
+.info-icon{font-size:15px;color:#1461aa}.sector-info-grid small{display:block;color:#8895a6;font-size:7px;font-weight:900;text-transform:uppercase}.sector-info-grid strong{display:block;color:var(--tbc-navy);font-size:8px;line-height:1.45;margin-top:2px;overflow-wrap:anywhere}
+
+.completed-stop{display:flex;align-items:center;justify-content:center;gap:8px;margin:11px 15px 15px 18px;padding:9px 8px;background:#fff3f4;border:1px solid #efc4c7;border-radius:10px;color:#b62d36;text-align:center}
+.completed-stop strong{font-size:8px;text-transform:uppercase;letter-spacing:.025em}
+.mini-red-flag{position:relative;width:17px;height:15px;display:block;flex:0 0 17px}
+.mini-red-flag::before{content:'';position:absolute;left:1px;top:1px;width:2px;height:13px;background:#c82f39}
+.mini-red-flag::after{content:'';position:absolute;left:3px;top:1px;width:12px;height:7px;background:#e34751;clip-path:polygon(0 0,100% 15%,78% 50%,100% 85%,0 100%)}
+
+.sector-overview-card{background:linear-gradient(145deg,#fbfdff,#f6f9fc);border:1px solid #dce5ed;border-radius:17px;padding:14px;box-shadow:0 8px 24px rgba(7,27,54,.04)}
+.overview-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}
+.overview-head>div span{display:block;font-size:8px;color:#74849a;font-weight:900;text-transform:uppercase;letter-spacing:.06em}.overview-head>div strong{display:block;font:900 13px Montserrat,sans-serif;color:var(--tbc-navy);margin-top:2px}
+.overview-live{display:flex;align-items:center;gap:6px;font-size:8px;color:#13744e;font-weight:900}.overview-live i{display:block;width:7px;height:7px;border-radius:50%;background:#1d9c69;box-shadow:0 0 0 4px rgba(29,156,105,.10)}
+
+.sector-map-shell{position:relative;height:295px;border:1px solid #d9e3eb;border-radius:13px;overflow:hidden;background:
+  linear-gradient(25deg,transparent 49%,rgba(160,174,188,.12) 50%,transparent 51%) 0 0/65px 65px,
+  linear-gradient(-25deg,transparent 49%,rgba(160,174,188,.10) 50%,transparent 51%) 15px 0/75px 75px,
+  radial-gradient(circle at 25% 30%,#f9f3e8 0,#f4efe5 32%,#edf3ed 70%,#eef3f6 100%)}
+.sector-map-shell::before,.sector-map-shell::after{content:'';position:absolute;height:3px;background:#e8d9bb;opacity:.85;border-radius:999px;transform-origin:left center}
+.sector-map-shell::before{width:115%;left:-8%;top:45%;transform:rotate(-15deg)}.sector-map-shell::after{width:100%;left:6%;top:70%;transform:rotate(11deg)}
+.map-watermark{position:absolute;left:14px;bottom:12px;font:900 27px Montserrat,sans-serif;color:rgba(7,27,54,.035);letter-spacing:.08em}
+.map-place{position:absolute;z-index:2;font-size:7px;color:#6b756e;font-weight:800}.place-avanos{right:14px;top:18px}.place-goreme{left:20px;top:48%}.place-urgup{right:15px;top:46%}.place-nevsehir{left:13px;bottom:42px}
+
+.sector-shape{position:absolute;z-index:4;left:34%;width:50%;height:26%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #9ba6b2;background:rgba(156,167,178,.28);color:#23384f;transition:background .25s ease,border-color .25s ease}
+.sector-shape span{font:900 12px Montserrat,sans-serif}.sector-shape small{font-size:7px;margin-top:3px;opacity:.8;text-align:center}
+.sector-a{top:10%;transform:rotate(-3deg)}.sector-b{top:36%;transform:rotate(1deg)}.sector-c{top:62%;transform:rotate(3deg)}
+.map-green{background:rgba(42,192,91,.48);border-color:#159249}.map-yellow{background:rgba(255,193,38,.58);border-color:#e2a000}.map-red{background:rgba(239,74,84,.55);border-color:#d8333d}.map-pending{background:rgba(157,169,180,.32);border-color:#8996a3}
+
+.status-legend{display:grid;grid-template-columns:auto repeat(3,1fr);gap:8px;align-items:center;margin-top:11px;padding:10px 9px;border:1px solid #e1e7ed;background:#fff;border-radius:11px}
+.status-legend>strong{font-size:7px;color:#7c8a9d;text-transform:uppercase}.status-legend>div{display:flex;align-items:center;gap:5px}.status-legend b{font-size:7px;color:#42566f;line-height:1.25}
+.legend-flag{display:block;width:13px;height:9px;clip-path:polygon(0 0,100% 20%,78% 52%,100% 85%,0 100%)}.legend-flag.is-green{background:#1d9c69}.legend-flag.is-yellow{background:#efad00}.legend-flag.is-red{background:#e34751}
+
+.cta-box{border:1px solid #e1c76c;background:#fffaf0;border-radius:16px;padding:20px;text-align:center}.cta-box h2{font:800 19px 'Plus Jakarta Sans',sans-serif;color:var(--tbc-navy);margin:0 0 8px}.cta-box p{font-size:12px;color:#68778b;margin:0 auto 14px;max-width:800px;line-height:1.6}.cta-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.cta-actions a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:#fff;border:1px solid #dbe3ea;color:var(--tbc-navy);border-radius:999px;padding:11px 17px;font-size:10px;font-weight:900}.cta-actions a.wa{background:#21b96f;border-color:#21b96f;color:#fff}.cta-box small{display:block;margin-top:10px;color:#8794a4;font-size:8px}.source-notice{max-width:850px;margin:5px auto 0!important;line-height:1.45;color:#8996a7!important}
+.alert-card,.sunrise-card,.weather-card,.sector-card,.cta-box{transition:transform .2s ease,box-shadow .2s ease}.alert-card:hover,.sector-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(7,27,54,.07)}
+
+.flight-expert-analysis{margin-top:28px;background:#fff;border:1px solid var(--tbc-line);border-radius:24px;box-shadow:var(--tbc-shadow);padding:38px}
+.expert-inner{max-width:900px;margin:auto}
+.expert-inner h2{font-size:26px;margin:6px 0 16px;color:var(--tbc-navy)}
+.expert-inner h3{font-size:19px;margin:30px 0 10px;color:var(--tbc-navy)}
+.expert-inner h4{font-size:15px;margin:0 0 6px;color:var(--tbc-navy)}
+.expert-inner p{color:var(--tbc-muted);line-height:1.7;margin:0 0 10px}
+.expert-kicker{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.08em;color:var(--tbc-amber);background:var(--tbc-gold-soft);padding:6px 12px;border-radius:999px}
+.expert-cta{margin:18px 0}
+.expert-cta a{display:inline-block;background:var(--tbc-navy);color:#fff;text-decoration:none;font-weight:800;font-size:13px;padding:11px 20px;border-radius:999px}
+.expert-factor-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;list-style:none;padding:0;margin:12px 0}
+.expert-factor-grid li{background:var(--tbc-cream);border:1px solid var(--tbc-line);border-radius:10px;padding:9px 12px;font-size:13px;font-weight:700;color:var(--tbc-navy)}
+.expert-source-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:14px 0}
+.expert-source-grid article{background:var(--tbc-cream);border:1px solid var(--tbc-line);border-radius:16px;padding:18px}
+.expert-source-grid a{display:block;font-size:12px;font-weight:800;color:var(--tbc-navy-2);text-decoration:none;margin-top:6px}
+.expert-source-grid a:hover{text-decoration:underline}
+.expert-probability-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:14px 0}
+.expert-probability-grid article{border:1px solid var(--tbc-line);border-radius:14px;padding:16px}
+.expert-note{font-size:13px;font-style:italic;background:var(--tbc-cream);border-left:3px solid var(--tbc-gold);padding:12px 16px;border-radius:0 10px 10px 0}
+.expert-area-tags{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.expert-area-tags span{background:var(--tbc-navy);color:#fff;font-size:12px;font-weight:800;padding:7px 14px;border-radius:999px}
+.expert-photo{margin:20px 0;border-radius:18px;overflow:hidden;box-shadow:var(--tbc-shadow)}
+.expert-photo img{width:100%;height:auto;display:block;max-height:760px;object-fit:cover;object-position:center 12%;background:var(--tbc-cream)}
+.expert-photo figcaption{padding:10px 14px;font-size:12px;color:var(--tbc-muted);background:var(--tbc-cream)}
+.expert-map-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:20px 0}
+.expert-map{border:1px solid var(--tbc-line);border-radius:16px;overflow:hidden}
+.expert-map img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--tbc-cream)}
+.expert-map figcaption{padding:12px 14px;font-size:12px;color:var(--tbc-muted)}
+.expert-map figcaption strong{display:block;color:var(--tbc-navy);margin-bottom:4px}
+.expert-map .unofficial-badge{color:var(--tbc-red)!important}
+.expert-map figcaption ul{margin:6px 0 0;padding-left:16px}
+.expert-pilot-card{background:var(--tbc-cream);border:1px solid var(--tbc-line);border-radius:18px;padding:22px;margin:14px 0}
+.expert-comparison-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px}
+.expert-comparison-table td{padding:11px 14px;border-bottom:1px solid var(--tbc-line);color:var(--tbc-navy)}
+.expert-comparison-table td:last-child{color:var(--tbc-muted);text-align:right}
+.expert-disclaimer{margin-top:30px;background:var(--tbc-navy);color:#fff;border-radius:18px;padding:26px}
+.expert-disclaimer h3{color:#fff;margin-top:0}
+.expert-disclaimer-sub{font-weight:800;color:var(--tbc-gold-soft)}
+.expert-disclaimer p{color:#cfd8e8}
+.expert-signature{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);display:flex;flex-direction:column;gap:2px;font-size:13px}
+.expert-signature strong{font-size:16px}
+.expert-related{margin-top:26px}
+.expert-related div{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.expert-related a{border:1px solid var(--tbc-line);border-radius:999px;padding:9px 16px;font-size:12px;font-weight:800;color:var(--tbc-navy);text-decoration:none}
+.expert-related a:hover{background:var(--tbc-cream)}
+@media(max-width:700px){.expert-map-grid{grid-template-columns:1fr}}
+.flight-status-seo{margin-top:28px;background:#fff;border:1px solid var(--tbc-line);border-radius:24px;box-shadow:var(--tbc-shadow);padding:38px}
+.seo-inner{max-width:1040px;margin:0 auto}
+.seo-kicker{display:inline-flex;background:var(--tbc-gold-soft);border:1px solid #ead38d;color:#8e6500;border-radius:999px;padding:7px 11px;font-size:9px;font-weight:900;letter-spacing:.07em}
+.flight-status-seo h2{font:900 clamp(26px,3vw,36px)/1.2 Montserrat,'Plus Jakarta Sans',sans-serif;color:var(--tbc-navy);letter-spacing:-.03em;margin:16px 0 14px}
+.flight-status-seo>div>p,.seo-grid p,.flight-faq p{color:#586980;font-size:14px;line-height:1.8}
+.flight-status-seo>div>p{margin:0 0 14px}
+.seo-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:25px 0}
+.seo-grid article{background:#fbfcfe;border:1px solid #e1e7ed;border-radius:15px;padding:19px}
+.seo-grid h3{font:800 17px/1.4 'Plus Jakarta Sans',sans-serif;color:var(--tbc-navy);margin:0 0 9px}
+.seo-grid p{margin:0}
+.seo-official-note{margin:24px 0;background:#fff9e8;border:1px solid #ead38d;border-left:4px solid var(--tbc-gold);border-radius:13px;padding:15px 17px;color:#61718a;font-size:12px;line-height:1.65}
+.seo-official-note strong{color:var(--tbc-navy)}
+.flight-status-seo .faq-title{font-size:26px;margin-top:31px}
+.flight-faq{display:grid;gap:10px}
+.flight-faq details{background:#fbfcfe;border:1px solid #e0e7ed;border-radius:13px;padding:0 16px}
+.flight-faq details[open]{background:#fff}
+.flight-faq summary{cursor:pointer;list-style:none;padding:16px 28px 16px 0;color:var(--tbc-navy);font-size:13px;font-weight:800;position:relative}
+.flight-faq summary::-webkit-details-marker{display:none}
+.flight-faq summary::after{content:'+';position:absolute;right:2px;top:13px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:#fff5cf;color:#8c6400;font-size:15px}
+.flight-faq details[open] summary::after{content:'–'}
+.flight-faq p{margin:0;padding:0 0 16px}
+
+
+@media(max-width:1100px){
+  .tracking-layout{grid-template-columns:1fr}
+  .sector-overview-card{display:grid;grid-template-columns:minmax(260px,.65fr) 1fr;gap:12px}
+  .overview-head,.status-legend{grid-column:1}
+  .sector-map-shell{grid-column:2;grid-row:1/3;height:270px}
+}
+@media(max-width:900px){
+  .weather-card{padding:17px;border-radius:18px}.weather-live-dot{align-self:flex-start}
+  .weather-head{align-items:flex-start;flex-direction:column}
+  .weather-grid{grid-template-columns:repeat(2,1fr)}
+  .weather-grid>div:last-child{grid-column:span 2}
+  .tracking-head{align-items:flex-start;flex-direction:column}.tracking-update{width:100%}
+  .tracking-layout{grid-template-columns:1fr}
+  .sector-grid{grid-template-columns:1fr}
+  .sector-overview-card{display:block;padding:12px}
+  .sector-map-shell{height:300px;margin-top:10px}
+  .status-legend{grid-template-columns:1fr;gap:7px}
+  .status-legend>strong{margin-bottom:2px}
+}
+
+@media(max-width:900px){.tbc-header nav{display:none}.tbc-header{height:72px;padding:0 16px}.tbc-brand img{width:48px;height:48px}.tbc-page{width:min(100% - 16px,1180px)}.status-shell{padding:17px;border-radius:18px}.feed-header{grid-template-columns:1fr}.sync-badge{white-space:normal}.alerts-grid,.sunrise-grid,.sector-grid{grid-template-columns:1fr}.weather-head{align-items:flex-start;flex-direction:column}.weather-grid{grid-template-columns:repeat(2,1fr)}.weather-grid>div:last-child{grid-column:span 2}.sector-meta{grid-template-columns:1fr}.alert-meta>div{grid-template-columns:1fr}.cta-actions{flex-direction:column}.cta-actions a{width:100%}}
+@media(max-width:900px){.flight-status-seo{padding:22px 17px;border-radius:18px}.seo-grid{grid-template-columns:1fr}.flight-expert-analysis{padding:22px 17px;border-radius:18px}}
+
+/* Weather snapshot: compact premium strip above Göreme Sunrise */
+.weather-card{margin:0 0 14px!important;padding:14px 16px!important;border-radius:18px!important;background:linear-gradient(110deg,#fffdf7 0%,#fff 44%,#f7fbff 100%)!important;box-shadow:0 8px 24px rgba(7,27,54,.055)!important}
+.weather-head{padding-bottom:10px!important;margin-bottom:10px!important}
+.weather-icon{width:42px!important;height:42px!important;font-size:23px!important;border-radius:13px!important}
+.weather-eyebrow{font-size:8px!important;letter-spacing:.1em!important}
+.weather-title h2{font-size:17px!important;margin:2px 0!important}
+.weather-title small{font-size:9px!important}
+.weather-grid{gap:8px!important}
+.weather-grid>div{min-height:58px!important;padding:10px 12px!important;border-radius:13px!important}
+.weather-grid span{font-size:8px!important}
+.weather-grid strong{font-size:15px!important}
+.weather-note{margin:9px 0 0!important;padding-top:8px!important;font-size:9px!important;line-height:1.45!important}
+.weather-live-dot{font-size:8px!important;padding:6px 9px!important}
+
+.cancellation-seo{margin-top:34px;padding-top:30px;border-top:1px solid var(--tbc-line)}
+.cancellation-seo>h2{font:800 clamp(24px,3vw,32px)/1.2 Montserrat,'Plus Jakarta Sans',sans-serif;letter-spacing:-.025em;margin:0 0 14px}
+.cancellation-seo>h3,.cancellation-tours h3{font-size:20px;margin:28px 0 10px}
+.cancellation-seo p{color:var(--tbc-muted);line-height:1.75}
+.cancellation-factor-grid,.cancellation-help-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.cancellation-factor-grid article,.cancellation-help-grid article,.cancellation-tours{border:1px solid var(--tbc-line);border-radius:16px;background:#fff;padding:18px}
+.cancellation-factor-grid h4,.cancellation-help-grid h4{margin:0 0 7px;font-size:14px}
+.cancellation-factor-grid p,.cancellation-help-grid p{margin:0;font-size:13px}
+.cancellation-tours{margin-top:22px;background:linear-gradient(135deg,#fffdf7,#f8fbff)}
+.cancellation-tours h3{margin-top:0}
+.cancellation-tours>div{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.cancellation-tours a{display:inline-flex;padding:11px 14px;border-radius:12px;background:var(--tbc-navy);color:#fff;text-decoration:none;font-size:12px;font-weight:800}
+@media(max-width:760px){.cancellation-factor-grid,.cancellation-help-grid{grid-template-columns:1fr}.weather-card{padding:12px!important}}
+
+
+
+/* =========================================================
+   FINAL MORNING DASHBOARD + OFFICIAL-STYLE SECTOR MAP
+   ========================================================= */
+
+.morning-dashboard{
+  display:grid;
+  grid-template-columns:minmax(0,1.18fr) minmax(230px,.91fr) minmax(230px,.91fr);
+  gap:14px;
+  align-items:stretch;
+  margin:0 0 22px;
+}
+.morning-dashboard .weather-card,
+.morning-dashboard .sunrise-card{margin:0!important;height:100%}
+
+/* Compact premium weather card */
+.weather-compact{
+  padding:16px!important;
+  border-radius:18px!important;
+  background:
+    radial-gradient(circle at 0 0,rgba(238,177,0,.12),transparent 30%),
+    linear-gradient(145deg,#fffdf8 0%,#ffffff 52%,#f6fbff 100%)!important;
+  border:1px solid #dce6ee!important;
+  box-shadow:0 9px 26px rgba(7,27,54,.055)!important;
+}
+.weather-compact::before{
+  height:3px!important;
+  background:linear-gradient(90deg,#eeb100 0%,#ffc928 45%,#4aa4da 100%)!important
+}
+.weather-compact .weather-head{
+  margin:0 0 12px!important;
+  padding:0 0 11px!important;
+  gap:10px!important;
+}
+.weather-compact .weather-title{gap:10px!important}
+.weather-compact .weather-icon{
+  width:43px!important;height:43px!important;
+  border-radius:13px!important;font-size:22px!important
+}
+.weather-compact .weather-eyebrow{
+  font-size:7px!important;
+  letter-spacing:.11em!important;
+  margin-bottom:3px!important
+}
+.weather-compact .weather-title h2{
+  font-size:16px!important;
+  line-height:1.15!important;
+  margin:0!important
+}
+.weather-compact .weather-title small{font-size:8px!important;margin-top:3px!important}
+.weather-compact .weather-live-dot{font-size:7px!important;padding:6px 8px!important}
+.weather-grid-compact{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:7px!important
+}
+.weather-grid-compact>div{
+  min-height:53px!important;
+  padding:9px 10px!important;
+  border-radius:11px!important
+}
+.weather-grid-compact .weather-wide{grid-column:1/-1}
+.weather-grid-compact span{font-size:7px!important;margin-bottom:5px!important}
+.weather-grid-compact strong{font-size:14px!important}
+.weather-compact .weather-note{
+  margin:10px 0 0!important;
+  padding:8px 0 0 19px!important;
+  border-top:1px solid #e7edf2;
+  font-size:8px!important;
+  line-height:1.45!important
+}
+
+/* Smaller Sunrise cards so all three fit in one row */
+.sunrise-card-compact{
+  border-radius:18px!important;
+  padding:16px!important;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:100%;
+  box-shadow:0 9px 24px rgba(218,161,0,.11)!important
+}
+.sunrise-card-compact .sunrise-label{font-size:8px!important}
+.sunrise-card-compact .sunrise-time{
+  font-size:28px!important;
+  margin:9px 0 11px!important
+}
+.sunrise-card-compact .flight-window{
+  gap:6px!important;
+  padding:10px!important;
+  font-size:9px!important;
+  border-radius:10px!important
+}
+.sunrise-card-compact .flight-window b{
+  font-size:8px!important;
+  padding-bottom:6px!important
+}
+.sunrise-card-compact .flight-window strong{font-size:9px!important}
+
+/* Official-inspired map geometry: equal, aligned rectangles */
+.official-sector-map{
+  height:310px!important;
+  background:
+    linear-gradient(27deg,transparent 49%,rgba(190,177,150,.18) 50%,transparent 51%) 0 0/76px 76px,
+    linear-gradient(-18deg,transparent 49%,rgba(170,186,176,.13) 50%,transparent 51%) 15px 10px/92px 92px,
+    radial-gradient(circle at 70% 20%,rgba(220,237,228,.72),transparent 36%),
+    linear-gradient(145deg,#f7f0e2 0%,#f3efe5 48%,#edf4ef 100%)!important;
+}
+.official-sector-map::before{
+  width:125%!important;left:-12%!important;top:28%!important;
+  height:3px!important;transform:rotate(-12deg)!important;
+  background:#dfcfac!important;opacity:.72!important
+}
+.official-sector-map::after{
+  width:120%!important;left:-8%!important;top:77%!important;
+  height:3px!important;transform:rotate(10deg)!important;
+  background:#dfcfac!important;opacity:.72!important
+}
+.official-sector-map .map-watermark{
+  left:12px!important;bottom:8px!important;
+  font-size:25px!important;color:rgba(7,27,54,.035)!important
+}
+.official-sector-map .place-avanos{right:12px!important;top:12px!important}
+.official-sector-map .place-goreme{left:14px!important;top:49%!important}
+.official-sector-map .place-urgup{right:12px!important;top:49%!important}
+.official-sector-map .place-nevsehir{left:14px!important;bottom:28px!important}
+
+/* All three sector rectangles use the same X/width/height, like the official chart */
+.official-sector-map .sector-shape{
+  left:30%!important;
+  width:58%!important;
+  height:25.5%!important;
+  transform:none!important;
+  border-width:2px!important;
+  border-radius:0!important;
+  transition:background .25s ease,border-color .25s ease!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)
+}
+.official-sector-map .sector-a{top:9%!important}
+.official-sector-map .sector-b{top:34.5%!important}
+.official-sector-map .sector-c{top:60%!important}
+.official-sector-map .sector-shape span{
+  font-size:12px!important;
+  letter-spacing:.01em!important
+}
+.official-sector-map .sector-shape small{
+  font-size:6px!important;
+  margin-top:3px!important
+}
+
+/* Stronger live-color match */
+.official-sector-map .map-green{
+  background:rgba(69,220,91,.56)!important;
+  border-color:#11953a!important
+}
+.official-sector-map .map-yellow{
+  background:rgba(255,196,34,.62)!important;
+  border-color:#dda200!important
+}
+.official-sector-map .map-red{
+  background:rgba(244,67,75,.61)!important;
+  border-color:#e32631!important
+}
+.official-sector-map .map-pending{
+  background:rgba(163,174,184,.38)!important;
+  border-color:#87939f!important
+}
+
+/* Responsive */
+@media(max-width:1050px){
+  .morning-dashboard{grid-template-columns:1fr 1fr}
+  .weather-compact{grid-column:1/-1}
+}
+@media(max-width:720px){
+  .morning-dashboard{grid-template-columns:1fr}
+  .weather-compact{grid-column:auto}
+  .weather-grid-compact{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .official-sector-map{height:285px!important}
+  .official-sector-map .sector-shape{left:26%!important;width:64%!important}
+}
+
+
+
+/* =========================================================
+   FINAL TOP MORNING STRIP
+   Today Sunrise | Tomorrow Sunrise | Live Weather
+   ========================================================= */
+.morning-dashboard-top{
+  display:grid!important;
+  grid-template-columns:minmax(0,.95fr) minmax(0,.95fr) minmax(0,1.2fr)!important;
+  gap:14px!important;
+  align-items:stretch!important;
+  margin:10px 0 18px!important
+}
+.morning-dashboard-top .sunrise-card,
+.morning-dashboard-top .weather-card{
+  margin:0!important;
+  min-height:272px!important;
+  height:100%!important
+}
+.sunrise-premium{
+  position:relative!important;
+  overflow:hidden!important;
+  padding:0!important;
+  text-align:left!important;
+  border-radius:20px!important;
+  background:
+    linear-gradient(160deg,#ffb400 0%,#ffc62f 48%,#ffd96b 100%)!important;
+  border:1px solid #dc9d00!important;
+  box-shadow:0 12px 30px rgba(214,151,0,.16)!important
+}
+.sunrise-premium::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 73% 18%,rgba(255,255,255,.38),transparent 24%),
+    linear-gradient(180deg,rgba(255,255,255,.08),transparent 50%);
+  pointer-events:none
+}
+.sunrise-art{
+  position:absolute;inset:0 0 auto 0;height:112px;overflow:hidden;pointer-events:none
+}
+.sun-disc{
+  position:absolute;right:26px;top:24px;width:58px;height:58px;border-radius:50%;
+  background:#fff8bc;
+  box-shadow:0 0 0 12px rgba(255,244,159,.14),0 0 34px rgba(255,249,203,.85)
+}
+.horizon-line{
+  position:absolute;left:-5%;right:-5%;bottom:8px;height:38px;
+  background:linear-gradient(165deg,transparent 0 24%,rgba(153,98,0,.13) 25% 48%,transparent 49%),
+             linear-gradient(195deg,transparent 0 30%,rgba(153,98,0,.10) 31% 55%,transparent 56%);
+  opacity:.85
+}
+.balloon{
+  position:absolute;font-size:21px;filter:drop-shadow(0 3px 4px rgba(90,50,0,.12))
+}
+.balloon-one{right:92px;top:29px}
+.balloon-two{right:126px;top:52px;font-size:15px;opacity:.82}
+.sunrise-content{
+  position:relative;z-index:2;padding:22px 18px 17px;display:flex;flex-direction:column;height:100%
+}
+.sunrise-premium .sunrise-label{
+  display:block!important;
+  padding-right:95px;
+  font-size:8px!important;
+  line-height:1.45!important;
+  letter-spacing:.025em!important;
+  color:#5c4200!important
+}
+.sunrise-time-row{
+  display:flex;align-items:center;gap:8px;margin:13px 0 15px
+}
+.sunrise-mini-icon{
+  width:31px;height:31px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.34);border:1px solid rgba(255,255,255,.56);
+  font-size:18px;color:#8c5d00
+}
+.sunrise-premium .sunrise-time{
+  margin:0!important;
+  font:900 37px/1 Montserrat,'Plus Jakarta Sans',sans-serif!important;
+  letter-spacing:-.04em!important;
+  color:var(--tbc-navy)!important
+}
+.sunrise-premium .flight-window{
+  margin-top:auto!important;
+  padding:12px!important;
+  gap:7px!important;
+  border-radius:12px!important;
+  background:rgba(255,255,255,.38)!important;
+  border:1px solid rgba(255,255,255,.66)!important;
+  backdrop-filter:blur(2px)
+}
+.sunrise-premium .flight-window b{font-size:8px!important;padding-bottom:7px!important}
+.sunrise-premium .flight-window span{font-size:9px!important}
+.sunrise-premium .flight-window strong{font-size:10px!important}
+
+.weather-right{
+  min-height:272px!important;
+  padding:17px!important;
+  background:
+    radial-gradient(circle at 0 0,rgba(238,177,0,.10),transparent 28%),
+    linear-gradient(145deg,#fffdf8,#ffffff 54%,#f3f9ff)!important
+}
+.weather-right .weather-head{margin-bottom:11px!important;padding-bottom:11px!important}
+.weather-right .weather-title h2{font-size:16px!important}
+.weather-right .weather-grid-compact{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:7px!important
+}
+.weather-right .weather-grid-compact>div{min-height:50px!important;padding:8px 10px!important}
+.weather-right .weather-wide{grid-column:1/-1!important}
+.weather-right .weather-note{
+  margin-top:9px!important;
+  font-size:7.5px!important;
+  line-height:1.4!important
+}
+
+/* Keep top strip above Today status cards */
+.morning-dashboard-top + .alerts-grid{margin-top:0!important}
+
+@media(max-width:1050px){
+  .morning-dashboard-top{
+    grid-template-columns:1fr 1fr!important
+  }
+  .morning-dashboard-top .weather-right{
+    grid-column:1/-1!important;
+    min-height:auto!important
+  }
+}
+@media(max-width:720px){
+  .morning-dashboard-top{grid-template-columns:1fr!important}
+  .morning-dashboard-top .weather-right{grid-column:auto!important}
+  .morning-dashboard-top .sunrise-card,
+  .morning-dashboard-top .weather-card{min-height:auto!important}
+  .sunrise-art{height:100px}
+  .sunrise-premium .sunrise-label{padding-right:90px}
+}
+
+
+
+/* Refined hot-air-balloon artwork */
+.hot-air-balloon{width:42px!important;height:58px!important;filter:drop-shadow(0 5px 5px rgba(66,35,0,.18))!important}
+.hot-air-balloon-one{right:82px!important;top:18px!important}
+.hot-air-balloon-two{right:128px!important;top:50px!important;transform:scale(.62)!important}
+.hot-air-balloon .hab-envelope{
+  left:4px!important;top:0!important;width:34px!important;height:39px!important;
+  border-radius:52% 52% 45% 45% / 44% 44% 58% 58%!important;
+  background:
+    linear-gradient(90deg,
+      #b92f28 0 14%,#f05a32 14% 29%,#f7b928 29% 43%,
+      #fff0a8 43% 57%,#f7b928 57% 71%,#f05a32 71% 86%,#b92f28 86% 100%)!important;
+  box-shadow:inset 0 -7px 9px rgba(88,35,0,.16),inset 0 4px 7px rgba(255,255,255,.35)!important
+}
+.hot-air-balloon .hab-envelope:before{
+  content:'';position:absolute;left:7px;right:7px;top:5px;bottom:7px;
+  border-left:1px solid rgba(116,48,20,.25);border-right:1px solid rgba(116,48,20,.25);
+  border-radius:50%
+}
+.hot-air-balloon .hab-envelope:after{left:14px!important;bottom:-5px!important;width:7px!important;height:9px!important;background:#9d6426!important}
+.hot-air-balloon .hab-neck{left:18px!important;top:40px!important;width:5px!important;height:7px!important;background:#7a4b21!important}
+.hot-air-balloon .hab-basket{left:15px!important;top:48px!important;width:12px!important;height:8px!important;background:linear-gradient(#b77a35,#74461e)!important}
+.mini-hab:before{background:linear-gradient(90deg,#c93b2f 0 22%,#f4a928 22% 44%,#ffe6a0 44% 56%,#f4a928 56% 78%,#c93b2f 78%)!important}
+
+
+
+/* TRUE HOT-AIR-BALLOON SVG — canopy + suspension ropes + basket */
+.hot-air-balloon-svg{position:absolute;z-index:3;width:48px;height:70px;pointer-events:none;filter:drop-shadow(0 5px 5px rgba(68,37,5,.18))}
+.hot-air-balloon-svg.hot-air-balloon-one{right:76px;top:13px}
+.hot-air-balloon-svg.hot-air-balloon-two{right:126px;top:47px;width:32px;height:47px;opacity:.88}
+.hot-air-balloon-svg svg{display:block;width:100%;height:100%;overflow:visible}
+.hot-air-balloon-svg .hab-canopy{fill:#e85a32;stroke:#a93727;stroke-width:1.5}
+.hot-air-balloon-svg .hab-panel{fill:#f8bd2b;opacity:.95}
+.hot-air-balloon-svg .hab-band{fill:none;stroke:#fff0b0;stroke-width:2.2;opacity:.8}
+.hot-air-balloon-svg .hab-rope{fill:none;stroke:#6d492b;stroke-width:1.7;stroke-linecap:round}
+.hot-air-balloon-svg .hab-basket-svg{fill:#8c5a29;stroke:#59391e;stroke-width:1.2}
+.mini-hab{width:15px!important;height:20px!important;margin-right:8px!important}
+.mini-hab::before{
+  left:1px!important;top:0!important;width:13px!important;height:14px!important;
+  border-radius:52% 52% 44% 44% / 44% 44% 58% 58%!important;
+  background:linear-gradient(90deg,#d74731 0 28%,#f6b828 28% 43%,#ffe5a0 43% 57%,#f6b828 57% 72%,#d74731 72%)!important;
+  box-shadow:inset 0 -2px 2px rgba(90,35,0,.16)!important
+}
+.mini-hab::after{
+  left:5px!important;bottom:0!important;width:6px!important;height:5px!important;
+  background:#86552a!important;border-radius:1px!important;
+  box-shadow:-2px -4px 0 -1px #6c4728,2px -4px 0 -1px #6c4728!important
+}
+@media(max-width:720px){
+  .hot-air-balloon-svg.hot-air-balloon-one{right:66px;top:14px;width:43px;height:63px}
+  .hot-air-balloon-svg.hot-air-balloon-two{right:108px;top:49px;width:29px;height:43px}
+}
+
+
+
+/* FINAL SUNRISE TAKEOFF-TIME EMPHASIS */
+.sunrise-premium .flight-window{
+  min-height:112px!important;
+  padding:15px 16px!important;
+  gap:10px!important;
+  justify-content:center!important;
+}
+.sunrise-premium .flight-window b{
+  font-size:11px!important;
+  line-height:1.3!important;
+  padding-bottom:9px!important;
+}
+.sunrise-premium .flight-window span{
+  font-size:13px!important;
+  line-height:1.45!important;
+  align-items:center!important;
+}
+.sunrise-premium .flight-window strong{
+  font-size:16px!important;
+  line-height:1.2!important;
+  font-weight:900!important;
+  letter-spacing:-.02em!important;
+}
+@media(max-width:720px){
+  .sunrise-premium .flight-window{min-height:118px!important;padding:16px!important}
+  .sunrise-premium .flight-window b{font-size:11px!important}
+  .sunrise-premium .flight-window span{font-size:13px!important}
+  .sunrise-premium .flight-window strong{font-size:17px!important}
+}
+</style>
+</body>
+</html>
+
+<style>
+.flight-window-note{display:block;margin:6px auto 8px;max-width:270px;font-size:10px;line-height:1.4;font-weight:700;color:#6f5520;text-align:center}
+.premium-balloon{position:absolute;z-index:4;pointer-events:none;filter:drop-shadow(0 5px 6px rgba(76,45,7,.18))}
+.premium-balloon svg{display:block;width:100%;height:100%}
+.premium-balloon-one{right:72px;top:12px;width:44px;height:61px}
+.premium-balloon-two{right:124px;top:48px;width:27px;height:38px;opacity:.9}
+@media(max-width:640px){.premium-balloon-one{right:58px;width:38px;height:53px}.premium-balloon-two{right:105px;width:23px;height:33px}}
+</style>

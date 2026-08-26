@@ -1,0 +1,25 @@
+{
+  "name": "tatildokya-travels-site",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "seo:sync": "node scripts/sync-seo.mjs",
+    "seo:build": "npm run seo:sync && npm run build",
+    "seo:audit": "node scripts/generate-seo-audit.mjs",
+    "predev": "node scripts/generate-seo-audit.mjs",
+    "prebuild": "node scripts/generate-seo-audit.mjs && node scripts/generate-sitemap.mjs",
+    "sitemap:generate": "node scripts/generate-sitemap.mjs"
+  },
+  "dependencies": {
+    "@astrojs/vercel": "^11.0.5",
+    "@supabase/supabase-js": "^2.112.3",
+    "astro": "^7.2.1"
+  }
+}

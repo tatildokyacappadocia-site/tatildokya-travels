@@ -1,0 +1,383 @@
+---
+const title = "Tatildokya Travels — Admin";
+---
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=11" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=11" />
+  <style is:global>
+    :root{
+      --navy:#0b1f3a;--blue:#17345d;--gold:#e3a800;--bg:#f4f7fb;
+      --white:#fff;--line:#dfe7ef;--muted:#64748b;--green:#159447;
+      --yellow:#d99a00;--red:#d83a3a;--gray:#8794a7;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--navy)}
+    button,input,select{font:inherit}
+    .shell{min-height:100vh;display:grid;grid-template-columns:230px 1fr}
+    aside{background:var(--navy);color:#fff;padding:26px 18px}
+    .brand{font-weight:900;line-height:1.2;margin-bottom:32px}.brand small{display:block;color:#e3a800;margin-top:4px}
+    .nav button{width:100%;text-align:left;border:0;background:transparent;color:#dce6f0;padding:12px 13px;border-radius:11px;font-weight:800;cursor:pointer}
+    .nav button.active,.nav button:hover{background:#17345d;color:#fff}
+    main{padding:26px}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px}
+    .topbar h1{margin:0;font-size:28px}.userbar{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
+    .btn{border:0;border-radius:11px;padding:11px 14px;font-weight:900;cursor:pointer}.btn.primary{background:var(--gold);color:var(--navy)}.btn.dark{background:var(--navy);color:#fff}.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--navy)}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 28px rgba(11,31,58,.06);padding:20px;margin-bottom:18px}
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.toolbar select,.toolbar input{border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff}
+    .month-nav{display:flex;gap:8px;align-items:center;margin-left:auto}.month-title{min-width:180px;text-align:center;font-weight:900}
+    .calendar{display:grid;grid-template-columns:repeat(7,minmax(170px,1fr));gap:12px;overflow-x:auto;padding:2px 2px 8px}
+    .dow{font-size:14px;font-weight:950;color:var(--navy);text-align:center;padding:8px 4px 10px;letter-spacing:.02em}
+    .day{min-height:228px;background:linear-gradient(180deg,#0f2948 0%,#0b213c 100%);border:1px solid #264a70;border-radius:16px;padding:11px;cursor:pointer;position:relative;box-shadow:0 8px 20px rgba(11,31,58,.12);color:#fff;transition:.18s ease}
+    .day.out{opacity:.52}.day:hover{transform:translateY(-2px);border-color:#e3a800;box-shadow:0 12px 25px rgba(11,31,58,.18)}
+    .day-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:9px;margin-bottom:8px;border-bottom:1px solid rgba(255,255,255,.16)}
+    .day-number{display:grid;place-items:center;min-width:38px;height:38px;padding:0 7px;border-radius:10px;background:#fff;color:var(--navy);font-weight:950;font-size:18px;box-shadow:inset 0 0 0 1px rgba(11,31,58,.08)}
+    .day-full-date{font-size:11px;color:#dce8f5;font-weight:900;letter-spacing:.02em;text-align:right}
+    .day-row{display:grid;grid-template-columns:68px 1fr;align-items:center;gap:8px;min-height:36px;padding:7px 8px;margin-top:6px;border-radius:9px;border:1px solid transparent}
+    .day-row.blue{background:#173b67;border-color:#2f5f91}.day-row.gold{background:#f5c94c;border-color:#e3a800;color:#0b1f3a}
+    .day-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:950;opacity:.88}
+    .day-row.blue .day-label{color:#cfe2f8}.day-row.gold .day-label{color:#604900}
+    .day-value{font-size:14px;font-weight:950;text-align:right;overflow-wrap:anywhere;color:inherit}
+    .day-price .day-value{font-size:16px}.day-status .day-value{font-size:13px}
+    .status{display:inline-flex;justify-content:center;align-items:center;font-size:10px;font-weight:950;padding:6px 8px;border-radius:999px;margin:0;text-align:center;justify-self:end}
+    .available{background:#dff6e8;color:#0f7138}.low{background:#fff1b8;color:#806000}.sold_out{background:#ffdada;color:#a61f1f}.closed{background:#e8edf4;color:#536276}
+    .ask-chip{display:block;margin-top:8px;padding:7px 8px;border-radius:8px;background:#e3a800;color:#0b1f3a;font-size:10px;font-weight:950;text-align:center}
+    #askPriceBtn{border:1px solid #edc955;background:#fff8dd;color:#805f00}
+    #askPriceBtn.on{background:var(--navy);border-color:var(--navy);color:#fff}
+    .login-wrap{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:0 15px 40px rgba(11,31,58,.08)}
+    .login-card h1{margin:0 0 6px}.login-card p{color:var(--muted);font-size:13px}.field{margin:14px 0}.field label{display:block;font-size:12px;font-weight:900;margin-bottom:6px}.field input,.field select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px}
+    .hidden{display:none!important}
+    dialog{width:min(520px,calc(100% - 30px));border:0;border-radius:18px;padding:0;box-shadow:0 25px 70px rgba(0,0,0,.25)}
+    dialog.wide-dialog{width:min(760px,calc(100% - 30px));max-height:88vh;overflow:auto}
+    .lang-tabs{display:flex;gap:8px;margin:14px 0}
+    .lang-tab{padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12px;font-weight:800;cursor:pointer;color:#43546b}
+    .lang-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+    .dynamic-list{display:grid;gap:8px;margin-top:8px}
+    .dynamic-list-row{display:flex;gap:8px;align-items:center}
+    .dynamic-list-row input,.dynamic-list-row textarea{flex:1;min-width:0}
+    .dynamic-list-row .row-remove{flex:0 0 auto;width:32px;height:32px;border-radius:9px;border:1px solid #f2caca;background:#fff0f0;color:#a72525;font-weight:900;cursor:pointer}
+    .faq-row{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:12px;background:#fbfcfe}
+    .faq-row input{width:100%}
+    .btn-small{padding:7px 12px;font-size:11px}
+    .dialog-body{padding:22px}.dialog-body h3{margin-top:0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-grid .full{grid-column:1/-1}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+    .products{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.product-card{border:1px solid var(--line);border-radius:13px;padding:15px}.product-card h3{font-size:14px;margin:0 0 8px}.product-card p{font-size:12px;color:var(--muted);margin:3px 0}
+    .notice{padding:10px 12px;border-radius:10px;background:#fff8dd;color:#805f00;font-size:12px;margin-bottom:14px}
+
+    .seo-layout{display:grid;grid-template-columns:minmax(360px,560px) 1fr;gap:18px;align-items:start}
+    .seo-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
+    .seo-card h2{margin:0 0 6px;font-size:20px}.seo-card>p{margin:0 0 16px;color:var(--muted);font-size:12px;line-height:1.5}
+    .seo-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.seo-form-grid .full{grid-column:1/-1}
+    .seo-form-grid label{display:flex;justify-content:space-between;gap:8px;font-size:11px;font-weight:950;margin-bottom:6px;color:#334b68}
+    .seo-form-grid input,.seo-form-grid select,.seo-form-grid textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff;color:var(--navy)}
+    .seo-form-grid textarea{min-height:92px;resize:vertical}.char-count{font-weight:800;color:#8492a6}.char-count.good{color:#138a46}.char-count.warn{color:#b77900}.char-count.bad{color:#c63737}
+    .seo-preview{border:1px solid #dfe7ef;border-radius:14px;padding:16px;background:#fbfcfe;margin-bottom:14px}.seo-preview .url{font-size:12px;color:#1f6f43}.seo-preview .title{font-size:20px;color:#1a0dab;line-height:1.25;margin:5px 0}.seo-preview .desc{font-size:13px;color:#4d5156;line-height:1.45}
+    .seo-score-wrap{display:flex;align-items:center;gap:14px;margin-bottom:14px}.seo-score{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--green) var(--score,0%),#e9eef4 0);position:relative}.seo-score:before{content:'';position:absolute;inset:8px;border-radius:50%;background:#fff}.seo-score strong{position:relative;font-size:18px}.seo-checks{display:grid;gap:6px;font-size:12px}.seo-check{display:flex;gap:7px;align-items:flex-start}.seo-check.ok{color:#14783d}.seo-check.no{color:#9c5c00}
+    .seo-list{display:grid;gap:8px;max-height:360px;overflow:auto}.seo-row{border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff;cursor:pointer}.seo-row:hover{border-color:#b9c9da}.seo-row strong{display:block;font-size:12px}.seo-row small{color:var(--muted);font-size:10px;word-break:break-all}.seo-publish-note{background:#eef6ff;border:1px solid #cfe2f7;border-radius:11px;padding:11px;font-size:12px;line-height:1.5;margin-top:12px}.seo-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}.seo-actions .btn{flex:1;min-width:150px}
+    @media(max-width:1000px){.seo-layout,.reservation-layout{grid-template-columns:1fr}.products{grid-template-columns:1fr 1fr}}
+    @media(max-width:700px){.shell{grid-template-columns:1fr}aside{padding:14px}.nav{display:flex;gap:6px;overflow:auto}.nav button{white-space:nowrap}.seo-form-grid,.reservation-form-grid{grid-template-columns:1fr}.seo-form-grid .full,.reservation-form-grid .full{grid-column:auto}.products{grid-template-columns:1fr}main{padding:14px}}
+
+    .reservation-layout{display:grid;grid-template-columns:minmax(320px,430px) 1fr;gap:18px;align-items:start}
+    .reservation-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
+    .reservation-card h2{margin:0 0 6px;font-size:20px}.reservation-card>p{margin:0 0 16px;color:var(--muted);font-size:12px}
+    .reservation-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.reservation-form-grid .full{grid-column:1/-1}
+    .reservation-form-grid label{display:block;font-size:11px;font-weight:950;margin-bottom:6px;color:#334b68}.reservation-form-grid input,.reservation-form-grid select,.reservation-form-grid textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff;color:var(--navy)}
+    .reservation-form-grid textarea{min-height:105px;resize:vertical}.reservation-actions{display:flex;gap:8px;margin-top:14px}.reservation-actions .btn{flex:1}
+    .reservation-list{display:grid;gap:10px;max-height:680px;overflow:auto;padding-right:3px}.reservation-item{border:1px solid var(--line);border-radius:14px;padding:13px;background:#fbfcfe}.reservation-item-head{display:flex;justify-content:space-between;gap:10px;align-items:start;border-bottom:1px solid #edf1f6;padding-bottom:8px;margin-bottom:8px}.reservation-item h3{margin:0;font-size:14px}.reservation-date{font-size:11px;font-weight:900;color:#9a6900;background:#fff6d9;padding:5px 8px;border-radius:999px}.reservation-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 12px;font-size:11px;color:#43546b}.reservation-note{margin-top:8px;padding:9px;background:#eef5ff;border-radius:9px;font-size:11px;line-height:1.45}.reservation-item-actions{display:flex;justify-content:flex-end;margin-top:9px}.btn.danger{background:#fff0f0;color:#a72525;border:1px solid #f2caca}.reservation-pnr{display:inline-block;margin-left:6px;font-size:10px;font-weight:900;letter-spacing:.03em;color:#0b4aa2;background:#eaf2ff;padding:3px 8px;border-radius:999px;vertical-align:middle}.reservation-source-badge{display:inline-block;margin-left:6px;font-size:10px;font-weight:800;color:#0f8a4c;background:#e9f9ef;padding:3px 8px;border-radius:999px;vertical-align:middle}
+    @media(max-width:900px){.shell{grid-template-columns:1fr}aside{display:none}main{padding:14px}.products{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(7,minmax(155px,1fr))}.reservation-layout{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <section id="loginView" class="login-wrap">
+    <div class="login-card">
+      <h1>Yönetim Paneli</h1>
+      <p>Fiyat, kontenjan ve satış durumlarını yönetin.</p>
+      <div id="loginError" class="notice hidden"></div>
+      <form id="loginForm">
+        <div class="field"><label>E-posta</label><input id="email" type="email" required /></div>
+        <div class="field"><label>Şifre</label><input id="password" type="password" required /></div>
+        <button class="btn primary" style="width:100%" type="submit">Giriş Yap</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="appView" class="shell hidden">
+    <aside>
+      <div class="brand">TATILDOKYA<small>TRAVELS ADMIN</small></div>
+      <div class="nav">
+        <button class="active" data-tab="calendar">📅 Takvim</button>
+        <button data-tab="products">🎈 Ürünler</button>
+        <button data-tab="reservations">🧾 Rezervasyon Detayları</button>
+        <a href="/admin/seo-dashboard/" style="display:block;color:#dce6f0;text-decoration:none;padding:12px 13px;border-radius:11px;font-weight:800">🔎 SEO Dashboard</a>
+        <button data-tab="seo">🔎 SEO Yönetimi</button>
+      </div>
+    </aside>
+    <main>
+      <div class="topbar">
+        <div><h1 id="pageTitle">Fiyat & Kontenjan Takvimi</h1></div>
+        <div class="userbar"><span id="adminEmail"></span><button id="logoutBtn" class="btn ghost">Çıkış</button></div>
+      </div>
+
+      <section id="calendarTab">
+        <div class="panel">
+          <div class="toolbar">
+            <select id="productSelect"></select>
+            <button id="bulkBtn" class="btn primary">Tarih Aralığı Güncelle</button>
+            <button id="resetAllBtn" class="btn primary" type="button" style="background:#0d7a3f">🔄 Tüm Gelecek Günleri Tek Fiyata Ayarla</button>
+            <button id="askPriceBtn" class="btn" type="button">💬 Ask For Price: Kapalı</button>
+            <div class="month-nav">
+              <button id="prevMonth" class="btn ghost">‹</button>
+              <div id="monthTitle" class="month-title"></div>
+              <button id="nextMonth" class="btn ghost">›</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div id="calendar" class="calendar"></div>
+        </div>
+      </section>
+
+      <section id="productsTab" class="hidden">
+        <div class="panel">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+            <h2 style="margin:0">Ürünler</h2>
+            <button type="button" class="btn primary" id="newTourBtn">➕ Yeni Tur Ekle</button>
+          </div>
+          <div id="productsGrid" class="products"></div>
+        </div>
+      </section>
+
+      <dialog id="newTourDialog">
+        <div class="dialog-body">
+          <h3>Yeni Tur Ekle</h3>
+          <p style="color:var(--muted);font-size:12px;margin-top:-8px">Önce temel bilgileri gir, sonra içerik (başlık, açıklama, listeler, SSS) düzenleme ekranı otomatik açılacak.</p>
+          <form id="newTourForm">
+            <div class="form-grid">
+              <div><label>Tur Adı (İngilizce, teknik referans için)</label><input id="newTourName" required placeholder="örn. Sunset Jeep Safari" /></div>
+              <div><label>Slug (URL, otomatik önerilir)</label><input id="newTourSlug" required placeholder="sunset-jeep-safari" /></div>
+            </div>
+            <div class="form-grid" style="margin-top:12px">
+              <div><label>Kategori</label>
+                <select id="newTourCategory">
+                  <option value="balloon">Balon Turu</option>
+                  <option value="daily">Günlük Tur</option>
+                  <option value="private">Özel Tur</option>
+                  <option value="activity">Aktivite</option>
+                  <option value="transfer">Transfer</option>
+                </select>
+              </div>
+              <div><label>Varsayılan Fiyat (€)</label><input id="newTourPrice" type="number" step="0.01" min="0" value="0" required /></div>
+            </div>
+            <div class="form-grid" style="margin-top:12px">
+              <div><label>Varsayılan Kontenjan</label><input id="newTourCapacity" type="number" min="0" value="12" required /></div>
+            </div>
+            <div class="actions"><button type="button" class="btn ghost" id="newTourCancel">Vazgeç</button><button class="btn primary">Oluştur ve İçeriği Düzenle</button></div>
+          </form>
+        </div>
+      </dialog>
+
+      <dialog id="tourContentDialog" class="wide-dialog">
+        <div class="dialog-body">
+          <h3>Tur İçeriğini Düzenle — <span id="tourContentProductName"></span></h3>
+          <p style="color:var(--muted);font-size:12px;margin-top:-8px">Sayfa <a id="tourContentPreviewLink" href="#" target="_blank" rel="noopener">canlı önizleme</a> adresinde yayınlanacak. Her dil sekmesini ayrı ayrı doldurup kaydet.</p>
+          <div class="lang-tabs">
+            <button type="button" class="lang-tab active" data-content-lang="en">🇬🇧 English</button>
+            <button type="button" class="lang-tab" data-content-lang="tr">🇹🇷 Türkçe</button>
+            <button type="button" class="lang-tab" data-content-lang="es">🇪🇸 Español</button>
+          </div>
+          <form id="tourContentForm">
+            <input type="hidden" id="tourContentProductId" />
+            <div class="form-grid">
+              <div><label>Başlık</label><input id="tc-title" required /></div>
+              <div><label>Süre (örn. "1 Hour Flight", "Full Day")</label><input id="tc-duration" /></div>
+            </div>
+            <div style="margin-top:12px"><label>SEO Başlığı</label><input id="tc-seoTitle" /></div>
+            <div style="margin-top:12px"><label>Meta Açıklama (arama sonuçlarında görünür, ~155 karakter)</label><textarea id="tc-metaDescription" rows="2"></textarea></div>
+            <div style="margin-top:12px"><label>Hero / Kısa Açıklama (sayfanın üstünde büyük görünür)</label><textarea id="tc-heroDescription" rows="3"></textarea></div>
+            <div style="margin-top:12px"><label>Genel Bakış (paragraflar arasına boş satır bırak)</label><textarea id="tc-overview" rows="6"></textarea></div>
+
+            <div style="margin-top:16px"><label>Fiyata Dahil Olanlar</label><div id="tc-included-list" class="dynamic-list"></div><button type="button" class="btn ghost btn-small" data-add="included">+ Madde Ekle</button></div>
+            <div style="margin-top:16px"><label>Önemli Bilgiler</label><div id="tc-important-list" class="dynamic-list"></div><button type="button" class="btn ghost btn-small" data-add="important">+ Madde Ekle</button></div>
+            <div style="margin-top:16px"><label>Galeri Görsel URL'leri</label><div id="tc-gallery-list" class="dynamic-list"></div><button type="button" class="btn ghost btn-small" data-add="gallery">+ Görsel Ekle</button></div>
+            <div style="margin-top:12px"><label>Ana Görsel URL (opsiyonel, boşsa galeriden ilki kullanılır)</label><input id="tc-heroImage" placeholder="/images/tours/..." /></div>
+
+            <div style="margin-top:16px"><label>Sıkça Sorulan Sorular</label><div id="tc-faq-list" class="dynamic-list"></div><button type="button" class="btn ghost btn-small" data-add="faq">+ Soru Ekle</button></div>
+
+            <div class="actions"><button type="button" class="btn ghost" id="tourContentCancel">Kapat</button><button class="btn primary">Bu Dili Kaydet</button></div>
+          </form>
+        </div>
+      </dialog>
+
+      <section id="reservationsTab" class="hidden">
+        <div class="reservation-layout">
+          <div class="reservation-card">
+            <h2>Manuel Rezervasyon Ekle</h2>
+            <p>Misafirin rezervasyon detaylarını tarih ve tur bazında kaydedin.</p>
+            <form id="reservationForm">
+              <input id="reservationId" type="hidden" />
+              <div class="reservation-form-grid">
+                <div><label>Rezervasyon Tarihi</label><input id="reservationDate" type="date" required /></div>
+                <div><label>Tur Adı</label><select id="reservationProduct" required></select></div>
+                <div><label>Müşteri Adı</label><input id="reservationName" type="text" required placeholder="Ad Soyad" /></div>
+                <div><label>Müşteri Sayısı</label><input id="reservationCount" type="number" min="1" value="1" required /></div>
+                <div><label>Otel</label><input id="reservationHotel" type="text" placeholder="Otel / Konaklama" /></div>
+                <div><label>Telefon</label><input id="reservationPhone" type="tel" placeholder="+90 ..." /></div>
+                <div class="full"><label>E-posta</label><input id="reservationEmail" type="email" placeholder="guest@example.com" /></div>
+                <div class="full"><label>Not</label><textarea id="reservationNote" placeholder="Pickup saati, özel istek, ödeme notu vb."></textarea></div>
+              </div>
+              <div class="reservation-actions"><button id="reservationReset" type="button" class="btn ghost">Temizle</button><button class="btn primary" type="submit">Rezervasyonu Kaydet</button></div>
+            </form>
+          </div>
+          <div class="reservation-card">
+            <h2>Kayıtlı Rezervasyonlar</h2>
+            <p>En yakın tarihli rezervasyonlar üstte gösterilir.</p>
+            <div id="reservationsList" class="reservation-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="seoTab" class="hidden">
+        <div class="seo-layout">
+          <div class="seo-card">
+            <h2>SEO Yönetimi</h2>
+            <p>Sayfa bazında SEO başlığı, açıklama, anahtar kelime ve sosyal paylaşım bilgilerini yönetin. Bu panel ziyaretçi tarafına ekstra JavaScript eklemez.</p>
+            <form id="seoForm">
+              <div class="seo-form-grid">
+                <div class="full"><label>Sayfa / URL</label><select id="seoPageSelect"></select></div>
+                <div class="full"><label>Özel URL yolu</label><input id="seoPath" type="text" placeholder="/en/tours/.../" required /></div>
+                <div><label>Dil</label><select id="seoLang"><option value="en">English</option><option value="tr">Türkçe</option><option value="es">Español</option></select></div>
+                <div><label>Schema</label><select id="seoSchema"><option>WebPage</option><option>Article</option><option>FAQPage</option><option>TouristTrip</option><option>Service</option><option>Product</option></select></div>
+                <div class="full"><label>SEO Title <span id="seoTitleCount" class="char-count">0/60</span></label><input id="seoTitle" type="text" maxlength="120" /></div>
+                <div class="full"><label>Meta Description <span id="seoDescCount" class="char-count">0/160</span></label><textarea id="seoDescription" maxlength="320"></textarea></div>
+                <div class="full"><label>Focus Keyword</label><input id="seoKeyword" type="text" placeholder="Cappadocia hot air balloon tour" /></div>
+                <div class="full"><label>Canonical URL</label><input id="seoCanonical" type="url" placeholder="https://tatildokya.com/en/.../" /></div>
+                <div><label>Google Index</label><select id="seoIndex"><option value="true">Index</option><option value="false">Noindex</option></select></div>
+                <div><label>OG Image</label><input id="seoOgImage" type="text" placeholder="/images/...webp" /></div>
+                <div class="full"><label>OG Title (opsiyonel)</label><input id="seoOgTitle" type="text" /></div>
+                <div class="full"><label>OG Description (opsiyonel)</label><textarea id="seoOgDescription"></textarea></div>
+              </div>
+              <div class="seo-actions"><button id="seoReset" type="button" class="btn ghost">Temizle</button><button type="submit" class="btn primary">SEO Kaydet</button></div>
+            </form>
+            <div class="seo-publish-note"><b>Hız koruması:</b> Kaydetme işlemi Supabase'e yazar; canlı sitede SEO'yu yayınlamak için terminalde <code>npm run seo:sync</code> ve ardından build/deploy çalıştırılır. Böylece ziyaretçi sayfaları Supabase'e istek atmaz ve site hızı düşmez.</div>
+          </div>
+          <div class="seo-card">
+            <div class="seo-score-wrap"><div id="seoScore" class="seo-score" style="--score:0%"><strong>0</strong></div><div><h2 style="margin:0 0 7px">SEO Kontrolü</h2><div id="seoChecks" class="seo-checks"></div></div></div>
+            <div class="seo-preview"><div id="seoPreviewUrl" class="url">tatildokya.com</div><div id="seoPreviewTitle" class="title">SEO başlığı önizlemesi</div><div id="seoPreviewDesc" class="desc">Meta açıklamanız burada görünecek.</div></div>
+            <h2>Kayıtlı SEO Sayfaları</h2><p>Kaydettiğiniz özel SEO kayıtları.</p><div id="seoList" class="seo-list"></div>
+          </div>
+        </div>
+
+        <div class="seo-card" style="margin-top:18px">
+          <h2>TripAdvisor Puanı</h2>
+          <p>Site genelinde (Organization şeması + llms.txt) gösterilen TripAdvisor puanı ve yorum sayısı. Turlara özel ayrı bir puan yok — bu tek değer şirket geneli için kullanılıyor.</p>
+          <form id="ratingForm">
+            <div class="seo-form-grid">
+              <div><label>Puan (0–5)</label><input id="ratingValue" type="number" step="0.1" min="0" max="5" required /></div>
+              <div><label>Yorum Sayısı</label><input id="ratingCount" type="number" step="1" min="0" required /></div>
+            </div>
+            <div class="seo-actions"><button type="submit" class="btn primary">Puanı Kaydet</button></div>
+          </form>
+          <div class="seo-publish-note"><b>Hız koruması:</b> Kaydetme işlemi Supabase'e yazar; canlı sitede yayınlamak için terminalde <code>npm run seo:sync</code> ve ardından build/deploy çalıştırılır — aynı SEO kartındaki gibi. Bu, llms.txt dosyasındaki rakamı da otomatik günceller.</div>
+        </div>
+      </section>
+
+    </main>
+  </section>
+
+  <dialog id="dayDialog">
+    <div class="dialog-body">
+      <h3 id="dayDialogTitle">Günü Güncelle</h3>
+      <form id="dayForm">
+        <input type="hidden" id="editDate" />
+        <div class="form-grid">
+          <div><label>Fiyat (€)</label><input id="editPrice" type="number" step="0.01" min="0" required /></div>
+          <div><label>Toplam Kontenjan</label><input id="editCapacity" type="number" min="0" required /></div>
+          <div><label>Satılan</label><input id="editBooked" type="number" min="0" required /></div>
+          <div><label>Durum</label><select id="editStatus"><option value="available">Müsait</option><option value="sold_out">Dolu</option><option value="closed">Satış Kapalı</option></select></div>
+        </div>
+        <div class="actions"><button type="button" class="btn ghost" id="dayCancel">Vazgeç</button><button class="btn primary">Kaydet</button></div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog id="bulkDialog">
+    <div class="dialog-body">
+      <h3>Tarih Aralığı Güncelle</h3>
+      <form id="bulkForm">
+        <div class="form-grid">
+          <div><label>Başlangıç</label><input id="bulkStart" type="date" required /></div>
+          <div><label>Bitiş</label><input id="bulkEnd" type="date" required /></div>
+          <div><label>Fiyat (€)</label><input id="bulkPrice" type="number" step="0.01" min="0" required /></div>
+          <div><label>Kontenjan</label><input id="bulkCapacity" type="number" min="0" required /></div>
+          <div class="full"><label>Durum</label><select id="bulkStatus"><option value="available">Müsait</option><option value="closed">Satış Kapalı</option></select></div>
+        </div>
+        <div class="actions"><button type="button" class="btn ghost" id="bulkCancel">Vazgeç</button><button class="btn primary">Aralığı Kaydet</button></div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog id="resetAllDialog">
+    <div class="dialog-body">
+      <h3>Tüm Gelecek Günleri Tek Fiyata Ayarla</h3>
+      <p style="color:var(--muted);font-size:12px;margin-top:-8px">Bu i&#351;lem, bug&#252;nden itibaren bu &#252;r&#252;n i&#231;in girilmi&#351; T&#220;M tarih kay&#305;tlar&#305;n&#305; (farkl&#305; deneme fiyatlar&#305; dahil) siler ve a&#351;a&#287;&#305;daki tek fiyatla, se&#231;ti&#287;in tarihe kadar yeniden olu&#351;turur. Kar&#305;&#351;&#305;k / test verisini temizlemenin en h&#305;zl&#305; yolu budur.</p>
+      <form id="resetAllForm">
+        <div class="form-grid">
+          <div><label>Fiyat (€)</label><input id="resetAllPrice" type="number" step="0.01" min="0" required /></div>
+          <div><label>Kontenjan</label><input id="resetAllCapacity" type="number" min="0" required /></div>
+          <div class="full"><label>Kaç gün ileriye kadar?</label><input id="resetAllDays" type="number" min="1" value="365" required /></div>
+        </div>
+        <div class="actions"><button type="button" class="btn ghost" id="resetAllCancel">Vazgeç</button><button class="btn primary">Hepsini Bu Fiyata Sıfırla</button></div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog id="editProductDialog">
+    <div class="dialog-body">
+      <h3>Ürünü Düzenle — <span id="editProductName"></span></h3>
+      <p style="color:var(--muted);font-size:12px;margin-top:-8px">Varsayılan fiyat: takvimde o gün için özel bir fiyat girilmemişse kullanılır.</p>
+      <form id="editProductForm">
+        <input type="hidden" id="editProductId" />
+        <div class="form-grid">
+          <div><label>Varsayılan Fiyat (€)</label><input id="editProductPrice" type="number" step="0.01" min="0" required /></div>
+          <div><label>Varsayılan Kontenjan</label><input id="editProductCapacity" type="number" min="0" required /></div>
+        </div>
+        <div class="form-grid" style="margin-top:12px">
+          <div>
+            <label>1. Rozet</label>
+            <select id="editProductBadge1">
+              <option value="">— Yok —</option>
+              <option value="top_rated">⭐ Top Rated</option>
+              <option value="customer_favorite">❤️ Customer Favorite</option>
+              <option value="trending_now">🔥 Trending Now</option>
+              <option value="editors_choice">🎯 Editor's Choice</option>
+              <option value="most_wanted">🌟 Most Wanted</option>
+              <option value="selling_fast">⚡ Selling Fast</option>
+            </select>
+          </div>
+          <div>
+            <label>2. Rozet</label>
+            <select id="editProductBadge2">
+              <option value="">— Yok —</option>
+              <option value="best_seller">🏆 Best Seller</option>
+              <option value="popular">👍 Popular</option>
+              <option value="direct_service">✓ Direct Service</option>
+              <option value="vip_service">💎 VIP Service</option>
+              <option value="premium_service">✨ Premium Service</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-grid" style="margin-top:12px">
+          <div><label>3. Rozet — İndirim Yüzdesi (%)</label><input id="editProductDiscount" type="number" min="0" max="100" placeholder="Boş bırak = gösterilmesin" /></div>
+        </div>
+        <div class="actions"><button type="button" class="btn ghost" id="editProductCancel">Vazgeç</button><button class="btn primary">Kaydet</button></div>
+      </form>
+    </div>
+  </dialog>
+
+  <script src="/src/scripts/admin.ts"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: https://tatildokya.com/sitemap.xml
+
+# AI answer engines: see https://tatildokya.com/llms.txt for a structured summary of this site

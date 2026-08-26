@@ -1,0 +1,31 @@
+---
+// Google Ads conversion tracking (added 2026-08-21).
+// Conversion action: "WhatsApp Tıklaması" (lead), created in Google Ads > Goals > Conversions.
+// This component is included from every page-root component (SeoHead, HomePage,
+// BlogIndexPage, LegacySeoArticle) so it loads on all 164 pages. If the AW- ID or
+// the conversion label ever changes in Google Ads, update the two constants below —
+// nowhere else needs to change.
+const GOOGLE_ADS_ID = 'AW-18123196440';
+const WHATSAPP_CONVERSION_LABEL = 'AW-18123196440/POY1CNjDo-UcEJiQ6MFD';
+---
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}></script>
+<script define:vars={{ GOOGLE_ADS_ID, WHATSAPP_CONVERSION_LABEL }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', GOOGLE_ADS_ID);
+
+  // Site-wide WhatsApp click tracking. WhatsApp links open in a new tab
+  // (target="_blank"), so the current page never navigates away — we can fire
+  // the conversion event directly on click with no redirect/callback needed.
+  // Event delegation on document so this covers every wa.me link on the page,
+  // including ones added dynamically after this script runs.
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('a[href*="wa.me"]');
+    if (!link) return;
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', { send_to: WHATSAPP_CONVERSION_LABEL });
+    }
+  }, { capture: true });
+</script>

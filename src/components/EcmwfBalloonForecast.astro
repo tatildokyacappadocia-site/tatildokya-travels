@@ -1,0 +1,200 @@
+---
+const { lang = 'en' } = Astro.props;
+const labels = {
+  en: {
+    badge:'This model provides forecasts and analysis based on weather data only; conditions may differ at flight time.', title:'7-Day Cappadocia Balloon Flight Analysis',
+    subtitle:'Operational planning intelligence for Cappadocia balloon flights, evaluated around the Göreme sunrise window.',
+    advisory:'Forecast guidance only — official SHGM decisions always take priority.', local:'Turkey Time', zulu:'Zulu / UTC',
+    prob:'Flight Probability', risk:'Cancel Risk', window:'Flight Window', upper:'5,500–6,500 ft Steering Wind', launch:'Probable Launch Area', viewing:'Best Balloon Viewing Points',
+    temp:'Temperature', rain:'Precipitation', precipChance:'Rain / Snow Chance', rainAmount:'Rain', snow:'Snow', gust:'Peak Gust', visibility:'Visibility', ceiling:'Ceiling / LCL', firstFlight:'1st Flight', secondFlight:'2nd Flight', beforeSunrise:'30 min before sunrise', atSunrise:'at sunrise', windRisk:'Wind Risk', precipRisk:'Precipitation Risk', analysisWindow:'Analysis Window',
+    source:'Model source', methodology:'Methodology', whatsapp:'Ask About Specific Dates on WhatsApp',
+    loading:'Loading live ECMWF + ICON forecast…', error:'The ECMWF + ICON outlook is temporarily unavailable. Please refresh shortly.',
+    official:'Official SHGM / Cappadocia Slot Service Center decisions override this forecast at all times.', sunrise:'Göreme Sunrise', vector:'Vector analysis across the sunrise flight window'
+  },
+  tr: {
+    badge:'Bu model hava verilerine göre sadece tahmin ve analiz yapmaktadır; uçuş saatinde veriler farklı olabilir.', title:'7 Günlük Kapadokya Balon Uçuş Analizi', subtitle:'Göreme gün doğumu uçuş penceresine göre hazırlanmış Kapadokya balon operasyon planlama analizi.', advisory:'Tahmin rehberidir — resmi SHGM kararı her zaman önceliklidir.', local:'Türkiye Saati', zulu:'Zulu / UTC', prob:'Uçuş Olasılığı', risk:'İptal Riski', window:'Uçuş Penceresi', upper:'5.500–6.500 ft Yönlendirici Rüzgâr', launch:'Muhtemel Kalkış Alanı', viewing:'Muhtemel Balon İzleme Noktaları', temp:'Sıcaklık', rain:'Yağış', precipChance:'Yağmur / Kar İhtimali', rainAmount:'Yağmur', snow:'Kar', gust:'Maks. Hamle', visibility:'Görüş', ceiling:'Bulut Tabanı / LCL', firstFlight:'1. Uçuş', secondFlight:'2. Uçuş', beforeSunrise:'gündoğumundan 30 dk önce', atSunrise:'tam gündoğumunda', windRisk:'Rüzgâr Riski', precipRisk:'Yağış Riski', analysisWindow:'Analiz Penceresi', source:'Model kaynağı', methodology:'Metodoloji', whatsapp:'Belirli Tarihi WhatsApp’tan Sor', loading:'Canlı ECMWF + ICON tahmini yükleniyor…', error:'ECMWF + ICON tahmini geçici olarak alınamadı. Lütfen kısa süre sonra yenileyin.', official:'Resmi SHGM / Kapadokya Slot Hizmet Merkezi kararı her zaman bu tahminden önceliklidir.', sunrise:'Göreme Gün Doğumu', vector:'Gün doğumu uçuş penceresi boyunca vektörel analiz'
+  },
+  es: {
+    badge:'Este modelo solo realiza pronósticos y análisis según datos meteorológicos; las condiciones pueden cambiar a la hora del vuelo.', title:'Análisis de 7 Días para Vuelos en Globo en Capadocia', subtitle:'Inteligencia de planificación para vuelos en globo en Capadocia, evaluada alrededor de la ventana del amanecer de Göreme.', advisory:'Solo orientación de pronóstico — la decisión oficial de SHGM siempre tiene prioridad.', local:'Hora de Turquía', zulu:'Zulu / UTC', prob:'Prob. de Vuelo', risk:'Riesgo de Cancelación', window:'Ventana de Vuelo', upper:'Viento Director 5.500–6.500 ft', launch:'Zona Probable de Despegue', viewing:'Mejores Puntos de Observación', temp:'Temperatura', rain:'Precipitación', precipChance:'Prob. Lluvia / Nieve', rainAmount:'Lluvia', snow:'Nieve', gust:'Ráfaga Máx.', visibility:'Visibilidad', ceiling:'Techo / LCL', firstFlight:'1.er Vuelo', secondFlight:'2.º Vuelo', beforeSunrise:'30 min antes del amanecer', atSunrise:'al amanecer', windRisk:'Riesgo por Viento', precipRisk:'Riesgo por Precipitación', analysisWindow:'Ventana de Análisis', source:'Fuente del modelo', methodology:'Metodología', whatsapp:'Consultar Fechas por WhatsApp', loading:'Cargando pronóstico ECMWF + ICON en vivo…', error:'El pronóstico ECMWF + ICON no está disponible temporalmente. Inténtelo de nuevo en breve.', official:'Las decisiones oficiales de SHGM / Cappadocia Slot Service Center siempre tienen prioridad sobre este pronóstico.', sunrise:'Amanecer en Göreme', vector:'Análisis vectorial durante la ventana de vuelo al amanecer'
+  }
+};
+const t = labels[lang] || labels.en;
+---
+
+<section class="ecmwf-shell" aria-labelledby="ecmwf-title">
+  <header class="ecmwf-head">
+    <div class="ecmwf-heading-copy">
+      <span class="ecmwf-badge">{t.badge}</span>
+      <h2 id="ecmwf-title"><span class="title-hot-air-balloon" aria-hidden="true"><i></i><b></b></span>{t.title}</h2>
+      <p>{t.subtitle}</p>
+    </div>
+    <div class="ecmwf-head-side">
+      <span class="advisory">ℹ {t.advisory}</span>
+      <div class="clocks">
+        <span>⏰ {t.local}<b id="ecmwf-tr-clock">--:--:--</b></span>
+        <span>🌐 {t.zulu}<b id="ecmwf-utc-clock">--:--:--</b></span>
+      </div>
+    </div>
+  </header>
+
+  <div id="ecmwf-loading" class="ecmwf-loading">{t.loading}</div>
+  <div id="ecmwf-grid" class="ecmwf-grid" aria-live="polite"></div>
+
+  <footer class="ecmwf-foot">
+    <div class="ecmwf-source-note">
+      <strong>{t.official}</strong>
+      <span id="ecmwf-source"></span>
+    </div>
+    <a href="https://wa.me/905333925450?text=Hello%20Turkey%20Balloons%20Cappadocia%2C%20I%20would%20like%20to%20ask%20about%20balloon%20flight%20conditions%20for%20a%20specific%20date." target="_blank" rel="noopener">💬 {t.whatsapp} ↗</a>
+  </footer>
+</section>
+
+<script define:vars={{ t, lang }}>
+(function(){
+  const pad=n=>String(n).padStart(2,'0');
+  function clock(){
+    const now=new Date();
+    const trParts=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Istanbul',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).formatToParts(now);
+    const obj=Object.fromEntries(trParts.map(p=>[p.type,p.value]));
+    const tr=document.getElementById('ecmwf-tr-clock'); if(tr) tr.textContent=`${obj.hour}:${obj.minute}:${obj.second}`;
+    const utc=document.getElementById('ecmwf-utc-clock'); if(utc) utc.textContent=`${pad(now.getUTCHours())}:${pad(now.getUTCMinutes())}:${pad(now.getUTCSeconds())}`;
+  }
+  clock(); setInterval(clock,1000);
+  const locale=lang==='tr'?'tr-TR':lang==='es'?'es-ES':'en-GB';
+  function dateLabel(iso){return new Intl.DateTimeFormat(locale,{weekday:'short',day:'numeric',month:'short'}).format(new Date(iso+'T12:00:00'));}
+  function riskTone(r){if(r>=70)return'red';if(r>=30)return'amber';return'green';}
+  function riskWord(r){if(r>=70)return lang==='tr'?'Yüksek Risk':lang==='es'?'Riesgo Alto':'High Cancel Risk';if(r>=30)return lang==='tr'?'Dikkat':lang==='es'?'Precaución':'Caution';return lang==='tr'?'Uygun':lang==='es'?'Favorable':'Favorable';}
+  function istanbulParts(){
+    const parts=new Intl.DateTimeFormat('en-CA',{
+      timeZone:'Europe/Istanbul',
+      year:'numeric',month:'2-digit',day:'2-digit',
+      hour:'2-digit',minute:'2-digit',second:'2-digit',
+      hour12:false
+    }).formatToParts(new Date());
+    return Object.fromEntries(parts.map(p=>[p.type,p.value]));
+  }
+  function isoFromYMD(y,m,d){
+    const dt=new Date(Date.UTC(Number(y),Number(m)-1,Number(d)));
+    return `${dt.getUTCFullYear()}-${pad(dt.getUTCMonth()+1)}-${pad(dt.getUTCDate())}`;
+  }
+  function addIsoDays(iso,days){
+    const [y,m,d]=iso.split('-').map(Number);
+    const dt=new Date(Date.UTC(y,m-1,d));
+    dt.setUTCDate(dt.getUTCDate()+days);
+    return `${dt.getUTCFullYear()}-${pad(dt.getUTCMonth()+1)}-${pad(dt.getUTCDate())}`;
+  }
+  function forecastStartDate(){
+    const p=istanbulParts();
+    const today=isoFromYMD(p.year,p.month,p.day);
+    return Number(p.hour)>=11 ? addIsoDays(today,1) : today;
+  }
+  function visibleSevenDays(days){
+    const start=forecastStartDate();
+    return (days||[]).filter(d=>String(d.date)>=start).slice(0,7);
+  }
+  function card(d){
+    const tone=riskTone(d.cancelRisk);
+    const maps=d.viewingPoints.map((p,i)=>`<a class="view-btn ${i?'secondary':''}" href="${p.url}" target="_blank" rel="noopener"><span>📍</span>${p.name}</a>`).join('');
+    return `<article class="ecmwf-card ${tone}">
+      <div class="card-header">
+        <div class="date-block"><span>${dateLabel(d.date)}</span><strong>${d.sunrise}</strong><small>${t.sunrise}</small></div>
+        <span class="risk-tag">${riskWord(d.cancelRisk)}</span>
+      </div>
+
+      <section class="probability-panel">
+        <div><span>${t.prob}</span><strong>${d.flightProbability}%</strong></div>
+        <div><span>${t.risk}</span><strong>${d.cancelRisk}%</strong><small>${t.windRisk}: ${d.weather.windRisk ?? d.cancelRisk}% · ${t.precipRisk}: ${d.weather.precipitationRisk ?? 0}%${(d.weather.vetoReasons||[]).length ? ` · VETO: ${(d.weather.vetoReasons||[]).join(', ')}` : ''}</small></div>
+      </section>
+
+      <section class="info-section flight-window-section">
+        <div class="section-label">🕒 ${t.window}</div>
+        <div class="flight-slots">
+          <div class="flight-slot"><span>${t.firstFlight}</span><strong>${d.window.start}</strong><small>${t.beforeSunrise}</small></div>
+          <div class="flight-slot"><span>${t.secondFlight}</span><strong>${d.sunrise}</strong><small>${t.atSunrise}</small></div>
+        </div>
+        <div class="analysis-window"><span>${t.analysisWindow}</span><b>${d.window.start} – ${d.window.end}</b><small>${d.window.timezone}</small></div>
+      </section>
+
+      <section class="metric-grid weather-metrics">
+        <div><span>🌡 ${t.temp}</span><strong>${d.weather.temperatureC}°C</strong></div>
+        <div class="precip-prob"><span>🌧 ${t.precipChance}</span><strong>${d.weather.precipitationProbabilityPct ?? 0}%</strong><small>${t.precipRisk}: ${d.weather.precipitationRisk ?? 0}%</small></div>
+        <div><span>💧 ${t.rainAmount}</span><strong>${d.weather.rainMm ?? d.weather.precipitationMm ?? 0} mm</strong></div>
+        <div><span>❄️ ${t.snow}</span><strong>${d.weather.snowfallCm ?? 0} cm</strong></div>
+        <div><span>💨 ${t.gust}</span><strong>${d.surface.maxGustKmh} km/h</strong></div>
+        <div><span>👁 ${t.visibility}</span><strong>${d.weather.visibilityKm ?? '—'} km</strong></div>
+        <div><span>☁️ ${t.ceiling}</span><strong>${d.weather.ceilingFt ?? '—'} ft</strong></div>
+      </section>
+
+      <section class="info-section upper-section">
+        <div class="section-label">✈ ${t.upper}</div>
+        <div class="section-value">${d.upper.speedKmh} km/h · ${d.upper.directionDeg}° ${d.upper.compass}</div>
+        <div class="section-note">${t.vector}</div>
+      </section>
+
+      <section class="info-section launch-section">
+        <div class="section-label">📌 ${t.launch}</div>
+        <div class="location-value">${d.launchArea}</div>
+      </section>
+
+      <section class="info-section viewing-section">
+        <div class="section-label">🎈 ${t.viewing}</div>
+        <div class="view-buttons">${maps}</div>
+      </section>
+    </article>`;
+  }
+  async function load(){
+    const loading=document.getElementById('ecmwf-loading'); const grid=document.getElementById('ecmwf-grid');
+    try{
+      const r=await fetch('/api/ecmwf-balloon.json',{cache:'no-store'}); const data=await r.json();
+      if(!r.ok||!data.success)throw new Error(data.error||'ECMWF error');
+      if(loading)loading.remove();
+      const visibleDays=visibleSevenDays(data.days);
+      if(grid)grid.innerHTML=visibleDays.map(card).join('');
+      const src=document.getElementById('ecmwf-source'); if(src)src.textContent=`${t.source}: ${data.source}. ${t.methodology}: ${data.methodology.flightWindow}; ${data.methodology.area}; ${data.methodology.cancellationWindLayer}; ${data.methodology.combination}.`;
+    }catch(e){console.error(e);if(loading){loading.className='ecmwf-loading error';loading.textContent=t.error;}}
+  }
+  load();
+
+  function msUntilNextElevenIstanbul(){
+    const p=istanbulParts();
+    const nowSeconds=Number(p.hour)*3600+Number(p.minute)*60+Number(p.second);
+    const elevenSeconds=11*3600;
+    let delta=elevenSeconds-nowSeconds;
+    if(delta<=0)delta+=24*3600;
+    return delta*1000;
+  }
+  function scheduleDailyElevenRefresh(){
+    setTimeout(()=>{
+      load();
+      scheduleDailyElevenRefresh();
+    },msUntilNextElevenIstanbul());
+  }
+  scheduleDailyElevenRefresh();
+})();
+</script>
+
+<style is:global>
+.ecmwf-shell{--navy:#071b36;--navy2:#0d2a50;--gold:#eeb100;--cream:#f7f3ea;--card:#fff;--line:#e7dfd0;--muted:#65758b;--green:#16885b;--red:#d94a55;--amber:#c98a00;width:100%;margin:26px auto 0;padding:30px;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 16px 42px rgba(44,38,26,.08);font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif;color:var(--navy)}
+.ecmwf-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;align-items:end;padding-bottom:24px;border-bottom:1px solid var(--line)}.ecmwf-badge{display:inline-flex;background:var(--gold);color:var(--navy);border-radius:999px;padding:7px 12px;font-size:10px;font-weight:900;letter-spacing:.1em}.ecmwf-head h2{font:800 clamp(27px,2.6vw,38px)/1.15 'Plus Jakarta Sans',sans-serif;margin:12px 0 8px;color:var(--navy);letter-spacing:-.03em}.ecmwf-head p{margin:0;max-width:780px;color:var(--muted);font-size:14px;line-height:1.7}.ecmwf-head-side{display:grid;gap:10px;justify-items:end}.advisory{max-width:360px;text-align:right;color:#8b6500;font-size:11px;font-weight:800;line-height:1.5}.clocks{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.clocks span{display:flex;gap:7px;align-items:center;background:#f8fafc;border:1px solid #dde5ec;border-radius:999px;padding:9px 12px;font-size:10px;font-weight:800;color:#6f7e91}.clocks b{color:var(--navy);font-size:11px}
+.ecmwf-loading{margin:20px 0;background:#f8fafc;border:1px solid #dfe6ed;border-radius:14px;padding:15px;text-align:center;color:#65758b;font-weight:800}.ecmwf-loading.error{background:#fff2f3;border-color:#efb7bc;color:#a83a42}
+.ecmwf-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:24px}.ecmwf-card{background:#fff;border:1px solid #e0e6ec;border-top:4px solid var(--green);border-radius:18px;padding:17px;box-shadow:0 10px 25px rgba(7,27,54,.06);min-width:0}.ecmwf-card.amber{border-top-color:var(--amber)}.ecmwf-card.red{border-top-color:var(--red)}
+.card-header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding-bottom:15px;border-bottom:1px solid #e9edf1}.date-block span{display:block;color:var(--navy);font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.02em}.date-block strong{display:block;color:var(--navy);font:900 29px/1 'Plus Jakarta Sans',sans-serif;margin:8px 0 5px}.date-block small{color:#7c8b9e;font-size:10px;font-weight:700}.risk-tag{white-space:nowrap;border-radius:999px;padding:6px 9px;background:#edf9f4;border:1px solid #b7dfcc;color:#14714c;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.03em}.amber .risk-tag{background:#fff7df;border-color:#ead28e;color:#966800}.red .risk-tag{background:#fff0f1;border-color:#edb2b7;color:#b23740}
+.probability-panel{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:15px 0}.probability-panel>div{background:#f8fafc;border:1px solid #e0e7ed;border-radius:12px;padding:13px;text-align:center}.probability-panel span{display:block;color:#7f8da0;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}.probability-panel strong{display:block;color:#13845a;font:900 22px/1 'Plus Jakarta Sans',sans-serif;margin-top:7px}.probability-panel>div:last-child strong{color:#9b6c00}.red .probability-panel>div:last-child strong{color:#c43d47}
+.info-section{margin-top:11px;padding:13px;background:#fbfcfe;border:1px solid #e1e7ed;border-radius:12px}.section-label{padding-bottom:9px;margin-bottom:9px;border-bottom:1px solid #e7ebef;color:#17689b;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}.section-value,.location-value{color:var(--navy);font-size:13px;font-weight:800;line-height:1.55}.section-note{color:#7b899a;font-size:10px;line-height:1.5;margin-top:5px}.flight-window-section .section-label{color:#9b6c00}.flight-window-section .section-value{font-size:16px}.upper-section{border-left:3px solid #6aaee2}.launch-section{border-left:3px solid var(--gold)}.launch-section .section-label{color:#9d6d00}.viewing-section{border-left:3px solid #20a46f}.viewing-section .section-label{color:#14744e}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.metric-grid>div{background:#f8fafc;border:1px solid #e1e7ed;border-radius:10px;padding:10px}.metric-grid span{display:block;color:#7e8c9f;font-size:8px;font-weight:900;text-transform:uppercase;line-height:1.35}.metric-grid strong{display:block;color:var(--navy);font-size:12px;margin-top:5px}.view-buttons{display:grid;grid-template-columns:1fr 1fr;gap:7px}.view-btn{display:flex;gap:5px;align-items:center;justify-content:center;text-align:center;min-height:38px;background:var(--gold);color:var(--navy);text-decoration:none;border-radius:9px;padding:8px;font-size:9px;font-weight:900;line-height:1.25}.view-btn.secondary{background:var(--navy);color:#fff}
+.ecmwf-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}.ecmwf-source-note{display:grid;gap:5px}.ecmwf-foot strong{font-size:11px;color:#8f6600}.ecmwf-foot span{font-size:9px;color:#7e8b9c;line-height:1.5}.ecmwf-foot a{white-space:nowrap;text-decoration:none;background:#21b96f;color:#fff;border-radius:999px;padding:12px 17px;font-size:10px;font-weight:900;box-shadow:0 8px 20px rgba(33,185,111,.16)}
+@media(min-width:1500px){.ecmwf-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:1050px){.ecmwf-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ecmwf-head{grid-template-columns:1fr}.ecmwf-head-side{justify-items:start}.advisory{text-align:left}.clocks{justify-content:flex-start}}
+@media(max-width:680px){.ecmwf-shell{padding:17px;border-radius:18px}.ecmwf-grid{grid-template-columns:1fr}.ecmwf-foot{grid-template-columns:1fr}.ecmwf-foot a{text-align:center}.metric-grid,.view-buttons{grid-template-columns:1fr 1fr}}
+
+/* Rain/snow + two-flight window additions, matched to site theme */
+.flight-slots{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.flight-slot{background:#f8fafc;border:1px solid #e3e9f0;border-radius:10px;padding:9px 10px}.flight-slot span,.analysis-window span{display:block;color:#6f8095;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}.flight-slot strong{display:block;color:#071c39;font-size:18px;line-height:1.1;margin:3px 0}.flight-slot small,.analysis-window small{display:block;color:#8290a2;font-size:9px;font-weight:700}.analysis-window{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:8px;padding-top:8px;border-top:1px solid #e4e8ed;color:#33465c;font-size:10px}.analysis-window b{color:#071c39}.probability-panel small,.metric-grid small{display:block;margin-top:3px;color:#738399;font-size:8px;font-weight:750;line-height:1.25}.weather-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.precip-prob strong{color:#c48a00!important}@media(max-width:520px){.flight-slots{grid-template-columns:1fr}.weather-metrics{grid-template-columns:1fr 1fr}}
+
+
+.ecmwf-head h2{display:flex;align-items:center;gap:10px}
+.title-hot-air-balloon{position:relative;display:inline-block;width:27px;height:38px;flex:0 0 27px;filter:drop-shadow(0 3px 4px rgba(7,27,54,.12))}
+.title-hot-air-balloon i{position:absolute;left:2px;top:0;width:23px;height:28px;border-radius:50% 50% 45% 45% / 43% 43% 58% 58%;background:linear-gradient(90deg,#e14035 0 20%,#ffbf20 20% 40%,#f46a30 40% 60%,#2aa493 60% 80%,#3156a4 80%)}
+.title-hot-air-balloon i::after{content:'';position:absolute;left:9px;bottom:-4px;width:5px;height:7px;background:#b97827;clip-path:polygon(20% 0,80% 0,100% 100%,0 100%)}
+.title-hot-air-balloon b{position:absolute;left:9px;bottom:0;width:9px;height:6px;background:#9a672c;border-radius:1px 1px 2px 2px}
+
+</style>

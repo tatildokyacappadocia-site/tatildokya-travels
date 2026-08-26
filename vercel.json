@@ -1,0 +1,209 @@
+{
+  "redirects": [
+    {
+      "source": "/red-tour-kapadokya/",
+      "destination": "/en/tours/red-tour-cappadocia/",
+      "permanent": true
+    },
+    {
+      "source": "/private-cappadocia-tours/",
+      "destination": "/en/private-tours/",
+      "permanent": true
+    },
+    {
+      "source": "/cappadocia-transfers/",
+      "destination": "/en/transfers/",
+      "permanent": true
+    },
+    {
+      "source": "/tours-attractions/",
+      "destination": "/en/cappadocia-tours/",
+      "permanent": true
+    },
+    {
+      "source": "/goreme-hot-air-balloon-rides/",
+      "destination": "/en/tours/goreme-standart-hot-air-balloon-tour/",
+      "permanent": true
+    },
+    {
+      "source": "/1-gunluk-kapadokya-turlari/",
+      "destination": "/tr/blog/1-gunluk-kapadokya-turlari/",
+      "permanent": true
+    },
+    {
+      "source": "/sicak-hava-balon-cappadocia/",
+      "destination": "/tr/balloon-tours/",
+      "permanent": true
+    },
+    {
+      "source": "/balon-fiyatlari-kapadokya/",
+      "destination": "/tr/blog/balon-fiyatlari-kapadokya/",
+      "permanent": true
+    },
+    {
+      "source": "/balon-dahil-kapadokya-turu/",
+      "destination": "/tr/blog/balon-dahil-kapadokya-turu/",
+      "permanent": true
+    },
+    {
+      "source": "/transfers/",
+      "destination": "/en/transfers/",
+      "permanent": true
+    },
+    {
+      "source": "/goreme-balloon-tour-economy-class/",
+      "destination": "/en/tours/goreme-standart-hot-air-balloon-tour/",
+      "permanent": true
+    },
+    {
+      "source": "/goreme-balloon-tour-economy-class",
+      "destination": "/en/tours/goreme-standart-hot-air-balloon-tour/",
+      "permanent": true
+    },
+    {
+      "source": "/goreme-balloon-tour-comfort-class/",
+      "destination": "/en/tours/goreme-comfort-hot-air-balloon-tour/",
+      "permanent": true
+    },
+    {
+      "source": "/goreme-balloon-tour-comfort-class",
+      "destination": "/en/tours/goreme-comfort-hot-air-balloon-tour/",
+      "permanent": true
+    },
+    {
+      "source": "/private-balloon-tour-over-goreme/",
+      "destination": "/en/balloon-tours/",
+      "permanent": true
+    },
+    {
+      "source": "/private-balloon-tour-over-goreme",
+      "destination": "/en/balloon-tours/",
+      "permanent": true
+    },
+    {
+      "source": "/red-tour-cappadocia/",
+      "destination": "/en/tours/red-tour-cappadocia/",
+      "permanent": true
+    },
+    {
+      "source": "/red-tour-cappadocia",
+      "destination": "/en/tours/red-tour-cappadocia/",
+      "permanent": true
+    },
+    {
+      "source": "/green-tour-cappadocia/",
+      "destination": "/en/tours/green-tour-cappadocia/",
+      "permanent": true
+    },
+    {
+      "source": "/green-tour-cappadocia",
+      "destination": "/en/tours/green-tour-cappadocia/",
+      "permanent": true
+    },
+    {
+      "source": "/cappadocia-airport-shuttle-kayseri/",
+      "destination": "/en/transfers/kayseri-airport-shuttle-transfer/",
+      "permanent": true
+    },
+    {
+      "source": "/cappadocia-airport-shuttle-kayseri",
+      "destination": "/en/transfers/kayseri-airport-shuttle-transfer/",
+      "permanent": true
+    },
+    {
+      "source": "/cappadocia-jeep-safari/",
+      "destination": "/en/tours/jeep-safari-cappadocia/",
+      "permanent": true
+    },
+    {
+      "source": "/cappadocia-jeep-safari",
+      "destination": "/en/tours/jeep-safari-cappadocia/",
+      "permanent": true
+    },
+    {
+      "source": "/cappadocia-jeep-safar",
+      "destination": "/en/tours/jeep-safari-cappadocia/",
+      "permanent": true
+    },
+    {
+      "source": "/language/en/air-balloon-cappadocia-price/",
+      "destination": "/en/blog/air-balloon-cappadocia-price/",
+      "permanent": true
+    },
+    {
+      "source": "/language/en/air-balloon-in-cappadocia-price/",
+      "destination": "/en/blog/air-balloon-in-cappadocia-price/",
+      "permanent": true
+    },
+    {
+      "source": "/language/en/air-balloon-ride-turkey/",
+      "destination": "/en/blog/air-balloon-ride-turkey/",
+      "permanent": true
+    },
+    {
+      "source": "/language/en/antalya-to-cappadocia-turkey-distance/",
+      "destination": "/en/blog/antalya-to-cappadocia-turkey-distance/",
+      "permanent": true
+    },
+    {
+      "source": "/language/en/balloon-flight-cappadocia-cost/",
+      "destination": "/en/blog/balloon-flight-cappadocia-cost/",
+      "permanent": true
+    },
+    {
+      "source": "/language/en/balloons-of-cappadocia-travel-agency/",
+      "destination": "/en/blog/balloons-of-cappadocia-travel-agency/",
+      "permanent": true
+    },
+    {
+      "source": "/language/en/best-balloon-flights-in-cappadocia/",
+      "destination": "/en/blog/best-balloon-flights-in-cappadocia/",
+      "permanent": true
+    },
+    {
+      "source": "/language/en/best-cappadocia-day-tour-from-turkey/",
+      "destination": "/en/blog/best-cappadocia-day-tour-from-turkey/",
+      "permanent": true
+    },
+    {
+      "source": "/language/en/best-cappadocia-green-tour/",
+      "destination": "/en/blog/best-cappadocia-green-tour/",
+      "permanent": true
+    },
+    {
+      "source": "/language/en/best-hot-air-balloons-cappadocia/",
+      "destination": "/en/blog/best-hot-air-balloons-cappadocia/",
+      "permanent": true
+    },
+    {
+      "source": "/language/en/cappadocia-turkey-holidays/",
+      "destination": "/en/blog/cappadocia-turkey-holidays/",
+      "permanent": true
+    },
+    {
+      "source": "/language/en/istanbul-cappadocia-tours-turkey/",
+      "destination": "/en/blog/istanbul-cappadocia-tours-turkey/",
+      "permanent": true
+    },
+    {
+      "source": "/language/en/cappadocia-balloon-tour-price/",
+      "destination": "/en/blog/cappadocia-balloon-tour-price/",
+      "permanent": true
+    },
+    {
+      "source": "/sikca-sorulan-sorular/",
+      "destination": "/tr/faq/",
+      "permanent": true
+    },
+    {
+      "source": "/sikca-sorulan-sorular",
+      "destination": "/tr/faq/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "destination": "/en/",
+      "permanent": false
+    }
+  ]
+}

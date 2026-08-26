@@ -1,0 +1,102 @@
+---
+import FloatingAssistant from './FloatingAssistant.astro';
+const { lang = 'en', active = '' } = Astro.props;
+const copy = {
+  en: { balloon:'Balloon Tours', cappadocia:'Cappadocia Tours', activities:'Activities', private:'Private Tours', transfers:'Transfers', flight:'Flight Status' },
+  tr: { balloon:'Balon Turları', cappadocia:'Kapadokya Turları', activities:'Aktiviteler', private:'Özel Turlar', transfers:'Transferler', flight:'Uçuş Durumu' },
+  es: { balloon:'Tours en Globo', cappadocia:'Tours por Capadocia', activities:'Actividades', private:'Tours Privados', transfers:'Traslados', flight:'Estado de Vuelos' },
+};
+const c = copy[lang] || copy.en;
+const flag = lang === 'tr' ? '🇹🇷' : lang === 'es' ? '🇪🇸' : '🇬🇧';
+const code = lang.toUpperCase();
+const routeFor = (targetLang) => active === 'flight'
+  ? `/${targetLang}/flight-status/`
+  : active === 'balloon'
+    ? `/${targetLang}/balloon-tours/`
+    : active === 'cappadocia'
+      ? `/${targetLang}/cappadocia-tours/`
+      : active === 'private'
+        ? `/${targetLang}/private-tours/`
+        : active === 'transfers'
+          ? `/${targetLang}/transfers/`
+          : active === 'activities'
+            ? `/${targetLang}/activities/`
+            : `/${targetLang}/`;
+---
+<header class="site-header uh-header"><div class="header-container">
+  <div class="logo"><a href={`/${lang}/`}><img src="/images/logo/tatildokya-travels.webp" alt="Tatildokya Travels" loading="lazy" width="600" height="200" /></a><a class="insta" href="https://www.instagram.com/tatildokyatravel/" target="_blank" rel="noopener"><img src="/images/icons/instagram-logo.webp" alt="" loading="lazy" width="24" height="24"/><span>@tatildokyatravel</span></a></div>
+  <nav class="uh-nav">
+    <a class={active==='balloon'?'active':''} href={`/${lang}/balloon-tours/`}>{c.balloon}</a>
+    <a class={active==='cappadocia'?'active':''} href={`/${lang}/cappadocia-tours/`}>{c.cappadocia}</a>
+    <a class={active==='activities'?'active':''} href={`/${lang}/activities/`}>{c.activities}</a>
+    <a class={active==='private'?'active':''} href={`/${lang}/private-tours/`}>{c.private}</a>
+    <a class={active==='transfers'?'active':''} href={`/${lang}/transfers/`}>{c.transfers}</a>
+    <a class={active==='flight'?'active':''} href={`/${lang}/flight-status/`}>{c.flight}</a>
+  </nav>
+  <div class="head-right"><div class="lang"><button type="button" id="langBtn">{flag} {code} ▾</button><div><a href={routeFor('en')}>🇬🇧 English</a><a href={routeFor('tr')}>🇹🇷 Türkçe</a><a href={routeFor('es')}>🇪🇸 Español</a></div></div><a class="wa-head" href="https://wa.me/905333925450" target="_blank" rel="noopener"><img src="/images/icons/whatsapp-logo.webp" alt="" loading="lazy" width="24" height="24"/>WhatsApp</a><button type="button" class="menu-burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+</div>
+<nav class="uh-mobile-nav">
+  <a class={active==='balloon'?'active':''} href={`/${lang}/balloon-tours/`}>{c.balloon}</a>
+  <a class={active==='cappadocia'?'active':''} href={`/${lang}/cappadocia-tours/`}>{c.cappadocia}</a>
+  <a class={active==='activities'?'active':''} href={`/${lang}/activities/`}>{c.activities}</a>
+  <a class={active==='private'?'active':''} href={`/${lang}/private-tours/`}>{c.private}</a>
+  <a class={active==='transfers'?'active':''} href={`/${lang}/transfers/`}>{c.transfers}</a>
+  <a class={active==='flight'?'active':''} href={`/${lang}/flight-status/`}>{c.flight}</a>
+</nav>
+</header>
+<FloatingAssistant lang={lang} />
+<script is:inline>
+  document.querySelectorAll('.uh-header .lang').forEach((wrap) => {
+    const btn = wrap.querySelector('button');
+    const menu = wrap.querySelector('div:last-child');
+    btn?.addEventListener('click', (e) => { e.stopPropagation(); wrap.classList.toggle('open'); });
+    document.addEventListener('click', () => wrap.classList.remove('open'));
+  });
+  const shBurger = document.querySelector('.uh-header .menu-burger');
+  const shMobileNav = document.querySelector('.uh-mobile-nav');
+  shBurger?.addEventListener('click', () => {
+    const isOpen = shMobileNav?.classList.toggle('open');
+    shBurger.classList.toggle('open', !!isOpen);
+    shBurger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  shMobileNav?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      shMobileNav.classList.remove('open');
+      shBurger?.classList.remove('open');
+      shBurger?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+<style is:global>
+  .uh-header{position:sticky;top:0;z-index:1200;background:#fff;border-bottom:1px solid #e6edf4}
+  .uh-header .header-container{max-width:1320px;height:88px;margin:auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+  .uh-header .logo,.uh-header .head-right,.uh-header .insta,.uh-header .wa-head{display:flex;align-items:center}
+  .uh-header .logo>a:first-child img{width:auto!important;height:70px!important;max-width:145px!important;object-fit:contain!important;display:block}
+  .uh-header .insta{gap:6px;margin-left:12px;padding:7px 10px;border:1px solid #e4eaf1;border-radius:99px;text-decoration:none;color:#30445d;font-size:10px;font-weight:700}
+  .uh-header .insta img,.uh-header .wa-head img{width:20px;height:20px;object-fit:contain}
+  .uh-header nav.uh-nav{display:flex;gap:20px}
+  .uh-header nav.uh-nav a{font-size:12px;font-weight:800;color:#0a1526;text-decoration:none}
+  .uh-header nav.uh-nav a.active{color:#b88600}
+  .uh-header .head-right{gap:12px}
+  .uh-header .wa-head{gap:6px;color:#0a1526;text-decoration:none;font-weight:800;font-size:12px}
+  .uh-header .lang{position:relative}
+  .uh-header .lang button{border:1px solid #cbd5e1;background:#f8fafc;border-radius:99px;padding:7px 12px;font-weight:800;font-size:12px;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+  .uh-header .lang>div{display:none;position:absolute;right:0;top:42px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:6px;min-width:150px;box-shadow:0 14px 30px #0002}
+  .uh-header .lang.open>div{display:grid}
+  .uh-header .lang>div a{padding:8px;text-decoration:none;color:#071d3b;border-radius:8px}
+  .uh-header .lang>div a:hover{background:#f1f5f9}
+  .uh-header .menu-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;border:1px solid #cbd5e1;background:#f8fafc;border-radius:10px;cursor:pointer;padding:0}
+  .uh-header .menu-burger span{display:block;width:18px;height:2px;margin:0 auto;background:#0a1526;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+  .uh-header .menu-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .uh-header .menu-burger.open span:nth-child(2){opacity:0}
+  .uh-header .menu-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .uh-mobile-nav{display:none;flex-direction:column;background:#fff;border-top:1px solid #e6edf4;box-shadow:0 14px 30px rgba(15,23,42,.08)}
+  .uh-mobile-nav.open{display:flex}
+  .uh-mobile-nav a{text-decoration:none;color:#0a1526;font-size:14px;font-weight:800;padding:15px 18px;border-bottom:1px solid #eef2f7}
+  .uh-mobile-nav a:last-child{border-bottom:0}
+  .uh-mobile-nav a.active{color:#b88600}
+  @media(min-width:1001px){.uh-mobile-nav{display:none!important}}
+  @media(max-width:1000px){.uh-header nav.uh-nav{display:none}.uh-header .menu-burger{display:flex}}
+  @media(max-width:600px){.uh-header .header-container{height:76px}.uh-header .logo>a:first-child img{height:60px!important;max-width:125px!important}.uh-header .insta{margin-left:6px;padding:6px 9px;gap:5px}.uh-header .insta span{font-size:9px}.uh-header .lang button{padding:6px 9px;font-size:11px}.uh-header .wa-head{font-size:0}}
+  @media(max-width:420px){.uh-header .insta span{display:none}}
+</style>
