@@ -280,7 +280,7 @@ const c = copy[lang] || copy.en;
     const panels = wrap.querySelectorAll('.bw-panel');
     const steps = wrap.querySelectorAll('.bw-step');
 
-    function goToStep(n) {
+    function goToStep(n, skipScroll) {
       currentStep = n;
       panels.forEach((p) => p.classList.toggle('is-active', Number(p.dataset.panel) === n));
       steps.forEach((s) => {
@@ -288,8 +288,15 @@ const c = copy[lang] || copy.en;
         s.classList.toggle('is-active', sn === n);
         s.classList.toggle('is-done', sn < n);
       });
-      wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (!skipScroll) wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
       if (n === 4) fillSummary();
+    }
+
+    // Booking widget'ından (tarih+kişi zaten seçilmiş) geliniyorsa doğrudan
+    // ilgili adımdan başla — tekrar aynı bilgileri sormaya gerek yok.
+    const requestedStep = parseInt(params.get('step'), 10);
+    if (requestedStep >= 2 && requestedStep <= 4 && tourName && dateInput.value) {
+      goToStep(requestedStep, true);
     }
 
     wrap.querySelectorAll('[data-next]').forEach((btn) => {
