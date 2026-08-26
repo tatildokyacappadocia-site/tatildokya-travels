@@ -499,9 +499,9 @@ const galleryPhotoWord = 'fotos';
 
 
 <style is:global>
-.tbc-main-photo,.tbc-side-photo-item{border:0;padding:0;cursor:zoom-in}.tbc-gallery-modal{position:fixed;inset:0;background:rgba(3,12,25,.92);z-index:99999;display:none;align-items:center;justify-content:center;padding:70px 80px}.tbc-gallery-modal.is-open{display:flex}.tbc-gallery-modal>img{max-width:min(1180px,88vw);max-height:82vh;object-fit:contain;border-radius:16px;box-shadow:0 20px 70px #0008}.tbc-gallery-close,.tbc-gallery-prev,.tbc-gallery-next{position:absolute;border:0;background:#fff;color:#071d3b;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px #0004}.tbc-gallery-close{right:26px;top:22px;width:44px;height:44px;border-radius:50%;font-size:28px}.tbc-gallery-prev,.tbc-gallery-next{top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;font-size:30px}.tbc-gallery-prev{left:24px}.tbc-gallery-next{right:24px}.tbc-gallery-count{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:#fff;font-weight:800;font-size:13px;background:#0008;padding:7px 12px;border-radius:99px}@media(max-width:600px){.tbc-gallery-modal{padding:65px 14px}.tbc-gallery-prev{left:8px}.tbc-gallery-next{right:8px}}
+.tbc-main-photo,.tbc-side-photo-item{border:0;padding:0;cursor:zoom-in}.tbc-gallery-modal{position:fixed;inset:0;background:rgba(3,13,25,.92);z-index:99999;display:none;align-items:center;justify-content:center;padding:70px 80px}.tbc-gallery-modal.is-open{display:flex}.tbc-gallery-modal>img{max-width:min(1180px,88vw);max-height:82vh;object-fit:contain;border-radius:16px;box-shadow:0 20px 70px #0008}.tbc-gallery-close,.tbc-gallery-prev,.tbc-gallery-next{position:absolute;border:0;background:#fff;color:#071e3b;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px #0004}.tbc-gallery-close{right:26px;top:22px;width:44px;height:44px;border-radius:50%;font-size:28px}.tbc-gallery-prev,.tbc-gallery-next{top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;font-size:30px}.tbc-gallery-prev{left:24px}.tbc-gallery-next{right:24px}.tbc-gallery-count{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:#fff;font-weight:800;font-size:13px;background:#0008;padding:7px 12px;border-radius:99px}@media(max-width:600px){.tbc-gallery-modal{padding:65px 14px}.tbc-gallery-prev{left:8px}.tbc-gallery-next{right:8px}}
 
-#tbc-main-old-price{margin-right:8px;color:#8b95a5;font-size:15px;font-weight:700;text-decoration:line-through;vertical-align:baseline}
+#tbc-main-old-price{margin-right:8px;color:#8b97a5;font-size:15px;font-weight:700;text-decoration:line-through;vertical-align:baseline}
 </style>
 
 <script define:vars={{ galleryImages }}>
@@ -520,7 +520,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 18px rgba(10,21,38,.035);
+    box-shadow: 0 4px 18px rgba(10,23,38,.035);
     backdrop-filter: blur(10px);
   }
 
@@ -574,7 +574,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
     font-weight: 700;
     white-space: nowrap;
     line-height: 1;
-    box-shadow: 0 3px 10px rgba(10,21,38,.035);
+    box-shadow: 0 3px 10px rgba(10,23,38,.035);
   }
 
   .header-instagram::before {
@@ -608,7 +608,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   .main-nav a {
     position: relative;
     text-decoration: none;
-    color: #0a1526;
+    color: #0a1726;
     font-weight: 700;
     font-size: 13px;
     white-space: nowrap;
@@ -623,7 +623,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
     bottom: 25px;
     height: 2px;
     border-radius: 99px;
-    background: #ffd000;
+    background: #1375ec;
     transform: scaleX(0);
     transform-origin: center;
     transition: transform .2s ease;
@@ -649,7 +649,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
     font-weight: 700;
     font-size: 12px;
     cursor: pointer;
-    color: #0a1526;
+    color: #0a1726;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -675,17 +675,17 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
     align-items: center;
     gap: 8px;
     padding: 8px 12px;
-    color: #0a1526;
+    color: #0a1726;
     text-decoration: none;
     font-size: 12.5px;
     font-weight: 600;
     border-radius: 8px;
   }
-  .lang-item:hover, .lang-item.active { background: #f1f5f9; color: #d4a900; }
+  .lang-item:hover, .lang-item.active { background: #f1f5f9; color: #1061c4; }
 
   .whatsapp-btn {
     background: transparent;
-    color: #0a1526;
+    color: #0a1726;
     padding: 7px 4px;
     text-decoration: none;
     font-weight: 800;
@@ -712,7 +712,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
     display: block;
     width: 100%;
     height: 3px;
-    background: #0a1526;
+    background: #0a1726;
     border-radius: 3px;
   }
 
@@ -784,130 +784,130 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   }
 
   .tbc-tour-page * { box-sizing: border-box; }
-  body { margin: 0; font-family: 'Plus Jakarta Sans', Arial, sans-serif; background: #0f172a; color: #f8fafc; }
+  body { margin: 0; font-family: 'Plus Jakarta Sans', Arial, sans-serif; background: #0f1b2a; color: #f8fafc; }
   .tbc-site-header { width: 100%; background: #ffffff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
   .tbc-header-container { max-width: 1320px; margin: 0 auto; padding: 0 20px; height: 95px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
   .tbc-logo-big { height: 75px; width: auto; display: block; transition: transform 0.3s; }
   .tbc-main-nav ul { display: flex; list-style: none; gap: 24px; margin: 0; padding: 0; }
-  .tbc-main-nav a { text-decoration: none; color: #0f172a; font-weight: 700; font-size: 14px; transition: color 0.2s; }
-  .tbc-main-nav a:hover { color: #eab308; }
+  .tbc-main-nav a { text-decoration: none; color: #0f1b2a; font-weight: 700; font-size: 14px; transition: color 0.2s; }
+  .tbc-main-nav a:hover { color: #146ad4; }
   .tbc-header-right { display: flex; align-items: center; gap: 12px; }
-  .tbc-top-lang { background: #f1f5f9; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 30px; font-weight: 700; font-size: 13px; cursor: pointer; color: #0f172a; display: flex; align-items: center; gap: 6px; }
+  .tbc-top-lang { background: #f1f5f9; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 30px; font-weight: 700; font-size: 13px; cursor: pointer; color: #0f1b2a; display: flex; align-items: center; gap: 6px; }
   .tbc-top-whatsapp { background: #22c55e; color: #fff; padding: 9px 18px; border-radius: 30px; font-weight: 700; font-size: 13px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: background 0.2s; }
   .tbc-top-whatsapp:hover { background: #16a34a; }
-  .tbc-tour-page { width: 100%; background: #0f172a; padding: 20px 16px 70px; }
+  .tbc-tour-page { width: 100%; background: #0f1b2a; padding: 20px 16px 70px; }
   .tbc-tour-container { max-width: 1240px; margin: 0 auto; }
-  .tbc-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #94a3b8; margin-bottom: 20px; font-weight: 600; }
+  .tbc-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #94a4b8; margin-bottom: 20px; font-weight: 600; }
   .tbc-breadcrumb a { color: #f8fafc; text-decoration: none; transition: color 0.2s; }
-  .tbc-breadcrumb a:hover { color: #eab308; }
-  .tbc-breadcrumb span { color: #eab308; }
-  .tbc-tour-hero { position: relative; overflow: hidden; border-radius: 24px; padding: 40px 36px; margin-bottom: 24px; background: linear-gradient(135deg, rgba(15,23,42,.95), rgba(30,41,59,.9)); box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4); color: #fff; border: 1px solid #334155; }
-  .tbc-tour-kicker { display: inline-flex; align-items: center; min-height: 30px; padding: 0 14px; border-radius: 999px; background: #eab308; color: #0f172a; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px; }
+  .tbc-breadcrumb a:hover { color: #146ad4; }
+  .tbc-breadcrumb span { color: #146ad4; }
+  .tbc-tour-hero { position: relative; overflow: hidden; border-radius: 24px; padding: 40px 36px; margin-bottom: 24px; background: linear-gradient(135deg, rgba(15,27,42,.95), rgba(30,43,59,.9)); box-shadow: 0 20px 48px rgba(0,0,0,0.4); color: #fff; border: 1px solid #334255; }
+  .tbc-tour-kicker { display: inline-flex; align-items: center; min-height: 30px; padding: 0 14px; border-radius: 999px; background: #146ad4; color: #0f1b2a; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px; }
   .tbc-tour-title { margin: 0 0 12px; font-size: 38px; line-height: 1.15; font-weight: 800; letter-spacing: -.02em; color: #fff; }
   .tbc-tour-desc { margin: 0 0 24px; max-width: 960px; font-size: 15px; line-height: 1.8; color: #cbd5e1; }
-  .tbc-hero-badges-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
-  .tbc-badge-item { display: inline-flex; align-items: center; gap: 8px; background: #1e293b; border: 1px solid #334155; padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #f8fafc; }
-  .tbc-stars { color: #eab308; font-size: 14px; letter-spacing: 1px; }
+  .tbc-hero-badges-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .tbc-badge-item { display: inline-flex; align-items: center; gap: 8px; background: #1e2b3b; border: 1px solid #334255; padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #f8fafc; }
+  .tbc-stars { color: #146ad4; font-size: 14px; letter-spacing: 1px; }
   .tbc-badge-val { color: #f8fafc; font-weight: 800; }
-  .tbc-badge-sep { color: #475569; }
-  .tbc-badge-link { color: #38bdf8; cursor: pointer; }
+  .tbc-badge-sep { color: #475669; }
+  .tbc-badge-link { color: #408ff0; cursor: pointer; }
   .tbc-badge-icon { font-size: 15px; }
   .tbc-badge-wa { background: #22c55e !important; border-color: #22c55e !important; color: #ffffff !important; text-decoration: none; }
   .tbc-badge-wa strong { font-weight: 800; }
-  .tbc-photo-grid-wrapper { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 30px; border-radius: 24px; overflow: hidden; background: #1e293b; border: 1px solid #334155; padding: 12px; box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4); }
-  .tbc-main-photo { position: relative; border-radius: 16px; overflow: hidden; height: 380px; background: #0f172a; }
+  .tbc-photo-grid-wrapper { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 30px; border-radius: 24px; overflow: hidden; background: #1e2b3b; border: 1px solid #334255; padding: 12px; box-shadow: 0 20px 48px rgba(0,0,0,0.4); }
+  .tbc-main-photo { position: relative; border-radius: 16px; overflow: hidden; height: 380px; background: #0f1b2a; }
   .tbc-main-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
   .tbc-main-photo:hover img { transform: scale(1.02); }
-  .tbc-photo-badge { position: absolute; bottom: 16px; left: 16px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); color: #f8fafc; padding: 8px 16px; border-radius: 12px; font-size: 13px; font-weight: 700; border: 1px solid rgba(255, 255, 255, 0.15); }
+  .tbc-photo-badge { position: absolute; bottom: 16px; left: 16px; background: rgba(15,27,42,0.85); backdrop-filter: blur(8px); color: #f8fafc; padding: 8px 16px; border-radius: 12px; font-size: 13px; font-weight: 700; border: 1px solid rgba(255,255,255,0.15); }
   .tbc-side-photos { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); gap: 10px; height: 380px; }
-  .tbc-side-photo-item { border-radius: 12px; overflow: hidden; background: #0f172a; }
+  .tbc-side-photo-item { border-radius: 12px; overflow: hidden; background: #0f1b2a; }
   .tbc-side-photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
   .tbc-side-photo-item:hover img { transform: scale(1.04); }
   .tbc-tour-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; align-items: start; }
   .tbc-tour-main, .tbc-tour-side { min-width: 0; }
   .tbc-tour-side { display: flex; flex-direction: column; gap: 18px; }
-  .tbc-tour-card { background: #1e293b; border: 1px solid #334155; border-radius: 28px; box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4); color: #f8fafc; }
+  .tbc-tour-card { background: #1e2b3b; border: 1px solid #334255; border-radius: 28px; box-shadow: 0 20px 48px rgba(0,0,0,0.4); color: #f8fafc; }
   .tbc-tour-main-card { padding: 32px; margin-bottom: 24px; }
-  .tbc-tour-section { padding: 0 0 24px; margin: 0 0 24px; border-bottom: 1px solid #334155; }
+  .tbc-tour-section { padding: 0 0 24px; margin: 0 0 24px; border-bottom: 1px solid #334255; }
   .tbc-tour-section:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
   .tbc-tour-section h2 { margin: 0 0 14px; font-size: 26px; line-height: 1.18; color: #f8fafc; font-weight: 800; letter-spacing: -.02em; }
-  .tbc-tour-section p { margin: 0 0 14px; font-size: 15px; line-height: 1.95; color: #94a3b8; }
+  .tbc-tour-section p { margin: 0 0 14px; font-size: 15px; line-height: 1.95; color: #94a4b8; }
   .tbc-tour-section p:last-child { margin-bottom: 0; }
   .tbc-tour-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; margin-top: 16px; }
   .tbc-tour-list-item { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; line-height: 1.8; color: #cbd5e1; }
-  .tbc-tour-check { width: 20px; height: 20px; min-width: 20px; border-radius: 50%; margin-top: 3px; background: rgba(34, 197, 94, 0.15); color: #22c55e; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
+  .tbc-tour-check { width: 20px; height: 20px; min-width: 20px; border-radius: 50%; margin-top: 3px; background: rgba(34,197,94,0.15); color: #22c55e; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
   .tbc-reviews-card { padding: 32px; }
-  .tbc-reviews-main-title { margin: 0 0 24px; font-size: 24px; font-weight: 800; color: #f8fafc; border-bottom: 1px solid #334155; padding-bottom: 16px; }
-  .tbc-review-item { padding: 20px 0; border-bottom: 1px solid #334155; }
+  .tbc-reviews-main-title { margin: 0 0 24px; font-size: 24px; font-weight: 800; color: #f8fafc; border-bottom: 1px solid #334255; padding-bottom: 16px; }
+  .tbc-review-item { padding: 20px 0; border-bottom: 1px solid #334255; }
   .tbc-review-item:last-child { border-bottom: none; }
   .tbc-review-top { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px; position: relative; }
-  .tbc-review-user-avatar { width: 44px; height: 44px; border-radius: 50%; background: #3b82f6; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
-  .tbc-review-stars { color: #eab308; font-size: 13px; letter-spacing: 1px; margin-bottom: 3px; }
+  .tbc-review-user-avatar { width: 44px; height: 44px; border-radius: 50%; background: #4190f0; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+  .tbc-review-stars { color: #146ad4; font-size: 13px; letter-spacing: 1px; margin-bottom: 3px; }
   .tbc-review-name { margin: 0; font-size: 16px; font-weight: 800; color: #f8fafc; }
-  .tbc-review-tour-type { font-size: 12px; color: #94a3b8; font-weight: 600; }
-  .tbc-review-date { position: absolute; right: 0; top: 0; font-size: 12px; color: #94a3b8; font-weight: 600; }
+  .tbc-review-tour-type { font-size: 12px; color: #94a4b8; font-weight: 600; }
+  .tbc-review-date { position: absolute; right: 0; top: 0; font-size: 12px; color: #94a4b8; font-weight: 600; }
   .tbc-review-text { margin: 0; font-size: 14px; line-height: 1.8; color: #cbd5e1; }
-  .tbc-load-more-wrap { margin-top: 24px; text-align: center; padding-top: 16px; border-top: 1px solid #334155; }
-  .tbc-load-more-btn { background: #0f172a; border: 1px solid #eab308; color: #eab308; padding: 12px 28px; border-radius: 999px; font-weight: 800; font-size: 14px; cursor: pointer; transition: all 0.2s ease; }
-  .tbc-load-more-btn:hover { background: #eab308; color: #0f172a; }
+  .tbc-load-more-wrap { margin-top: 24px; text-align: center; padding-top: 16px; border-top: 1px solid #334255; }
+  .tbc-load-more-btn { background: #0f1b2a; border: 1px solid #146ad4; color: #146ad4; padding: 12px 28px; border-radius: 999px; font-weight: 800; font-size: 14px; cursor: pointer; transition: all 0.2s ease; }
+  .tbc-load-more-btn:hover { background: #146ad4; color: #0f1b2a; }
   .tbc-tour-side-card { padding: 22px; }
-  .tbc-tour-price-top { padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px solid #334155; }
-  .tbc-tour-price-label { display: block; margin-bottom: 6px; font-size: 13px; color: #94a3b8; font-weight: 700; }
-  .tbc-tour-price-value { display: flex; align-items: flex-end; gap: 8px; color: #eab308; }
+  .tbc-tour-price-top { padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px solid #334255; }
+  .tbc-tour-price-label { display: block; margin-bottom: 6px; font-size: 13px; color: #94a4b8; font-weight: 700; }
+  .tbc-tour-price-value { display: flex; align-items: flex-end; gap: 8px; color: #146ad4; }
   .tbc-tour-price-value strong { font-size: 40px; line-height: 1; font-weight: 900; }
-  .tbc-tour-price-value span { font-size: 15px; font-weight: 700; color: #94a3b8; padding-bottom: 4px; }
+  .tbc-tour-price-value span { font-size: 15px; font-weight: 700; color: #94a4b8; padding-bottom: 4px; }
   .tbc-tour-badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-  .tbc-tour-badge { display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border-radius: 999px; background: #0f172a; border: 1px solid #334155; color: #eab308; font-size: 12px; font-weight: 800; }
+  .tbc-tour-badge { display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border-radius: 999px; background: #0f1b2a; border: 1px solid #334255; color: #146ad4; font-size: 12px; font-weight: 800; }
   .tbc-tour-contact-box { margin-top: 0; padding-top: 0; border-top: 0; display: grid; gap: 10px; }
   .tbc-tour-contact-link, .tbc-tour-whatsapp { display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; border-radius: 999px; text-decoration: none; font-size: 14px; font-weight: 800; }
-  .tbc-tour-contact-link { background: #0f172a; border: 1px solid #334155; color: #f8fafc; }
+  .tbc-tour-contact-link { background: #0f1b2a; border: 1px solid #334255; color: #f8fafc; }
   .tbc-tour-whatsapp { background: #22c55e; color: #fff; }
   .tbc-tour-side-list { margin-top: 18px; display: grid; gap: 10px; }
   .tbc-tour-side-list div { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.75; color: #cbd5e1; }
-  .tbc-tour-side-list span { color: #eab308; font-weight: 900; }
+  .tbc-tour-side-list span { color: #146ad4; font-weight: 900; }
   .tbc-booking-card { padding: 22px; }
   .tbc-booking-head { margin-bottom: 16px; }
   .tbc-booking-head h3 { margin: 0 0 8px; font-size: 20px; line-height: 1.2; color: #f8fafc; font-weight: 800; }
-  .tbc-booking-head p { margin: 0; font-size: 14px; line-height: 1.75; color: #94a3b8; }
+  .tbc-booking-head p { margin: 0; font-size: 14px; line-height: 1.75; color: #94a4b8; }
   .tbc-booking-form { display: grid; grid-template-columns: 1fr; gap: 14px; }
   .tbc-booking-group { display: flex; flex-direction: column; }
   .tbc-booking-group-full { grid-column: 1 / -1; }
   .tbc-booking-group label { margin-bottom: 7px; font-size: 13px; font-weight: 700; color: #cbd5e1; }
-  .tbc-booking-group input, .tbc-booking-group select, .tbc-booking-group textarea { width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid #334155; border-radius: 16px; background: #0f172a; font-size: 14px; color: #f8fafc; outline: none; transition: .2s ease; }
+  .tbc-booking-group input, .tbc-booking-group select, .tbc-booking-group textarea { width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid #334255; border-radius: 16px; background: #0f1b2a; font-size: 14px; color: #f8fafc; outline: none; transition: .2s ease; }
   .tbc-booking-group textarea { min-height: 110px; resize: vertical; }
-  .tbc-booking-group input:focus, .tbc-booking-group select:focus, .tbc-booking-group textarea:focus { border-color: #eab308; box-shadow: 0 0 0 4px rgba(234, 179, 8, 0.15); }
-  .tbc-booking-submit { width: 100%; min-height: 50px; border: 0; border-radius: 999px; background: #eab308; color: #0f172a; font-size: 14px; font-weight: 800; cursor: pointer; transition: .2s ease; }
-  .tbc-booking-submit:hover { background: #ca8a04; color: #fff; }
+  .tbc-booking-group input:focus, .tbc-booking-group select:focus, .tbc-booking-group textarea:focus { border-color: #146ad4; box-shadow: 0 0 0 4px rgba(20,106,212,0.15); }
+  .tbc-booking-submit { width: 100%; min-height: 50px; border: 0; border-radius: 999px; background: #146ad4; color: #0f1b2a; font-size: 14px; font-weight: 800; cursor: pointer; transition: .2s ease; }
+  .tbc-booking-submit:hover { background: #0f5ebf; color: #fff; }
   .tbc-phone-group .iti { width: 100%; display: block; }
-  .tbc-phone-group .iti__tel-input { width: 100%; min-height: 48px; padding: 12px 14px 12px 92px; border: 1px solid #334155; border-radius: 16px; background: #0f172a; font-size: 14px; color: #f8fafc; outline: none; }
-  .tbc-phone-group .iti__country-list { z-index: 99999; border-radius: 16px; background: #1e293b; color: #f8fafc; box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6); border: 1px solid #334155; }
+  .tbc-phone-group .iti__tel-input { width: 100%; min-height: 48px; padding: 12px 14px 12px 92px; border: 1px solid #334255; border-radius: 16px; background: #0f1b2a; font-size: 14px; color: #f8fafc; outline: none; }
+  .tbc-phone-group .iti__country-list { z-index: 99999; border-radius: 16px; background: #1e2b3b; color: #f8fafc; box-shadow: 0 18px 45px rgba(0,0,0,0.6); border: 1px solid #334255; }
   .tbc-phone-group .iti__country { padding: 8px 10px; }
-  .tbc-phone-group .iti__country:hover { background: #334155; }
+  .tbc-phone-group .iti__country:hover { background: #334255; }
   .tbc-date-picker-wrap { position: relative; width: 100%; }
   .tbc-date-picker-wrap input { padding-right: 48px; cursor: pointer; }
-  .tbc-calendar-icon { position: absolute; right: 10px; top: 50%; width: 34px; height: 34px; transform: translateY(-50%); border: 0; border-radius: 12px; background: #1e293b; color: #eab308; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; }
-  .tbc-custom-calendar { position: absolute; top: calc(100% + 10px); left: 0; width: 320px; max-width: calc(100vw - 40px); background: #1e293b; border: 1px solid #334155; border-radius: 20px; box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6); padding: 16px; z-index: 9999; display: none; }
+  .tbc-calendar-icon { position: absolute; right: 10px; top: 50%; width: 34px; height: 34px; transform: translateY(-50%); border: 0; border-radius: 12px; background: #1e2b3b; color: #146ad4; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+  .tbc-custom-calendar { position: absolute; top: calc(100% + 10px); left: 0; width: 320px; max-width: calc(100vw - 40px); background: #1e2b3b; border: 1px solid #334255; border-radius: 20px; box-shadow: 0 18px 45px rgba(0,0,0,0.6); padding: 16px; z-index: 9999; display: none; }
   .tbc-custom-calendar.is-open { display: block; }
   .tbc-calendar-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
   .tbc-cal-title { font-size: 15px; font-weight: 900; color: #f8fafc; text-align: center; }
-  .tbc-cal-nav { width: 36px; height: 36px; border: 0; border-radius: 12px; background: #0f172a; color: #eab308; font-size: 24px; cursor: pointer; }
-  .tbc-cal-nav:hover { background: #334155; }
+  .tbc-cal-nav { width: 36px; height: 36px; border: 0; border-radius: 12px; background: #0f1b2a; color: #146ad4; font-size: 24px; cursor: pointer; }
+  .tbc-cal-nav:hover { background: #334255; }
   .tbc-calendar-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 8px; }
-  .tbc-calendar-weekdays span { text-align: center; font-size: 11px; font-weight: 800; color: #94a3b8; }
+  .tbc-calendar-weekdays span { text-align: center; font-size: 11px; font-weight: 800; color: #94a4b8; }
   .tbc-calendar-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-  .tbc-cal-day { min-height: 46px; border: 0; border-radius: 13px; background: #0f172a; color: #f8fafc; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 2px; }
-  .tbc-cal-day:hover { background: #334155; }
+  .tbc-cal-day { min-height: 46px; border: 0; border-radius: 13px; background: #0f1b2a; color: #f8fafc; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 2px; }
+  .tbc-cal-day:hover { background: #334255; }
   .tbc-cal-day.is-empty, .tbc-cal-day.is-disabled { cursor: default; opacity: .3; background: transparent; }
-  .tbc-cal-day.is-selected { background: #eab308; color: #0f172a; }
+  .tbc-cal-day.is-selected { background: #146ad4; color: #0f1b2a; }
   .tbc-cal-day-number { display: block; font-size: 13px; font-weight: 900; line-height: 1.1; }
-  .tbc-cal-day-price { display: block; margin-top: 3px; font-size: 10px; line-height: 1; font-weight: 800; color: #eab308; }
-  .tbc-cal-day.is-selected .tbc-cal-day-price { color: #0f172a; }
-  .tbc-calendar-note { margin-top: 12px; padding-top: 12px; border-top: 1px solid #334155; font-size: 11px; line-height: 1.5; color: #94a3b8; }
-  .tbc-selected-price-box { grid-column: 1 / -1; display: none; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 15px; border-radius: 16px; background: #0f172a; border: 1px solid #334155; }
+  .tbc-cal-day-price { display: block; margin-top: 3px; font-size: 10px; line-height: 1; font-weight: 800; color: #146ad4; }
+  .tbc-cal-day.is-selected .tbc-cal-day-price { color: #0f1b2a; }
+  .tbc-calendar-note { margin-top: 12px; padding-top: 12px; border-top: 1px solid #334255; font-size: 11px; line-height: 1.5; color: #94a4b8; }
+  .tbc-selected-price-box { grid-column: 1 / -1; display: none; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 15px; border-radius: 16px; background: #0f1b2a; border: 1px solid #334255; }
   .tbc-selected-price-box.is-visible { display: flex; }
-  .tbc-selected-price-box span { font-size: 13px; font-weight: 700; color: #94a3b8; }
-  .tbc-selected-price-box strong { font-size: 18px; font-weight: 900; color: #eab308; }
-  .tbc-site-footer { width: 100%; background: #0b1120; border-top: 1px solid #1e293b; padding: 50px 20px; color: #f8fafc; }
+  .tbc-selected-price-box span { font-size: 13px; font-weight: 700; color: #94a4b8; }
+  .tbc-selected-price-box strong { font-size: 18px; font-weight: 900; color: #146ad4; }
+  .tbc-site-footer { width: 100%; background: #0b1420; border-top: 1px solid #1e2b3b; padding: 50px 20px; color: #f8fafc; }
   .tbc-footer-container { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
   .tbc-footer-col-left .tbc-footer-logo-big { max-height: 180px; width: auto; display: block; }
   .tbc-footer-col-right { display: flex; flex-direction: column; gap: 24px; max-width: 700px; }
@@ -917,11 +917,11 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   .whatsapp-icon { background: #22c55e; }
   .email-icon { background: #ff5722; }
   .phone-icon { background: #ff5722; }
-  .tbc-f-label { display: block; font-size: 12px; color: #94a3b8; font-weight: 600; }
+  .tbc-f-label { display: block; font-size: 12px; color: #94a4b8; font-weight: 600; }
   .tbc-footer-contacts a { color: #f8fafc; text-decoration: none; font-size: 15px; font-weight: 700; transition: color 0.2s; }
-  .tbc-footer-contacts a:hover { color: #eab308; }
+  .tbc-footer-contacts a:hover { color: #146ad4; }
   .tbc-footer-gallery { display: flex; gap: 12px; }
-  .tbc-footer-gallery img { width: 110px; height: 75px; object-fit: cover; border-radius: 12px; border: 1px solid #334155; }
+  .tbc-footer-gallery img { width: 110px; height: 75px; object-fit: cover; border-radius: 12px; border: 1px solid #334255; }
   @media (max-width: 1024px) {
     .tbc-tour-grid { grid-template-columns: 1fr; }
     .tbc-tour-list { grid-template-columns: 1fr; }
@@ -939,9 +939,9 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   .tbc-site-footer.tbc-footer-white {
     width:100%;
     background:#ffffff !important;
-    border-top:1px solid #e5e7eb;
+    border-top:1px solid #e5e8eb;
     padding:46px 20px;
-    color:#0a1526 !important;
+    color:#0a1726 !important;
   }
   .tbc-footer-white .tbc-footer-container {
     max-width:1240px;
@@ -995,17 +995,17 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   .tbc-footer-white .tbc-f-label {
     display:block;
     font-size:11px;
-    color:#64748b;
+    color:#64768b;
     font-weight:700;
     margin-bottom:2px;
   }
   .tbc-footer-white .tbc-footer-contacts a {
-    color:#0a1526 !important;
+    color:#0a1726 !important;
     text-decoration:none;
     font-size:14px;
     font-weight:800;
   }
-  .tbc-footer-white .tbc-footer-contacts a:hover { color:#b58d00 !important; }
+  .tbc-footer-white .tbc-footer-contacts a:hover { color:#0d4fa0 !important; }
   .tbc-footer-white .tbc-footer-gallery {
     display:flex;
     gap:12px;
@@ -1032,7 +1032,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
     border:1px solid #e2e8f0;
     border-radius:999px;
     background:#fff;
-    color:#0a1526;
+    color:#0a1726;
     text-decoration:none;
     font-size:12px;
     font-weight:700;
@@ -1057,13 +1057,13 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
     padding:7px 13px;
     font-size:11px;
     font-weight:800;
-    color:#0a1526;
+    color:#0a1726;
     text-decoration:none;
   }
   .tbc-footer-white .tbc-footer-legal-links a:hover {
-    background:#f5b700;
-    border-color:#f5b700;
-    color:#1c2230;
+    background:#146ad4;
+    border-color:#146ad4;
+    color:#1c2530;
   }
 
   @media (max-width:1024px) {
@@ -1082,22 +1082,22 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
      Logo uyumlu: kırık beyaz + lacivert + altın
   ========================================================= */
   :root {
-    --tbc-brand-navy: #0b1f3a;
-    --tbc-brand-navy-2: #17345d;
-    --tbc-brand-gold: #e3a800;
-    --tbc-brand-gold-soft: #fff5cf;
-    --tbc-brand-bg: #f7f4ec;
+    --tbc-brand-navy: #0b203a;
+    --tbc-brand-navy-2: #17365d;
+    --tbc-brand-gold: #0d4fa0;
+    --tbc-brand-gold-soft: #eaf3fd;
+    --tbc-brand-bg: #ecf1f7;
     --tbc-brand-surface: #ffffff;
-    --tbc-brand-surface-2: #fffaf0;
-    --tbc-brand-border: #e7dfcf;
-    --tbc-brand-text: #10213a;
-    --tbc-brand-muted: #64748b;
+    --tbc-brand-surface-2: #f6fafe;
+    --tbc-brand-border: #dce7f5;
+    --tbc-brand-text: #10233a;
+    --tbc-brand-muted: #64768b;
   }
 
   body {
     background:
-      radial-gradient(circle at 10% 0%, rgba(227,168,0,.08), transparent 28%),
-      radial-gradient(circle at 90% 8%, rgba(23,52,93,.05), transparent 26%),
+      radial-gradient(circle at 10% 0%, rgba(13,79,160,.08), transparent 28%),
+      radial-gradient(circle at 90% 8%, rgba(23,54,93,.05), transparent 26%),
       var(--tbc-brand-bg) !important;
     color: var(--tbc-brand-text) !important;
   }
@@ -1107,7 +1107,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   }
 
   .tbc-breadcrumb {
-    color: #64748b !important;
+    color: #64768b !important;
   }
 
   .tbc-breadcrumb a {
@@ -1120,16 +1120,16 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
 
   .tbc-tour-hero {
     background:
-      linear-gradient(135deg, rgba(255,255,255,.98), rgba(255,250,240,.96)) !important;
+      linear-gradient(135deg, rgba(255,255,255,.98), rgba(246,250,254,.96)) !important;
     border: 1px solid var(--tbc-brand-border) !important;
-    box-shadow: 0 14px 34px rgba(11,31,58,.08) !important;
+    box-shadow: 0 14px 34px rgba(11,32,58,.08) !important;
     color: var(--tbc-brand-text) !important;
   }
 
   .tbc-tour-kicker {
     background: var(--tbc-brand-gold) !important;
     color: var(--tbc-brand-navy) !important;
-    box-shadow: 0 5px 14px rgba(227,168,0,.18);
+    box-shadow: 0 5px 14px rgba(13,79,160,.18);
   }
 
   .tbc-tour-title {
@@ -1137,18 +1137,18 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   }
 
   .tbc-tour-desc {
-    color: #475569 !important;
+    color: #475669 !important;
   }
 
   .tbc-hero-badges-bar {
-    border-top: 1px solid #e6dfd1 !important;
+    border-top: 1px solid #d1dae6 !important;
   }
 
   .tbc-badge-item {
     background: #ffffff !important;
     border: 1px solid #d9e0e8 !important;
     color: var(--tbc-brand-navy) !important;
-    box-shadow: 0 4px 12px rgba(11,31,58,.04);
+    box-shadow: 0 4px 12px rgba(11,32,58,.04);
   }
 
   .tbc-badge-val {
@@ -1160,7 +1160,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   }
 
   .tbc-badge-link {
-    color: #0b76bd !important;
+    color: #0f5bb9 !important;
   }
 
   .tbc-badge-wa {
@@ -1170,8 +1170,8 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   }
 
   .tbc-badge-wa:hover {
-    background: #fffaf0 !important;
-    border-color: #d9b74d !important;
+    background: #f6fafe !important;
+    border-color: #4a91e8 !important;
   }
 
   .tbc-badge-wa img,
@@ -1184,25 +1184,25 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   .tbc-photo-grid-wrapper {
     background: #ffffff !important;
     border: 1px solid var(--tbc-brand-border) !important;
-    box-shadow: 0 14px 34px rgba(11,31,58,.08) !important;
+    box-shadow: 0 14px 34px rgba(11,32,58,.08) !important;
   }
 
   .tbc-main-photo,
   .tbc-side-photo-item {
-    background: #f2eee5 !important;
+    background: #e5ebf2 !important;
   }
 
   .tbc-photo-badge {
     background: rgba(255,255,255,.94) !important;
     color: var(--tbc-brand-navy) !important;
-    border: 1px solid rgba(11,31,58,.10) !important;
-    box-shadow: 0 6px 18px rgba(11,31,58,.12);
+    border: 1px solid rgba(11,32,58,.10) !important;
+    box-shadow: 0 6px 18px rgba(11,32,58,.12);
   }
 
   .tbc-tour-card {
     background: #ffffff !important;
     border: 1px solid var(--tbc-brand-border) !important;
-    box-shadow: 0 14px 34px rgba(11,31,58,.07) !important;
+    box-shadow: 0 14px 34px rgba(11,32,58,.07) !important;
     color: var(--tbc-brand-text) !important;
   }
 
@@ -1211,7 +1211,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   .tbc-review-item,
   .tbc-load-more-wrap,
   .tbc-tour-price-top {
-    border-color: #ebe4d8 !important;
+    border-color: #d8e1eb !important;
   }
 
   .tbc-tour-section h2,
@@ -1227,17 +1227,17 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   .tbc-review-date,
   .tbc-booking-head p,
   .tbc-tour-price-label {
-    color: #64748b !important;
+    color: #64768b !important;
   }
 
   .tbc-tour-list-item,
   .tbc-tour-side-list div {
-    color: #334155 !important;
+    color: #334255 !important;
   }
 
   .tbc-tour-check {
-    background: #fff5cf !important;
-    color: #9a7200 !important;
+    background: #eaf3fd !important;
+    color: #0d4fa0 !important;
   }
 
   .tbc-review-user-avatar {
@@ -1248,7 +1248,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   .tbc-load-more-btn {
     background: #ffffff !important;
     border-color: var(--tbc-brand-gold) !important;
-    color: #8a6500 !important;
+    color: #0b4184 !important;
   }
 
   .tbc-load-more-btn:hover {
@@ -1257,17 +1257,17 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   }
 
   .tbc-tour-price-value {
-    color: #b88600 !important;
+    color: #0e54aa !important;
   }
 
   .tbc-tour-price-value span {
-    color: #64748b !important;
+    color: #64768b !important;
   }
 
   .tbc-tour-badge {
-    background: #fffaf0 !important;
-    border-color: #eadcae !important;
-    color: #8a6500 !important;
+    background: #f6fafe !important;
+    border-color: #cfe3fb !important;
+    color: #0b4184 !important;
   }
 
   .tbc-tour-contact-link,
@@ -1279,12 +1279,12 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
 
   .tbc-tour-contact-link:hover,
   .tbc-tour-whatsapp:hover {
-    background: #fffaf0 !important;
-    border-color: #d9b74d !important;
+    background: #f6fafe !important;
+    border-color: #4a91e8 !important;
   }
 
   .tbc-booking-group label {
-    color: #334155 !important;
+    color: #334255 !important;
   }
 
   .tbc-booking-group input,
@@ -1298,7 +1298,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
 
   .tbc-booking-group input::placeholder,
   .tbc-booking-group textarea::placeholder {
-    color: #94a3b8 !important;
+    color: #94a4b8 !important;
   }
 
   .tbc-booking-group input:focus,
@@ -1306,7 +1306,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   .tbc-booking-group textarea:focus,
   .tbc-phone-group .iti__tel-input:focus {
     border-color: var(--tbc-brand-gold) !important;
-    box-shadow: 0 0 0 4px rgba(227,168,0,.12) !important;
+    box-shadow: 0 0 0 4px rgba(13,79,160,.12) !important;
   }
 
   .tbc-booking-submit {
@@ -1315,14 +1315,14 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   }
 
   .tbc-booking-submit:hover {
-    background: #c99600 !important;
+    background: #0f5cba !important;
     color: #ffffff !important;
   }
 
   .tbc-calendar-icon,
   .tbc-cal-nav {
-    background: #fffaf0 !important;
-    color: #9a7200 !important;
+    background: #f6fafe !important;
+    color: #0d4fa0 !important;
   }
 
   .tbc-custom-calendar,
@@ -1330,7 +1330,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
     background: #ffffff !important;
     border-color: #d9e0e8 !important;
     color: var(--tbc-brand-text) !important;
-    box-shadow: 0 18px 45px rgba(11,31,58,.16) !important;
+    box-shadow: 0 18px 45px rgba(11,32,58,.16) !important;
   }
 
   .tbc-cal-title {
@@ -1340,7 +1340,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   .tbc-calendar-weekdays span,
   .tbc-calendar-note,
   .tbc-selected-price-box span {
-    color: #64748b !important;
+    color: #64768b !important;
   }
 
   .tbc-cal-day {
@@ -1349,7 +1349,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   }
 
   .tbc-cal-day:hover {
-    background: #fff5cf !important;
+    background: #eaf3fd !important;
   }
 
   .tbc-cal-day.is-selected {
@@ -1358,17 +1358,17 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   }
 
   .tbc-selected-price-box {
-    background: #fffaf0 !important;
-    border-color: #eadcae !important;
+    background: #f6fafe !important;
+    border-color: #cfe3fb !important;
   }
 
   .tbc-selected-price-box strong {
-    color: #9a7200 !important;
+    color: #0d4fa0 !important;
   }
 
   .tbc-site-footer {
     background: #ffffff !important;
-    border-top: 1px solid #e5e7eb !important;
+    border-top: 1px solid #e5e8eb !important;
     color: var(--tbc-brand-text) !important;
   }
 
@@ -1377,7 +1377,7 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   }
 
   .tbc-f-label {
-    color: #64748b !important;
+    color: #64768b !important;
   }
 
   .tbc-footer-gallery img {
@@ -1385,10 +1385,10 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
   }
 
   /* Genel koyu blok kalıntılarını yumuşat */
-  .tbc-tour-page [style*="background: #0f172a"],
-  .tbc-tour-page [style*="background:#0f172a"],
-  .tbc-tour-page [style*="background: #1e293b"],
-  .tbc-tour-page [style*="background:#1e293b"] {
+  .tbc-tour-page [style*="background: #0f1b2a"],
+  .tbc-tour-page [style*="background:#0f1b2a"],
+  .tbc-tour-page [style*="background: #1e2b3b"],
+  .tbc-tour-page [style*="background:#1e2b3b"] {
     background: #ffffff !important;
   }
 
@@ -1416,14 +1416,14 @@ const tbcGalleryItems=galleryImages||[];const tbcGalleryModal=document.getElemen
 .tbc-cal-day-number{display:block!important;width:100%!important;font-size:12px!important;font-weight:900!important;line-height:1.1!important}
 .tbc-cal-day-price{display:block!important;width:100%!important;margin-top:3px!important;font-size:9px!important;line-height:1.1!important;font-weight:800!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
 .tbc-cal-day-stock{display:block!important;width:100%!important;margin-top:2px!important;font-size:7px!important;line-height:1.1!important;font-weight:700!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;color:#16a34a!important}
-.tbc-cal-day-stock.is-closed{color:#94a3b8!important}
+.tbc-cal-day-stock.is-closed{color:#94a4b8!important}
 .tbc-cal-day.is-disabled{opacity:.42!important;cursor:not-allowed!important}
-.tbc-cal-day.is-disabled .tbc-cal-day-price{color:#94a3b8!important}
+.tbc-cal-day.is-disabled .tbc-cal-day-price{color:#94a4b8!important}
 .tbc-calendar-message{grid-column:1/-1!important;width:100%!important;padding:18px 8px!important;text-align:center!important}
-.tbc-people-note{margin-top:6px;font-size:11px;line-height:1.4;color:#64748b}
+.tbc-people-note{margin-top:6px;font-size:11px;line-height:1.4;color:#64768b}
 .tbc-selected-price-box{flex-direction:column!important;align-items:stretch!important}
 .tbc-live-price-line{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%}
-.tbc-live-price-line+ .tbc-live-price-line{margin-top:5px;padding-top:6px;border-top:1px solid rgba(148,163,184,.25)}
+.tbc-live-price-line+ .tbc-live-price-line{margin-top:5px;padding-top:6px;border-top:1px solid rgba(148,164,184,.25)}
 .tbc-live-price-line strong{font-size:18px!important}
 @media(max-width:480px){.tbc-custom-calendar{width:min(350px,calc(100vw - 24px))!important;padding:12px!important}.tbc-calendar-weekdays,.tbc-calendar-days{gap:3px!important}.tbc-cal-day{min-height:52px!important}.tbc-cal-day-price{font-size:8px!important}.tbc-cal-day-stock{font-size:6.5px!important}}
 </style>
@@ -1644,15 +1644,15 @@ document.addEventListener("DOMContentLoaded", function () {
   background:#fff!important;
   border:1px solid #d9e0e8!important;
   border-radius:20px!important;
-  box-shadow:0 18px 45px rgba(11,31,58,.16)!important;
-  color:#071d3b!important;
+  box-shadow:0 18px 45px rgba(11,32,58,.16)!important;
+  color:#071e3b!important;
 }
 .tbc-calendar-header,.cal-head{display:flex!important;align-items:center!important;justify-content:space-between!important;margin-bottom:12px!important}
-.tbc-cal-title,.cal-head b{font-size:14px!important;font-weight:900!important;color:#071d3b!important;text-align:center!important}
-.tbc-cal-nav,.cal-head button{width:34px!important;height:34px!important;border:0!important;border-radius:10px!important;background:#fff7dd!important;color:#9b7000!important;cursor:pointer!important}
+.tbc-cal-title,.cal-head b{font-size:14px!important;font-weight:900!important;color:#071e3b!important;text-align:center!important}
+.tbc-cal-nav,.cal-head button{width:34px!important;height:34px!important;border:0!important;border-radius:10px!important;background:#e0edfc!important;color:#0c478f!important;cursor:pointer!important}
 .tbc-calendar-weekdays,.week,.tbc-calendar-days,.days{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:4px!important}
 .tbc-calendar-weekdays,.week{margin-bottom:8px!important}
-.tbc-calendar-weekdays span,.week span{text-align:center!important;font-size:9px!important;font-weight:800!important;color:#64748b!important}
+.tbc-calendar-weekdays span,.week span{text-align:center!important;font-size:9px!important;font-weight:800!important;color:#64768b!important}
 .tbc-cal-day,.day{
   min-width:0!important;
   min-height:55px!important;
@@ -1661,20 +1661,20 @@ document.addEventListener("DOMContentLoaded", function () {
   border:1px solid #dbe4ef!important;
   border-radius:9px!important;
   background:#fff!important;
-  color:#071d3b!important;
+  color:#071e3b!important;
   display:flex!important;
   flex-direction:column!important;
   align-items:center!important;
   justify-content:center!important;
   overflow:hidden!important;
 }
-.tbc-cal-day-number,.day b{font-size:11px!important;font-weight:900!important;color:#071d3b!important}
-.tbc-cal-day-price,.day span{font-size:8px!important;font-weight:900!important;color:#b77f00!important;white-space:nowrap!important}
+.tbc-cal-day-number,.day b{font-size:11px!important;font-weight:900!important;color:#071e3b!important}
+.tbc-cal-day-price,.day span{font-size:8px!important;font-weight:900!important;color:#0e54a9!important;white-space:nowrap!important}
 .tbc-cal-day-stock,.day small{display:none!important}
 .tbc-cal-day.is-disabled,.day.disabled{opacity:.38!important;background:#f2f4f7!important;cursor:not-allowed!important}
-.tbc-cal-day.is-selected,.day.selected{border:2px solid #eeb400!important;background:#fff8dd!important;color:#071d3b!important}
+.tbc-cal-day.is-selected,.day.selected{border:2px solid #126ddc!important;background:#e0edfc!important;color:#071e3b!important}
 .tbc-cal-day.is-empty,.day.empty{border-color:transparent!important;background:transparent!important}
-.tbc-calendar-note{font-size:9px!important;line-height:1.5!important;color:#64748b!important;margin-top:10px!important;padding-top:10px!important;border-top:1px solid #e2e8f0!important}
+.tbc-calendar-note{font-size:9px!important;line-height:1.5!important;color:#64768b!important;margin-top:10px!important;padding-top:10px!important;border-top:1px solid #e2e8f0!important}
 @media(max-width:480px){
   .tbc-custom-calendar,.calendar{width:min(350px,calc(100vw - 24px))!important;padding:12px!important}
   .tbc-calendar-weekdays,.week,.tbc-calendar-days,.days{gap:3px!important}
@@ -1683,30 +1683,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /* Unified header (matches StandardizedPrivateTourPage across the whole site) */
-.uh-header{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid #e6edf4}
+.uh-header{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid #e6ecf4}
 .uh-header .header-container{max-width:1320px;height:88px;margin:auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 .uh-header .logo,.uh-header .head-right,.uh-header .insta,.uh-header .wa-head{display:flex;align-items:center}
 .uh-header .logo>a:first-child img{width:auto!important;height:70px!important;max-width:145px!important;object-fit:contain!important;display:block}
 .uh-header .insta{gap:6px;margin-left:12px;padding:7px 10px;border:1px solid #e4eaf1;border-radius:99px;text-decoration:none;color:#30445d;font-size:10px;font-weight:700}
 .uh-header .insta img,.uh-header .wa-head img{width:20px;height:20px;object-fit:contain}
 .uh-header nav.uh-nav{display:flex;gap:20px}
-.uh-header nav.uh-nav a{font-size:12px;font-weight:800;color:#0a1526;text-decoration:none}
+.uh-header nav.uh-nav a{font-size:12px;font-weight:800;color:#0a1726;text-decoration:none}
 .uh-header .head-right{gap:12px}
-.uh-header .wa-head{gap:6px;color:#0a1526;text-decoration:none;font-weight:800;font-size:12px}
+.uh-header .wa-head{gap:6px;color:#0a1726;text-decoration:none;font-weight:800;font-size:12px}
 .uh-header .lang{position:relative}
 .uh-header .lang button{border:1px solid #cbd5e1;background:#f8fafc;border-radius:99px;padding:7px 12px;font-weight:800;font-size:12px;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
 .uh-header .lang>div{display:none;position:absolute;right:0;top:42px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:6px;min-width:150px;box-shadow:0 14px 30px #0002}
 .uh-header .lang.open>div{display:grid}
-.uh-header .lang>div a{padding:8px;text-decoration:none;color:#071d3b;border-radius:8px}
+.uh-header .lang>div a{padding:8px;text-decoration:none;color:#071e3b;border-radius:8px}
 .uh-header .lang>div a:hover{background:#f1f5f9}
 .uh-header .menu-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;border:1px solid #cbd5e1;background:#f8fafc;border-radius:10px;cursor:pointer;padding:0}
-.uh-header .menu-burger span{display:block;width:18px;height:2px;margin:0 auto;background:#0a1526;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+.uh-header .menu-burger span{display:block;width:18px;height:2px;margin:0 auto;background:#0a1726;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
 .uh-header .menu-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .uh-header .menu-burger.open span:nth-child(2){opacity:0}
 .uh-header .menu-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.uh-mobile-nav{display:none;flex-direction:column;background:#fff;border-top:1px solid #e6edf4;box-shadow:0 14px 30px rgba(15,23,42,.08)}
+.uh-mobile-nav{display:none;flex-direction:column;background:#fff;border-top:1px solid #e6ecf4;box-shadow:0 14px 30px rgba(15,27,42,.08)}
 .uh-mobile-nav.open{display:flex}
-.uh-mobile-nav a{text-decoration:none;color:#0a1526;font-size:14px;font-weight:800;padding:15px 18px;border-bottom:1px solid #eef2f7}
+.uh-mobile-nav a{text-decoration:none;color:#0a1726;font-size:14px;font-weight:800;padding:15px 18px;border-bottom:1px solid #eef2f7}
 .uh-mobile-nav a:last-child{border-bottom:0}
 @media(min-width:1001px){.uh-mobile-nav{display:none!important}}
 @media(max-width:1000px){.uh-header nav.uh-nav{display:none}.uh-header .menu-burger{display:flex}}

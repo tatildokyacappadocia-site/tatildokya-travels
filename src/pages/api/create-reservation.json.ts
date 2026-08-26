@@ -214,36 +214,36 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (email) {
       const customerHtml = `
-        <div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;color:#1a2a4a;">
-          <h2 style="color:#071f4e;">${esc(t.greeting)} ${esc(name)},</h2>
+        <div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;color:#1a304a;">
+          <h2 style="color:#07274e;">${esc(t.greeting)} ${esc(name)},</h2>
           <p>${esc(t.body1)}</p>
-          <p style="font-size:20px;font-weight:bold;background:#f5f7fb;padding:12px 16px;border-radius:8px;display:inline-block;">
-            ${esc(t.pnrLabel)}: <span style="color:#c9971d;">${esc(pnr || '—')}</span>
+          <p style="font-size:20px;font-weight:bold;background:#f5f8fb;padding:12px 16px;border-radius:8px;display:inline-block;">
+            ${esc(t.pnrLabel)}: <span style="color:#1d6ac9;">${esc(pnr || '—')}</span>
           </p>
           <table style="margin-top:16px;font-size:14px;">
-            <tr><td style="padding:4px 8px 4px 0;color:#5b6b8c;">${esc(t.tour)}</td><td>${esc(tourName)}</td></tr>
-            <tr><td style="padding:4px 8px 4px 0;color:#5b6b8c;">${esc(t.date)}</td><td>${esc(date)}</td></tr>
-            <tr><td style="padding:4px 8px 4px 0;color:#5b6b8c;">${esc(t.people)}</td><td>${esc(String(people))}</td></tr>
-            <tr><td style="padding:4px 8px 4px 0;color:#5b6b8c;">${esc(t.phone)}</td><td>${esc(phone)}</td></tr>
-            ${note ? `<tr><td style="padding:4px 8px 4px 0;color:#5b6b8c;">${esc(t.note)}</td><td>${esc(note)}</td></tr>` : ''}
+            <tr><td style="padding:4px 8px 4px 0;color:#5b718c;">${esc(t.tour)}</td><td>${esc(tourName)}</td></tr>
+            <tr><td style="padding:4px 8px 4px 0;color:#5b718c;">${esc(t.date)}</td><td>${esc(date)}</td></tr>
+            <tr><td style="padding:4px 8px 4px 0;color:#5b718c;">${esc(t.people)}</td><td>${esc(String(people))}</td></tr>
+            <tr><td style="padding:4px 8px 4px 0;color:#5b718c;">${esc(t.phone)}</td><td>${esc(phone)}</td></tr>
+            ${note ? `<tr><td style="padding:4px 8px 4px 0;color:#5b718c;">${esc(t.note)}</td><td>${esc(note)}</td></tr>` : ''}
           </table>
-          <p style="margin-top:20px;font-size:13px;color:#5b6b8c;">${esc(t.footer)}</p>
+          <p style="margin-top:20px;font-size:13px;color:#5b718c;">${esc(t.footer)}</p>
         </div>`;
       notifications.push(sendResendEmail(email, t.subjectCustomer, customerHtml));
     }
 
     const businessHtml = `
-      <div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;color:#1a2a4a;">
-        <h2 style="color:#071f4e;">New website reservation — ${esc(pnr || '—')}</h2>
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;color:#1a304a;">
+        <h2 style="color:#07274e;">New website reservation — ${esc(pnr || '—')}</h2>
         <table style="font-size:14px;">
-          <tr><td style="padding:4px 8px 4px 0;color:#5b6b8c;">Name</td><td>${esc(name)}</td></tr>
-          <tr><td style="padding:4px 8px 4px 0;color:#5b6b8c;">Tour</td><td>${esc(tourName)}</td></tr>
-          <tr><td style="padding:4px 8px 4px 0;color:#5b6b8c;">Date</td><td>${esc(date)}</td></tr>
-          <tr><td style="padding:4px 8px 4px 0;color:#5b6b8c;">People</td><td>${esc(String(people))}</td></tr>
-          <tr><td style="padding:4px 8px 4px 0;color:#5b6b8c;">Phone</td><td>${esc(phone)}</td></tr>
-          <tr><td style="padding:4px 8px 4px 0;color:#5b6b8c;">Email</td><td>${esc(email || '—')}</td></tr>
-          <tr><td style="padding:4px 8px 4px 0;color:#5b6b8c;">Language</td><td>${esc(lang)}</td></tr>
-          ${note ? `<tr><td style="padding:4px 8px 4px 0;color:#5b6b8c;">Note</td><td>${esc(note)}</td></tr>` : ''}
+          <tr><td style="padding:4px 8px 4px 0;color:#5b718c;">Name</td><td>${esc(name)}</td></tr>
+          <tr><td style="padding:4px 8px 4px 0;color:#5b718c;">Tour</td><td>${esc(tourName)}</td></tr>
+          <tr><td style="padding:4px 8px 4px 0;color:#5b718c;">Date</td><td>${esc(date)}</td></tr>
+          <tr><td style="padding:4px 8px 4px 0;color:#5b718c;">People</td><td>${esc(String(people))}</td></tr>
+          <tr><td style="padding:4px 8px 4px 0;color:#5b718c;">Phone</td><td>${esc(phone)}</td></tr>
+          <tr><td style="padding:4px 8px 4px 0;color:#5b718c;">Email</td><td>${esc(email || '—')}</td></tr>
+          <tr><td style="padding:4px 8px 4px 0;color:#5b718c;">Language</td><td>${esc(lang)}</td></tr>
+          ${note ? `<tr><td style="padding:4px 8px 4px 0;color:#5b718c;">Note</td><td>${esc(note)}</td></tr>` : ''}
         </table>
       </div>`;
     notifications.push(sendResendEmail(BUSINESS_EMAIL, t.subjectBusiness, businessHtml));

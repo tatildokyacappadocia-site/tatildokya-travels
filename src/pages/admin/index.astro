@@ -12,50 +12,50 @@ const title = "Tatildokya Travels — Admin";
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=11" />
   <style is:global>
     :root{
-      --navy:#0b1f3a;--blue:#17345d;--gold:#e3a800;--bg:#f4f7fb;
-      --white:#fff;--line:#dfe7ef;--muted:#64748b;--green:#159447;
-      --yellow:#d99a00;--red:#d83a3a;--gray:#8794a7;
+      --navy:#0b203a;--blue:#17365d;--gold:#0d4fa0;--bg:#f4f7fb;
+      --white:#fff;--line:#dfe6ef;--muted:#64768b;--green:#159447;
+      --yellow:#1063c9;--red:#d83a3a;--gray:#8795a7;
     }
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--navy)}
     button,input,select{font:inherit}
     .shell{min-height:100vh;display:grid;grid-template-columns:230px 1fr}
     aside{background:var(--navy);color:#fff;padding:26px 18px}
-    .brand{font-weight:900;line-height:1.2;margin-bottom:32px}.brand small{display:block;color:#e3a800;margin-top:4px}
-    .nav button{width:100%;text-align:left;border:0;background:transparent;color:#dce6f0;padding:12px 13px;border-radius:11px;font-weight:800;cursor:pointer}
-    .nav button.active,.nav button:hover{background:#17345d;color:#fff}
+    .brand{font-weight:900;line-height:1.2;margin-bottom:32px}.brand small{display:block;color:#0d4fa0;margin-top:4px}
+    .nav button{width:100%;text-align:left;border:0;background:transparent;color:#dce5f0;padding:12px 13px;border-radius:11px;font-weight:800;cursor:pointer}
+    .nav button.active,.nav button:hover{background:#17365d;color:#fff}
     main{padding:26px}
     .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px}
     .topbar h1{margin:0;font-size:28px}.userbar{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
     .btn{border:0;border-radius:11px;padding:11px 14px;font-weight:900;cursor:pointer}.btn.primary{background:var(--gold);color:var(--navy)}.btn.dark{background:var(--navy);color:#fff}.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--navy)}
-    .panel{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 28px rgba(11,31,58,.06);padding:20px;margin-bottom:18px}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 28px rgba(11,32,58,.06);padding:20px;margin-bottom:18px}
     .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.toolbar select,.toolbar input{border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff}
     .month-nav{display:flex;gap:8px;align-items:center;margin-left:auto}.month-title{min-width:180px;text-align:center;font-weight:900}
     .calendar{display:grid;grid-template-columns:repeat(7,minmax(170px,1fr));gap:12px;overflow-x:auto;padding:2px 2px 8px}
     .dow{font-size:14px;font-weight:950;color:var(--navy);text-align:center;padding:8px 4px 10px;letter-spacing:.02em}
-    .day{min-height:228px;background:linear-gradient(180deg,#0f2948 0%,#0b213c 100%);border:1px solid #264a70;border-radius:16px;padding:11px;cursor:pointer;position:relative;box-shadow:0 8px 20px rgba(11,31,58,.12);color:#fff;transition:.18s ease}
-    .day.out{opacity:.52}.day:hover{transform:translateY(-2px);border-color:#e3a800;box-shadow:0 12px 25px rgba(11,31,58,.18)}
+    .day{min-height:228px;background:linear-gradient(180deg,#0f2948 0%,#0b213c 100%);border:1px solid #264770;border-radius:16px;padding:11px;cursor:pointer;position:relative;box-shadow:0 8px 20px rgba(11,32,58,.12);color:#fff;transition:.18s ease}
+    .day.out{opacity:.52}.day:hover{transform:translateY(-2px);border-color:#0d4fa0;box-shadow:0 12px 25px rgba(11,32,58,.18)}
     .day-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:9px;margin-bottom:8px;border-bottom:1px solid rgba(255,255,255,.16)}
-    .day-number{display:grid;place-items:center;min-width:38px;height:38px;padding:0 7px;border-radius:10px;background:#fff;color:var(--navy);font-weight:950;font-size:18px;box-shadow:inset 0 0 0 1px rgba(11,31,58,.08)}
-    .day-full-date{font-size:11px;color:#dce8f5;font-weight:900;letter-spacing:.02em;text-align:right}
+    .day-number{display:grid;place-items:center;min-width:38px;height:38px;padding:0 7px;border-radius:10px;background:#fff;color:var(--navy);font-weight:950;font-size:18px;box-shadow:inset 0 0 0 1px rgba(11,32,58,.08)}
+    .day-full-date{font-size:11px;color:#dce7f5;font-weight:900;letter-spacing:.02em;text-align:right}
     .day-row{display:grid;grid-template-columns:68px 1fr;align-items:center;gap:8px;min-height:36px;padding:7px 8px;margin-top:6px;border-radius:9px;border:1px solid transparent}
-    .day-row.blue{background:#173b67;border-color:#2f5f91}.day-row.gold{background:#f5c94c;border-color:#e3a800;color:#0b1f3a}
+    .day-row.blue{background:#173b67;border-color:#2f5b91}.day-row.gold{background:#5098f1;border-color:#0d4fa0;color:#0b203a}
     .day-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:950;opacity:.88}
-    .day-row.blue .day-label{color:#cfe2f8}.day-row.gold .day-label{color:#604900}
+    .day-row.blue .day-label{color:#cfe1f8}.day-row.gold .day-label{color:#072c59}
     .day-value{font-size:14px;font-weight:950;text-align:right;overflow-wrap:anywhere;color:inherit}
     .day-price .day-value{font-size:16px}.day-status .day-value{font-size:13px}
     .status{display:inline-flex;justify-content:center;align-items:center;font-size:10px;font-weight:950;padding:6px 8px;border-radius:999px;margin:0;text-align:center;justify-self:end}
-    .available{background:#dff6e8;color:#0f7138}.low{background:#fff1b8;color:#806000}.sold_out{background:#ffdada;color:#a61f1f}.closed{background:#e8edf4;color:#536276}
-    .ask-chip{display:block;margin-top:8px;padding:7px 8px;border-radius:8px;background:#e3a800;color:#0b1f3a;font-size:10px;font-weight:950;text-align:center}
-    #askPriceBtn{border:1px solid #edc955;background:#fff8dd;color:#805f00}
+    .available{background:#dff6e8;color:#0f7138}.low{background:#bdd8fa;color:#0a3b76}.sold_out{background:#ffdada;color:#a61f1f}.closed{background:#e8edf4;color:#536376}
+    .ask-chip{display:block;margin-top:8px;padding:7px 8px;border-radius:8px;background:#0d4fa0;color:#0b203a;font-size:10px;font-weight:950;text-align:center}
+    #askPriceBtn{border:1px solid #5599ed;background:#e0edfc;color:#0a3b76}
     #askPriceBtn.on{background:var(--navy);border-color:var(--navy);color:#fff}
-    .login-wrap{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:0 15px 40px rgba(11,31,58,.08)}
+    .login-wrap{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:0 15px 40px rgba(11,32,58,.08)}
     .login-card h1{margin:0 0 6px}.login-card p{color:var(--muted);font-size:13px}.field{margin:14px 0}.field label{display:block;font-size:12px;font-weight:900;margin-bottom:6px}.field input,.field select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px}
     .hidden{display:none!important}
     dialog{width:min(520px,calc(100% - 30px));border:0;border-radius:18px;padding:0;box-shadow:0 25px 70px rgba(0,0,0,.25)}
     dialog.wide-dialog{width:min(760px,calc(100% - 30px));max-height:88vh;overflow:auto}
     .lang-tabs{display:flex;gap:8px;margin:14px 0}
-    .lang-tab{padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12px;font-weight:800;cursor:pointer;color:#43546b}
+    .lang-tab{padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12px;font-weight:800;cursor:pointer;color:#43556b}
     .lang-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
     .dynamic-list{display:grid;gap:8px;margin-top:8px}
     .dynamic-list-row{display:flex;gap:8px;align-items:center}
@@ -66,7 +66,7 @@ const title = "Tatildokya Travels — Admin";
     .btn-small{padding:7px 12px;font-size:11px}
     .dialog-body{padding:22px}.dialog-body h3{margin-top:0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-grid .full{grid-column:1/-1}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
     .products{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.product-card{border:1px solid var(--line);border-radius:13px;padding:15px}.product-card h3{font-size:14px;margin:0 0 8px}.product-card p{font-size:12px;color:var(--muted);margin:3px 0}
-    .notice{padding:10px 12px;border-radius:10px;background:#fff8dd;color:#805f00;font-size:12px;margin-bottom:14px}
+    .notice{padding:10px 12px;border-radius:10px;background:#e0edfc;color:#0a3b76;font-size:12px;margin-bottom:14px}
 
     .seo-layout{display:grid;grid-template-columns:minmax(360px,560px) 1fr;gap:18px;align-items:start}
     .seo-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
@@ -74,10 +74,10 @@ const title = "Tatildokya Travels — Admin";
     .seo-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.seo-form-grid .full{grid-column:1/-1}
     .seo-form-grid label{display:flex;justify-content:space-between;gap:8px;font-size:11px;font-weight:950;margin-bottom:6px;color:#334b68}
     .seo-form-grid input,.seo-form-grid select,.seo-form-grid textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff;color:var(--navy)}
-    .seo-form-grid textarea{min-height:92px;resize:vertical}.char-count{font-weight:800;color:#8492a6}.char-count.good{color:#138a46}.char-count.warn{color:#b77900}.char-count.bad{color:#c63737}
-    .seo-preview{border:1px solid #dfe7ef;border-radius:14px;padding:16px;background:#fbfcfe;margin-bottom:14px}.seo-preview .url{font-size:12px;color:#1f6f43}.seo-preview .title{font-size:20px;color:#1a0dab;line-height:1.25;margin:5px 0}.seo-preview .desc{font-size:13px;color:#4d5156;line-height:1.45}
-    .seo-score-wrap{display:flex;align-items:center;gap:14px;margin-bottom:14px}.seo-score{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--green) var(--score,0%),#e9eef4 0);position:relative}.seo-score:before{content:'';position:absolute;inset:8px;border-radius:50%;background:#fff}.seo-score strong{position:relative;font-size:18px}.seo-checks{display:grid;gap:6px;font-size:12px}.seo-check{display:flex;gap:7px;align-items:flex-start}.seo-check.ok{color:#14783d}.seo-check.no{color:#9c5c00}
-    .seo-list{display:grid;gap:8px;max-height:360px;overflow:auto}.seo-row{border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff;cursor:pointer}.seo-row:hover{border-color:#b9c9da}.seo-row strong{display:block;font-size:12px}.seo-row small{color:var(--muted);font-size:10px;word-break:break-all}.seo-publish-note{background:#eef6ff;border:1px solid #cfe2f7;border-radius:11px;padding:11px;font-size:12px;line-height:1.5;margin-top:12px}.seo-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}.seo-actions .btn{flex:1;min-width:150px}
+    .seo-form-grid textarea{min-height:92px;resize:vertical}.char-count{font-weight:800;color:#8493a6}.char-count.good{color:#138a46}.char-count.warn{color:#0e54a9}.char-count.bad{color:#c63737}
+    .seo-preview{border:1px solid #dfe6ef;border-radius:14px;padding:16px;background:#fbfcfe;margin-bottom:14px}.seo-preview .url{font-size:12px;color:#1f6f43}.seo-preview .title{font-size:20px;color:#0e54aa;line-height:1.25;margin:5px 0}.seo-preview .desc{font-size:13px;color:#46505d;line-height:1.45}
+    .seo-score-wrap{display:flex;align-items:center;gap:14px;margin-bottom:14px}.seo-score{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--green) var(--score,0%),#e9eef4 0);position:relative}.seo-score:before{content:'';position:absolute;inset:8px;border-radius:50%;background:#fff}.seo-score strong{position:relative;font-size:18px}.seo-checks{display:grid;gap:6px;font-size:12px}.seo-check{display:flex;gap:7px;align-items:flex-start}.seo-check.ok{color:#14783d}.seo-check.no{color:#0c4790}
+    .seo-list{display:grid;gap:8px;max-height:360px;overflow:auto}.seo-row{border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff;cursor:pointer}.seo-row:hover{border-color:#b9c8da}.seo-row strong{display:block;font-size:12px}.seo-row small{color:var(--muted);font-size:10px;word-break:break-all}.seo-publish-note{background:#eff6fe;border:1px solid #cfe1f7;border-radius:11px;padding:11px;font-size:12px;line-height:1.5;margin-top:12px}.seo-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}.seo-actions .btn{flex:1;min-width:150px}
     @media(max-width:1000px){.seo-layout,.reservation-layout{grid-template-columns:1fr}.products{grid-template-columns:1fr 1fr}}
     @media(max-width:700px){.shell{grid-template-columns:1fr}aside{padding:14px}.nav{display:flex;gap:6px;overflow:auto}.nav button{white-space:nowrap}.seo-form-grid,.reservation-form-grid{grid-template-columns:1fr}.seo-form-grid .full,.reservation-form-grid .full{grid-column:auto}.products{grid-template-columns:1fr}main{padding:14px}}
 
@@ -87,7 +87,7 @@ const title = "Tatildokya Travels — Admin";
     .reservation-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.reservation-form-grid .full{grid-column:1/-1}
     .reservation-form-grid label{display:block;font-size:11px;font-weight:950;margin-bottom:6px;color:#334b68}.reservation-form-grid input,.reservation-form-grid select,.reservation-form-grid textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff;color:var(--navy)}
     .reservation-form-grid textarea{min-height:105px;resize:vertical}.reservation-actions{display:flex;gap:8px;margin-top:14px}.reservation-actions .btn{flex:1}
-    .reservation-list{display:grid;gap:10px;max-height:680px;overflow:auto;padding-right:3px}.reservation-item{border:1px solid var(--line);border-radius:14px;padding:13px;background:#fbfcfe}.reservation-item-head{display:flex;justify-content:space-between;gap:10px;align-items:start;border-bottom:1px solid #edf1f6;padding-bottom:8px;margin-bottom:8px}.reservation-item h3{margin:0;font-size:14px}.reservation-date{font-size:11px;font-weight:900;color:#9a6900;background:#fff6d9;padding:5px 8px;border-radius:999px}.reservation-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 12px;font-size:11px;color:#43546b}.reservation-note{margin-top:8px;padding:9px;background:#eef5ff;border-radius:9px;font-size:11px;line-height:1.45}.reservation-item-actions{display:flex;justify-content:flex-end;margin-top:9px}.btn.danger{background:#fff0f0;color:#a72525;border:1px solid #f2caca}.reservation-pnr{display:inline-block;margin-left:6px;font-size:10px;font-weight:900;letter-spacing:.03em;color:#0b4aa2;background:#eaf2ff;padding:3px 8px;border-radius:999px;vertical-align:middle}.reservation-source-badge{display:inline-block;margin-left:6px;font-size:10px;font-weight:800;color:#0f8a4c;background:#e9f9ef;padding:3px 8px;border-radius:999px;vertical-align:middle}
+    .reservation-list{display:grid;gap:10px;max-height:680px;overflow:auto;padding-right:3px}.reservation-item{border:1px solid var(--line);border-radius:14px;padding:13px;background:#fbfcfe}.reservation-item-head{display:flex;justify-content:space-between;gap:10px;align-items:start;border-bottom:1px solid #edf1f6;padding-bottom:8px;margin-bottom:8px}.reservation-item h3{margin:0;font-size:14px}.reservation-date{font-size:11px;font-weight:900;color:#0c468e;background:#dceafc;padding:5px 8px;border-radius:999px}.reservation-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 12px;font-size:11px;color:#43556b}.reservation-note{margin-top:8px;padding:9px;background:#eff6fe;border-radius:9px;font-size:11px;line-height:1.45}.reservation-item-actions{display:flex;justify-content:flex-end;margin-top:9px}.btn.danger{background:#fff0f0;color:#a72525;border:1px solid #f2caca}.reservation-pnr{display:inline-block;margin-left:6px;font-size:10px;font-weight:900;letter-spacing:.03em;color:#0d4fa0;background:#ecf4fd;padding:3px 8px;border-radius:999px;vertical-align:middle}.reservation-source-badge{display:inline-block;margin-left:6px;font-size:10px;font-weight:800;color:#0f8a4c;background:#e9f9ef;padding:3px 8px;border-radius:999px;vertical-align:middle}
     @media(max-width:900px){.shell{grid-template-columns:1fr}aside{display:none}main{padding:14px}.products{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(7,minmax(155px,1fr))}.reservation-layout{grid-template-columns:1fr}}
   </style>
 </head>
@@ -112,7 +112,7 @@ const title = "Tatildokya Travels — Admin";
         <button class="active" data-tab="calendar">📅 Takvim</button>
         <button data-tab="products">🎈 Ürünler</button>
         <button data-tab="reservations">🧾 Rezervasyon Detayları</button>
-        <a href="/admin/seo-dashboard/" style="display:block;color:#dce6f0;text-decoration:none;padding:12px 13px;border-radius:11px;font-weight:800">🔎 SEO Dashboard</a>
+        <a href="/admin/seo-dashboard/" style="display:block;color:#dce5f0;text-decoration:none;padding:12px 13px;border-radius:11px;font-weight:800">🔎 SEO Dashboard</a>
         <button data-tab="seo">🔎 SEO Yönetimi</button>
       </div>
     </aside>
@@ -323,7 +323,7 @@ const title = "Tatildokya Travels — Admin";
   <dialog id="resetAllDialog">
     <div class="dialog-body">
       <h3>Tüm Gelecek Günleri Tek Fiyata Ayarla</h3>
-      <p style="color:var(--muted);font-size:12px;margin-top:-8px">Bu i&#351;lem, bug&#252;nden itibaren bu &#252;r&#252;n i&#231;in girilmi&#351; T&#220;M tarih kay&#305;tlar&#305;n&#305; (farkl&#305; deneme fiyatlar&#305; dahil) siler ve a&#351;a&#287;&#305;daki tek fiyatla, se&#231;ti&#287;in tarihe kadar yeniden olu&#351;turur. Kar&#305;&#351;&#305;k / test verisini temizlemenin en h&#305;zl&#305; yolu budur.</p>
+      <p style="color:var(--muted);font-size:12px;margin-top:-8px">Bu i&#113055;lem, bug&#252;nden itibaren bu &#252;r&#252;n i&#112033;in girilmi&#113055; T&#03101f;M tarih kay&#06274f;tlar&#06274f;n&#06274f; (farkl&#06274f; deneme fiyatlar&#06274f; dahil) siler ve a&#113055;a&#225088;&#06274f;daki tek fiyatla, se&#112033;ti&#225088;in tarihe kadar yeniden olu&#113055;turur. Kar&#06274f;&#113055;&#06274f;k / test verisini temizlemenin en h&#06274f;zl&#06274f; yolu budur.</p>
       <form id="resetAllForm">
         <div class="form-grid">
           <div><label>Fiyat (€)</label><input id="resetAllPrice" type="number" step="0.01" min="0" required /></div>
