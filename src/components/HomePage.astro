@@ -697,7 +697,7 @@ const homepageReviews = [
               <div class="tag-row" data-tag-row>
                 <span class="status-tag status-purple" data-badge1-tag style="display:none"></span>
                 <span class="discount-tag" data-discount-tag>✓ {tour.tag}</span>
-                <span class:list={["status-tag", tour.statusType === "red" ? "status-red" : "status-blue"]} data-badge2-tag style={tour.status ? "" : "display:none"}>
+                <span class:list={["status-tag", tour.statusType === "red" ? "status-red" : "status-blue", { "is-visible": !!tour.status }]} data-badge2-tag style={tour.status ? "" : "display:none"}>
                   {tour.status ? `${tour.statusIcon} ${tour.status}` : ""}
                 </span>
               </div>
@@ -1578,10 +1578,12 @@ const homepageReviews = [
         if (badge1El && badgeRow.badge1 && BADGE1_LABELS[badgeRow.badge1]) {
           badge1El.textContent = BADGE1_LABELS[badgeRow.badge1][lang] || BADGE1_LABELS[badgeRow.badge1].en;
           badge1El.style.display = '';
+          badge1El.classList.add('is-visible');
         }
         if (badge2El && badgeRow.badge2 && BADGE2_LABELS[badgeRow.badge2]) {
           badge2El.textContent = BADGE2_LABELS[badgeRow.badge2][lang] || BADGE2_LABELS[badgeRow.badge2].en;
           badge2El.style.display = '';
+          badge2El.classList.add('is-visible');
         }
         if (discountEl && badgeRow.discount_percent != null && badgeRow.discount_percent > 0) {
           const prefix = lang === 'tr' ? '✓ %' : lang === 'es' ? '✓ Hasta %' : '✓ Discount up to %';
@@ -2213,11 +2215,11 @@ const homepageReviews = [
   .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; position: relative; z-index: 1; }
   .discount-tag { font-size: 11px; font-weight: 700; color: #166534; }
   .status-tag { font-size: 10.5px; font-weight: 800; padding: 5px 10px; border-radius: 999px; }
-  .status-tag:not([style*="display:none"]):not([style*="display: none"]) {
+  .status-tag.is-visible {
     position: absolute; top: 10px; left: 10px; z-index: 6;
     background: rgba(10,24,48,.82); color: #fff; backdrop-filter: blur(2px);
   }
-  [data-badge2-tag]:not([style*="display:none"]):not([style*="display: none"]) { top: 44px; }
+  [data-badge2-tag].is-visible { top: 44px; }
   .status-red { background: rgba(185,28,28,.85) !important; } .status-blue { background: rgba(10,24,48,.82); } .status-purple { background: rgba(48,129,227,.85) !important; }
 
   .card-price-box { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
