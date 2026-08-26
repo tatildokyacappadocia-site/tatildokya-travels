@@ -27,6 +27,7 @@ const copy = {
     date: "Date",
     total: "Total",
     adultsWord: "adults",
+    adultWord: "adult",
     proceed: "Fill Reservation Form",
     soldOutBtn: "Sold Out",
     pickDateFirst: "Please select a date first.",
@@ -46,6 +47,7 @@ const copy = {
     date: "Tarih",
     total: "Toplam",
     adultsWord: "yetişkin",
+    adultWord: "yetişkin",
     proceed: "Rezervasyon Formunu Doldur",
     soldOutBtn: "Dolu",
     pickDateFirst: "Lütfen önce bir tarih seçin.",
@@ -65,6 +67,7 @@ const copy = {
     date: "Fecha",
     total: "Total",
     adultsWord: "adultos",
+    adultWord: "adulto",
     proceed: "Rellenar Formulario",
     soldOutBtn: "Agotado",
     pickDateFirst: "Por favor selecciona una fecha primero.",
@@ -146,7 +149,7 @@ const widgetId = `tbp-${Math.random().toString(36).slice(2, 8)}`;
   </div>
 </div>
 
-<script define:vars={{ widgetId, lang, pickDateFirst: c.pickDateFirst, adultsWord: c.adultsWord, soldOutBtn: c.soldOutBtn, proceedLabel: c.proceed, soldOutText: c.soldOut, selectedLabelText: c.selected, ticketPriceText: c.ticketPrice }}>
+<script define:vars={{ widgetId, lang, pickDateFirst: c.pickDateFirst, adultsWord: c.adultsWord, adultWord: c.adultWord, soldOutBtn: c.soldOutBtn, proceedLabel: c.proceed, soldOutText: c.soldOut, selectedLabelText: c.selected, ticketPriceText: c.ticketPrice }}>
   (() => {
     const root = document.getElementById(widgetId);
     if (!root) return;
@@ -265,8 +268,9 @@ const widgetId = `tbp-${Math.random().toString(36).slice(2, 8)}`;
     }
 
     function updateSelectedBox() {
-      if (!selectedDate) { selectedBox.hidden = true; return; }
+      if (!selectedDate) { selectedBox.hidden = true; selectedBox.classList.remove('is-shown'); return; }
       selectedBox.hidden = false;
+      selectedBox.classList.add('is-shown');
       const unit = getUnitPrice();
       const isSold = selectedStatus === 'sold';
       selectedBox.classList.toggle('is-sold', isSold);
@@ -279,13 +283,14 @@ const widgetId = `tbp-${Math.random().toString(36).slice(2, 8)}`;
     }
 
     function updateSummary() {
+      const wordForAdults = adults === 1 ? adultWord : adultsWord;
       const unit = getUnitPrice();
       const isSold = selectedStatus === 'sold';
       sumDate.textContent = selectedDate ? `${pad(selectedDate.d)}.${pad(selectedDate.m + 1)}.${selectedDate.y}` : '—';
-      sumGuests.textContent = `${adults} ${adultsWord}${children ? ' + ' + children : ''}`;
+      sumGuests.textContent = `${adults} ${wordForAdults}${children ? ' + ' + children : ''}`;
 
       if (isSold || unit == null || !selectedDate) {
-        sumCalc.textContent = isSold ? soldOutText : `— × ${adults} ${adultsWord}`;
+        sumCalc.textContent = isSold ? soldOutText : `— × ${adults} ${wordForAdults}`;
         sumLineTotal.textContent = isSold ? '€0.00' : '—';
         totalEl.textContent = isSold ? '€0.00' : '—';
         proceedBtn.textContent = isSold ? soldOutBtn : proceedLabel;
@@ -295,7 +300,7 @@ const widgetId = `tbp-${Math.random().toString(36).slice(2, 8)}`;
       }
 
       const total = unit * adults;
-      sumCalc.textContent = `€${unit} × ${adults} ${adultsWord}`;
+      sumCalc.textContent = `€${unit} × ${adults} ${wordForAdults}`;
       sumLineTotal.textContent = `€${total.toFixed(2)}`;
       totalEl.textContent = `€${total.toFixed(2)}`;
       proceedBtn.textContent = proceedLabel;
@@ -326,6 +331,7 @@ const widgetId = `tbp-${Math.random().toString(36).slice(2, 8)}`;
     });
 
     renderCalendar();
+    updateSelectedBox();
     updateSummary();
   })();
 </script>
@@ -350,7 +356,7 @@ const widgetId = `tbp-${Math.random().toString(36).slice(2, 8)}`;
   .tbp-day.is-selected { background: #0a1830; color: #fff; border-color: #0a1830; }
   .tbp-day.is-past { background: #f4f6f8; color: #cbd5e1; cursor: not-allowed; }
   .tbp-day.is-past .tbp-day-dot { display: none; }
-  .tbp-day-dot { width: 5px; height: 5px; border-radius: 50%; }
+  .tbp-day-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; }
 
   .tbp-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 4px; }
   .tbp-dot-green { background: #16a34a; }
@@ -360,7 +366,8 @@ const widgetId = `tbp-${Math.random().toString(36).slice(2, 8)}`;
   .tbp-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
   .tbp-legend span { display: flex; align-items: center; font-size: 10.5px; font-weight: 700; color: #5c7797; }
 
-  .tbp-selected-box { background: #eafaf0; border: 1px solid #bfe8cf; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .tbp-selected-box { display: none; background: #eafaf0; border: 1px solid #bfe8cf; border-radius: 12px; padding: 12px 14px; flex-direction: column; gap: 8px; }
+  .tbp-selected-box.is-shown { display: flex; }
   .tbp-selected-box.is-sold { background: #fdeceb; border-color: #f6c9c5; }
   .tbp-selected-row { display: flex; align-items: center; gap: 8px; font-size: 12px; }
   .tbp-selected-label { color: #3a6b4d; font-weight: 700; flex: 1; }
