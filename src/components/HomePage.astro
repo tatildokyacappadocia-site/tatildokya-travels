@@ -696,7 +696,7 @@ const homepageReviews = [
               <div class="tag-row" data-tag-row>
                 <span class="status-tag status-purple" data-badge1-tag style="display:none"></span>
                 <span class="discount-tag" data-discount-tag>✓ {tour.tag}</span>
-                <span class:list={["status-tag", tour.statusType === "red" ? "status-red" : "status-blue", { "is-visible": !!tour.status }]} data-badge2-tag style={tour.status ? "" : "display:none"}>
+                <span class={`status-tag ${tour.statusType === "red" ? "status-red" : "status-blue"}${tour.status ? " is-visible" : ""}`} data-badge2-tag style={tour.status ? "" : "display:none"}>
                   {tour.status ? `${tour.statusIcon} ${tour.status}` : ""}
                 </span>
               </div>
