@@ -276,6 +276,14 @@ const homepageReviews = [
   {"source": "google", "name": "Simay Ü", "date": "8 Dec 2024", "rating": 5, "title": "A special morning in Cappadocia", "text": "Remembered the colorful balloons at sunrise, the peaceful valley views and excellent opportunities for photography."},
   {"source": "tripadvisor", "name": "879maritaz", "date": "30 May 2026", "rating": 5, "title": "Great value for money", "text": "Highlighted responsive communication, friendly staff and a reliable shuttle service that made the experience easy."}
 ];
+
+const reviewGoogleCount = homepageReviews.filter((r) => r.source === "google").length;
+const reviewTaCount = homepageReviews.filter((r) => r.source === "tripadvisor").length;
+const reviewAvgRating = (homepageReviews.reduce((sum, r) => sum + r.rating, 0) / homepageReviews.length).toFixed(1);
+const reviewStarBreakdown = [5, 4, 3, 2, 1].map((star) => ({
+  star,
+  count: homepageReviews.filter((r) => r.rating === star).length,
+}));
 ---
 
 <!DOCTYPE html>
@@ -702,7 +710,7 @@ const homepageReviews = [
               </div>
 
               <div class="card-price-box">
-                <span class="rating-badge">⭐ {tour.rating}</span>
+                <button type="button" class="rating-badge rating-badge-clickable" data-open-reviews aria-haspopup="dialog">⭐ {tour.rating} <span class="rating-badge-link">· {lang === "tr" ? "Yorumlar" : lang === "es" ? "Reseñas" : "Reviews"}</span></button>
                 <div class="price-right" data-price-wrap>
                   <span class="old-price" data-old-price>{tour.oldPrice}</span>
                   <span class="current-price" data-current-price>{tour.currentPrice}</span>
@@ -1726,6 +1734,90 @@ const homepageReviews = [
   })();
 </script>
 
+<!-- YORUMLAR MODALI: gerçek Google/TripAdvisor yorum verimizden besleniyor -->
+<div class="tbc-reviews-modal-overlay" id="tbcReviewsOverlay" hidden>
+  <div class="tbc-reviews-modal" role="dialog" aria-modal="true" aria-labelledby="tbcReviewsModalTitle">
+    <button type="button" class="tbc-reviews-close" id="tbcReviewsClose" aria-label="Close">✕</button>
+
+    <div class="tbc-reviews-modal-header">
+      <span class="tbc-reviews-eyebrow">{lang === "tr" ? "ÖNE ÇIKAN YORUMLAR" : lang === "es" ? "RESEÑAS DESTACADAS" : "HIGHLIGHTED REVIEWS"}</span>
+      <h3 id="tbcReviewsModalTitle">Tatildokya Travels</h3>
+    </div>
+
+    <div class="tbc-reviews-platforms">
+      <a class="tbc-reviews-platform-card" href="https://share.google/o3AA8wroDMV8i7DEI" target="_blank" rel="noopener noreferrer">
+        <img src="/images/icons/google-logo.webp" alt="Google" width="28" height="28" loading="lazy" />
+        <strong>Google</strong>
+        <span>({reviewGoogleCount}+ {lang === "tr" ? "Yorum" : lang === "es" ? "Reseñas" : "Reviews"})</span>
+        <span class="tbc-reviews-platform-rating">⭐ 4.9</span>
+      </a>
+      <a class="tbc-reviews-platform-card" href="https://www.tripadvisor.com/Attraction_Review-g297983-d19185861-Reviews-Tatildokya_Travel_Turkey-Goreme_Nevsehir_Province_Cappadocia.html" target="_blank" rel="noopener noreferrer">
+        <img src="/images/icons/tripadvisor-logo.webp" alt="TripAdvisor" width="28" height="28" loading="lazy" />
+        <strong>TripAdvisor</strong>
+        <span>({reviewTaCount}+ {lang === "tr" ? "Yorum" : lang === "es" ? "Reseñas" : "Reviews"})</span>
+        <span class="tbc-reviews-platform-rating">⭐ 4.9</span>
+      </a>
+      <div class="tbc-reviews-star-breakdown">
+        {reviewStarBreakdown.map((row) => (
+          <div class="tbc-reviews-star-row">
+            <span>{"★".repeat(row.star)}{"☆".repeat(5 - row.star)}</span>
+            <b>{row.count}</b>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="tbc-reviews-list">
+      {homepageReviews.map((review) => (
+        <div class="tbc-reviews-item">
+          <div class="tbc-reviews-avatar">{review.name.charAt(0).toUpperCase()}</div>
+          <div class="tbc-reviews-item-body">
+            <div class="tbc-reviews-item-top">
+              <strong>{review.name}</strong>
+              <span class="tbc-reviews-item-date">{review.date} · {review.source === "google" ? "Google" : "TripAdvisor"}</span>
+            </div>
+            <div class="tbc-reviews-item-stars">{"★".repeat(review.rating)}{"☆".repeat(5 - review.rating)} <span>({review.rating} {lang === "tr" ? "Yıldız" : lang === "es" ? "Estrellas" : "Stars"})</span></div>
+            <p>{review.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const overlay = document.getElementById("tbcReviewsOverlay");
+    const closeBtn = document.getElementById("tbcReviewsClose");
+    if (!overlay || !closeBtn) return;
+
+    const openModal = () => {
+      overlay.hidden = false;
+      document.body.style.overflow = "hidden";
+    };
+    const closeModal = () => {
+      overlay.hidden = true;
+      document.body.style.overflow = "";
+    };
+
+    document.querySelectorAll("[data-open-reviews]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openModal();
+      });
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  })();
+</script>
+
 </body>
 </html>
 
@@ -2216,12 +2308,15 @@ const homepageReviews = [
     background: rgba(10,24,48,.82); color: #fff; backdrop-filter: blur(2px);
   }
   :global([data-badge2-tag].is-visible) { top: 44px !important; }
-  :global(.status-red) { background: rgba(185,28,28,.85) !important; }
-  :global(.status-blue) { background: rgba(10,24,48,.82) !important; }
+  :global(.status-red) { background: rgba(220,38,38,.92) !important; color: #fff !important; }
+  :global(.status-blue) { background: #d7f4e2 !important; color: #0a5c33 !important; }
   :global(.status-purple) { background: rgba(48,129,227,.85) !important; }
 
   .card-price-box { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .rating-badge { font-size: 12px; font-weight: 800; color: var(--primary-navy); background: #f0f7fd; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
+  .rating-badge-clickable { position: relative; z-index: 12; border: 0; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; gap: 2px; transition: background .15s ease; }
+  .rating-badge-clickable:hover { background: #dceafb; }
+  .rating-badge-link { text-decoration: underline; text-underline-offset: 2px; }
   .starting-text { font-size: 11px; color: var(--text-muted); }
   .price-right { text-align: right; }
   .old-price { font-size: 13px; color: var(--text-muted); text-decoration: line-through; margin-right: 4px; }
@@ -3437,4 +3532,39 @@ const homepageReviews = [
   }
 
   h1, .cat-hero h1, .tour-hero h1 { font-family: 'Playfair Display', Georgia, 'Times New Roman', serif !important; }
+
+  /* YORUMLAR MODALI */
+  .tbc-reviews-modal-overlay { position: fixed; inset: 0; z-index: 5000; background: rgba(10,24,48,.55); display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .tbc-reviews-modal { position: relative; width: 100%; max-width: 640px; max-height: 86vh; background: #fff; border-radius: 22px; padding: 28px 26px 26px; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+  .tbc-reviews-close { position: absolute; top: 18px; right: 18px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid #e5eef7; background: #f7fafd; font-size: 15px; color: #0a1830; cursor: pointer; }
+  .tbc-reviews-modal-header { margin-bottom: 18px; }
+  .tbc-reviews-eyebrow { display: block; font-size: 11px; font-weight: 900; letter-spacing: .08em; color: #5c7797; margin-bottom: 4px; }
+  .tbc-reviews-modal-header h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 800; color: #1478d4; margin: 0; }
+
+  .tbc-reviews-platforms { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 22px; }
+  .tbc-reviews-platform-card { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; background: #f7fafd; border: 1px solid #e5eef7; border-radius: 16px; padding: 16px 10px; text-decoration: none; color: #0a1830; transition: border-color .15s ease, transform .15s ease; }
+  .tbc-reviews-platform-card:hover { border-color: #1478d4; transform: translateY(-2px); }
+  .tbc-reviews-platform-card strong { font-size: 13px; font-weight: 800; }
+  .tbc-reviews-platform-card span { font-size: 11px; color: #5c7797; }
+  .tbc-reviews-platform-rating { color: #0a1830 !important; font-weight: 800; }
+  .tbc-reviews-star-breakdown { display: flex; flex-direction: column; justify-content: center; gap: 4px; background: #f7fafd; border: 1px solid #e5eef7; border-radius: 16px; padding: 10px 14px; }
+  .tbc-reviews-star-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 10px; color: #eab308; }
+  .tbc-reviews-star-row b { color: #5c7797; font-weight: 700; }
+
+  .tbc-reviews-list { display: flex; flex-direction: column; gap: 14px; }
+  .tbc-reviews-item { display: flex; gap: 12px; background: #f7fafd; border: 1px solid #e5eef7; border-radius: 16px; padding: 14px 16px; }
+  .tbc-reviews-avatar { flex: 0 0 40px; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg,#2f8ee0,#0d5aa0); color: #fff; font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+  .tbc-reviews-item-body { flex: 1; min-width: 0; }
+  .tbc-reviews-item-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .tbc-reviews-item-top strong { font-size: 13.5px; color: #0a1830; }
+  .tbc-reviews-item-date { font-size: 11px; color: #5c7797; white-space: nowrap; }
+  .tbc-reviews-item-stars { color: #eab308; font-size: 12px; margin: 4px 0 6px; }
+  .tbc-reviews-item-stars span { color: #5c7797; font-size: 11px; }
+  .tbc-reviews-item-body p { margin: 0; font-size: 13px; line-height: 1.55; color: #334255; }
+
+  @media (max-width: 640px) {
+    .tbc-reviews-modal { padding: 22px 16px 20px; border-radius: 18px; }
+    .tbc-reviews-platforms { grid-template-columns: 1fr 1fr; }
+    .tbc-reviews-star-breakdown { grid-column: 1 / -1; }
+  }
 </style>
