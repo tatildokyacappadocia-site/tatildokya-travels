@@ -242,40 +242,8 @@ const organizationSchema = {
 };
 
 
-const homepageReviews = [
-  {"source": "google", "name": "Rahul P.", "date": "Nov 2024", "rating": 5, "title": "Magical Cappadocia scenery", "text": "Praised the dramatic rock formations, panoramic views and photo opportunities around Love Valley."},
-  {"source": "tripadvisor", "name": "Mateusz G", "date": "11 Aug 2025", "rating": 5, "title": "Great", "text": "Highlighted a punctual, friendly driver, a clean vehicle and flexible scenic stops around Cappadocia."},
-  {"source": "google", "name": "Emrullah", "date": "Mar 2025", "rating": 5, "title": "A must-see at sunrise", "text": "Recommended the valley for sunrise balloon views, hiking and the distinctive fairy-chimney landscape."},
-  {"source": "tripadvisor", "name": "Vincent Vu", "date": "26 Sep 2025", "rating": 5, "title": "Solo trip, transfer, balloon and Green Tour", "text": "Said transfers, balloon arrangements and the Green Tour were coordinated smoothly with helpful WhatsApp communication."},
-  {"source": "google", "name": "Sruthi S.", "date": "2025", "rating": 5, "title": "Beautiful sunrise and sunset spot", "text": "Remembered the icy mountains, unusual rock formations and peaceful atmosphere as a magical Cappadocia moment."},
-  {"source": "tripadvisor", "name": "Dongmin L", "date": "3 Mar 2026", "rating": 5, "title": "It made my day", "text": "Loved the balloon flight and appreciated the support in rearranging the experience after weather affected the first attempt."},
-  {"source": "google", "name": "Mayra B.", "date": "Mar 2025", "rating": 4, "title": "Unique landscape", "text": "Enjoyed the unusual landscape and spring scenery, while noting that trail directions could be clearer."},
-  {"source": "tripadvisor", "name": "Daniella r", "date": "8 Aug 2025", "rating": 5, "title": "Great Green Tour experience", "text": "Praised the Ihlara Valley, underground city, Pigeon Valley views, knowledgeable guides and comfortable organization."},
-  {"source": "google", "name": "Weeranat W.", "date": "Jan 2025", "rating": 5, "title": "Breathtaking Love Valley", "text": "Described the landscape as one of the most impressive views of the trip, with excellent places for photos."},
-  {"source": "tripadvisor", "name": "Honey Lane P", "date": "23 Mar 2026", "rating": 5, "title": "Wonderful experience", "text": "Enjoyed meeting people on the group tour and appreciated having the activities arranged around a solo-travel schedule."},
-  {"source": "google", "name": "jaciel c.", "date": "2025", "rating": 5, "title": "Remarkable balloon views", "text": "Enjoyed seeing Love Valley from above and below during a family balloon experience and called the landmark remarkable."},
-  {"source": "tripadvisor", "name": "Antonino R", "date": "5 Apr 2026", "rating": 5, "title": "Turkish Hammam experience", "text": "Booked a last-minute hammam as a couple and praised the warm welcome and attentive service."},
-  {"source": "google", "name": "Nawel", "date": "Jan 2025", "rating": 5, "title": "Amazing sunrise experience", "text": "Loved the sunrise atmosphere and said the balloon-filled scenery was an absolute must-see."},
-  {"source": "tripadvisor", "name": "Megan I", "date": "30 Dec 2024", "rating": 5, "title": "Experience of a lifetime", "text": "Described the balloon ride as safe, professional and unforgettable, with breathtaking views and a very personal memory."},
-  {"source": "google", "name": "Samy S.", "date": "Sep 2024", "rating": 5, "title": "Peaceful and scenic", "text": "Praised the unusual landscape, calm atmosphere and easy opportunities for memorable photographs."},
-  {"source": "tripadvisor", "name": "GrandTour33312244849", "date": "7 Mar 2025", "rating": 5, "title": "I recommend", "text": "Reported a smooth first airport transfer with clear guidance and said the service was easy to recommend."},
-  {"source": "google", "name": "Bui S.", "date": "2025", "rating": 5, "title": "Beautiful place and easy booking", "text": "Highlighted the scenery, balloon and Jeep options, and recommended arranging tickets and hotel pickup in advance."},
-  {"source": "tripadvisor", "name": "Eric Chandra", "date": "28 Jan 2025", "rating": 5, "title": "Airport Transfer Kayseri to Goreme", "text": "Said the driver arrived on time, was polite and made the first journey from Kayseri to Göreme feel safe."},
-  {"source": "google", "name": "Roy F.", "date": "2025", "rating": 5, "title": "Wonderful balloon viewing", "text": "Visited at sunrise specifically to watch the balloons and loved seeing them fly overhead and pass nearby."},
-  {"source": "tripadvisor", "name": "Vacation37831204947", "date": "26 Apr 2026", "rating": 5, "title": "Great", "text": "Called the experience well organized and thanked the team for the overall planning."},
-  {"source": "google", "name": "Simba Q.", "date": "Oct 2024", "rating": 5, "title": "Amazing view", "text": "Loved the unique landscape and recommended using a hiking app because some trails can be confusing."},
-  {"source": "tripadvisor", "name": "gkhougeer", "date": "25 Apr 2026", "rating": 5, "title": "Something new to learn", "text": "Appreciated the scenery, guide support and the assistance that helped make the tour smooth and informative."},
-  {"source": "google", "name": "Mukremin T", "date": "10 May 2026", "rating": 5, "title": "Professional from start to finish", "text": "Praised the attentive reservation process, clean vehicles, organized operation and welcoming hospitality."},
-  {"source": "tripadvisor", "name": "Karen M", "date": "18 Apr 2026", "rating": 5, "title": "Top rated balloon ride", "text": "Mentioned on-time pickup, a skilled pilot and impressive scenery during the hot-air-balloon flight."},
-  {"source": "google", "name": "Ismail U", "date": "15 Feb 2026", "rating": 5, "title": "A wonderful balloon adventure", "text": "Described the colorful balloons rising with sunrise as an experience everyone should try at least once."},
-  {"source": "tripadvisor", "name": "catalinp969", "date": "Apr 2026", "rating": 5, "title": "Amazing horseback riding", "text": "Praised the polite guides, valley scenery and photo support during the horseback-riding experience."},
-  {"source": "google", "name": "İBRAHİM Ö", "date": "1 Nov 2024", "rating": 5, "title": "Unforgettable sunrise", "text": "Loved watching balloons lift off in the first morning light and recommended arriving warmly dressed for the cold."},
-  {"source": "tripadvisor", "name": "husseinfazleabas", "date": "14 Apr 2026", "rating": 5, "title": "Educational and entertaining", "text": "Praised the knowledgeable guide for combining historical explanations with engaging stories during the tour."},
-  {"source": "google", "name": "Kübra", "date": "5 Jan 2025", "rating": 5, "title": "Peaceful Love Valley", "text": "Recommended the valley for early-morning walks, balloon views, photography and its calm natural atmosphere."},
-  {"source": "tripadvisor", "name": "Becca5520", "date": "26 May 2026", "rating": 5, "title": "Breathtaking and memorable", "text": "Praised communication, early pickup, professional organization, breakfast and a balloon flight that felt safe throughout."},
-  {"source": "google", "name": "Simay Ü", "date": "8 Dec 2024", "rating": 5, "title": "A special morning in Cappadocia", "text": "Remembered the colorful balloons at sunrise, the peaceful valley views and excellent opportunities for photography."},
-  {"source": "tripadvisor", "name": "879maritaz", "date": "30 May 2026", "rating": 5, "title": "Great value for money", "text": "Highlighted responsive communication, friendly staff and a reliable shuttle service that made the experience easy."}
-];
+import { guestReviews as homepageReviews } from "../data/guestReviews";
+import ReviewsModal from "./ReviewsModal.astro";
 
 const reviewGoogleCount = homepageReviews.filter((r) => r.source === "google").length;
 const reviewTaCount = homepageReviews.filter((r) => r.source === "tripadvisor").length;
@@ -1734,89 +1702,7 @@ const reviewStarBreakdown = [5, 4, 3, 2, 1].map((star) => ({
   })();
 </script>
 
-<!-- YORUMLAR MODALI: gerçek Google/TripAdvisor yorum verimizden besleniyor -->
-<div class="tbc-reviews-modal-overlay" id="tbcReviewsOverlay" hidden>
-  <div class="tbc-reviews-modal" role="dialog" aria-modal="true" aria-labelledby="tbcReviewsModalTitle">
-    <button type="button" class="tbc-reviews-close" id="tbcReviewsClose" aria-label="Close">✕</button>
-
-    <div class="tbc-reviews-modal-header">
-      <span class="tbc-reviews-eyebrow">{lang === "tr" ? "ÖNE ÇIKAN YORUMLAR" : lang === "es" ? "RESEÑAS DESTACADAS" : "HIGHLIGHTED REVIEWS"}</span>
-      <h3 id="tbcReviewsModalTitle">Tatildokya Travels</h3>
-    </div>
-
-    <div class="tbc-reviews-platforms">
-      <a class="tbc-reviews-platform-card" href="https://share.google/o3AA8wroDMV8i7DEI" target="_blank" rel="noopener noreferrer">
-        <img src="/images/icons/google-logo.webp" alt="Google" width="28" height="28" loading="lazy" />
-        <strong>Google</strong>
-        <span>({reviewGoogleCount}+ {lang === "tr" ? "Yorum" : lang === "es" ? "Reseñas" : "Reviews"})</span>
-        <span class="tbc-reviews-platform-rating">⭐ 4.9</span>
-      </a>
-      <a class="tbc-reviews-platform-card" href="https://www.tripadvisor.com/Attraction_Review-g297983-d19185861-Reviews-Tatildokya_Travel_Turkey-Goreme_Nevsehir_Province_Cappadocia.html" target="_blank" rel="noopener noreferrer">
-        <img src="/images/icons/tripadvisor-logo.webp" alt="TripAdvisor" width="28" height="28" loading="lazy" />
-        <strong>TripAdvisor</strong>
-        <span>({reviewTaCount}+ {lang === "tr" ? "Yorum" : lang === "es" ? "Reseñas" : "Reviews"})</span>
-        <span class="tbc-reviews-platform-rating">⭐ 4.9</span>
-      </a>
-      <div class="tbc-reviews-star-breakdown">
-        {reviewStarBreakdown.map((row) => (
-          <div class="tbc-reviews-star-row">
-            <span>{"★".repeat(row.star)}{"☆".repeat(5 - row.star)}</span>
-            <b>{row.count}</b>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <div class="tbc-reviews-list">
-      {homepageReviews.map((review) => (
-        <div class="tbc-reviews-item">
-          <div class="tbc-reviews-avatar">{review.name.charAt(0).toUpperCase()}</div>
-          <div class="tbc-reviews-item-body">
-            <div class="tbc-reviews-item-top">
-              <strong>{review.name}</strong>
-              <span class="tbc-reviews-item-date">{review.date} · {review.source === "google" ? "Google" : "TripAdvisor"}</span>
-            </div>
-            <div class="tbc-reviews-item-stars">{"★".repeat(review.rating)}{"☆".repeat(5 - review.rating)} <span>({review.rating} {lang === "tr" ? "Yıldız" : lang === "es" ? "Estrellas" : "Stars"})</span></div>
-            <p>{review.text}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
-
-<script>
-  (() => {
-    const overlay = document.getElementById("tbcReviewsOverlay");
-    const closeBtn = document.getElementById("tbcReviewsClose");
-    if (!overlay || !closeBtn) return;
-
-    const openModal = () => {
-      overlay.hidden = false;
-      document.body.style.overflow = "hidden";
-    };
-    const closeModal = () => {
-      overlay.hidden = true;
-      document.body.style.overflow = "";
-    };
-
-    document.querySelectorAll("[data-open-reviews]").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        openModal();
-      });
-    });
-
-    closeBtn.addEventListener("click", closeModal);
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) closeModal();
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
-    });
-  })();
-</script>
+<ReviewsModal lang={lang} />
 
 </body>
 </html>
@@ -3532,39 +3418,4 @@ const reviewStarBreakdown = [5, 4, 3, 2, 1].map((star) => ({
   }
 
   h1, .cat-hero h1, .tour-hero h1 { font-family: 'Playfair Display', Georgia, 'Times New Roman', serif !important; }
-
-  /* YORUMLAR MODALI */
-  .tbc-reviews-modal-overlay { position: fixed; inset: 0; z-index: 5000; background: rgba(10,24,48,.55); display: flex; align-items: center; justify-content: center; padding: 20px; }
-  .tbc-reviews-modal { position: relative; width: 100%; max-width: 640px; max-height: 86vh; background: #fff; border-radius: 22px; padding: 28px 26px 26px; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,.35); }
-  .tbc-reviews-close { position: absolute; top: 18px; right: 18px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid #e5eef7; background: #f7fafd; font-size: 15px; color: #0a1830; cursor: pointer; }
-  .tbc-reviews-modal-header { margin-bottom: 18px; }
-  .tbc-reviews-eyebrow { display: block; font-size: 11px; font-weight: 900; letter-spacing: .08em; color: #5c7797; margin-bottom: 4px; }
-  .tbc-reviews-modal-header h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 800; color: #1478d4; margin: 0; }
-
-  .tbc-reviews-platforms { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 22px; }
-  .tbc-reviews-platform-card { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; background: #f7fafd; border: 1px solid #e5eef7; border-radius: 16px; padding: 16px 10px; text-decoration: none; color: #0a1830; transition: border-color .15s ease, transform .15s ease; }
-  .tbc-reviews-platform-card:hover { border-color: #1478d4; transform: translateY(-2px); }
-  .tbc-reviews-platform-card strong { font-size: 13px; font-weight: 800; }
-  .tbc-reviews-platform-card span { font-size: 11px; color: #5c7797; }
-  .tbc-reviews-platform-rating { color: #0a1830 !important; font-weight: 800; }
-  .tbc-reviews-star-breakdown { display: flex; flex-direction: column; justify-content: center; gap: 4px; background: #f7fafd; border: 1px solid #e5eef7; border-radius: 16px; padding: 10px 14px; }
-  .tbc-reviews-star-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 10px; color: #eab308; }
-  .tbc-reviews-star-row b { color: #5c7797; font-weight: 700; }
-
-  .tbc-reviews-list { display: flex; flex-direction: column; gap: 14px; }
-  .tbc-reviews-item { display: flex; gap: 12px; background: #f7fafd; border: 1px solid #e5eef7; border-radius: 16px; padding: 14px 16px; }
-  .tbc-reviews-avatar { flex: 0 0 40px; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg,#2f8ee0,#0d5aa0); color: #fff; font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center; }
-  .tbc-reviews-item-body { flex: 1; min-width: 0; }
-  .tbc-reviews-item-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-  .tbc-reviews-item-top strong { font-size: 13.5px; color: #0a1830; }
-  .tbc-reviews-item-date { font-size: 11px; color: #5c7797; white-space: nowrap; }
-  .tbc-reviews-item-stars { color: #eab308; font-size: 12px; margin: 4px 0 6px; }
-  .tbc-reviews-item-stars span { color: #5c7797; font-size: 11px; }
-  .tbc-reviews-item-body p { margin: 0; font-size: 13px; line-height: 1.55; color: #334255; }
-
-  @media (max-width: 640px) {
-    .tbc-reviews-modal { padding: 22px 16px 20px; border-radius: 18px; }
-    .tbc-reviews-platforms { grid-template-columns: 1fr 1fr; }
-    .tbc-reviews-star-breakdown { grid-column: 1 / -1; }
-  }
 </style>
