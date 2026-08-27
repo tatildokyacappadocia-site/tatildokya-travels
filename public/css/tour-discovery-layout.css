@@ -1,0 +1,35 @@
+/* Tatildokya unified tour-detail presentation — compact Discovery-style layout */
+body{background:#fbfcff!important}
+.tbc-tour-page{background:#fbfcff!important;padding-top:18px!important;color:#101828!important}
+.tbc-tour-container{max-width:1180px!important;margin:0 auto!important}
+.tbc-breadcrumb{font-size:11px!important;color:#667085!important;margin-bottom:12px!important}
+.tbc-tour-hero{padding:0 0 14px!important;background:transparent!important;border:0!important;box-shadow:none!important}
+.tbc-tour-kicker{font-size:10px!important;color:#3049a4!important;letter-spacing:.08em!important}
+.tbc-tour-title{font-size:32px!important;line-height:1.08!important;color:#111827!important;margin:4px 0 6px!important}
+.tbc-tour-desc{font-size:13px!important;line-height:1.55!important;color:#475467!important;max-width:760px!important}
+.tbc-hero-badges-bar{gap:8px!important;margin-top:12px!important}
+.tbc-badge-item{min-height:34px!important;padding:7px 10px!important;border-radius:10px!important;background:#fff!important;border:1px solid #e6eaf2!important;color:#344054!important;font-size:10px!important}
+.tbc-photo-grid-wrapper{display:grid!important;grid-template-columns:minmax(0,1.75fr) minmax(180px,.75fr)!important;gap:7px!important;padding:7px!important;background:#fff!important;border:1px solid #e6eaf2!important;border-radius:18px!important;box-shadow:0 12px 30px rgba(16,24,40,.06)!important;margin-bottom:14px!important}
+.tbc-main-photo{height:330px!important;border-radius:13px!important}
+.tbc-side-photos{display:grid!important;grid-template-columns:1fr!important;grid-template-rows:repeat(4,1fr)!important;gap:7px!important;height:330px!important}
+.tbc-side-photo-item{border-radius:11px!important;overflow:hidden!important;min-height:0!important}
+.tbc-side-photo-item img{width:100%!important;height:100%!important;object-fit:cover!important}
+.tbc-tour-grid{display:grid!important;grid-template-columns:minmax(0,1.55fr) 340px!important;gap:18px!important;align-items:start!important}
+.tbc-tour-card{background:#fff!important;border:1px solid #e6eaf2!important;border-radius:18px!important;box-shadow:0 10px 26px rgba(16,24,40,.055)!important}
+.tbc-tour-main-card{padding:18px!important}
+.tbc-tour-section{padding:15px 0!important;border-bottom:1px solid #eef1f5!important}
+.tbc-tour-section:first-child{padding-top:0!important}.tbc-tour-section:last-child{border-bottom:0!important}
+.tbc-tour-section h2{font-size:20px!important;color:#101828!important;margin:0 0 8px!important}
+.tbc-tour-section p,.tbc-tour-list-item{font-size:12px!important;line-height:1.65!important;color:#475467!important}
+.tbc-tour-sidebar{position:sticky!important;top:90px!important;display:grid!important;gap:12px!important}
+.tbc-price-card,.tbc-booking-card{background:#fff!important;border:1px solid #e6eaf2!important;border-radius:18px!important;padding:18px!important;box-shadow:0 10px 26px rgba(16,24,40,.06)!important}
+.tbc-booking-head h3{color:#101828!important;font-size:17px!important}.tbc-booking-head p{color:#667085!important;font-size:11px!important}
+.tbc-booking-group label{color:#344054!important;font-size:11px!important}.tbc-booking-group input,.tbc-booking-group select,.tbc-booking-group textarea{background:#fff!important;color:#101828!important;border-color:#dfe4ec!important;min-height:42px!important;padding:10px 12px!important;border-radius:11px!important;font-size:12px!important}
+.tbc-booking-submit{min-height:44px!important;border-radius:12px!important;background:#3049a4!important;color:#fff!important}
+/* StandardizedPrivateTourPage classes */
+.page{background:#fbfcff!important;padding-top:18px!important}.page>.container{max-width:1180px!important}
+.hero{padding:20px!important;border-radius:18px!important}.hero h1{font-size:32px!important}.hero>p{font-size:13px!important;line-height:1.6!important}
+.gallery{grid-template-columns:minmax(0,1.75fr) minmax(180px,.75fr)!important;gap:7px!important;padding:7px!important;border-radius:18px!important}.main-photo{height:330px!important}.side-photos{height:330px!important;gap:7px!important}
+.grid{grid-template-columns:minmax(0,1.55fr) 340px!important;gap:18px!important}.card,.price-card,.booking{border-radius:18px!important;box-shadow:0 10px 26px rgba(16,24,40,.055)!important}.content{padding:18px!important}.content h2{font-size:20px!important}.content p,.checks>div{font-size:12px!important}.side{top:90px!important;gap:12px!important}.price-card,.booking{padding:18px!important}.booking h3{font-size:17px!important}
+@media(max-width:900px){.tbc-tour-grid,.grid{grid-template-columns:1fr!important}.tbc-tour-sidebar,.side{position:static!important}.tbc-photo-grid-wrapper,.gallery{grid-template-columns:1fr!important}.tbc-side-photos,.side-photos{grid-template-columns:repeat(4,1fr)!important;grid-template-rows:1fr!important;height:95px!important}.tbc-main-photo,.main-photo{height:300px!important}}
+@media(max-width:560px){.tbc-tour-title,.hero h1{font-size:26px!important}.tbc-main-photo,.main-photo{height:240px!important}.tbc-side-photos,.side-photos{grid-template-columns:repeat(2,1fr)!important;grid-template-rows:repeat(2,85px)!important;height:auto!important}}

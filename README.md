@@ -1,43 +1,49 @@
-# Astro Starter Kit: Minimal
+# Tatildokya Travels
 
-```sh
-npm create astro@latest -- --template minimal
+Astro + Supabase tabanlı çok dilli tur, rezervasyon ve içerik sitesi.
+
+## Gereksinimler
+
+- Node.js 22.12 veya üzeri
+- npm
+- Supabase projesi
+- Vercel (production deployment için mevcut adapter)
+
+## Temiz kurulum
+
+```bash
+cp .env.example .env
+npm ci
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+> `node_modules`, `dist`, `.astro` ve `.vercel` kaynak pakete dahil edilmemelidir. Farklı işletim sisteminden kopyalanmış `node_modules` native dependency hatalarına yol açabilir; her ortamda `npm ci` ile yeniden kurulmalıdır.
 
-## 🚀 Project Structure
+## Komutlar
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npm run dev              # geliştirme sunucusu
+npm run build            # SEO audit + sitemap + production build
+npm run preview          # production build önizleme
+npm run clean            # build/cache çıktısını temizle
+npm run verify           # temizle + production build
+npm run seo:audit        # SEO audit üret
+npm run sitemap:generate # sitemap üret
+npm run seo:sync         # SEO verilerini senkronize et
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Environment variables
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Örnek ve açıklamalar `.env.example` dosyasındadır. `RESEND_*` ve `CALLMEBOT_*` değerleri yalnızca server-side kullanılmalıdır ve repoya yazılmamalıdır.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Ana klasörler
 
-## 🧞 Commands
+- `src/` — Astro sayfaları, componentler ve client/server scriptleri
+- `public/` — statik görseller, sitemap ve public dosyalar
+- `supabase/` — veritabanı migration/schema dosyaları
+- `scripts/` — SEO, sitemap ve bakım scriptleri
+- `reports/archive/` — geçmiş audit/QA raporları
 
-All commands are run from the root of the project, from a terminal:
+## Deployment notu
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+ZIP içinden gelen `node_modules` kullanılmamalıdır. Vercel veya Linux CI ortamında temiz `npm ci` çalıştırılmalı ve ardından `npm run build` kullanılmalıdır.

@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generatedAt": "2026-08-26T19:44:31.876Z",
+    "generatedAt": "2026-08-27T11:13:02.411Z",
     "totalPages": 167,
     "averageScore": 98,
     "excellent": 162,
@@ -146,6 +146,7 @@
       "lang": "—",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -157,7 +158,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -552,8 +552,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/about-us/",
       "description": "dynamic:/en/about-us/",
@@ -2449,8 +2448,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/blog/",
       "description": "dynamic:/en/blog/",
@@ -2715,10 +2713,10 @@
       "alt": 0,
       "size": 0,
       "lazy": 0,
-      "score": 64,
+      "score": 61,
       "status": "weak",
       "redirectLike": false,
-      "incoming": 5,
+      "incoming": 0,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -2727,7 +2725,8 @@
         "Hreflang",
         "Open Graph",
         "Twitter Card",
-        "Schema"
+        "Schema",
+        "Incoming Link"
       ],
       "checks": [
         {
@@ -2810,7 +2809,7 @@
         },
         {
           "label": "Incoming Link",
-          "ok": true,
+          "ok": false,
           "weight": 3,
           "tip": "Sayfaya başka bir indexlenebilir sayfadan link verin."
         }
@@ -2832,8 +2831,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/cancellation-refund-policy/",
       "description": "dynamic:/en/cancellation-refund-policy/",
@@ -3087,8 +3085,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/contact/",
       "description": "dynamic:/en/contact/",
@@ -3215,8 +3212,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/distance-sales-agreement/",
       "description": "dynamic:/en/distance-sales-agreement/",
@@ -3486,7 +3482,7 @@
       "score": 90,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 35,
+      "incoming": 1,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -3623,7 +3619,7 @@
       "description": "dynamic:/en/",
       "canonical": "dynamic",
       "h1": 1,
-      "h2": 7,
+      "h2": 6,
       "schema": true,
       "robots": true,
       "hreflang": true,
@@ -3744,8 +3740,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/kvkk-clarification-text/",
       "description": "dynamic:/en/kvkk-clarification-text/",
@@ -3872,8 +3867,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/privacy-policy/",
       "description": "dynamic:/en/privacy-policy/",
@@ -4127,8 +4121,7 @@
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
-        "/en/transfers/",
-        "/en/flight-status/"
+        "/en/transfers/"
       ],
       "title": "dynamic:/en/terms-and-conditions/",
       "description": "dynamic:/en/terms-and-conditions/",
@@ -4245,6 +4238,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -4256,7 +4250,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -4377,6 +4370,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -4388,7 +4382,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -4509,6 +4502,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -4520,7 +4514,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -4641,6 +4634,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -4652,7 +4646,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -4773,6 +4766,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -4784,7 +4778,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -4905,6 +4898,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -4916,7 +4910,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -5037,6 +5030,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -5048,7 +5042,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -5169,6 +5162,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -5180,7 +5174,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -5301,17 +5294,16 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/en/",
         "/en/balloon-tours/",
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/tours/goreme-comfort-hot-air-balloon-tour/",
         "/tr/tours/goreme-comfort-hot-air-balloon-tour/",
         "/es/tours/goreme-comfort-hot-air-balloon-tour/",
-        "/en/booking/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -5437,17 +5429,16 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/en/",
         "/en/balloon-tours/",
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/tours/goreme-standart-hot-air-balloon-tour/",
         "/tr/tours/goreme-standart-hot-air-balloon-tour/",
         "/es/tours/goreme-standart-hot-air-balloon-tour/",
-        "/en/booking/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -5573,17 +5564,16 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/en/",
         "/en/balloon-tours/",
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/tours/green-tour-cappadocia/",
         "/tr/tours/green-tour-cappadocia/",
         "/es/tours/green-tour-cappadocia/",
-        "/en/booking/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -5709,6 +5699,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -5720,7 +5711,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -5841,6 +5831,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -5852,7 +5843,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -5973,6 +5963,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -5984,7 +5975,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -6105,6 +6095,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -6116,7 +6107,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -6237,17 +6227,16 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/en/",
         "/en/balloon-tours/",
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/tours/private-cappadocia-mix-tour/",
         "/tr/tours/private-cappadocia-mix-tour/",
         "/es/tours/private-cappadocia-mix-tour/",
-        "/en/booking/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -6373,6 +6362,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -6384,7 +6374,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -6505,6 +6494,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -6516,7 +6506,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -6637,17 +6626,16 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/en/",
         "/en/balloon-tours/",
         "/en/cappadocia-tours/",
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/tours/red-tour-cappadocia/",
         "/tr/tours/red-tour-cappadocia/",
         "/es/tours/red-tour-cappadocia/",
-        "/en/booking/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -6773,6 +6761,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -6784,7 +6773,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -6905,6 +6893,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -6916,7 +6905,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -7037,6 +7025,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -7048,7 +7037,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -7300,6 +7288,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -7311,7 +7300,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -7432,6 +7420,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -7443,7 +7432,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -7564,6 +7552,7 @@
       "lang": "EN",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -7575,7 +7564,6 @@
         "/en/activities/",
         "/en/private-tours/",
         "/en/transfers/",
-        "/en/flight-status/",
         "/en/faq/",
         "/en/cancellation-refund-policy/",
         "/en/privacy-policy/",
@@ -7706,8 +7694,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/about-us/",
       "description": "dynamic:/es/about-us/",
@@ -8091,8 +8078,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/blog/",
       "description": "dynamic:/es/blog/",
@@ -8485,10 +8471,10 @@
       "alt": 0,
       "size": 0,
       "lazy": 0,
-      "score": 64,
+      "score": 61,
       "status": "weak",
       "redirectLike": false,
-      "incoming": 5,
+      "incoming": 0,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -8497,7 +8483,8 @@
         "Hreflang",
         "Open Graph",
         "Twitter Card",
-        "Schema"
+        "Schema",
+        "Incoming Link"
       ],
       "checks": [
         {
@@ -8580,7 +8567,7 @@
         },
         {
           "label": "Incoming Link",
-          "ok": true,
+          "ok": false,
           "weight": 3,
           "tip": "Sayfaya başka bir indexlenebilir sayfadan link verin."
         }
@@ -8602,8 +8589,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/cancellation-refund-policy/",
       "description": "dynamic:/es/cancellation-refund-policy/",
@@ -8857,8 +8843,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/contact/",
       "description": "dynamic:/es/contact/",
@@ -8985,8 +8970,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/distance-sales-agreement/",
       "description": "dynamic:/es/distance-sales-agreement/",
@@ -9256,7 +9240,7 @@
       "score": 90,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 34,
+      "incoming": 6,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -9393,7 +9377,7 @@
       "description": "dynamic:/es/",
       "canonical": "dynamic",
       "h1": 1,
-      "h2": 7,
+      "h2": 6,
       "schema": true,
       "robots": true,
       "hreflang": true,
@@ -9514,8 +9498,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/kvkk-clarification-text/",
       "description": "dynamic:/es/kvkk-clarification-text/",
@@ -9642,8 +9625,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/privacy-policy/",
       "description": "dynamic:/es/privacy-policy/",
@@ -9897,8 +9879,7 @@
         "/es/cappadocia-tours/",
         "/es/activities/",
         "/es/private-tours/",
-        "/es/transfers/",
-        "/es/flight-status/"
+        "/es/transfers/"
       ],
       "title": "dynamic:/es/terms-and-conditions/",
       "description": "dynamic:/es/terms-and-conditions/",
@@ -10015,6 +9996,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -10026,7 +10008,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -10147,6 +10128,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -10158,7 +10140,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -10279,6 +10260,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -10290,7 +10272,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -10411,6 +10392,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -10422,7 +10404,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -10543,6 +10524,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -10554,7 +10536,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -10675,6 +10656,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -10686,7 +10668,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -10807,6 +10788,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -10818,7 +10800,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -10939,6 +10920,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -10950,7 +10932,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -11071,6 +11052,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/es/",
         "/es/balloon-tours/",
         "/es/cappadocia-tours/",
@@ -11081,7 +11063,6 @@
         "/en/tours/goreme-comfort-hot-air-balloon-tour/",
         "/tr/tours/goreme-comfort-hot-air-balloon-tour/",
         "/es/tours/goreme-comfort-hot-air-balloon-tour/",
-        "/es/booking/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -11207,6 +11188,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/es/",
         "/es/balloon-tours/",
         "/es/cappadocia-tours/",
@@ -11217,7 +11199,6 @@
         "/en/tours/goreme-standart-hot-air-balloon-tour/",
         "/tr/tours/goreme-standart-hot-air-balloon-tour/",
         "/es/tours/goreme-standart-hot-air-balloon-tour/",
-        "/es/booking/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -11343,6 +11324,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/es/",
         "/es/balloon-tours/",
         "/es/cappadocia-tours/",
@@ -11353,7 +11335,6 @@
         "/en/tours/green-tour-cappadocia/",
         "/tr/tours/green-tour-cappadocia/",
         "/es/tours/green-tour-cappadocia/",
-        "/es/booking/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -11479,6 +11460,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -11490,7 +11472,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -11611,6 +11592,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -11622,7 +11604,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -11743,6 +11724,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -11754,7 +11736,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -11875,6 +11856,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -11886,7 +11868,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -12007,6 +11988,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/es/",
         "/es/balloon-tours/",
         "/es/cappadocia-tours/",
@@ -12017,7 +11999,6 @@
         "/en/tours/private-cappadocia-mix-tour/",
         "/tr/tours/private-cappadocia-mix-tour/",
         "/es/tours/private-cappadocia-mix-tour/",
-        "/es/booking/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -12143,6 +12124,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -12154,7 +12136,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -12275,6 +12256,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -12286,7 +12268,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -12407,6 +12388,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/es/",
         "/es/balloon-tours/",
         "/es/cappadocia-tours/",
@@ -12417,7 +12399,6 @@
         "/en/tours/red-tour-cappadocia/",
         "/tr/tours/red-tour-cappadocia/",
         "/es/tours/red-tour-cappadocia/",
-        "/es/booking/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -12543,6 +12524,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -12554,7 +12536,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -12675,6 +12656,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -12686,7 +12668,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -12807,6 +12788,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -12818,7 +12800,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -13069,6 +13050,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -13080,7 +13062,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -13201,6 +13182,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -13212,7 +13194,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -13333,6 +13314,7 @@
       "lang": "ES",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -13344,7 +13326,6 @@
         "/es/activities/",
         "/es/private-tours/",
         "/es/transfers/",
-        "/es/flight-status/",
         "/es/faq/",
         "/es/cancellation-refund-policy/",
         "/es/privacy-policy/",
@@ -15833,8 +15814,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/about-us/",
       "description": "dynamic:/tr/about-us/",
@@ -16596,8 +16576,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/blog/",
       "description": "dynamic:/tr/blog/",
@@ -16736,10 +16715,10 @@
       "alt": 0,
       "size": 0,
       "lazy": 0,
-      "score": 64,
+      "score": 61,
       "status": "weak",
       "redirectLike": false,
-      "incoming": 5,
+      "incoming": 0,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -16748,7 +16727,8 @@
         "Hreflang",
         "Open Graph",
         "Twitter Card",
-        "Schema"
+        "Schema",
+        "Incoming Link"
       ],
       "checks": [
         {
@@ -16831,7 +16811,7 @@
         },
         {
           "label": "Incoming Link",
-          "ok": true,
+          "ok": false,
           "weight": 3,
           "tip": "Sayfaya başka bir indexlenebilir sayfadan link verin."
         }
@@ -16853,8 +16833,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/cancellation-refund-policy/",
       "description": "dynamic:/tr/cancellation-refund-policy/",
@@ -17108,8 +17087,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/contact/",
       "description": "dynamic:/tr/contact/",
@@ -17236,8 +17214,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/distance-sales-agreement/",
       "description": "dynamic:/tr/distance-sales-agreement/",
@@ -17507,7 +17484,7 @@
       "score": 90,
       "status": "excellent",
       "redirectLike": false,
-      "incoming": 34,
+      "incoming": 1,
       "altRatio": 100,
       "sizeRatio": 100,
       "lazyRatio": 100,
@@ -17644,7 +17621,7 @@
       "description": "dynamic:/tr/",
       "canonical": "dynamic",
       "h1": 1,
-      "h2": 7,
+      "h2": 6,
       "schema": true,
       "robots": true,
       "hreflang": true,
@@ -17765,8 +17742,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/kvkk-clarification-text/",
       "description": "dynamic:/tr/kvkk-clarification-text/",
@@ -17893,8 +17869,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/privacy-policy/",
       "description": "dynamic:/tr/privacy-policy/",
@@ -18148,8 +18123,7 @@
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
-        "/tr/transfers/",
-        "/tr/flight-status/"
+        "/tr/transfers/"
       ],
       "title": "dynamic:/tr/terms-and-conditions/",
       "description": "dynamic:/tr/terms-and-conditions/",
@@ -18266,6 +18240,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -18277,7 +18252,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -18398,6 +18372,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -18409,7 +18384,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -18530,6 +18504,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -18541,7 +18516,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -18662,6 +18636,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -18673,7 +18648,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -18794,6 +18768,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -18805,7 +18780,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -18926,6 +18900,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -18937,7 +18912,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -19058,6 +19032,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -19069,7 +19044,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -19190,6 +19164,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -19201,7 +19176,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -19322,17 +19296,16 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/tr/",
         "/tr/balloon-tours/",
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/en/tours/goreme-comfort-hot-air-balloon-tour/",
         "/tr/tours/goreme-comfort-hot-air-balloon-tour/",
         "/es/tours/goreme-comfort-hot-air-balloon-tour/",
-        "/tr/booking/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -19458,17 +19431,16 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/tr/",
         "/tr/balloon-tours/",
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/en/tours/goreme-standart-hot-air-balloon-tour/",
         "/tr/tours/goreme-standart-hot-air-balloon-tour/",
         "/es/tours/goreme-standart-hot-air-balloon-tour/",
-        "/tr/booking/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -19594,17 +19566,16 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/tr/",
         "/tr/balloon-tours/",
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/en/tours/green-tour-cappadocia/",
         "/tr/tours/green-tour-cappadocia/",
         "/es/tours/green-tour-cappadocia/",
-        "/tr/booking/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -19730,6 +19701,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -19741,7 +19713,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -19862,6 +19833,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -19873,7 +19845,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -19994,6 +19965,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -20005,7 +19977,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -20126,6 +20097,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -20137,7 +20109,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -20258,17 +20229,16 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/tr/",
         "/tr/balloon-tours/",
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/en/tours/private-cappadocia-mix-tour/",
         "/tr/tours/private-cappadocia-mix-tour/",
         "/es/tours/private-cappadocia-mix-tour/",
-        "/tr/booking/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -20394,6 +20364,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -20405,7 +20376,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -20526,6 +20496,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -20537,7 +20508,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -20658,17 +20628,16 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/tr/",
         "/tr/balloon-tours/",
         "/tr/cappadocia-tours/",
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/en/tours/red-tour-cappadocia/",
         "/tr/tours/red-tour-cappadocia/",
         "/es/tours/red-tour-cappadocia/",
-        "/tr/booking/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -20794,6 +20763,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -20805,7 +20775,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -20926,6 +20895,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -20937,7 +20907,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -21058,6 +21027,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -21069,7 +21039,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -21321,6 +21290,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -21332,7 +21302,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -21453,6 +21422,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -21464,7 +21434,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -21585,6 +21554,7 @@
       "lang": "TR",
       "red": null,
       "links": [
+        "/css/tour-discovery-layout.css",
         "/favicon.svg",
         "/favicon-32.png",
         "/favicon-48.png",
@@ -21596,7 +21566,6 @@
         "/tr/activities/",
         "/tr/private-tours/",
         "/tr/transfers/",
-        "/tr/flight-status/",
         "/tr/faq/",
         "/tr/cancellation-refund-policy/",
         "/tr/privacy-policy/",
@@ -22799,7 +22768,7 @@
     }
   ],
   "technical": {
-    "score": 90,
+    "score": 89,
     "checks": [
       {
         "key": "redirects",
@@ -22832,9 +22801,9 @@
       {
         "key": "links",
         "label": "Internal Links",
-        "score": 98,
-        "issues": 142,
-        "detail": "142 kırık • 0 redirect link"
+        "score": 96,
+        "issues": 218,
+        "detail": "218 kırık • 0 redirect link"
       },
       {
         "key": "duplicates",
@@ -22846,16 +22815,16 @@
       {
         "key": "orphans",
         "label": "Orphan Pages",
-        "score": 98,
-        "issues": 3,
-        "detail": "3 orphan sayfa"
+        "score": 96,
+        "issues": 6,
+        "detail": "6 orphan sayfa"
       },
       {
         "key": "404",
         "label": "404 / Broken Links",
-        "score": 2,
-        "issues": 142,
-        "detail": "142 statik kırık iç link"
+        "score": 0,
+        "issues": 218,
+        "detail": "218 statik kırık iç link"
       },
       {
         "key": "schema",
@@ -23173,6 +23142,10 @@
     "brokenLinks": [
       {
         "source": "/[lang]/tours/[slug]/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/[lang]/tours/[slug]/",
         "target": "/apple-touch-icon.png"
       },
       {
@@ -23289,7 +23262,15 @@
       },
       {
         "source": "/en/tours/atv-tour-with-goreme-valleys/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/en/tours/atv-tour-with-goreme-valleys/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/en/tours/balloons-watching-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/en/tours/balloons-watching-tour-cappadocia/",
@@ -23297,7 +23278,15 @@
       },
       {
         "source": "/en/tours/blue-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/en/tours/blue-tour-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/en/tours/cappadocia-classic-car-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/en/tours/cappadocia-classic-car-tour/",
@@ -23305,7 +23294,15 @@
       },
       {
         "source": "/en/tours/cappadocia-custom-package-tour/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/en/tours/cappadocia-custom-package-tour/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/en/tours/cappadocia-mix-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/en/tours/cappadocia-mix-tour/",
@@ -23313,7 +23310,15 @@
       },
       {
         "source": "/en/tours/cappadocia-pottery-making-experience/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/en/tours/cappadocia-pottery-making-experience/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/en/tours/cappadocia-sunset-camel-riding-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/en/tours/cappadocia-sunset-camel-riding-tour/",
@@ -23321,7 +23326,15 @@
       },
       {
         "source": "/en/tours/goreme-comfort-hot-air-balloon-tour/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/en/tours/goreme-comfort-hot-air-balloon-tour/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/en/tours/goreme-standart-hot-air-balloon-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/en/tours/goreme-standart-hot-air-balloon-tour/",
@@ -23329,7 +23342,15 @@
       },
       {
         "source": "/en/tours/green-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/en/tours/green-tour-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/en/tours/ihlara-valley-balloons-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/en/tours/ihlara-valley-balloons-tour/",
@@ -23337,7 +23358,15 @@
       },
       {
         "source": "/en/tours/jeep-safari-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/en/tours/jeep-safari-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/en/tours/pamukkale-balloons-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/en/tours/pamukkale-balloons-tour/",
@@ -23345,7 +23374,15 @@
       },
       {
         "source": "/en/tours/photo-shoot-flying-dress-experience/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/en/tours/photo-shoot-flying-dress-experience/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/en/tours/private-cappadocia-mix-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/en/tours/private-cappadocia-mix-tour/",
@@ -23353,7 +23390,15 @@
       },
       {
         "source": "/en/tours/private-green-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/en/tours/private-green-tour-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/en/tours/private-red-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/en/tours/private-red-tour-cappadocia/",
@@ -23361,7 +23406,15 @@
       },
       {
         "source": "/en/tours/red-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/en/tours/red-tour-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/en/tours/soganli-valley-balloon-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/en/tours/soganli-valley-balloon-tour/",
@@ -23369,7 +23422,15 @@
       },
       {
         "source": "/en/tours/sunrise-sunset-horse-riding-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/en/tours/sunrise-sunset-horse-riding-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/en/tours/turkish-night-with-cave-dinner-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/en/tours/turkish-night-with-cave-dinner-cappadocia/",
@@ -23381,11 +23442,23 @@
       },
       {
         "source": "/en/transfers/kayseri-airport-shuttle-transfer/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/en/transfers/kayseri-airport-shuttle-transfer/",
         "target": "/apple-touch-icon.png"
       },
       {
         "source": "/en/transfers/nevsehir-airport-shuttle-transfer/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/en/transfers/nevsehir-airport-shuttle-transfer/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/en/transfers/private-airport-transfer/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/en/transfers/private-airport-transfer/",
@@ -23461,7 +23534,15 @@
       },
       {
         "source": "/es/tours/atv-tour-with-goreme-valleys/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/es/tours/atv-tour-with-goreme-valleys/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/es/tours/balloons-watching-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/es/tours/balloons-watching-tour-cappadocia/",
@@ -23469,7 +23550,15 @@
       },
       {
         "source": "/es/tours/blue-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/es/tours/blue-tour-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/es/tours/cappadocia-classic-car-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/es/tours/cappadocia-classic-car-tour/",
@@ -23477,7 +23566,15 @@
       },
       {
         "source": "/es/tours/cappadocia-custom-package-tour/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/es/tours/cappadocia-custom-package-tour/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/es/tours/cappadocia-mix-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/es/tours/cappadocia-mix-tour/",
@@ -23485,7 +23582,15 @@
       },
       {
         "source": "/es/tours/cappadocia-pottery-making-experience/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/es/tours/cappadocia-pottery-making-experience/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/es/tours/cappadocia-sunset-camel-riding-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/es/tours/cappadocia-sunset-camel-riding-tour/",
@@ -23493,7 +23598,15 @@
       },
       {
         "source": "/es/tours/goreme-comfort-hot-air-balloon-tour/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/es/tours/goreme-comfort-hot-air-balloon-tour/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/es/tours/goreme-standart-hot-air-balloon-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/es/tours/goreme-standart-hot-air-balloon-tour/",
@@ -23501,7 +23614,15 @@
       },
       {
         "source": "/es/tours/green-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/es/tours/green-tour-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/es/tours/ihlara-valley-balloons-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/es/tours/ihlara-valley-balloons-tour/",
@@ -23509,7 +23630,15 @@
       },
       {
         "source": "/es/tours/jeep-safari-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/es/tours/jeep-safari-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/es/tours/pamukkale-balloons-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/es/tours/pamukkale-balloons-tour/",
@@ -23517,7 +23646,15 @@
       },
       {
         "source": "/es/tours/photo-shoot-flying-dress-experience/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/es/tours/photo-shoot-flying-dress-experience/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/es/tours/private-cappadocia-mix-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/es/tours/private-cappadocia-mix-tour/",
@@ -23525,7 +23662,15 @@
       },
       {
         "source": "/es/tours/private-green-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/es/tours/private-green-tour-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/es/tours/private-red-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/es/tours/private-red-tour-cappadocia/",
@@ -23533,7 +23678,15 @@
       },
       {
         "source": "/es/tours/red-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/es/tours/red-tour-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/es/tours/soganli-valley-balloon-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/es/tours/soganli-valley-balloon-tour/",
@@ -23541,7 +23694,15 @@
       },
       {
         "source": "/es/tours/sunrise-sunset-horse-riding-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/es/tours/sunrise-sunset-horse-riding-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/es/tours/turkish-night-with-cave-dinner-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/es/tours/turkish-night-with-cave-dinner-cappadocia/",
@@ -23553,11 +23714,23 @@
       },
       {
         "source": "/es/transfers/kayseri-airport-shuttle-transfer/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/es/transfers/kayseri-airport-shuttle-transfer/",
         "target": "/apple-touch-icon.png"
       },
       {
         "source": "/es/transfers/nevsehir-airport-shuttle-transfer/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/es/transfers/nevsehir-airport-shuttle-transfer/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/es/transfers/private-airport-transfer/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/es/transfers/private-airport-transfer/",
@@ -23637,7 +23810,15 @@
       },
       {
         "source": "/tr/tours/atv-tour-with-goreme-valleys/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/tr/tours/atv-tour-with-goreme-valleys/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/tr/tours/balloons-watching-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/tr/tours/balloons-watching-tour-cappadocia/",
@@ -23645,7 +23826,15 @@
       },
       {
         "source": "/tr/tours/blue-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/tr/tours/blue-tour-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/tr/tours/cappadocia-classic-car-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/tr/tours/cappadocia-classic-car-tour/",
@@ -23653,7 +23842,15 @@
       },
       {
         "source": "/tr/tours/cappadocia-custom-package-tour/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/tr/tours/cappadocia-custom-package-tour/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/tr/tours/cappadocia-mix-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/tr/tours/cappadocia-mix-tour/",
@@ -23661,7 +23858,15 @@
       },
       {
         "source": "/tr/tours/cappadocia-pottery-making-experience/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/tr/tours/cappadocia-pottery-making-experience/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/tr/tours/cappadocia-sunset-camel-riding-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/tr/tours/cappadocia-sunset-camel-riding-tour/",
@@ -23669,7 +23874,15 @@
       },
       {
         "source": "/tr/tours/goreme-comfort-hot-air-balloon-tour/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/tr/tours/goreme-comfort-hot-air-balloon-tour/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/tr/tours/goreme-standart-hot-air-balloon-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/tr/tours/goreme-standart-hot-air-balloon-tour/",
@@ -23677,7 +23890,15 @@
       },
       {
         "source": "/tr/tours/green-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/tr/tours/green-tour-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/tr/tours/ihlara-valley-balloons-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/tr/tours/ihlara-valley-balloons-tour/",
@@ -23685,7 +23906,15 @@
       },
       {
         "source": "/tr/tours/jeep-safari-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/tr/tours/jeep-safari-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/tr/tours/pamukkale-balloons-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/tr/tours/pamukkale-balloons-tour/",
@@ -23693,7 +23922,15 @@
       },
       {
         "source": "/tr/tours/photo-shoot-flying-dress-experience/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/tr/tours/photo-shoot-flying-dress-experience/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/tr/tours/private-cappadocia-mix-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/tr/tours/private-cappadocia-mix-tour/",
@@ -23701,7 +23938,15 @@
       },
       {
         "source": "/tr/tours/private-green-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/tr/tours/private-green-tour-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/tr/tours/private-red-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/tr/tours/private-red-tour-cappadocia/",
@@ -23709,7 +23954,15 @@
       },
       {
         "source": "/tr/tours/red-tour-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/tr/tours/red-tour-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/tr/tours/soganli-valley-balloon-tour/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/tr/tours/soganli-valley-balloon-tour/",
@@ -23717,7 +23970,15 @@
       },
       {
         "source": "/tr/tours/sunrise-sunset-horse-riding-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/tr/tours/sunrise-sunset-horse-riding-cappadocia/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/tr/tours/turkish-night-with-cave-dinner-cappadocia/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/tr/tours/turkish-night-with-cave-dinner-cappadocia/",
@@ -23729,11 +23990,23 @@
       },
       {
         "source": "/tr/transfers/kayseri-airport-shuttle-transfer/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/tr/transfers/kayseri-airport-shuttle-transfer/",
         "target": "/apple-touch-icon.png"
       },
       {
         "source": "/tr/transfers/nevsehir-airport-shuttle-transfer/",
+        "target": "/css/tour-discovery-layout.css"
+      },
+      {
+        "source": "/tr/transfers/nevsehir-airport-shuttle-transfer/",
         "target": "/apple-touch-icon.png"
+      },
+      {
+        "source": "/tr/transfers/private-airport-transfer/",
+        "target": "/css/tour-discovery-layout.css"
       },
       {
         "source": "/tr/transfers/private-airport-transfer/",
@@ -23745,8 +24018,11 @@
     "duplicateDescriptions": [],
     "orphanPages": [
       "/[lang]/tours/[slug]/",
+      "/en/booking/",
       "/es/blog/mejores-globos-capadocia/",
-      "/es/blog/precio-tour-globo-capadocia/"
+      "/es/blog/precio-tour-globo-capadocia/",
+      "/es/booking/",
+      "/tr/booking/"
     ],
     "schemaIssues": [
       "/en/booking/",

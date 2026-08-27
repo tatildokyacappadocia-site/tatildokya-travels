@@ -15,7 +15,9 @@
     "seo:audit": "node scripts/generate-seo-audit.mjs",
     "predev": "node scripts/generate-seo-audit.mjs",
     "prebuild": "node scripts/generate-seo-audit.mjs && node scripts/generate-sitemap.mjs",
-    "sitemap:generate": "node scripts/generate-sitemap.mjs"
+    "sitemap:generate": "node scripts/generate-sitemap.mjs",
+    "clean": "node scripts/clean-build-artifacts.mjs",
+    "verify": "npm run clean && npm run build"
   },
   "dependencies": {
     "@astrojs/vercel": "^11.0.5",

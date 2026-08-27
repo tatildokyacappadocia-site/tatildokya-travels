@@ -1,28 +1,32 @@
-# build output
-dist/
-# generated types
-.astro/
-
-# dependencies
+# Dependencies
 node_modules/
 
-# logs
+# Build / generated output
+dist/
+.astro/
+.vercel/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
-# environment variables
-.env
-.env.production
-
-# macOS-specific files
+# OS / editor files
 .DS_Store
-
-# jetbrains setting folder
+Thumbs.db
 .idea/
-.vercel
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
 
-.vercel
-.env*
+# Temporary files
+*.tmp
+*.temp
+.cache/
