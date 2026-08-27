@@ -97,9 +97,9 @@ const heroTrustContent = {
 };
 const heroTrust = heroTrustContent[lang] || heroTrustContent.en;
 const premiumTourLabels = {
-  en: { eyebrow: "CURATED CAPPADOCIA EXPERIENCES", subtitle: "Handpicked tours, local expertise and seamless booking — designed for a more memorable Cappadocia journey.", duration: "Duration", reviews: "Reviews", from: "From", explore: "View experience", featured: "Tatildokya Selection" },
-  tr: { eyebrow: "ÖZENLE SEÇİLMİŞ KAPADOKYA DENEYİMLERİ", subtitle: "Yerel uzmanlık, seçkin rotalar ve kolay rezervasyon — Kapadokya deneyiminizi daha özel hale getirmek için.", duration: "Süre", reviews: "Yorumlar", from: "Başlangıç", explore: "Deneyimi incele", featured: "Tatildokya Seçkisi" },
-  es: { eyebrow: "EXPERIENCIAS SELECCIONADAS EN CAPADOCIA", subtitle: "Tours cuidadosamente elegidos, experiencia local y reserva sencilla para vivir Capadocia de una forma más especial.", duration: "Duración", reviews: "Reseñas", from: "Desde", explore: "Ver experiencia", featured: "Selección Tatildokya" }
+  en: { eyebrow: "CURATED CAPPADOCIA EXPERIENCES", subtitle: "Compare live availability and prices without leaving the homepage.", duration: "Duration", reviews: "Reviews", from: "From", explore: "View experience", featured: "Tatildokya Selection", available: "Available", sold: "Sold Out", closed: "Closed", loading: "Checking…", calendarHint: "Swipe the dates to see more availability.", instant: "Instant confirmation", pickup: "Hotel pickup", local: "Local support" },
+  tr: { eyebrow: "ÖZENLE SEÇİLMİŞ KAPADOKYA DENEYİMLERİ", subtitle: "Ana sayfadan ayrılmadan canlı müsaitlik ve fiyatları karşılaştırın.", duration: "Süre", reviews: "Yorumlar", from: "Başlangıç", explore: "Deneyimi incele", featured: "Tatildokya Seçkisi", available: "Müsait", sold: "Dolu", closed: "Kapalı", loading: "Kontrol…", calendarHint: "Daha fazla tarih için takvimi yana kaydırın.", instant: "Anında onay", pickup: "Otel transferi", local: "Yerel destek" },
+  es: { eyebrow: "EXPERIENCIAS SELECCIONADAS EN CAPADOCIA", subtitle: "Compara disponibilidad y precios en vivo sin salir de la página principal.", duration: "Duración", reviews: "Reseñas", from: "Desde", explore: "Ver experiencia", featured: "Selección Tatildokya", available: "Disponible", sold: "Agotado", closed: "Cerrado", loading: "Comprobando…", calendarHint: "Desliza las fechas para ver más disponibilidad.", instant: "Confirmación instantánea", pickup: "Recogida en hotel", local: "Asistencia local" }
 };
 const premiumTour = premiumTourLabels[lang] || premiumTourLabels.en;
 
@@ -656,32 +656,36 @@ const reviewStarBreakdown = [5, 4, 3, 2, 1].map((star) => ({
       <div class="tours-grid" id="toursGrid" data-supabase-url={homepageSupabaseUrl} data-supabase-key={homepageSupabaseKey}>
         {t.tourCards.map((tour, index) => (
           <article
-            class="tour-card-style2"
+            class="tour-card-style2 home-booking-card"
             data-category={tour.category}
             data-product-slug={resolveProductSlug(tour)}
             data-product-name={tour.title}
-            style={tour.href ? "position: relative;" : undefined}
           >
-            {tour.href && (
-              <a
-                href={tour.href}
-                aria-label={tour.title}
-                class="premium-card-main-link"
-              ></a>
-            )}
+            {tour.href && <a href={tour.href} aria-label={tour.title} class="premium-card-main-link"></a>}
 
-            <div class="card-img-box">
-              <Image src={resolveTourCardImage(tour)} alt={tour.title} loading="lazy" decoding="async" width={720} height={520} />
-              <div class="card-image-shade" aria-hidden="true"></div>
-              {index < 3 && <span class="premium-pick-badge">✦ {premiumTour.featured}</span>}
-              <div class="card-image-meta">
-                <span class="duration-pill">◷ {premiumTour.duration} · {tour.duration}</span>
+            <div class="home-card-head">
+              <div class="home-card-title-wrap">
+                {index < 3 && <span class="home-selection">✦ {premiumTour.featured}</span>}
+                <h3 class="card-title-text">{tour.title}</h3>
               </div>
+              <button type="button" class="rating-badge rating-badge-clickable home-rating" data-open-reviews aria-haspopup="dialog">
+                <span class="rating-star">★</span><strong>{tour.rating}</strong>
+                <span class="rating-badge-link">{premiumTour.reviews}</span>
+              </button>
             </div>
 
-            <div class="card-body-box">
-              <h3 class="card-title-text">{tour.title}</h3>
+            <div class="home-card-copy">
+              <p>{premiumTour.duration}: <strong>{tour.duration}</strong>. {premiumTour.instant}. {premiumTour.local}.</p>
+            </div>
 
+            <div class="home-feature-grid">
+              <span><b>◷</b>{tour.duration}</span>
+              <span><b>✓</b>{premiumTour.instant}</span>
+              <span><b>⌂</b>{premiumTour.pickup}</span>
+              <span><b>◎</b>{premiumTour.local}</span>
+            </div>
+
+            <div class="home-card-meta">
               <div class="tag-row" data-tag-row>
                 <span class="status-tag status-purple" data-badge1-tag style="display:none"></span>
                 <span class="discount-tag" data-discount-tag>✓ {tour.tag}</span>
@@ -689,24 +693,21 @@ const reviewStarBreakdown = [5, 4, 3, 2, 1].map((star) => ({
                   {tour.status ? `${tour.statusIcon} ${tour.status}` : ""}
                 </span>
               </div>
-
-              <div class="card-premium-divider"></div>
-              <div class="card-price-box">
-                <button type="button" class="rating-badge rating-badge-clickable" data-open-reviews aria-haspopup="dialog">
-                  <span class="rating-star">★</span> {tour.rating} <span class="rating-badge-link">· {premiumTour.reviews}</span>
-                </button>
-                <div class="price-right" data-price-wrap>
-                  <span class="price-from-label">{premiumTour.from}</span>
-                  <div class="price-line">
-                    <span class="old-price" data-old-price>{tour.oldPrice}</span>
-                    <span class="current-price" data-current-price>{tour.currentPrice}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="premium-card-cta" aria-hidden="true">
-                <span>{premiumTour.explore}</span><span class="premium-card-arrow">↗</span>
+              <div class="price-right" data-price-wrap>
+                <span class="price-from-label">{premiumTour.from}</span>
+                <div class="price-line"><span class="old-price" data-old-price>{tour.oldPrice}</span><span class="current-price" data-current-price>{tour.currentPrice}</span></div>
               </div>
             </div>
+
+            <div class="home-calendar-shell">
+              <button type="button" class="home-cal-arrow home-cal-prev" data-home-cal-prev aria-label="Previous dates">‹</button>
+              <div class="home-calendar-strip" data-home-calendar data-offset="0">
+                {Array.from({length:4}).map((_, i) => <div class="home-date-card is-loading" data-home-date-index={i}><span>—</span><strong>—</strong><small>{premiumTour.loading}</small><em>—</em></div>)}
+              </div>
+              <button type="button" class="home-cal-arrow home-cal-next" data-home-cal-next aria-label="Next dates">›</button>
+            </div>
+            <div class="home-calendar-hint">{premiumTour.calendarHint}</div>
+            <div class="premium-card-cta" aria-hidden="true"><span>{premiumTour.explore}</span><span class="premium-card-arrow">↗</span></div>
           </article>
         ))}
       </div>
@@ -1557,6 +1558,45 @@ const reviewStarBreakdown = [5, 4, 3, 2, 1].map((star) => ({
         const products = await productRes.json();
         if (!Array.isArray(products) || !products.length) continue;
 
+        const productId = products[0]?.id;
+        const calendar = card.querySelector('[data-home-calendar]');
+        const renderCalendar = async (offset = 0) => {
+          if (!calendar || !productId) return;
+          const slots = [...calendar.querySelectorAll('[data-home-date-index]')];
+          const today = new Date(); today.setHours(0,0,0,0);
+          const startDate = new Date(today); startDate.setDate(startDate.getDate() + offset);
+          const endDate = new Date(startDate); endDate.setDate(endDate.getDate() + 3);
+          const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+          let rows = [];
+          try {
+            const u = `${base}/rest/v1/availability?product_id=eq.${encodeURIComponent(productId)}&date=gte.${iso(startDate)}&date=lte.${iso(endDate)}&select=date,price,capacity,booked,status&order=date.asc`;
+            const r = await fetch(u,{headers,cache:'no-store'});
+            if (r.ok) rows = await r.json();
+          } catch {}
+          const byDate = new Map((rows||[]).map(r=>[r.date,r]));
+          const weekday = new Intl.DateTimeFormat(lang,{weekday:'short'});
+          const monthName = new Intl.DateTimeFormat(lang,{month:'short'});
+          slots.forEach((slot,i)=>{
+            const d = new Date(startDate); d.setDate(d.getDate()+i);
+            const row = byDate.get(iso(d));
+            const fallback = Number(products[0]?.default_price||0);
+            const price = Number(row?.price||fallback||0);
+            const remaining = Math.max(Number(row?.capacity||0)-Number(row?.booked||0),0);
+            const ok = row ? row.status === 'available' && remaining > 0 : fallback > 0;
+            const sold = row && (row.status === 'sold_out' || remaining <= 0);
+            const statusText = ok ? (lang==='tr'?'Müsait':lang==='es'?'Disponible':'Available') : sold ? (lang==='tr'?'Dolu':lang==='es'?'Agotado':'Sold Out') : (lang==='tr'?'Kapalı':lang==='es'?'Cerrado':'Closed');
+            slot.className = `home-date-card ${ok?'is-available':'is-unavailable'}`;
+            slot.innerHTML = `<span>${weekday.format(d)}</span><strong>${d.getDate()}</strong><small>${monthName.format(d)}</small><b>${statusText}</b><em>${ok&&price>0?money(price):'—'}</em>`;
+          });
+          calendar.dataset.offset = String(offset);
+        };
+        if (calendar && !calendar.dataset.bound) {
+          calendar.dataset.bound='1';
+          card.querySelector('[data-home-cal-prev]')?.addEventListener('click', e=>{e.preventDefault();e.stopPropagation();renderCalendar(Math.max(0,Number(calendar.dataset.offset||0)-4));});
+          card.querySelector('[data-home-cal-next]')?.addEventListener('click', e=>{e.preventDefault();e.stopPropagation();renderCalendar(Number(calendar.dataset.offset||0)+4);});
+        }
+        renderCalendar(Number(calendar?.dataset.offset||0));
+
         // Badges: pull from the first row for this slug. Only overwrite the
         // card's badges if the panel has explicitly set a value — if left
         // empty in the admin panel, whatever static badge was already in
@@ -2251,6 +2291,24 @@ const reviewStarBreakdown = [5, 4, 3, 2, 1].map((star) => ({
   .premium-card-cta { margin-top: 16px; padding-top: 13px; border-top: 1px solid rgba(16,43,78,.07); display: flex; align-items: center; justify-content: space-between; color: #9a7134; font-size: 10.5px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
   .premium-card-arrow { width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #f5efe3; color: #8c6327; font-size: 13px; transition: transform .25s ease, background .25s ease; }
   .tour-card-style2:hover .premium-card-arrow { transform: translate(2px,-2px); background: #ede0c7; }
+
+  /* Screenshot-inspired homepage booking cards */
+  .tours-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:stretch}
+  .home-booking-card{padding:26px 26px 20px;border-radius:22px;background:#fff;border:1px solid #e6ebf4;box-shadow:0 14px 34px rgba(31,58,103,.07);overflow:visible;min-height:590px}
+  .home-booking-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(31,58,103,.11);border-color:#d7e2f2}
+  .home-booking-card .premium-card-main-link{z-index:3}
+  .home-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;min-height:82px}
+  .home-card-title-wrap{min-width:0;max-width:72%}.home-selection{display:block;margin-bottom:7px;color:#6c86c6;font-size:9px;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+  .home-booking-card .card-title-text{font-family:var(--font-display);font-size:27px;line-height:1.05;font-weight:850;color:#253d91;margin:0;min-height:0;letter-spacing:-.03em}
+  .home-rating{z-index:12;display:grid;grid-template-columns:auto auto;column-gap:6px;row-gap:2px;justify-items:end;color:#111827;font-size:13px}.home-rating .rating-star{font-size:24px;color:#f5aa16;grid-row:1/3}.home-rating strong{font-size:15px}.home-rating .rating-badge-link{font-size:9px;color:#8a96a8}
+  .home-card-copy{min-height:96px;padding:18px 0 8px}.home-card-copy p{margin:0;font-size:13px;line-height:1.72;color:#25344a}.home-card-copy strong{color:#20377c}
+  .home-feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 22px;padding:19px 0;border-top:1px solid #edf0f5;border-bottom:1px solid #edf0f5}.home-feature-grid span{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:760;color:#334155}.home-feature-grid b{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#f0f3ff;color:#3049a4;font-size:13px}
+  .home-card-meta{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0 12px}.home-card-meta .tag-row{margin:0;min-height:0;position:relative;z-index:12}.home-card-meta .price-right{position:relative;z-index:12}.home-booking-card .current-price{color:#263f96;font-size:22px}.home-booking-card .price-from-label{color:#93a0b4}.home-booking-card .discount-tag{background:#f2f7f5;color:#27835a;border-color:#dbeee4}
+  .home-booking-card :global(.status-tag.is-visible){position:static!important;top:auto!important;right:auto!important;background:#eef2ff!important;color:#3d55a8!important;border:1px solid #dce4ff!important;backdrop-filter:none!important}
+  .home-calendar-shell{position:relative;z-index:12;display:grid;grid-template-columns:28px minmax(0,1fr) 28px;gap:7px;align-items:center;padding-top:14px;border-top:1px solid #edf0f5}.home-calendar-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;min-width:0}.home-cal-arrow{width:28px;height:70px;border:0;background:transparent;color:#546bc1;font-size:23px;cursor:pointer;border-radius:10px}.home-cal-arrow:hover{background:#f1f4ff}
+  .home-date-card{height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1.5px solid #d7deec;border-radius:11px;background:#fff;color:#667085;font-style:normal;line-height:1.05}.home-date-card span{font-size:8px;font-weight:800;text-transform:uppercase;color:#9299a6}.home-date-card strong{font-size:20px;color:#344054;margin:3px 0}.home-date-card small{font-size:9px;color:#949aa6}.home-date-card b{font-size:8px;margin-top:6px;color:#1f9d55}.home-date-card em{font-style:normal;font-size:9px;font-weight:900;color:#2e3d7e;margin-top:3px}.home-date-card.is-available{border-color:#3349a2}.home-date-card.is-unavailable{border-color:#edf0f5;opacity:.74}.home-date-card.is-unavailable b{color:#f05252}.home-calendar-hint{text-align:center;color:#9aa2ae;font-size:9px;margin-top:9px}.home-booking-card .premium-card-cta{position:relative;z-index:12;margin-top:11px;color:#5369ba;border-top:0;padding-top:4px}.home-booking-card .premium-card-arrow{background:#f0f3ff;color:#445bb1}
+  @media(max-width:900px){.tours-grid{grid-template-columns:1fr}.home-booking-card{min-height:auto}}
+  @media(max-width:560px){.home-booking-card{padding:20px 16px 17px;border-radius:18px}.home-booking-card .card-title-text{font-size:23px}.home-card-head{min-height:72px}.home-card-copy{min-height:0}.home-feature-grid{gap:10px 12px}.home-feature-grid span{font-size:10px}.home-calendar-shell{grid-template-columns:22px minmax(0,1fr) 22px;gap:4px}.home-cal-arrow{width:22px}.home-calendar-strip{gap:4px}.home-date-card{height:86px}.home-date-card strong{font-size:18px}}
 
   /* REVIEWS */
   .reviews-section { padding: 56px 0; border-bottom: 1px solid #ecf0f5; }
