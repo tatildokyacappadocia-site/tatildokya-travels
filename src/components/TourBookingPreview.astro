@@ -197,7 +197,7 @@ const widgetId = `tbp-${Math.random().toString(36).slice(2, 8)}`;
     function isoKey(y, m, d) { return `${y}-${pad(m + 1)}-${pad(d)}`; }
 
     function getUnitPrice() {
-      const priceEl = document.getElementById('tbc-main-price');
+      const priceEl = document.getElementById('tbc-main-price') || document.getElementById('mainPrice');
       if (!priceEl) return null;
       const match = priceEl.textContent.match(/[\d.,]+/);
       if (!match) return null;
