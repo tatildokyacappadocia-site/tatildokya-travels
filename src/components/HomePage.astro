@@ -96,6 +96,12 @@ const heroTrustContent = {
   }
 };
 const heroTrust = heroTrustContent[lang] || heroTrustContent.en;
+const premiumTourLabels = {
+  en: { eyebrow: "CURATED CAPPADOCIA EXPERIENCES", subtitle: "Handpicked tours, local expertise and seamless booking — designed for a more memorable Cappadocia journey.", duration: "Duration", reviews: "Reviews", from: "From", explore: "View experience", featured: "Tatildokya Selection" },
+  tr: { eyebrow: "ÖZENLE SEÇİLMİŞ KAPADOKYA DENEYİMLERİ", subtitle: "Yerel uzmanlık, seçkin rotalar ve kolay rezervasyon — Kapadokya deneyiminizi daha özel hale getirmek için.", duration: "Süre", reviews: "Yorumlar", from: "Başlangıç", explore: "Deneyimi incele", featured: "Tatildokya Seçkisi" },
+  es: { eyebrow: "EXPERIENCIAS SELECCIONADAS EN CAPADOCIA", subtitle: "Tours cuidadosamente elegidos, experiencia local y reserva sencilla para vivir Capadocia de una forma más especial.", duration: "Duración", reviews: "Reseñas", from: "Desde", explore: "Ver experiencia", featured: "Selección Tatildokya" }
+};
+const premiumTour = premiumTourLabels[lang] || premiumTourLabels.en;
 
 const socialImage = `${siteOrigin}/images/tours/tbc-goreme-standart-hot-air-balloon-tour.webp`;
 
@@ -641,11 +647,15 @@ const reviewStarBreakdown = [5, 4, 3, 2, 1].map((star) => ({
   <!-- MOST POPULAR TOURS -->
   <section class="tours-section" id="tours">
     <div class="container">
-      <h2 class="section-title">{t.popular.title}</h2>
+      <div class="premium-section-head">
+        <span class="premium-section-eyebrow">{premiumTour.eyebrow}</span>
+        <h2 class="section-title">{t.popular.title}</h2>
+        <p class="premium-section-subtitle">{premiumTour.subtitle}</p>
+      </div>
 
       <div class="tours-grid" id="toursGrid" data-supabase-url={homepageSupabaseUrl} data-supabase-key={homepageSupabaseKey}>
-        {t.tourCards.map((tour) => (
-          <div
+        {t.tourCards.map((tour, index) => (
+          <article
             class="tour-card-style2"
             data-category={tour.category}
             data-product-slug={resolveProductSlug(tour)}
@@ -656,17 +666,20 @@ const reviewStarBreakdown = [5, 4, 3, 2, 1].map((star) => ({
               <a
                 href={tour.href}
                 aria-label={tour.title}
-                style="position: absolute; inset: 0; z-index: 10;"
+                class="premium-card-main-link"
               ></a>
             )}
 
             <div class="card-img-box">
-              <button type="button" class="card-fav-btn" aria-label="Favorite" tabindex="-1">♡</button>
-              <Image src={resolveTourCardImage(tour)} alt={tour.title} loading="lazy" decoding="async" width={480} height={320} />
+              <Image src={resolveTourCardImage(tour)} alt={tour.title} loading="lazy" decoding="async" width={720} height={520} />
+              <div class="card-image-shade" aria-hidden="true"></div>
+              {index < 3 && <span class="premium-pick-badge">✦ {premiumTour.featured}</span>}
+              <div class="card-image-meta">
+                <span class="duration-pill">◷ {premiumTour.duration} · {tour.duration}</span>
+              </div>
             </div>
 
             <div class="card-body-box">
-              <span class="duration-text">{t.popular.duration}: {tour.duration}</span>
               <h3 class="card-title-text">{tour.title}</h3>
 
               <div class="tag-row" data-tag-row>
@@ -677,15 +690,24 @@ const reviewStarBreakdown = [5, 4, 3, 2, 1].map((star) => ({
                 </span>
               </div>
 
+              <div class="card-premium-divider"></div>
               <div class="card-price-box">
-                <button type="button" class="rating-badge rating-badge-clickable" data-open-reviews aria-haspopup="dialog">⭐ {tour.rating} <span class="rating-badge-link">· {lang === "tr" ? "Yorumlar" : lang === "es" ? "Reseñas" : "Reviews"}</span></button>
+                <button type="button" class="rating-badge rating-badge-clickable" data-open-reviews aria-haspopup="dialog">
+                  <span class="rating-star">★</span> {tour.rating} <span class="rating-badge-link">· {premiumTour.reviews}</span>
+                </button>
                 <div class="price-right" data-price-wrap>
-                  <span class="old-price" data-old-price>{tour.oldPrice}</span>
-                  <span class="current-price" data-current-price>{tour.currentPrice}</span>
+                  <span class="price-from-label">{premiumTour.from}</span>
+                  <div class="price-line">
+                    <span class="old-price" data-old-price>{tour.oldPrice}</span>
+                    <span class="current-price" data-current-price>{tour.currentPrice}</span>
+                  </div>
                 </div>
               </div>
+              <div class="premium-card-cta" aria-hidden="true">
+                <span>{premiumTour.explore}</span><span class="premium-card-arrow">↗</span>
+              </div>
             </div>
-          </div>
+          </article>
         ))}
       </div>
     </div>
@@ -2170,44 +2192,65 @@ const reviewStarBreakdown = [5, 4, 3, 2, 1].map((star) => ({
   .tab-item { padding: 8px 16px; background: #f4f7fa; border: 1px solid #d5dde7; border-radius: 30px; color: var(--primary-navy); text-decoration: none; font-weight: 700; font-size: 13px; white-space: nowrap; cursor: pointer; }
   .tab-item.active { background: var(--primary-navy); color: var(--accent-gold); border-color: var(--primary-navy); }
 
-  /* TUR KARTLARI VE MASAÜSTÜ DÜZENİ */
-  .tours-section { padding: 50px 0; }
-  .section-title { font-family: var(--font-display); font-size: 34px; font-weight: 800; text-align: center; margin-bottom: 30px; color: var(--primary-navy); }
-  .tours-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-
-  .tour-card-style2 { position: relative; background: #ffffff; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.05); border: 1px solid #ecf0f5; display: flex; flex-direction: column; transition: transform 0.3s ease; }
-  .tour-card-style2:hover { transform: translateY(-5px); }
-
-  .card-img-box { position: relative; height: 200px; }
-  .card-img-box img { width: 100%; height: 100%; object-fit: cover; }
-  .card-fav-btn { position: absolute; top: 10px; right: 10px; z-index: 6; width: 30px; height: 30px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); color: #0a1830; font-size: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(0,0,0,.12); cursor: default; pointer-events: none; }
-
-  .card-body-box { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; }
-  .duration-text { font-size: 12px; color: var(--text-muted); font-weight: 600; margin-bottom: 4px; }
-  .card-title-text { font-size: 16px; font-weight: 800; color: var(--primary-navy); margin-bottom: 10px; }
-
-  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-  .discount-tag { font-size: 11px; font-weight: 700; color: #166534; }
-  .status-tag { font-size: 10.5px; font-weight: 800; padding: 5px 10px; border-radius: 999px; }
-  :global(.status-tag.is-visible) {
-    position: absolute !important; top: 10px !important; left: 10px !important; z-index: 6 !important;
-    background: rgba(10,24,48,.82); color: #fff; backdrop-filter: blur(2px);
+  /* PREMIUM TUR KARTLARI */
+  .tours-section {
+    padding: 72px 0 78px;
+    background:
+      radial-gradient(circle at 10% 0%, rgba(211,174,95,.10), transparent 27%),
+      linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   }
-  :global([data-badge2-tag].is-visible) { top: 44px !important; }
-  :global(.status-red) { background: rgba(220,38,38,.92) !important; color: #fff !important; }
-  :global(.status-blue) { background: #d7f4e2 !important; color: #0a5c33 !important; }
-  :global(.status-purple) { background: rgba(48,129,227,.85) !important; }
+  .premium-section-head { max-width: 760px; margin: 0 auto 38px; text-align: center; }
+  .premium-section-eyebrow { display: inline-block; margin-bottom: 10px; color: #9a7134; font-size: 10.5px; line-height: 1.3; font-weight: 900; letter-spacing: .17em; text-transform: uppercase; }
+  .section-title { font-family: var(--font-display); font-size: clamp(32px, 4vw, 45px); line-height: 1.08; font-weight: 800; text-align: center; margin: 0; color: #102b4e; letter-spacing: -.025em; }
+  .premium-section-subtitle { max-width: 660px; margin: 14px auto 0; color: #6b7787; font-size: 14px; line-height: 1.75; }
+  .tours-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; align-items: stretch; }
 
-  .card-price-box { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-  .rating-badge { font-size: 12px; font-weight: 800; color: var(--primary-navy); background: #f0f7fd; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
-  .rating-badge-clickable { position: relative; z-index: 12; border: 0; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; gap: 2px; transition: background .15s ease; }
-  .rating-badge-clickable:hover { background: #dceafb; }
-  .rating-badge-link { text-decoration: underline; text-underline-offset: 2px; }
-  .starting-text { font-size: 11px; color: var(--text-muted); }
-  .price-right { text-align: right; }
-  .old-price { font-size: 13px; color: var(--text-muted); text-decoration: line-through; margin-right: 4px; }
-  .current-price { font-size: 22px; font-weight: 900; color: #1478d4; transition: opacity .25s ease; }
-  .old-price { transition: opacity .25s ease; }
+  .tour-card-style2 {
+    position: relative; background: rgba(255,255,255,.96); border-radius: 24px; overflow: hidden;
+    border: 1px solid rgba(16,43,78,.09); display: flex; flex-direction: column; min-width: 0;
+    box-shadow: 0 14px 40px rgba(13,38,69,.08);
+    transition: transform .32s cubic-bezier(.2,.7,.2,1), box-shadow .32s ease, border-color .32s ease;
+  }
+  .tour-card-style2:hover { transform: translateY(-8px); box-shadow: 0 24px 58px rgba(13,38,69,.15); border-color: rgba(172,128,55,.26); }
+  .premium-card-main-link { position: absolute; inset: 0; z-index: 10; border-radius: inherit; }
+
+  .card-img-box { position: relative; height: 246px; overflow: hidden; background: #dfe6ec; }
+  .card-img-box img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.002); transition: transform .65s cubic-bezier(.2,.7,.2,1), filter .4s ease; }
+  .tour-card-style2:hover .card-img-box img { transform: scale(1.055); filter: saturate(1.05) contrast(1.02); }
+  .card-image-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,25,45,.03) 35%, rgba(8,25,45,.72) 100%); pointer-events: none; }
+  .premium-pick-badge { position: absolute; top: 14px; left: 14px; z-index: 5; display: inline-flex; align-items: center; gap: 5px; padding: 7px 11px; border: 1px solid rgba(255,255,255,.44); border-radius: 999px; background: rgba(13,38,69,.72); backdrop-filter: blur(10px); color: #fff7df; font-size: 9.5px; font-weight: 850; letter-spacing: .04em; box-shadow: 0 5px 18px rgba(0,0,0,.16); }
+  .card-image-meta { position: absolute; left: 14px; right: 14px; bottom: 13px; z-index: 5; display: flex; align-items: center; justify-content: space-between; }
+  .duration-pill { display: inline-flex; align-items: center; gap: 5px; padding: 6px 9px; border-radius: 999px; color: #fff; background: rgba(6,25,47,.56); border: 1px solid rgba(255,255,255,.20); backdrop-filter: blur(8px); font-size: 10px; font-weight: 750; letter-spacing: .015em; }
+
+  .card-body-box { padding: 20px 20px 18px; display: flex; flex-direction: column; flex-grow: 1; }
+  .duration-text { display: none; }
+  .card-title-text { font-family: var(--font-display); font-size: 20px; line-height: 1.25; font-weight: 750; color: #102b4e; margin: 0 0 12px; letter-spacing: -.012em; min-height: 50px; }
+
+  .tag-row { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; min-height: 25px; margin-bottom: 14px; }
+  .discount-tag { display: inline-flex; align-items: center; font-size: 10.5px; line-height: 1.2; font-weight: 800; color: #24724b; background: #edf8f1; border: 1px solid #d8eee0; border-radius: 999px; padding: 6px 9px; }
+  .status-tag { font-size: 10px; font-weight: 850; padding: 5px 9px; border-radius: 999px; }
+  :global(.status-tag.is-visible) { position: absolute !important; top: 14px !important; right: 14px !important; left: auto !important; z-index: 6 !important; background: rgba(10,24,48,.82); color: #fff; backdrop-filter: blur(7px); }
+  :global([data-badge2-tag].is-visible) { top: 48px !important; }
+  :global(.status-red) { background: rgba(190,41,41,.93) !important; color: #fff !important; }
+  :global(.status-blue) { background: rgba(23,110,66,.91) !important; color: #fff !important; }
+  :global(.status-purple) { background: rgba(48,99,160,.90) !important; color: #fff !important; }
+
+  .card-premium-divider { height: 1px; margin: auto 0 14px; background: linear-gradient(90deg, rgba(16,43,78,.11), rgba(16,43,78,.025)); }
+  .card-price-box { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+  .rating-badge { font-size: 11px; font-weight: 800; color: #4c5b6e; background: transparent; padding: 0; border-radius: 0; white-space: nowrap; }
+  .rating-star { color: #b88738; font-size: 13px; }
+  .rating-badge-clickable { position: relative; z-index: 12; border: 0; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; gap: 3px; transition: color .15s ease; }
+  .rating-badge-clickable:hover { background: transparent; color: #102b4e; }
+  .rating-badge-link { text-decoration: none; color: #7c8794; }
+  .price-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; min-width: 100px; }
+  .price-from-label { margin-bottom: 1px; color: #8a95a2; font-size: 9px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+  .price-line { display: flex; align-items: baseline; justify-content: flex-end; gap: 6px; }
+  .old-price { font-size: 12px; color: #9ba4ae; text-decoration: line-through; margin: 0; transition: opacity .25s ease; }
+  .current-price { font-family: var(--font-display); font-size: 25px; line-height: 1; font-weight: 850; color: #0f3763; transition: opacity .25s ease; letter-spacing: -.02em; }
+
+  .premium-card-cta { margin-top: 16px; padding-top: 13px; border-top: 1px solid rgba(16,43,78,.07); display: flex; align-items: center; justify-content: space-between; color: #9a7134; font-size: 10.5px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+  .premium-card-arrow { width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #f5efe3; color: #8c6327; font-size: 13px; transition: transform .25s ease, background .25s ease; }
+  .tour-card-style2:hover .premium-card-arrow { transform: translate(2px,-2px); background: #ede0c7; }
 
   /* REVIEWS */
   .reviews-section { padding: 56px 0; border-bottom: 1px solid #ecf0f5; }
@@ -2789,19 +2832,24 @@ const reviewStarBreakdown = [5, 4, 3, 2, 1].map((star) => ({
     .tbc-booking-box { border-radius: 20px; padding: 8px; }
     .tbc-booking-grid { grid-template-columns: 1fr; gap: 6px; }
     
-    .tours-grid { grid-template-columns: 1fr; gap: 16px; }
-    
-    .tour-card-style2 { border-radius: 16px; }
-    .card-img-box { height: 200px; }
-    .card-body-box { padding: 14px; }
-    .card-title-text { font-size: 15px; margin-bottom: 6px; line-height: 1.25; min-height: 0; }
-    .duration-text { font-size: 11px; }
-    .current-price { font-size: 20px; }
-    .old-price { font-size: 12px; }
-    .starting-text { font-size: 10px; }
-    .rating-badge { font-size: 11px; }
-    .card-fav-btn { width: 32px; height: 32px; font-size: 17px; }
-    .status-tag { font-size: 10px; padding: 5px 9px; }
+    .tours-section { padding: 52px 0 58px; }
+    .premium-section-head { margin-bottom: 28px; padding: 0 7px; }
+    .premium-section-eyebrow { font-size: 9.5px; letter-spacing: .12em; }
+    .section-title { font-size: 31px; }
+    .premium-section-subtitle { font-size: 13px; line-height: 1.65; }
+    .tours-grid { grid-template-columns: 1fr; gap: 19px; }
+    .tour-card-style2 { border-radius: 21px; }
+    .card-img-box { height: 238px; }
+    .card-body-box { padding: 18px 17px 16px; }
+    .card-title-text { font-size: 20px; margin-bottom: 11px; line-height: 1.22; min-height: 0; }
+    .current-price { font-size: 24px; }
+    .old-price { font-size: 11px; }
+    .rating-badge { font-size: 10.5px; }
+    .premium-pick-badge { top: 12px; left: 12px; font-size: 9px; }
+    .card-image-meta { left: 12px; bottom: 12px; }
+    .duration-pill { font-size: 9.5px; }
+    .status-tag { font-size: 9.5px; padding: 5px 8px; }
+    .premium-card-cta { margin-top: 14px; }
 
     .cta-flex { flex-direction: column; text-align: center; }
     .footer-top-row { flex-direction: column; align-items: flex-start; }
